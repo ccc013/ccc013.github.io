@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title><![CDATA[Cai's blog]]></title>
-  
+  <subtitle><![CDATA[Stay hungry,stay foolish]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
   <updated>2016-01-20T08:49:56.354Z</updated>
