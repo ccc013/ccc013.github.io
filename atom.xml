@@ -71,7 +71,7 @@
     <link href="http://ccc013.github.io/2016/01/20/hexo+github%20%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%80%BB%E7%BB%93/"/>
     <id>http://ccc013.github.io/2016/01/20/hexo+github 搭建博客总结/</id>
     <published>2016-01-20T08:49:44.000Z</published>
-    <updated>2016-01-21T13:03:24.787Z</updated>
+    <updated>2016-01-21T13:09:32.925Z</updated>
     <content type="html"><![CDATA[<h1 id="1-_u524D_u8A00"><a href="#1-_u524D_u8A00" class="headerlink" title="1.前言"></a>1.前言</h1><p>   一直都希望能自己搭建个博客出来，所以在考完试后，也是从网上参考了很多用hexo+github pages搭建博客的文章，折腾了一天多，中间也是出现了一些问题，有一些还是暂时没有解决的问题。</p>
 <p>   在搭建之前要对所用到的工具框架有个了解：</p>
 <ul>
@@ -195,6 +195,8 @@ npm install hexo-deployer-git
       <category term="Github" scheme="http://ccc013.github.io/tags/Github/"/>
     
       <category term="Hexo" scheme="http://ccc013.github.io/tags/Hexo/"/>
+    
+      <category term="Markdown" scheme="http://ccc013.github.io/tags/Markdown/"/>
     
       <category term="技术" scheme="http://ccc013.github.io/tags/%E6%8A%80%E6%9C%AF/"/>
     
