@@ -4,12 +4,12 @@
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <title>Cai&#39;s blog</title>
+  <title>Tag: Github | Cai&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Cai's blog">
-<meta property="og:url" content="http://ccc013.github.io/index.html">
+<meta property="og:url" content="http://ccc013.github.io/tags/Github/index.html">
 <meta property="og:site_name" content="Cai's blog">
 <meta property="og:description">
 <meta name="twitter:card" content="summary">
@@ -192,134 +192,52 @@
 
       <div class="body-wrap">
   
-    <article id="post-Android Studio 安装配置问题总结" class="article article-type-post" itemscope itemprop="blogPost">
   
-    <div class="article-meta">
-      <a href="/2016/01/20/Android Studio 安装配置问题总结/" class="article-date">
-  	<time datetime="2016-01-20T13:06:54.000Z" itemprop="datePublished">2016-01-20</time>
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2016" class="archive-year">2016</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2016/01/20/hexo+github 搭建博客总结/" class="archive-article-date">
+  	<time datetime="2016-01-20T08:49:44.000Z" itemprop="datePublished">1月 20</time>
 </a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
+        </div>
+    	 
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/20/Android Studio 安装配置问题总结/">Android Studio 安装配置问题总结</a>
+      <a class="archive-article-title" href="/2016/01/20/hexo+github 搭建博客总结/">hexo+github 搭建博客总结</a>
     </h1>
   
 
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>  之前一直都是使用Eclipse写Android的，但一直都有听说Android Studio是一个更好的用于开发Android的软件，之前其实也有保存过一些别人写的安装和配置Android Studio的一些教程，在这里也列出来：<br><a href="http://www.jianshu.com/p/36cfa1614d23" target="_blank" rel="external">Android Studio 入门指南</a>；<br><a href="http://android.jobbole.com/77635/" target="_blank" rel="external">Eclipse，到了说再见的时候了——Android Studio最全解析</a><br><a href="http://stormzhang.com/devtools/2014/11/25/android-studio-tutorial1/" target="_blank" rel="external">Android Studio系列教程一–下载与安装</a><br>另外，还有一个比较详细的介绍配置的博文系列：<br><a href="http://www.cnblogs.com/smyhvae/p/4390905.html" target="_blank" rel="external">第一次使用Android Studio时你应该知道的一切配置</a><br><a href="http://www.cnblogs.com/smyhvae/p/4392611.html" target="_blank" rel="external">第一次使用Android Studio时你应该知道的一切配置（二）：新建一个属于自己的工程并安装Genymotion模拟器</a><br><a href="http://www.cnblogs.com/smyhvae/p/4456420.html" target="_blank" rel="external">第一次使用Android Studio时你应该知道的一切配置（三）：gradle项目构建</a></p>
-<p>在这里就总结下我安装的过程中遇到的一些问题吧，首先我是从<a href="https://github.com/inferjay/AndroidDevTools#sdk-tools" target="_blank" rel="external">SDK Tools - AndroidDevTools</a><br>这里下载的，毕竟尚未使用过翻墙软件，而且这个Github里面也分享了很多有关Android开发过程中使用到的一些工具，软件，还有一些电子书，资料非常齐全。</p>
-<p>安装完成后，遇到几个问题，分别如下：</p>
-<ol>
-<li><p>首先第一个问题是弹出一个对话框，提示the environment variable JAVA_HOME(with the value of “F:\Java\JDK\” ) does not point to a valid JVM installation.<br>“F:\Java\JDK\”这是我安装jdk的文件路径<br>这个问题上网搜索了好久，有的说需要在JDK\后面加“；”，有的说去掉“\”，反正试了这几个都不行，我干脆就直接去掉“JDK\”,发现这个问题居然解决了….</p>
-</li>
-<li><p>在解决了第一个问题后，马上就出现第二个问题了，又弹出一个对话框显示以下这段文字：<br>‘ tools.jar’ seems to be not in Android Studio classpath.Please ensure JAVA_HOME points to JDK rather than JRE.”</p>
-</li>
-</ol>
-<p>百度了这个问题，根据<a href="http://jingyan.baidu.com/article/ce4366491d06343773afd3cc.html" target="_blank" rel="external">‘tools.jar’seems to be not in Android Studio</a><br>这里给出的一些建议解决了问题，我主要是将jdk和jre分开了，并且没有设置SDK的环境变量，将这两个问题解决完后，就可以使用Android Studio了！</p>
-<p>2015-12-24 补充<br>  因为换了新电脑，并且使用了win10的系统，所以需要重新安装java jdk，android sdk以及android studio，所以就在这再补充下前面安装配置jdk和sdk中遇到的问题。</p>
-<p>首先是jdk，按照这个<a href="http://jingyan.baidu.com/article/fea4511a12b158f7bb9125b9.html" target="_blank" rel="external">如何在WIN10搭建Java开发环境</a>，在官网上下载jdk，安装，然后配置环境变量，但是在验证是否安装配置成功的时候，发现输入“java”是成功的，但是输入“javac”命令时，却提示了不是内部环境变量，但是在jdk的bin文件夹中是存在javac.exe这个文件，所以应该是配置环境变量中path的出问题了，当然我是按照上面教程中输入路径的，但是win10提供了浏览这个选项，通过这个找到要配置的文件路径，发现就成功解决这个问题了。<br><img src="http://img.blog.csdn.net/20151224205331635" alt="这里写图片描述"></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android/">Android</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Android-Studio/">Android Studio</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-hexo+github 搭建博客总结" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/01/20/hexo+github 搭建博客总结/" class="article-date">
-  	<time datetime="2016-01-20T08:49:44.000Z" itemprop="datePublished">2016-01-20</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/20/hexo+github 搭建博客总结/">hexo+github 搭建博客总结</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>   一直都希望能自己搭建个博客出来，所以在考完试后，也是从网上参考了很多用hexo+github搭建博客的文章，折腾了一天多，中间也是出现了一些问题，有一些还是暂时没有解决的问题。</p>
-<p>   首先查看Hexo的文档了解了Hexo的基本概念以及如何安装，当然还有使用的方法。<br>   （所以下面会有一大段是摘自官方文档的，当做笔记记录下）<br>   Hexo官方文档（<a href="https://hexo.io/zh-cn/docs/index.html）" target="_blank" rel="external">https://hexo.io/zh-cn/docs/index.html）</a></p>
-<p>   ###Hexo<br>   Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页</p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Github/">Github</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
 	</div>
 
-      
+          
 
-      
-      <div class="clearfix"></div>
-    </div>
-    
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
-  
 </article>
-
-
-
-
-
-
-
-
-
   
   
+    </div></section>
+  
+
+    
+
 </div>
       <footer id="footer">
   <div class="outer">
@@ -343,10 +261,10 @@
 		fancybox: true,
 		mathjax: true,
 		animate: true,
-		isHome: true,
+		isHome: false,
 		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: true
 	}
