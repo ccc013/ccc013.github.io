@@ -1,7 +1,10 @@
 ---
 title: Android Studio 安装配置问题总结
 date: 2016-01-20 21:06:54
-tags: Android
+tags: 
+ -Android
+ -Android Studio
+ -技术
 ---
   之前一直都是使用Eclipse写Android的，但一直都有听说Android Studio是一个更好的用于开发Android的软件，之前其实也有保存过一些别人写的安装和配置Android Studio的一些教程，在这里也列出来：
 [Android Studio 入门指南](http://www.jianshu.com/p/36cfa1614d23)；
