@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title><![CDATA[Cai's blog]]></title>
-  <subtitle><![CDATA[Stay hungry,stay foolish]]></subtitle>
+  <subtitle><![CDATA[Stay hungry, stay foolish]]></subtitle>
   <link href="/atom.xml" rel="self"/>
-  <link href="http://yoursite.com/"/>
+  <link href="http://ccc013.github.io/"/>
   <updated>2016-01-21T07:45:23.634Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>http://ccc013.github.io/</id>
   
   <author>
     <name><![CDATA[cai]]></name>
-    
+    <email><![CDATA[429546420@qq.com]]></email>
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
     <title><![CDATA[Android Studio 安装配置问题总结]]></title>
-    <link href="http://yoursite.com/2016/01/20/Android%20Studio%20%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/"/>
-    <id>http://yoursite.com/2016/01/20/Android Studio 安装配置问题总结/</id>
+    <link href="http://ccc013.github.io/2016/01/20/Android%20Studio%20%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/"/>
+    <id>http://ccc013.github.io/2016/01/20/Android Studio 安装配置问题总结/</id>
     <published>2016-01-20T13:06:54.000Z</published>
     <updated>2016-01-21T07:45:23.634Z</updated>
     <content type="html"><![CDATA[<p>  之前一直都是使用Eclipse写Android的，但一直都有听说Android Studio是一个更好的用于开发Android的软件，之前其实也有保存过一些别人写的安装和配置Android Studio的一些教程，在这里也列出来：<br><a href="http://www.jianshu.com/p/36cfa1614d23" target="_blank" rel="external">Android Studio 入门指南</a>；<br><a href="http://android.jobbole.com/77635/" target="_blank" rel="external">Eclipse，到了说再见的时候了——Android Studio最全解析</a><br><a href="http://stormzhang.com/devtools/2014/11/25/android-studio-tutorial1/" target="_blank" rel="external">Android Studio系列教程一–下载与安装</a><br>另外，还有一个比较详细的介绍配置的博文系列：<br><a href="http://www.cnblogs.com/smyhvae/p/4390905.html" target="_blank" rel="external">第一次使用Android Studio时你应该知道的一切配置</a><br><a href="http://www.cnblogs.com/smyhvae/p/4392611.html" target="_blank" rel="external">第一次使用Android Studio时你应该知道的一切配置（二）：新建一个属于自己的工程并安装Genymotion模拟器</a><br><a href="http://www.cnblogs.com/smyhvae/p/4456420.html" target="_blank" rel="external">第一次使用Android Studio时你应该知道的一切配置（三）：gradle项目构建</a></p>
@@ -37,14 +37,14 @@
     <![CDATA[<p>  之前一直都是使用Eclipse写Android的，但一直都有听说Android Studio是一个更好的用于开发Android的软件，之前其实也有保存过一些别人写的安装和配置Android Studio的一些教程，在这里也列出来：<br><a href="http://]]>
     </summary>
     
-      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+      <category term="Android" scheme="http://ccc013.github.io/tags/Android/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[new article]]></title>
-    <link href="http://yoursite.com/2016/01/20/new-article/"/>
-    <id>http://yoursite.com/2016/01/20/new-article/</id>
+    <link href="http://ccc013.github.io/2016/01/20/new-article/"/>
+    <id>http://ccc013.github.io/2016/01/20/new-article/</id>
     <published>2016-01-20T08:49:44.000Z</published>
     <updated>2016-01-20T08:49:56.354Z</updated>
     <content type="html"><![CDATA[<p>Hello world!</p>
