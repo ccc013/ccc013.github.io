@@ -223,6 +223,10 @@ themes文件夹就是主题文件，Hexo会根据主题来生成静态页面，�
     ![image](/path/img.jpg "title")
 方括号中是图片的替代文字，而第二种写法中最后的引号内容是可以选择的标题文字
 
+**锚的使用**
+使用命名锚，我们就可以创建目录，点击目录就可以跳至该命名锚，也就是同一个页面中某个小节的位置。
+
+一开始是根据markdown的语法，但是发现并没有实现这个功能，后来搜索了下，根据[markdown中命名锚](http://ju.outofmemory.cn/entry/115045)中给出的方法，也就是使用html的语法，也就是目录使用，比如`[Overview](#overview)`,而在命名锚所要到的位置，使用如`<h3 id="overview">Overview</h3>`,主要是**id**属性来命名锚，这样点击目录中的Overview,就会跳至`<h3 id="overview">Overview</h3>`处了。
 
 #3.总结
 
