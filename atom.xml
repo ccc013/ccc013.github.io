@@ -71,7 +71,7 @@
     <link href="http://ccc013.github.io/2016/01/20/hexo+github%20%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%80%BB%E7%BB%93/"/>
     <id>http://ccc013.github.io/2016/01/20/hexo+github 搭建博客总结/</id>
     <published>2016-01-20T08:49:44.000Z</published>
-    <updated>2016-01-21T13:09:32.925Z</updated>
+    <updated>2016-01-22T02:41:07.464Z</updated>
     <content type="html"><![CDATA[<h1 id="1-_u524D_u8A00"><a href="#1-_u524D_u8A00" class="headerlink" title="1.前言"></a>1.前言</h1><p>   一直都希望能自己搭建个博客出来，所以在考完试后，也是从网上参考了很多用hexo+github pages搭建博客的文章，折腾了一天多，中间也是出现了一些问题，有一些还是暂时没有解决的问题。</p>
 <p>   在搭建之前要对所用到的工具框架有个了解：</p>
 <ul>
@@ -182,6 +182,8 @@ npm install hexo-deployer-git
 <pre><code>![image](/path/img.jpg)
 ![image](/path/img.jpg &quot;title&quot;)
 </code></pre><p>方括号中是图片的替代文字，而第二种写法中最后的引号内容是可以选择的标题文字</p>
+<p><strong>锚的使用</strong><br>使用命名锚，我们就可以创建目录，点击目录就可以跳至该命名锚，也就是同一个页面中某个小节的位置。</p>
+<p>一开始是根据markdown的语法，但是发现并没有实现这个功能，后来搜索了下，根据<a href="http://ju.outofmemory.cn/entry/115045" target="_blank" rel="external">markdown中命名锚</a>中给出的方法，也就是使用html的语法，也就是目录使用，比如<code>[Overview](#overview)</code>,而在命名锚所要到的位置，使用如<code>&lt;h3 id=&quot;overview&quot;&gt;Overview&lt;/h3&gt;</code>,主要是<strong>id</strong>属性来命名锚，这样点击目录中的Overview,就会跳至<code>&lt;h3 id=&quot;overview&quot;&gt;Overview&lt;/h3&gt;</code>处了。</p>
 <p>#3.总结</p>
 <p>从昨天，也就是1月20号弄了一天，但是并没有解决如何在Github上存放原始文章文件，今天下午则是找到解决方法，并且成功解决了，然后写下这篇总结。</p>
 <p>目前完成的也只是比较简单的内容，还有很多内容可以增加，此外搭建这个博客的本意是促使自己可以多总结多写博客，最终的目的是要掌握好学到的技术知识，所以现在仅仅是一个准备动作，最多也就是迈出一小步了，还需要自己不断坚持，不断学习，不断努力！</p>
