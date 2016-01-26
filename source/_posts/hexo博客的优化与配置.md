@@ -6,11 +6,8 @@ tags:
 - 技术
 ---
 
-#目录
+###添加统计代码
 
-[1. 添加统计代码](#01)
-
-<h3 id="01">1. 添加统计代码</h3>
 上周成功用Hexo+Github Pages搭建好博客，但是还有很多功能等待添加的,今天就继续进行优化，首先是添加统计代码，数据统计方面有以下几个:
 
 1. [Google Analytics](http://www.google.com/analytics/web/?hl=zh-CN)
