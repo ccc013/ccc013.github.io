@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Stay hungry, stay foolish]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://ccc013.github.io/"/>
-  <updated>2016-01-26T09:22:21.875Z</updated>
+  <updated>2016-01-26T09:23:09.580Z</updated>
   <id>http://ccc013.github.io/</id>
   
   <author>
@@ -19,9 +19,8 @@
     <link href="http://ccc013.github.io/2016/01/26/hexo%E5%8D%9A%E5%AE%A2%E7%9A%84%E4%BC%98%E5%8C%96%E4%B8%8E%E9%85%8D%E7%BD%AE/"/>
     <id>http://ccc013.github.io/2016/01/26/hexo博客的优化与配置/</id>
     <published>2016-01-26T08:22:04.000Z</published>
-    <updated>2016-01-26T09:22:21.875Z</updated>
-    <content type="html"><![CDATA[<p>###添加统计代码</p>
-<p>上周成功用Hexo+Github Pages搭建好博客，但是还有很多功能等待添加的,今天就继续进行优化，首先是添加统计代码，数据统计方面有以下几个:</p>
+    <updated>2016-01-26T09:23:09.580Z</updated>
+    <content type="html"><![CDATA[<h1 id="u6DFB_u52A0_u7EDF_u8BA1_u4EE3_u7801"><a href="#u6DFB_u52A0_u7EDF_u8BA1_u4EE3_u7801" class="headerlink" title="添加统计代码"></a>添加统计代码</h1><p>上周成功用Hexo+Github Pages搭建好博客，但是还有很多功能等待添加的,今天就继续进行优化，首先是添加统计代码，数据统计方面有以下几个:</p>
 <ol>
 <li><a href="http://www.google.com/analytics/web/?hl=zh-CN" target="_blank" rel="external">Google Analytics</a></li>
 <li><a href="http://tongji.baidu.com/web/welcome/login" target="_blank" rel="external">百度统计</a></li>
@@ -53,10 +52,7 @@ cnzz: true
 </code></pre><p>这样就可以了，然后就执行<code>hexo generate</code>,<code>hexo deploy</code>发布网站即可。</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>###添加统计代码</p>
-<p>上周成功用Hexo+Github Pages搭建好博客，但是还有很多功能等待添加的,今天就继续进行优化，首先是添加统计代码，数据统计方面有以下几个:</p>
-<ol>
-<li><a href="http://www.google.com/a]]>
+    <![CDATA[<h1 id="u6DFB_u52A0_u7EDF_u8BA1_u4EE3_u7801"><a href="#u6DFB_u52A0_u7EDF_u8BA1_u4EE3_u7801" class="headerlink" title="添加统计代码"></a>添加统计代码</h1]]>
     </summary>
     
       <category term="Hexo" scheme="http://ccc013.github.io/tags/Hexo/"/>
