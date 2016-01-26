@@ -118,7 +118,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/Android-Studio/" style="font-size: 10px;">Android Studio</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/总结/" style="font-size: 10px;">总结</a> <a href="/tags/技术/" style="font-size: 20px;">技术</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
+						<a href="/tags/Android/" style="font-size: 10px;">Android</a> <a href="/tags/Android-Studio/" style="font-size: 10px;">Android Studio</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/Github/" style="font-size: 10px;">Github</a> <a href="/tags/Hexo/" style="font-size: 15px;">Hexo</a> <a href="/tags/Markdown/" style="font-size: 10px;">Markdown</a> <a href="/tags/总结/" style="font-size: 10px;">总结</a> <a href="/tags/技术/" style="font-size: 20px;">技术</a> <a href="/tags/随笔/" style="font-size: 10px;">随笔</a>
 					</div>
 				</section>
 				
@@ -195,6 +195,94 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-hexo博客的优化与配置" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/01/26/hexo博客的优化与配置/" class="article-date">
+  	<time datetime="2016-01-26T08:22:04.000Z" itemprop="datePublished">2016-01-26</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/26/hexo博客的优化与配置/">hexo博客的优化与配置</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#目录</p>
+<p><a href="/#01">1. 添加统计代码</a></p>
+<p></p><h3 id="01">1. 添加统计代码</h3><br>上周成功用Hexo+Github Pages搭建好博客，但是还有很多功能等待添加的,今天就继续进行优化，首先是添加统计代码，数据统计方面有以下几个:<p></p>
+<ol>
+<li><a href="http://www.google.com/analytics/web/?hl=zh-CN" target="_blank" rel="external">Google Analytics</a></li>
+<li><a href="http://tongji.baidu.com/web/welcome/login" target="_blank" rel="external">百度统计</a></li>
+<li><a href="http://busuanzi.ibruce.info/" target="_blank" rel="external">不蒜子</a></li>
+</ol>
+<p>然后就是站长工具:</p>
+<ol>
+<li><a href="http://zhanzhang.cnzz.com/" target="_blank" rel="external">CNZZ|站长统计</a></li>
+<li><a href="http://www.google.com/intl/zh-CN/webmasters" target="_blank" rel="external">谷歌站长工具</a></li>
+<li><a href="http://zhanzhang.baidu.com/" target="_blank" rel="external">百度站长工具</a></li>
+<li><a href="http://tool.chinaz.com/" target="_blank" rel="external">站长之家工具</a></li>
+<li><a href="http://zhanzhang.so.com/" target="_blank" rel="external">360搜索站长平台</a></li>
+</ol>
+<p>感觉站长工具会比较详细点，所以就采用站长工具，用的是cnzz的，参考了<a href="http://blog.csdn.net/whjkm/article/details/37884563" target="_blank" rel="external">hexo博客的优化与配置——添加统计代码</a>.</p>
+<p>首先在<code>\theme\yilia\_config.yml</code>添加一行代码:</p>
+<pre><code>#### Analytics
+cnzz: true
+</code></pre><p>这里我用的是<strong>yilia</strong>主题。</p>
+<p>登录<a href="http://zhanzhang.cnzz.com/" target="_blank" rel="external">CNZZ</a>中，注册，添加网站，然后会得到代码，选择想要显示的形式，可以只是文字形式，也可以是图表形式，复制给出的代码，然后在<code>\theme\yilia\layout\_partial</code>里面创建一个<strong>cnzz.ejs</strong>文件，把刚刚复制的代码添加进去:</p>
+<pre><code>&lt;% if (theme.cnzz){ %&gt; 
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var cnzz_protocol = ((&quot;https:&quot; == document.location.protocol) ? &quot; https://&quot; : &quot; http://&quot;);
+    document.write(unescape(&quot;%3Cspan id=&apos;cnzz_stat_icon_1257376919&apos;%3E%3C/span%3E%3Cscript src=&apos;&quot; + cnzz_protocol + &quot;s11.cnzz.com/z_stat.php%3Fid%3D1257376919&apos; type=&apos;text/javascript&apos;%3E%3C/script%3E&quot;));
+&lt;/script&gt; 
+&lt;% } %&gt;
+</code></pre><p>主要是替代这段代码中第二行<strong>&lt;script </strong>开始到倒数第二行的<strong></strong>。</p>
+<p>最后在after_footer.ejs（或者footer，或head，可以自己选择需要出现站长统计的位置）的后面添加一行代码即可:</p>
+<pre><code>&lt;%- partial(&apos;cnzz&apos;) %&gt; 
+</code></pre><p>这样就可以了，然后就执行<code>hexo generate</code>,<code>hexo deploy</code>发布网站即可。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hexo/">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/技术/">技术</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-2015总结-2016展望" class="article article-type-post" itemscope itemprop="blogPost">
   
