@@ -174,7 +174,15 @@ themes文件夹就是主题文件，Hexo会根据主题来生成静态页面，�
     npm install hexo-deployer-git
 这里就不需要`hexo init`这个命令
 
-###(5)Markdown知识点总结
+###(5) 使用问题总结
+1. /c/Users/cai/AppData/Roaming/npm/hexo: line 12: node: command not found
+(更新于2016-03-07)
+
+在搭建完博客后，有一段时间没有使用后，然后需要更新下博文或者样式时，在Git bash敲下命令`hexo g`，居然出现上述错误信息，然后发现输入任何有关hexo的命令都是同样的错误，我又试着敲了npm这个命令，发现也是出错的，但是在系统命令行中输入`node -v`和`npm -v`,都正常显示了版本信息，于是我想估计是环境变量设置有问题，我在用户的环境变量PATH中添加了两个路径，分别是`C:\Users\cai\node_modules\hexo\bin`和`C:\Program Files\nodejs`，再加上原来就添加的路径`C:\Users\cai\AppData\Roaming\npm`，发现就解决这个问题了，可以正常修改博文，然后发布网站。
+
+不过，我也不清楚是否完全解决这个问题，还需要观察一段时间。
+
+###(6)Markdown知识点总结
 
 **生成md文件**
 命令`hexo new "文件名"`就可以生成一个md文件，然后就可以开始写文章，但是这里用到Markdown的语法，同时我们也需要一个专门可以用来写markdown的工具。
