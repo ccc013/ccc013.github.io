@@ -38,7 +38,7 @@ tags:
 
    Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页
 
-###(1)安装前提
+### (1)安装前提
 
 安装Hexo的官方文档，需要安装有下面两个应用程序：
 * [Node.js](https://nodejs.org/en/)
@@ -81,14 +81,14 @@ Mac：使用[Homebrew](http://brew.sh/),[MacPorts](http://www.macports.org/) 或
 [Error: Permission denied (publickey)](https://help.github.com/articles/error-permission-denied-publickey/)
 
 
-###(2)Hexo的安装和使用
+### (2)Hexo的安装和使用
 
-####安装
+#### 安装
 
 安装上面两个必须的应用程序后，就可以使用npm安装Hexo:
 `$ npm install -g hexo-cli `
 
-####使用
+#### 使用
 
 安装完成后，可以使用如下命令初始化:
 `$ hexo init <folder>`
@@ -128,7 +128,7 @@ themes文件夹就是主题文件，Hexo会根据主题来生成静态页面，�
 
 虽然无法本地浏览，但是这也不是什么大问题，最终还是要部署在Github Pages上的
 
-###(3)部署到Github
+### (3)部署到Github
 
 在部署到GitHub前，需要安装一个插件:
 `$ npm install hexo-deployer-git --save`
@@ -158,7 +158,7 @@ themes文件夹就是主题文件，Hexo会根据主题来生成静态页面，�
 
 这个过程我初始是按照[GitHub-Pages-Hexo搭建博客](http://crazymilk.github.io/2015/12/28/GitHub-Pages-Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/)中来做的，但是在输入`hexo init`后，就会发现一开始`git clone`下来的文件中的.git文件没有了，并且之后也是无法`git push `到自己的github上，总是显示被拒绝的提示，本来我都是打算再建立一个仓库来存放文章了，但是后来又在上网搜索，看到这篇文章[如何使用Hexo在Github上搭建自己的博客](http://www.xrpmoon.com/blog/archives/jripple1281.html)中发布到github page的时候，就想自己应该是在本地的时候也是要新建一个同样名为hexo的分支，然后`git commit`到这个分支，于是就这么做，没想到真的成功了！
 
-###(4)博客管理流程
+### (4)博客管理流程
 所以现在对博客的修改就是如同[GitHub-Pages-Hexo搭建博客](http://crazymilk.github.io/2015/12/28/GitHub-Pages-Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/)中说得一样:
 **日常修改**
 1. 在本地修改博客，如添加新的博文，修改样式等；
@@ -174,7 +174,7 @@ themes文件夹就是主题文件，Hexo会根据主题来生成静态页面，�
     npm install hexo-deployer-git
 这里就不需要`hexo init`这个命令
 
-###(5) 使用问题总结
+### (5) 使用问题总结
 1. /c/Users/cai/AppData/Roaming/npm/hexo: line 12: node: command not found
 (更新于2016-03-07)
 
@@ -182,7 +182,7 @@ themes文件夹就是主题文件，Hexo会根据主题来生成静态页面，�
 
 不过，我也不清楚是否完全解决这个问题，还需要观察一段时间。
 
-###(6)Markdown知识点总结
+### (6)Markdown知识点总结
 
 **生成md文件**
 命令`hexo new "文件名"`就可以生成一个md文件，然后就可以开始写文章，但是这里用到Markdown的语法，同时我们也需要一个专门可以用来写markdown的工具。
@@ -236,7 +236,7 @@ themes文件夹就是主题文件，Hexo会根据主题来生成静态页面，�
 
 一开始是根据markdown的语法，但是发现并没有实现这个功能，后来搜索了下，根据[markdown中命名锚](http://ju.outofmemory.cn/entry/115045)中给出的方法，也就是使用html的语法，也就是目录使用，比如`[Overview](#overview)`,而在命名锚所要到的位置，使用如`<h3 id="overview">Overview</h3>`,主要是**id**属性来命名锚，这样点击目录中的Overview,就会跳至`<h3 id="overview">Overview</h3>`处了。
 
-#3.总结
+## 3.总结
 
 从昨天，也就是1月20号弄了一天，但是并没有解决如何在Github上存放原始文章文件，今天下午则是找到解决方法，并且成功解决了，然后写下这篇总结。
 
