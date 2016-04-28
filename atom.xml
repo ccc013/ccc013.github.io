@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Stay hungry, stay foolish]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://ccc013.github.io/"/>
-  <updated>2016-04-20T06:13:34.365Z</updated>
+  <updated>2016-04-28T10:29:13.168Z</updated>
   <id>http://ccc013.github.io/</id>
   
   <author>
@@ -15,11 +15,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[Device Compatibility]]></title>
+    <title><![CDATA[Android官方文档Guide阅读系列(2)--Device Compatibility]]></title>
     <link href="http://ccc013.github.io/2016/04/20/Device-Compatibility/"/>
     <id>http://ccc013.github.io/2016/04/20/Device-Compatibility/</id>
     <published>2016-04-20T06:13:07.000Z</published>
-    <updated>2016-04-20T06:13:34.365Z</updated>
+    <updated>2016-04-28T10:29:13.168Z</updated>
     <content type="html"><![CDATA[<p>第二篇文章：<a href="http://android.xsoftlab.net/guide/practices/compatibility.html" target="_blank" rel="external">设备的兼容性(Device Compatibility)</a></p>
 <h3 id="u8BBE_u5907_u7684_u517C_u5BB9_u6027_28Device_Compatibility_29"><a href="#u8BBE_u5907_u7684_u517C_u5BB9_u6027_28Device_Compatibility_29" class="headerlink" title="设备的兼容性(Device Compatibility)"></a>设备的兼容性(Device Compatibility)</h3><p>Android 现在可以运行在不同的设备上，不只是手机，还有平板电脑，电视。为了能让应用可以成功在这些设备上正常运行，应用应该允许一些特征功能的多样性并且可以提供一个灵活的用户界面来适应不同的屏幕配置。</p>
 <p>为了达成这个目标，Android 提供一个可以让开发者使用一些静态文件(如对于不同屏幕尺寸的不同<code>XML</code>布局)来使用特定的配置的应用资源的动态应用框架。Android 可以根据当前设备的配置来加载合适的资源。所以对于开发者，在将你的程序打包成<code>apk</code>文件前，考虑好使用几套资源文件，比如使用几套不同大小的图片来适应不同的屏幕尺寸，对于手机和平板电脑要分别设置不同的布局文件等，这样当发布了你的应用后，就可以给使用不同设备的用户一个最好的用户体验。</p>
@@ -85,11 +85,11 @@
   </entry>
   
   <entry>
-    <title><![CDATA[Application Fundamentals]]></title>
+    <title><![CDATA[Android官方文档Guide阅读系列(1)--Application Fundamentals]]></title>
     <link href="http://ccc013.github.io/2016/04/20/Application-Fundamentals/"/>
     <id>http://ccc013.github.io/2016/04/20/Application-Fundamentals/</id>
     <published>2016-04-20T06:10:54.000Z</published>
-    <updated>2016-04-20T06:20:45.408Z</updated>
+    <updated>2016-04-28T10:29:04.540Z</updated>
     <content type="html"><![CDATA[<p>最近打算好好看看android的官方文档，<code>Training</code>的已经看过了，打算看下<code>Guide</code>指导文档，这个比<code>Training</code>会介绍得更加详细。</p>
 <p>谷歌的官网因为被墙，所以这里介绍一个国内的镜像<a href="http://android.xsoftlab.net/index.html" target="_blank" rel="external">Android 6.0官网</a>，本篇文章是第一篇文章，地址是<a href="http://android.xsoftlab.net/guide/components/fundamentals.html" target="_blank" rel="external">Application Fundamentals</a></p>
 <p>主要是翻译<code>Guide</code>文档的内容，但不一定会逐句翻译，因为英语水平问题，可能会有选择的翻译一些自己认为比较重要的内容，但是介绍的知识点会尽可能保证都翻译到。</p>
