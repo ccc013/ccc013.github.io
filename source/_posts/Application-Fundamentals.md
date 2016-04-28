@@ -1,5 +1,5 @@
 ---
-title: Application Fundamentals
+title: Android官方文档Guide阅读系列(1)--Application Fundamentals
 date: 2016-04-20 14:10:54
 tags: 
  - Android

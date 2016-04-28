@@ -1,5 +1,5 @@
 ---
-title: Device Compatibility
+title: Android官方文档Guide阅读系列(2)--Device Compatibility
 date: 2016-04-20 14:13:07
 tags:
  - Android
