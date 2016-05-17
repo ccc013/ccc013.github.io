@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://ccc013.github.io/about/index.html</loc>
+    <lastmod>2016-05-17T15:42:25.516Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://ccc013.github.io/categories/index.html</loc>
     <lastmod>2016-05-17T15:28:56.892Z</lastmod>
   </url>
@@ -9,11 +14,6 @@
   <url>
     <loc>http://ccc013.github.io/tags/index.html</loc>
     <lastmod>2016-05-17T15:04:38.784Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://ccc013.github.io/about/index.html</loc>
-    <lastmod>2016-05-17T14:42:32.540Z</lastmod>
   </url>
   
   <url>
