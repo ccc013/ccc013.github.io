@@ -51,6 +51,7 @@ Android的app是使用Java语言编写的。Android SDK工具是用来将你写�
 
 ##### Broadcast receivers
 一个广播接收器是一个用于响应系统全局广播通知的组件。很多广播都是起源于系统——例如，一个广播通知屏幕要关闭，电量低，或者截屏。应用也可以初始化广播——例如，让其他应用知道有些数据被下载到设备中并且可以提供给它们使用。尽管广播接收器没有显示一个用户界面，但是它们可以创建一条状态栏的通知来提醒用户有一个广播事件发生了。但更普遍的情况是，一个广播接收器仅仅是一个通向其他组件的“门(gateway)”，并且一般只做很少量的工作，例如，广播接收器可能就是开启一个基于广播事件的执行一些任务的服务。
+
 ***
 ### 2.Activating Components
 在4种组件类型中有三种--活动、服务和广播接收器--都是通过一个叫做`intent`的异步信息启动的。Intents可以在运行时将独立的组件绑定在一起(可以将它们看做是需要从其他组件中要求一个`action`的信使)，无论这个组件是否属于你的应用。
@@ -69,6 +70,7 @@ Android的app是使用Java语言编写的。Android SDK工具是用来将你写�
 * 对于服务，传递一个`Intent`给`startService()`方法来开启服务，绑定服务则是传递给`bindService()`;
 * 初始化一个广播可以通过传递`Intent`给如`sendBroadcast()`,`sendOrderedBroadcast()`,或者`sendStickyBroadcast()`;
 * 通过调用`ContentResolver`的`query()`可以实现对内容提供器的查询。
+
 ***
 ### 3. The Manifest File
 所有的组件都必须在一个文件——`AndroidManifest.xml`中声明，Android 系统才能使用它，这个文件必须是在应用项目文件的根目录中。
