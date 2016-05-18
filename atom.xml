@@ -89,7 +89,7 @@
     <link href="http://ccc013.github.io/2016/04/20/Application-Fundamentals/"/>
     <id>http://ccc013.github.io/2016/04/20/Application-Fundamentals/</id>
     <published>2016-04-20T06:10:54.000Z</published>
-    <updated>2016-05-18T10:37:49.298Z</updated>
+    <updated>2016-05-18T10:46:07.901Z</updated>
     <content type="html"><![CDATA[<p>最近打算好好看看android的官方文档，<code>Training</code>的已经看过了，打算看下<code>Guide</code>指导文档，这个比<code>Training</code>会介绍得更加详细。</p>
 <p>谷歌的官网因为被墙，所以这里介绍一个国内的镜像<a href="http://android.xsoftlab.net/index.html" target="_blank" rel="external">Android 6.0官网</a>，本篇文章是第一篇文章，地址是<a href="http://android.xsoftlab.net/guide/components/fundamentals.html" target="_blank" rel="external">Application Fundamentals</a></p>
 <p>主要是翻译<code>Guide</code>文档的内容，但不一定会逐句翻译，因为英语水平问题，可能会有选择的翻译一些自己认为比较重要的内容，但是介绍的知识点会尽可能保证都翻译到。</p>
