@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Stay hungry, stay foolish]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://ccc013.github.io/"/>
-  <updated>2016-04-28T10:29:13.168Z</updated>
+  <updated>2016-05-18T10:39:05.476Z</updated>
   <id>http://ccc013.github.io/</id>
   
   <author>
@@ -19,18 +19,18 @@
     <link href="http://ccc013.github.io/2016/04/20/Device-Compatibility/"/>
     <id>http://ccc013.github.io/2016/04/20/Device-Compatibility/</id>
     <published>2016-04-20T06:13:07.000Z</published>
-    <updated>2016-04-28T10:29:13.168Z</updated>
+    <updated>2016-05-18T10:39:05.476Z</updated>
     <content type="html"><![CDATA[<p>第二篇文章：<a href="http://android.xsoftlab.net/guide/practices/compatibility.html" target="_blank" rel="external">设备的兼容性(Device Compatibility)</a></p>
 <h3 id="u8BBE_u5907_u7684_u517C_u5BB9_u6027_28Device_Compatibility_29"><a href="#u8BBE_u5907_u7684_u517C_u5BB9_u6027_28Device_Compatibility_29" class="headerlink" title="设备的兼容性(Device Compatibility)"></a>设备的兼容性(Device Compatibility)</h3><p>Android 现在可以运行在不同的设备上，不只是手机，还有平板电脑，电视。为了能让应用可以成功在这些设备上正常运行，应用应该允许一些特征功能的多样性并且可以提供一个灵活的用户界面来适应不同的屏幕配置。</p>
 <p>为了达成这个目标，Android 提供一个可以让开发者使用一些静态文件(如对于不同屏幕尺寸的不同<code>XML</code>布局)来使用特定的配置的应用资源的动态应用框架。Android 可以根据当前设备的配置来加载合适的资源。所以对于开发者，在将你的程序打包成<code>apk</code>文件前，考虑好使用几套资源文件，比如使用几套不同大小的图片来适应不同的屏幕尺寸，对于手机和平板电脑要分别设置不同的布局文件等，这样当发布了你的应用后，就可以给使用不同设备的用户一个最好的用户体验。</p>
 <p>最好的情况还是开发者可以指定其应用的功能要求，这样可以控制能够安装其应用的设备类型。更多有关让你的应用适应不同设备的内容，可以查看<a href="http://android.xsoftlab.net/training/basics/supporting-devices/index.html" target="_blank" rel="external">Supporting Different Devices</a>。</p>
 <hr>
-<h4 id="1-_u517C_u5BB9_u6027_u610F_u5473_u7740_u4EC0_u4E48_uFF1F"><a href="#1-_u517C_u5BB9_u6027_u610F_u5473_u7740_u4EC0_u4E48_uFF1F" class="headerlink" title="1.兼容性意味着什么？"></a>1.兼容性意味着什么？</h4><p>  当你阅读了越来越多有关 Android 开发的文章后，你可能在不同情况下会看到这个词语–<code>兼容性</code>。兼容性分为两种，一是设备的兼容性，二是应用的兼容性。</p>
+<h3 id="u517C_u5BB9_u6027_u610F_u5473_u7740_u4EC0_u4E48_uFF1F"><a href="#u517C_u5BB9_u6027_u610F_u5473_u7740_u4EC0_u4E48_uFF1F" class="headerlink" title="兼容性意味着什么？"></a>兼容性意味着什么？</h3><p>  当你阅读了越来越多有关 Android 开发的文章后，你可能在不同情况下会看到这个词语–<code>兼容性</code>。兼容性分为两种，一是设备的兼容性，二是应用的兼容性。</p>
 <p>  因为 Android 是一个开源项目，所以任何硬件制造商都可以制造一个能运行 Android 系统的设备，但是一个设备被称为是”兼容 Android”只有在该设备上可以正常运行在 <code>Android 执行环境</code>下编写的应用的前提。而有关<code>Android 执行环境</code>的细节可以查看<a href="http://source.android.com/compatibility/overview.html" target="_blank" rel="external"> Android compatibility program</a>,然后每个设备都必须通过兼容性测试套件(Compatibility Test Suite, CTS)才被认为是可兼容的。</p>
 <p>  当然，作为一名应用开发者，是根本不需要考虑设备是否是兼容 Android的，因为可以包含谷歌应用商店(Google Play Store) 的设备都是可以兼容Android的，换句话说，能够安装你的应用的用户都是使用一台兼容Android的设备。</p>
 <p>  那么，开发者需要考虑的就是你的应用的兼容性问题了。这也是因为 Android 可以运行在不同配置的设备上，有些功能不是所有的设备都具备的。比如一些设备是不具备有指南针传感器的，所以如果应该的核心功能需要有指南针传感器，那么就只有拥有这指南针传感器的设备可以使用你的应用了。</p>
 <hr>
-<h4 id="2-_u63A7_u5236_u5E94_u7528_u5BF9_u8BBE_u5907_u7684_u53EF_u7528_u6027"><a href="#2-_u63A7_u5236_u5E94_u7528_u5BF9_u8BBE_u5907_u7684_u53EF_u7528_u6027" class="headerlink" title="2.控制应用对设备的可用性"></a>2.控制应用对设备的可用性</h4><p>  Android 支持很多特性功能，这些功能有些是需要硬件支持的，比如上述的指南针传感器，有些是基于软件的，比如应用程序部件，还有一些是依赖于平台的版本。不是每一种设备都支持所有的功能，所以开发者需要根据应用所要求的功能来控制应用对设备的可用性。</p>
+<h3 id="u63A7_u5236_u5E94_u7528_u5BF9_u8BBE_u5907_u7684_u53EF_u7528_u6027"><a href="#u63A7_u5236_u5E94_u7528_u5BF9_u8BBE_u5907_u7684_u53EF_u7528_u6027" class="headerlink" title="控制应用对设备的可用性"></a>控制应用对设备的可用性</h3><p>  Android 支持很多特性功能，这些功能有些是需要硬件支持的，比如上述的指南针传感器，有些是基于软件的，比如应用程序部件，还有一些是依赖于平台的版本。不是每一种设备都支持所有的功能，所以开发者需要根据应用所要求的功能来控制应用对设备的可用性。</p>
 <p>  为了让更多的用户可以使用你的应用，你应该在使用一个单独的<code>APK</code>的情况下支持尽可能多的设备配置。大多数情况下，你可以在运行的时候关闭可选的功能特性，然后根据不同配置使用不同资源文件(比如不同屏幕尺寸的布局文件，具体参考<a href="http://android.xsoftlab.net/guide/topics/resources/providing-resources.html" target="_blank" rel="external">提供应用资源</a>)。如果可能，你是可以在谷歌应用商店中根据以下几种设备的特性来限制你的应用的可用性:</p>
 <ul>
 <li>设备功能(Device features)</li>
@@ -38,7 +38,7 @@
 <li>屏幕配置(Screen configuration)</li>
 </ul>
 <hr>
-<h5 id="281_29__u8BBE_u5907_u529F_u80FD_28Device_features_29"><a href="#281_29__u8BBE_u5907_u529F_u80FD_28Device_features_29" class="headerlink" title="(1) 设备功能(Device features)"></a>(1) 设备功能(Device features)</h5><p>  Android 给所有的硬件或软件功能都提供了功能<code>IDs</code>，比如对于指南针传感器的功能 ID 就是<a href="http://android.xsoftlab.net/reference/android/content/pm/PackageManager.html#FEATURE_SENSOR_COMPASS" target="_blank" rel="external"><code>FEATURE_SENSOR_COMPASS</code></a>,而应用程序组件的 ID 是<a href="http://android.xsoftlab.net/reference/android/content/pm/PackageManager.html#FEATURE_APP_WIDGETS" target="_blank" rel="external"><code>FEATURE_APP_WIDGETS</code></a>.</p>
+<h4 id="281_29__u8BBE_u5907_u529F_u80FD_28Device_features_29"><a href="#281_29__u8BBE_u5907_u529F_u80FD_28Device_features_29" class="headerlink" title="(1) 设备功能(Device features)"></a>(1) 设备功能(Device features)</h4><p>  Android 给所有的硬件或软件功能都提供了功能<code>IDs</code>，比如对于指南针传感器的功能 ID 就是<a href="http://android.xsoftlab.net/reference/android/content/pm/PackageManager.html#FEATURE_SENSOR_COMPASS" target="_blank" rel="external"><code>FEATURE_SENSOR_COMPASS</code></a>,而应用程序组件的 ID 是<a href="http://android.xsoftlab.net/reference/android/content/pm/PackageManager.html#FEATURE_APP_WIDGETS" target="_blank" rel="external"><code>FEATURE_APP_WIDGETS</code></a>.</p>
 <p>  在你的应用的<a href="http://android.xsoftlab.net/guide/topics/manifest/manifest-intro.html" target="_blank" rel="external"><code>manifest file</code></a>可以通过使用<a href="http://android.xsoftlab.net/guide/topics/manifest/uses-feature-element.html" target="_blank" rel="external"><code>&lt;uses-feature&gt;</code></a>来声明所需要的功能从而防止不具备应用所需要的功能的设备的用户安装你的应用。</p>
 <p>  一个要求必须具备指南针传感器功能的应用可以如此写明该功能要求：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;manifest ... &#62;&#10;    &#60;uses-feature android:name=&#34;android.hardware.sensor.compass&#34;&#10;                  android:required=&#34;true&#34; /&#62;&#10;    ...&#10;&#60;/manifest&#62;</span><br></pre></td></tr></table></figure>
@@ -49,19 +49,19 @@
 <p>注意：有些<a href="http://android.xsoftlab.net/guide/topics/security/permissions.html" target="_blank" rel="external">系统权限</a>暗含着需要某些设备功能的支持。比如，如果你的应用需要蓝牙(<code>BLUETOOTH</code>)功能，它其实是需要有<code>FEATURE_BLUETOOTH</code>这个设备功能的。当然你也可以通过在<code>&lt;uses-feature&gt;</code>中对于的功能设置<code>required = false</code>来使得你的应用也可以运行在不具备蓝牙功能的设备上。更多的有关需要设备功能的权限的信息，可以查看<a href="http://android.xsoftlab.net/guide/topics/manifest/uses-feature-element.html#permissions" target="_blank" rel="external">Permissions that Imply Feature Requirements</a>。</p>
 </blockquote>
 <hr>
-<h5 id="282_29__u5E73_u53F0_u7248_u672C_28Platform_version_29"><a href="#282_29__u5E73_u53F0_u7248_u672C_28Platform_version_29" class="headerlink" title="(2) 平台版本(Platform version)"></a>(2) 平台版本(Platform version)</h5><p>  不同的设备可能运行不同的系统版本，比如 Android 4.0 和 Android 4.4。而每个连续的系统版本都会增加一些前一个版本不可用的新的 APIs。每个系统版本都有指定一个 <a href="http://android.xsoftlab.net/guide/topics/manifest/uses-sdk-element.html#ApiLevels" target="_blank" rel="external"><code>API level</code></a>。</p>
+<h4 id="282_29__u5E73_u53F0_u7248_u672C_28Platform_version_29"><a href="#282_29__u5E73_u53F0_u7248_u672C_28Platform_version_29" class="headerlink" title="(2) 平台版本(Platform version)"></a>(2) 平台版本(Platform version)</h4><p>  不同的设备可能运行不同的系统版本，比如 Android 4.0 和 Android 4.4。而每个连续的系统版本都会增加一些前一个版本不可用的新的 APIs。每个系统版本都有指定一个 <a href="http://android.xsoftlab.net/guide/topics/manifest/uses-sdk-element.html#ApiLevels" target="_blank" rel="external"><code>API level</code></a>。</p>
 <p>  使用<code>API level</code>可以指定你的应用可以兼容的最低系统版本，需要使用<code>minSdkVersion</code>(在Android Studio中这个功能是放在<code>build.gradle</code>中了);同样也可以指定你的应用最适合使用的版本，使用<code>targetSdkVersion</code>这个属性。</p>
 <p>  同样的可以在代码中动态地检查当前设备使用的系统版本是否能够支持应用的某些功能，代码例子如下</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if (Build.VERSION.SDK_INT &#60; Build.VERSION_CODES.HONEYCOMB) &#123;&#10;    // Running on something older than API level 11, so disable&#10;    // the drag/drop features that use ClipboardManager APIs&#10;    disableDragAndDrop();&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>上述例子是使用了<a href="http://android.xsoftlab.net/reference/android/content/ClipboardManager.html" target="_blank" rel="external">剪切板(ClipboardManager)</a>，这个API是在 API level 11中才增加的，所以低于这个系统版本的是无法实现这个功能的。</p>
 <hr>
-<h5 id="283_29__u5C4F_u5E55_u914D_u7F6E_28Screen_configuration_29"><a href="#283_29__u5C4F_u5E55_u914D_u7F6E_28Screen_configuration_29" class="headerlink" title="(3) 屏幕配置(Screen configuration)"></a>(3) 屏幕配置(Screen configuration)</h5><p>  Android 可以运行在不同的屏幕尺寸上，包括手机，平板电脑以及电视。为了更好的根据屏幕类型来分类设备，Android 对每个设备都定义了两种特性: 屏幕尺寸(屏幕的物理尺寸）,以及屏幕密度(屏幕的物理密度，如<code>dpi</code>)。而为了简化这些不同的配置，Android 分别为这两种特性生成一些变量来方便使用：</p>
+<h4 id="283_29__u5C4F_u5E55_u914D_u7F6E_28Screen_configuration_29"><a href="#283_29__u5C4F_u5E55_u914D_u7F6E_28Screen_configuration_29" class="headerlink" title="(3) 屏幕配置(Screen configuration)"></a>(3) 屏幕配置(Screen configuration)</h4><p>  Android 可以运行在不同的屏幕尺寸上，包括手机，平板电脑以及电视。为了更好的根据屏幕类型来分类设备，Android 对每个设备都定义了两种特性: 屏幕尺寸(屏幕的物理尺寸）,以及屏幕密度(屏幕的物理密度，如<code>dpi</code>)。而为了简化这些不同的配置，Android 分别为这两种特性生成一些变量来方便使用：</p>
 <ul>
 <li>4种屏幕尺寸: <code>small</code>,<code>normal</code>,<code>large</code>,<code>xlarge</code>;</li>
 <li>几种密度: <code>mdpi(medium)</code>,<code>hdpi(hdpi)</code>,<code>xhdpi(extra high)</code>,<code>xxhdpi(extra-extra hdpi)</code>等。</li>
 </ul>
 <hr>
-<h4 id="3-__u603B_u7ED3"><a href="#3-__u603B_u7ED3" class="headerlink" title="3. 总结"></a>3. 总结</h4><p>  这篇教程主要是说明 Android 的兼容性问题，主要是3个方面的兼容性问题，一是设备的功能，二是系统版本，三是屏幕配置。这些问题的产生原因当然是因为Android是一个开源的系统，所以很多手机制造商都可以运行 Android 的系统，但是这造成了有很多不同配置，不同屏幕大小的 Android 手机，所以这也是在开发过程必须考虑的一个问题，兼容性问题，当然个人感觉主要是最后一个问题会考虑得主要多点，就是屏幕配置问题，现在有很多尺寸的手机，不同分辨率的手机，在考虑界面的时候就需要多做几套图片，几个布局文件来适应尽可能多的不同屏幕配置的手机。</p>
+<h3 id="3-__u603B_u7ED3"><a href="#3-__u603B_u7ED3" class="headerlink" title="3. 总结"></a>3. 总结</h3><p>  这篇教程主要是说明 Android 的兼容性问题，主要是3个方面的兼容性问题，一是设备的功能，二是系统版本，三是屏幕配置。这些问题的产生原因当然是因为Android是一个开源的系统，所以很多手机制造商都可以运行 Android 的系统，但是这造成了有很多不同配置，不同屏幕大小的 Android 手机，所以这也是在开发过程必须考虑的一个问题，兼容性问题，当然个人感觉主要是最后一个问题会考虑得主要多点，就是屏幕配置问题，现在有很多尺寸的手机，不同分辨率的手机，在考虑界面的时候就需要多做几套图片，几个布局文件来适应尽可能多的不同屏幕配置的手机。</p>
 <p>  关于屏幕适配的文章，这里推荐下最近看到的几篇文章，包括几位大神的文章：</p>
 <ul>
 <li>郭霖： <a href="http://blog.csdn.net/guolin_blog/article/details/8830286" target="_blank" rel="external">Android官方提供的支持不同屏幕大小的全部方法</a></li>
@@ -89,7 +89,7 @@
     <link href="http://ccc013.github.io/2016/04/20/Application-Fundamentals/"/>
     <id>http://ccc013.github.io/2016/04/20/Application-Fundamentals/</id>
     <published>2016-04-20T06:10:54.000Z</published>
-    <updated>2016-04-28T10:29:04.540Z</updated>
+    <updated>2016-05-18T10:37:49.298Z</updated>
     <content type="html"><![CDATA[<p>最近打算好好看看android的官方文档，<code>Training</code>的已经看过了，打算看下<code>Guide</code>指导文档，这个比<code>Training</code>会介绍得更加详细。</p>
 <p>谷歌的官网因为被墙，所以这里介绍一个国内的镜像<a href="http://android.xsoftlab.net/index.html" target="_blank" rel="external">Android 6.0官网</a>，本篇文章是第一篇文章，地址是<a href="http://android.xsoftlab.net/guide/components/fundamentals.html" target="_blank" rel="external">Application Fundamentals</a></p>
 <p>主要是翻译<code>Guide</code>文档的内容，但不一定会逐句翻译，因为英语水平问题，可能会有选择的翻译一些自己认为比较重要的内容，但是介绍的知识点会尽可能保证都翻译到。</p>
@@ -307,8 +307,8 @@ cnzz: true
     <link href="http://ccc013.github.io/2016/01/20/hexo+github%20%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%80%BB%E7%BB%93/"/>
     <id>http://ccc013.github.io/2016/01/20/hexo+github 搭建博客总结/</id>
     <published>2016-01-20T08:49:44.000Z</published>
-    <updated>2016-04-20T06:22:30.340Z</updated>
-    <content type="html"><![CDATA[<h1 id="1-_u524D_u8A00"><a href="#1-_u524D_u8A00" class="headerlink" title="1.前言"></a>1.前言</h1><p>   一直都希望能自己搭建个博客出来，所以在考完试后，也是从网上参考了很多用hexo+github pages搭建博客的文章，折腾了一天多，中间也是出现了一些问题，有一些还是暂时没有解决的问题。</p>
+    <updated>2016-05-18T10:41:25.949Z</updated>
+    <content type="html"><![CDATA[<h2 id="1-_u524D_u8A00"><a href="#1-_u524D_u8A00" class="headerlink" title="1.前言"></a>1.前言</h2><p>   一直都希望能自己搭建个博客出来，所以在考完试后，也是从网上参考了很多用hexo+github pages搭建博客的文章，折腾了一天多，中间也是出现了一些问题，有一些还是暂时没有解决的问题。</p>
 <p>   在搭建之前要对所用到的工具框架有个了解：</p>
 <ul>
 <li><a href="http://git-scm.com/book/zh/v2" target="_blank" rel="external">Git</a></li>
@@ -318,12 +318,12 @@ cnzz: true
 <li><a href="http://wowubuntu.com/markdown/basic.html" target="_blank" rel="external">Markdown</a></li>
 </ul>
 <p>此外，在搭建过程中参考的文章有:<br>1.<a href="http://ibruce.info/2013/11/22/hexo-your-blog/" target="_blank" rel="external">hexo你的博客</a><br>2.<a href="http://crazymilk.github.io/2015/12/28/GitHub-Pages-Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" target="_blank" rel="external">GitHub-Pages-Hexo搭建博客</a><br>3.<a href="http://zipperary.com/categories/hexo/" target="_blank" rel="external">Hexo系列教程</a><br>4.<a href="http://wsgzao.github.io/post/hexo-guide/#准备工作" target="_blank" rel="external">使用GitHub和Hexo搭建免费静态Blog</a></p>
-<h1 id="2-_u914D_u7F6EHexo"><a href="#2-_u914D_u7F6EHexo" class="headerlink" title="2.配置Hexo"></a>2.配置Hexo</h1><p>   首先查看Hexo的文档了解了Hexo的基本概念以及如何安装，当然还有使用的方法。</p>
+<h2 id="2-_u914D_u7F6EHexo"><a href="#2-_u914D_u7F6EHexo" class="headerlink" title="2.配置Hexo"></a>2.配置Hexo</h2><p>   首先查看Hexo的文档了解了Hexo的基本概念以及如何安装，当然还有使用的方法。</p>
 <p>   Hexo官方文档（<a href="https://hexo.io/zh-cn/docs/index.html）" target="_blank" rel="external">https://hexo.io/zh-cn/docs/index.html）</a></p>
 <p>（所以下面会有一大段是摘自官方文档的，当做笔记记录下）</p>
 <p>  <strong>Hexo</strong></p>
 <p>   Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页</p>
-<h3 id="281_29_u5B89_u88C5_u524D_u63D0"><a href="#281_29_u5B89_u88C5_u524D_u63D0" class="headerlink" title="(1)安装前提"></a>(1)安装前提</h3><p>安装Hexo的官方文档，需要安装有下面两个应用程序：</p>
+<h3 id="281_29__u5B89_u88C5_u524D_u63D0"><a href="#281_29__u5B89_u88C5_u524D_u63D0" class="headerlink" title="(1) 安装前提"></a>(1) 安装前提</h3><p>安装Hexo的官方文档，需要安装有下面两个应用程序：</p>
 <ul>
 <li><a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js</a></li>
 <li><a href="http://git-scm.com/" target="_blank" rel="external">Git</a></li>
@@ -345,7 +345,7 @@ cnzz: true
 </ul>
 <p><img src="http://7xifb5.com1.z0.glb.clouddn.com/wustrive-hexogit%E7%9F%A5%E8%AF%86%E7%BB%93%E6%9E%84.png" alt="git image"></p>
 <p><strong>Github</strong><br>• 首先要注册一个Github的账号<br>• 建立一个与用户名对应的仓库，即仓库名为[your_user_name.github.com]或者[your_user.name.github.io]<br>• 添加SSH公钥到 Account settings -&gt; SSH Keys -&gt; Add SSH Key<br>关于添加SSH公钥的可以参考以下资料:<br><a href="https://help.github.com/articles/generating-ssh-keys/" target="_blank" rel="external">Generating SSH keys</a><br><a href="https://help.github.com/articles/error-permission-denied-publickey/" target="_blank" rel="external">Error: Permission denied (publickey)</a></p>
-<h3 id="282_29Hexo_u7684_u5B89_u88C5_u548C_u4F7F_u7528"><a href="#282_29Hexo_u7684_u5B89_u88C5_u548C_u4F7F_u7528" class="headerlink" title="(2)Hexo的安装和使用"></a>(2)Hexo的安装和使用</h3><h4 id="u5B89_u88C5"><a href="#u5B89_u88C5" class="headerlink" title="安装"></a>安装</h4><p>安装上面两个必须的应用程序后，就可以使用npm安装Hexo:<br><code>$ npm install -g hexo-cli</code></p>
+<h3 id="282_29_Hexo_u7684_u5B89_u88C5_u548C_u4F7F_u7528"><a href="#282_29_Hexo_u7684_u5B89_u88C5_u548C_u4F7F_u7528" class="headerlink" title="(2) Hexo的安装和使用"></a>(2) Hexo的安装和使用</h3><h4 id="u5B89_u88C5"><a href="#u5B89_u88C5" class="headerlink" title="安装"></a>安装</h4><p>安装上面两个必须的应用程序后，就可以使用npm安装Hexo:<br><code>$ npm install -g hexo-cli</code></p>
 <h4 id="u4F7F_u7528"><a href="#u4F7F_u7528" class="headerlink" title="使用"></a>使用</h4><p>安装完成后，可以使用如下命令初始化:<br><code>$ hexo init &lt;folder&gt;</code><br><code>$ cd &lt;folder&gt;</code><br><code>$ npm install</code></p>
 <p>当然也可以先直接进入需要使用Hexo的文件夹，执行:<br><code>$ hexo init</code><br><code>$ npm install</code></p>
 <p>初始化后的结果，就是在指定文件夹中，目录如下:</p>
@@ -366,7 +366,7 @@ cnzz: true
 $ hexo server
 </code></pre><p><strong>但是在这步，我是一直都不成功，无论是输入<code>localhost:4000</code>,<code>127.0.0.1:4000</code>,这个问题我是百度了很久，发现在hexo的github的issue有人有同样的问题–<a href="https://github.com/hexojs/hexo/issues/1568" target="_blank" rel="external">win10系统hexo s以后http://localhost:4000打不开本地服务器 #1568</a>，现在这个问题我也是还没有搞明白为什么。</strong></p>
 <p>虽然无法本地浏览，但是这也不是什么大问题，最终还是要部署在Github Pages上的</p>
-<h3 id="283_29_u90E8_u7F72_u5230Github"><a href="#283_29_u90E8_u7F72_u5230Github" class="headerlink" title="(3)部署到Github"></a>(3)部署到Github</h3><p>在部署到GitHub前，需要安装一个插件:<br><code>$ npm install hexo-deployer-git --save</code><br>然后就修改根目录下的_config.yml文件中的:</p>
+<h3 id="283_29__u90E8_u7F72_u5230Github"><a href="#283_29__u90E8_u7F72_u5230Github" class="headerlink" title="(3) 部署到Github"></a>(3) 部署到Github</h3><p>在部署到GitHub前，需要安装一个插件:<br><code>$ npm install hexo-deployer-git --save</code><br>然后就修改根目录下的_config.yml文件中的:</p>
 <pre><code># Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
@@ -383,7 +383,7 @@ $ hexo deploy
 <p>但是这样在Github中的文件就是通过命令<code>hexo generate</code>生成的网站文件，而初始化生成的文件还是在本地电脑中的，也就是原始的文章是没有上传到Github的，这样如果更换了机器就不能继续修改你的博客了。</p>
 <p>所以是希望在Github上可以保存原来的文章文件，这个方法呢，很多人都是用到的，就是在Github上建立分支了，比如建立一个hexo分支，然后设置它为默认分支，设置方法在<strong>Settings-&gt;Branches</strong>中</p>
 <p>这个过程我初始是按照<a href="http://crazymilk.github.io/2015/12/28/GitHub-Pages-Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" target="_blank" rel="external">GitHub-Pages-Hexo搭建博客</a>中来做的，但是在输入<code>hexo init</code>后，就会发现一开始<code>git clone</code>下来的文件中的.git文件没有了，并且之后也是无法<code>git push</code>到自己的github上，总是显示被拒绝的提示，本来我都是打算再建立一个仓库来存放文章了，但是后来又在上网搜索，看到这篇文章<a href="http://www.xrpmoon.com/blog/archives/jripple1281.html" target="_blank" rel="external">如何使用Hexo在Github上搭建自己的博客</a>中发布到github page的时候，就想自己应该是在本地的时候也是要新建一个同样名为hexo的分支，然后<code>git commit</code>到这个分支，于是就这么做，没想到真的成功了！</p>
-<h3 id="284_29_u535A_u5BA2_u7BA1_u7406_u6D41_u7A0B"><a href="#284_29_u535A_u5BA2_u7BA1_u7406_u6D41_u7A0B" class="headerlink" title="(4)博客管理流程"></a>(4)博客管理流程</h3><p>所以现在对博客的修改就是如同<a href="http://crazymilk.github.io/2015/12/28/GitHub-Pages-Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" target="_blank" rel="external">GitHub-Pages-Hexo搭建博客</a>中说得一样:<br><strong>日常修改</strong></p>
+<h3 id="284_29__u535A_u5BA2_u7BA1_u7406_u6D41_u7A0B"><a href="#284_29__u535A_u5BA2_u7BA1_u7406_u6D41_u7A0B" class="headerlink" title="(4) 博客管理流程"></a>(4) 博客管理流程</h3><p>所以现在对博客的修改就是如同<a href="http://crazymilk.github.io/2015/12/28/GitHub-Pages-Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" target="_blank" rel="external">GitHub-Pages-Hexo搭建博客</a>中说得一样:<br><strong>日常修改</strong></p>
 <ol>
 <li>在本地修改博客，如添加新的博文，修改样式等；</li>
 <li>在hexo分支下，依次执行<code>git add .</code>,<code>git commit -m &quot;...&quot;</code>,<code>git push origin hexo</code>,将改动push到GitHub上；</li>
@@ -399,7 +399,7 @@ npm install hexo-deployer-git
 </ol>
 <p>在搭建完博客后，有一段时间没有使用后，然后需要更新下博文或者样式时，在Git bash敲下命令<code>hexo g</code>，居然出现上述错误信息，然后发现输入任何有关hexo的命令都是同样的错误，我又试着敲了npm这个命令，发现也是出错的，但是在系统命令行中输入<code>node -v</code>和<code>npm -v</code>,都正常显示了版本信息，于是我想估计是环境变量设置有问题，我在用户的环境变量PATH中添加了两个路径，分别是<code>C:\Users\cai\node_modules\hexo\bin</code>和<code>C:\Program Files\nodejs</code>，再加上原来就添加的路径<code>C:\Users\cai\AppData\Roaming\npm</code>，发现就解决这个问题了，可以正常修改博文，然后发布网站。</p>
 <p>不过，我也不清楚是否完全解决这个问题，还需要观察一段时间。</p>
-<h3 id="286_29Markdown_u77E5_u8BC6_u70B9_u603B_u7ED3"><a href="#286_29Markdown_u77E5_u8BC6_u70B9_u603B_u7ED3" class="headerlink" title="(6)Markdown知识点总结"></a>(6)Markdown知识点总结</h3><p><strong>生成md文件</strong><br>命令<code>hexo new &quot;文件名&quot;</code>就可以生成一个md文件，然后就可以开始写文章，但是这里用到Markdown的语法，同时我们也需要一个专门可以用来写markdown的工具。</p>
+<h3 id="286_29_Markdown_u77E5_u8BC6_u70B9_u603B_u7ED3"><a href="#286_29_Markdown_u77E5_u8BC6_u70B9_u603B_u7ED3" class="headerlink" title="(6) Markdown知识点总结"></a>(6) Markdown知识点总结</h3><p><strong>生成md文件</strong><br>命令<code>hexo new &quot;文件名&quot;</code>就可以生成一个md文件，然后就可以开始写文章，但是这里用到Markdown的语法，同时我们也需要一个专门可以用来写markdown的工具。</p>
 <p>这个工具，我使用的是<a href="http://www.sublimetext.com/3" target="_blank" rel="external">sublime text 3</a>,这是一个文本编辑器，可以支持多种编程语言和文件格式，当然也就包括Markdown语法，具体配置方法可以参考如下:<br><a href="http://zh.lucida.me/blog/sublime-text-complete-guide/" target="_blank" rel="external">Sublime Text 全程指南</a>,<br><a href="https://github.com/jikeytang/sublime-text" target="_blank" rel="external">Sublilme Text 资源整理</a><br><a href="http://blog.saymagic.cn/2015/06/20/write-blog-by-sublime.html" target="_blank" rel="external">Sublime进阶使用</a></p>
 <p>这个工具还是非常强大的，之前是我用来写python的，现在搭建博客后，就可以用来写Markdown的文件了。</p>
 <p><strong>Markdown语法</strong><br>具体的可以参考<a href="http://wowubuntu.com/markdown/index.html#code" target="_blank" rel="external">Markdown 语法说明</a></p>
@@ -419,11 +419,11 @@ npm install hexo-deployer-git
 </code></pre><p>方括号中是图片的替代文字，而第二种写法中最后的引号内容是可以选择的标题文字</p>
 <p><strong>锚的使用</strong><br>使用命名锚，我们就可以创建目录，点击目录就可以跳至该命名锚，也就是同一个页面中某个小节的位置。</p>
 <p>一开始是根据markdown的语法，但是发现并没有实现这个功能，后来搜索了下，根据<a href="http://ju.outofmemory.cn/entry/115045" target="_blank" rel="external">markdown中命名锚</a>中给出的方法，也就是使用html的语法，也就是目录使用，比如<code>[Overview](#overview)</code>,而在命名锚所要到的位置，使用如<code>&lt;h3 id=&quot;overview&quot;&gt;Overview&lt;/h3&gt;</code>,主要是<strong>id</strong>属性来命名锚，这样点击目录中的Overview,就会跳至<code>&lt;h3 id=&quot;overview&quot;&gt;Overview&lt;/h3&gt;</code>处了。</p>
-<h2 id="3-_u603B_u7ED3"><a href="#3-_u603B_u7ED3" class="headerlink" title="3.总结"></a>3.总结</h2><p>从昨天，也就是1月20号弄了一天，但是并没有解决如何在Github上存放原始文章文件，今天下午则是找到解决方法，并且成功解决了，然后写下这篇总结。</p>
+<h2 id="3__u603B_u7ED3"><a href="#3__u603B_u7ED3" class="headerlink" title="3 总结"></a>3 总结</h2><p>从昨天，也就是1月20号弄了一天，但是并没有解决如何在Github上存放原始文章文件，今天下午则是找到解决方法，并且成功解决了，然后写下这篇总结。</p>
 <p>目前完成的也只是比较简单的内容，还有很多内容可以增加，此外搭建这个博客的本意是促使自己可以多总结多写博客，最终的目的是要掌握好学到的技术知识，所以现在仅仅是一个准备动作，最多也就是迈出一小步了，还需要自己不断坚持，不断学习，不断努力！</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<h1 id="1-_u524D_u8A00"><a href="#1-_u524D_u8A00" class="headerlink" title="1.前言"></a>1.前言</h1><p>   一直都希望能自己搭建个博客出来，所以在考完试后，也是从网上参考了很多用hexo]]>
+    <![CDATA[<h2 id="1-_u524D_u8A00"><a href="#1-_u524D_u8A00" class="headerlink" title="1.前言"></a>1.前言</h2><p>   一直都希望能自己搭建个博客出来，所以在考完试后，也是从网上参考了很多用hexo]]>
     </summary>
     
       <category term="Git" scheme="http://ccc013.github.io/tags/Git/"/>
