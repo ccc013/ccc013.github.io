@@ -7,7 +7,7 @@ title: Cai's blog
 subtitle: Stay hungry, stay foolish
 description: 
 author: cai
-language: zh-CN
+language: zh-Hans
 email: 429546420@qq.com
 timezone:
 
@@ -49,6 +49,23 @@ default_category: uncategorized
 category_map:
 tag_map:
 
+# Social links
+social:
+  Github: https://github.com/ccc013
+  Weibo: http://weibo.com/u/2181051220?is_all=1
+  Zhihu: https://www.zhihu.com/people/luo-cai
+
+# Creative Commons 4.0 International License.
+# http://creativecommons.org/
+# Available: by | by-nc | by-nc-nd | by-nc-sa | by-nd | by-sa | zero
+creative_commons: by-nc-sa
+
+# setup sidebar icon
+avatar: /images/favicon.png
+
+# duoshuo
+duoshuo_shortname: cai
+
 # Date / Time format
 ## Hexo uses Moment.js to parse and display date
 ## You can customize the date format as defined in
@@ -64,7 +81,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: yilia
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
