@@ -96,7 +96,7 @@
 <meta property="og:description" content="第二篇文章：设备的兼容性(Device Compatibility)
 设备的兼容性(Device Compatibility)Android 现在可以运行在不同的设备上，不只是手机，还有平板电脑，电视。为了能让应用可以成功在这些设备上正常运行，应用应该允许一些特征功能的多样性并且可以提供一个灵活的用户界面来适应不同的屏幕配置。
 为了达成这个目标，Android 提供一个可以让开发者使用一些静态文件">
-<meta property="og:updated_time" content="2016-05-18T10:39:05.476Z">
+<meta property="og:updated_time" content="2016-05-19T00:34:37.911Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android官方文档Guide阅读系列(2)--Device Compatibility">
 <meta name="twitter:description" content="第二篇文章：设备的兼容性(Device Compatibility)
@@ -109,7 +109,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     scheme: 'Mist',
-    sidebar: {"position":"right","display":"post"},
+    sidebar: {"position":"right","display":"post","widgets":["category","tag","tagcloud"]},
     fancybox: true,
     motion: true,
     duoshuo: {
@@ -357,7 +357,7 @@
 <li>屏幕配置(Screen configuration)</li>
 </ul>
 <hr>
-<h4 id="281_29__u8BBE_u5907_u529F_u80FD_28Device_features_29"><a href="#281_29__u8BBE_u5907_u529F_u80FD_28Device_features_29" class="headerlink" title="(1) 设备功能(Device features)"></a>(1) 设备功能(Device features)</h4><p>  Android 给所有的硬件或软件功能都提供了功能<code>IDs</code>，比如对于指南针传感器的功能 ID 就是<a href="http://android.xsoftlab.net/reference/android/content/pm/PackageManager.html#FEATURE_SENSOR_COMPASS" target="_blank" rel="external"><code>FEATURE_SENSOR_COMPASS</code></a>,而应用程序组件的 ID 是<a href="http://android.xsoftlab.net/reference/android/content/pm/PackageManager.html#FEATURE_APP_WIDGETS" target="_blank" rel="external"><code>FEATURE_APP_WIDGETS</code></a>.</p>
+<h4 id="u8BBE_u5907_u529F_u80FD_28Device_features_29"><a href="#u8BBE_u5907_u529F_u80FD_28Device_features_29" class="headerlink" title="设备功能(Device features)"></a>设备功能(Device features)</h4><p>  Android 给所有的硬件或软件功能都提供了功能<code>IDs</code>，比如对于指南针传感器的功能 ID 就是<a href="http://android.xsoftlab.net/reference/android/content/pm/PackageManager.html#FEATURE_SENSOR_COMPASS" target="_blank" rel="external"><code>FEATURE_SENSOR_COMPASS</code></a>,而应用程序组件的 ID 是<a href="http://android.xsoftlab.net/reference/android/content/pm/PackageManager.html#FEATURE_APP_WIDGETS" target="_blank" rel="external"><code>FEATURE_APP_WIDGETS</code></a>.</p>
 <p>  在你的应用的<a href="http://android.xsoftlab.net/guide/topics/manifest/manifest-intro.html" target="_blank" rel="external"><code>manifest file</code></a>可以通过使用<a href="http://android.xsoftlab.net/guide/topics/manifest/uses-feature-element.html" target="_blank" rel="external"><code>&lt;uses-feature&gt;</code></a>来声明所需要的功能从而防止不具备应用所需要的功能的设备的用户安装你的应用。</p>
 <p>  一个要求必须具备指南针传感器功能的应用可以如此写明该功能要求：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;manifest ... &#62;&#10;    &#60;uses-feature android:name=&#34;android.hardware.sensor.compass&#34;&#10;                  android:required=&#34;true&#34; /&#62;&#10;    ...&#10;&#60;/manifest&#62;</span><br></pre></td></tr></table></figure>
@@ -368,19 +368,19 @@
 <p>注意：有些<a href="http://android.xsoftlab.net/guide/topics/security/permissions.html" target="_blank" rel="external">系统权限</a>暗含着需要某些设备功能的支持。比如，如果你的应用需要蓝牙(<code>BLUETOOTH</code>)功能，它其实是需要有<code>FEATURE_BLUETOOTH</code>这个设备功能的。当然你也可以通过在<code>&lt;uses-feature&gt;</code>中对于的功能设置<code>required = false</code>来使得你的应用也可以运行在不具备蓝牙功能的设备上。更多的有关需要设备功能的权限的信息，可以查看<a href="http://android.xsoftlab.net/guide/topics/manifest/uses-feature-element.html#permissions" target="_blank" rel="external">Permissions that Imply Feature Requirements</a>。</p>
 </blockquote>
 <hr>
-<h4 id="282_29__u5E73_u53F0_u7248_u672C_28Platform_version_29"><a href="#282_29__u5E73_u53F0_u7248_u672C_28Platform_version_29" class="headerlink" title="(2) 平台版本(Platform version)"></a>(2) 平台版本(Platform version)</h4><p>  不同的设备可能运行不同的系统版本，比如 Android 4.0 和 Android 4.4。而每个连续的系统版本都会增加一些前一个版本不可用的新的 APIs。每个系统版本都有指定一个 <a href="http://android.xsoftlab.net/guide/topics/manifest/uses-sdk-element.html#ApiLevels" target="_blank" rel="external"><code>API level</code></a>。</p>
+<h4 id="u5E73_u53F0_u7248_u672C_28Platform_version_29"><a href="#u5E73_u53F0_u7248_u672C_28Platform_version_29" class="headerlink" title="平台版本(Platform version)"></a>平台版本(Platform version)</h4><p>  不同的设备可能运行不同的系统版本，比如 Android 4.0 和 Android 4.4。而每个连续的系统版本都会增加一些前一个版本不可用的新的 APIs。每个系统版本都有指定一个 <a href="http://android.xsoftlab.net/guide/topics/manifest/uses-sdk-element.html#ApiLevels" target="_blank" rel="external"><code>API level</code></a>。</p>
 <p>  使用<code>API level</code>可以指定你的应用可以兼容的最低系统版本，需要使用<code>minSdkVersion</code>(在Android Studio中这个功能是放在<code>build.gradle</code>中了);同样也可以指定你的应用最适合使用的版本，使用<code>targetSdkVersion</code>这个属性。</p>
 <p>  同样的可以在代码中动态地检查当前设备使用的系统版本是否能够支持应用的某些功能，代码例子如下</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if (Build.VERSION.SDK_INT &#60; Build.VERSION_CODES.HONEYCOMB) &#123;&#10;    // Running on something older than API level 11, so disable&#10;    // the drag/drop features that use ClipboardManager APIs&#10;    disableDragAndDrop();&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>上述例子是使用了<a href="http://android.xsoftlab.net/reference/android/content/ClipboardManager.html" target="_blank" rel="external">剪切板(ClipboardManager)</a>，这个API是在 API level 11中才增加的，所以低于这个系统版本的是无法实现这个功能的。</p>
 <hr>
-<h4 id="283_29__u5C4F_u5E55_u914D_u7F6E_28Screen_configuration_29"><a href="#283_29__u5C4F_u5E55_u914D_u7F6E_28Screen_configuration_29" class="headerlink" title="(3) 屏幕配置(Screen configuration)"></a>(3) 屏幕配置(Screen configuration)</h4><p>  Android 可以运行在不同的屏幕尺寸上，包括手机，平板电脑以及电视。为了更好的根据屏幕类型来分类设备，Android 对每个设备都定义了两种特性: 屏幕尺寸(屏幕的物理尺寸）,以及屏幕密度(屏幕的物理密度，如<code>dpi</code>)。而为了简化这些不同的配置，Android 分别为这两种特性生成一些变量来方便使用：</p>
+<h4 id="u5C4F_u5E55_u914D_u7F6E_28Screen_configuration_29"><a href="#u5C4F_u5E55_u914D_u7F6E_28Screen_configuration_29" class="headerlink" title="屏幕配置(Screen configuration)"></a>屏幕配置(Screen configuration)</h4><p>  Android 可以运行在不同的屏幕尺寸上，包括手机，平板电脑以及电视。为了更好的根据屏幕类型来分类设备，Android 对每个设备都定义了两种特性: 屏幕尺寸(屏幕的物理尺寸）,以及屏幕密度(屏幕的物理密度，如<code>dpi</code>)。而为了简化这些不同的配置，Android 分别为这两种特性生成一些变量来方便使用：</p>
 <ul>
 <li>4种屏幕尺寸: <code>small</code>,<code>normal</code>,<code>large</code>,<code>xlarge</code>;</li>
 <li>几种密度: <code>mdpi(medium)</code>,<code>hdpi(hdpi)</code>,<code>xhdpi(extra high)</code>,<code>xxhdpi(extra-extra hdpi)</code>等。</li>
 </ul>
 <hr>
-<h3 id="3-__u603B_u7ED3"><a href="#3-__u603B_u7ED3" class="headerlink" title="3. 总结"></a>3. 总结</h3><p>  这篇教程主要是说明 Android 的兼容性问题，主要是3个方面的兼容性问题，一是设备的功能，二是系统版本，三是屏幕配置。这些问题的产生原因当然是因为Android是一个开源的系统，所以很多手机制造商都可以运行 Android 的系统，但是这造成了有很多不同配置，不同屏幕大小的 Android 手机，所以这也是在开发过程必须考虑的一个问题，兼容性问题，当然个人感觉主要是最后一个问题会考虑得主要多点，就是屏幕配置问题，现在有很多尺寸的手机，不同分辨率的手机，在考虑界面的时候就需要多做几套图片，几个布局文件来适应尽可能多的不同屏幕配置的手机。</p>
+<h3 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h3><p>  这篇教程主要是说明 Android 的兼容性问题，主要是3个方面的兼容性问题，一是设备的功能，二是系统版本，三是屏幕配置。这些问题的产生原因当然是因为Android是一个开源的系统，所以很多手机制造商都可以运行 Android 的系统，但是这造成了有很多不同配置，不同屏幕大小的 Android 手机，所以这也是在开发过程必须考虑的一个问题，兼容性问题，当然个人感觉主要是最后一个问题会考虑得主要多点，就是屏幕配置问题，现在有很多尺寸的手机，不同分辨率的手机，在考虑界面的时候就需要多做几套图片，几个布局文件来适应尽可能多的不同屏幕配置的手机。</p>
 <p>  关于屏幕适配的文章，这里推荐下最近看到的几篇文章，包括几位大神的文章：</p>
 <ul>
 <li>郭霖： <a href="http://blog.csdn.net/guolin_blog/article/details/8830286" target="_blank" rel="external">Android官方提供的支持不同屏幕大小的全部方法</a></li>
@@ -637,7 +637,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u8BBE_u5907_u7684_u517C_u5BB9_u6027_28Device_Compatibility_29"><span class="nav-number">1.</span> <span class="nav-text">设备的兼容性(Device Compatibility)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u517C_u5BB9_u6027_u610F_u5473_u7740_u4EC0_u4E48_uFF1F"><span class="nav-number">2.</span> <span class="nav-text">兼容性意味着什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u63A7_u5236_u5E94_u7528_u5BF9_u8BBE_u5907_u7684_u53EF_u7528_u6027"><span class="nav-number">3.</span> <span class="nav-text">控制应用对设备的可用性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#281_29__u8BBE_u5907_u529F_u80FD_28Device_features_29"><span class="nav-number">3.1.</span> <span class="nav-text">(1) 设备功能(Device features)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#282_29__u5E73_u53F0_u7248_u672C_28Platform_version_29"><span class="nav-number">3.2.</span> <span class="nav-text">(2) 平台版本(Platform version)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#283_29__u5C4F_u5E55_u914D_u7F6E_28Screen_configuration_29"><span class="nav-number">3.3.</span> <span class="nav-text">(3) 屏幕配置(Screen configuration)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-__u603B_u7ED3"><span class="nav-number">4.</span> <span class="nav-text">3. 总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u8BBE_u5907_u7684_u517C_u5BB9_u6027_28Device_Compatibility_29"><span class="nav-number">1.</span> <span class="nav-text">设备的兼容性(Device Compatibility)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u517C_u5BB9_u6027_u610F_u5473_u7740_u4EC0_u4E48_uFF1F"><span class="nav-number">2.</span> <span class="nav-text">兼容性意味着什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u63A7_u5236_u5E94_u7528_u5BF9_u8BBE_u5907_u7684_u53EF_u7528_u6027"><span class="nav-number">3.</span> <span class="nav-text">控制应用对设备的可用性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u8BBE_u5907_u529F_u80FD_28Device_features_29"><span class="nav-number">3.1.</span> <span class="nav-text">设备功能(Device features)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u5E73_u53F0_u7248_u672C_28Platform_version_29"><span class="nav-number">3.2.</span> <span class="nav-text">平台版本(Platform version)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u5C4F_u5E55_u914D_u7F6E_28Screen_configuration_29"><span class="nav-number">3.3.</span> <span class="nav-text">屏幕配置(Screen configuration)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u603B_u7ED3"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
           </div>
         </section>
