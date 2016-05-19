@@ -36,7 +36,7 @@ Android 现在可以运行在不同的设备上，不只是手机，还有平板
   * 屏幕配置(Screen configuration)
 
 ---
-#### (1) 设备功能(Device features)
+#### 设备功能(Device features)
   Android 给所有的硬件或软件功能都提供了功能`IDs`，比如对于指南针传感器的功能 ID 就是[`FEATURE_SENSOR_COMPASS`](http://android.xsoftlab.net/reference/android/content/pm/PackageManager.html#FEATURE_SENSOR_COMPASS),而应用程序组件的 ID 是[`FEATURE_APP_WIDGETS`](http://android.xsoftlab.net/reference/android/content/pm/PackageManager.html#FEATURE_APP_WIDGETS).
   
   在你的应用的[`manifest file`](http://android.xsoftlab.net/guide/topics/manifest/manifest-intro.html)可以通过使用[`<uses-feature>`](http://android.xsoftlab.net/guide/topics/manifest/uses-feature-element.html)来声明所需要的功能从而防止不具备应用所需要的功能的设备的用户安装你的应用。
@@ -65,7 +65,7 @@ if (!pm.hasSystemFeature(PackageManager.FEATURE_SENSOR_COMPASS)) {
 > 注意：有些[系统权限](http://android.xsoftlab.net/guide/topics/security/permissions.html)暗含着需要某些设备功能的支持。比如，如果你的应用需要蓝牙(`BLUETOOTH`)功能，它其实是需要有`FEATURE_BLUETOOTH`这个设备功能的。当然你也可以通过在`<uses-feature>`中对于的功能设置`required = false`来使得你的应用也可以运行在不具备蓝牙功能的设备上。更多的有关需要设备功能的权限的信息，可以查看[Permissions that Imply Feature Requirements](http://android.xsoftlab.net/guide/topics/manifest/uses-feature-element.html#permissions)。
 
 ---
-#### (2) 平台版本(Platform version)
+#### 平台版本(Platform version)
   不同的设备可能运行不同的系统版本，比如 Android 4.0 和 Android 4.4。而每个连续的系统版本都会增加一些前一个版本不可用的新的 APIs。每个系统版本都有指定一个 [`API level`](http://android.xsoftlab.net/guide/topics/manifest/uses-sdk-element.html#ApiLevels)。
   
   使用`API level`可以指定你的应用可以兼容的最低系统版本，需要使用`minSdkVersion`(在Android Studio中这个功能是放在`build.gradle`中了);同样也可以指定你的应用最适合使用的版本，使用`targetSdkVersion `这个属性。
@@ -82,7 +82,7 @@ if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
 上述例子是使用了[剪切板(ClipboardManager)](http://android.xsoftlab.net/reference/android/content/ClipboardManager.html)，这个API是在 API level 11中才增加的，所以低于这个系统版本的是无法实现这个功能的。
 
 ---
-#### (3) 屏幕配置(Screen configuration)
+#### 屏幕配置(Screen configuration)
   Android 可以运行在不同的屏幕尺寸上，包括手机，平板电脑以及电视。为了更好的根据屏幕类型来分类设备，Android 对每个设备都定义了两种特性: 屏幕尺寸(屏幕的物理尺寸）,以及屏幕密度(屏幕的物理密度，如`dpi`)。而为了简化这些不同的配置，Android 分别为这两种特性生成一些变量来方便使用：
   * 4种屏幕尺寸: `small`,`normal`,`large`,`xlarge`;
   * 几种密度: `mdpi(medium)`,`hdpi(hdpi)`,`xhdpi(extra high)`,`xxhdpi(extra-extra hdpi)`等。
@@ -90,7 +90,7 @@ if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
   
 
 ---
-### 3. 总结
+### 总结
   这篇教程主要是说明 Android 的兼容性问题，主要是3个方面的兼容性问题，一是设备的功能，二是系统版本，三是屏幕配置。这些问题的产生原因当然是因为Android是一个开源的系统，所以很多手机制造商都可以运行 Android 的系统，但是这造成了有很多不同配置，不同屏幕大小的 Android 手机，所以这也是在开发过程必须考虑的一个问题，兼容性问题，当然个人感觉主要是最后一个问题会考虑得主要多点，就是屏幕配置问题，现在有很多尺寸的手机，不同分辨率的手机，在考虑界面的时候就需要多做几套图片，几个布局文件来适应尽可能多的不同屏幕配置的手机。
   
   关于屏幕适配的文章，这里推荐下最近看到的几篇文章，包括几位大神的文章：
