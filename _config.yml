@@ -83,6 +83,9 @@ pagination_dir: page
 ## Themes: https://hexo.io/themes/
 theme: next
 
+Plugins:
+  - hexo-math
+
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:

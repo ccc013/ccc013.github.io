@@ -121,10 +121,7 @@
               <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>{{ theme.busuanzi_count.page_pv_footer }}
               </span>
           {% endif %}
-
-          {% if not is_index %}
-              <span id="busuanzi_container_page_pv">  |  阅读量 <span id="busuanzi_value_page_pv"></span> 次</span>
-          {% endif %}
+        
         </div>
       </header>
     {% endif %}
