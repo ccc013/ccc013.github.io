@@ -1,0 +1,943 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="数据结构,算法," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Cai's blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon/favicon.png?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="阅读《数据结构算法与应用：C++描述》第二章程序性能所做的笔记。
+上一节，程序性能(1)–空间复杂性
+时间复杂性时间复杂性的组成
+影响一个程序空间复杂性的因素也能影响程序的时间复杂性。
+一个程序P所占用的时间T(P) = 编译时间 + 运行时间。编译时间与实例的特征无关。另外，可以假定一个编译过的程序可以运行若干次而不需要重新编译。因此我们将主要关注程序的运行时间，运行时间通常用”$t_p$(实例">
+<meta property="og:type" content="article">
+<meta property="og:title" content="程序性能(2)--时间复杂性">
+<meta property="og:url" content="http://ccc013.github.io/2016/06/04/程序性能(2)-时间复杂性/index.html">
+<meta property="og:site_name" content="Cai's blog">
+<meta property="og:description" content="阅读《数据结构算法与应用：C++描述》第二章程序性能所做的笔记。
+上一节，程序性能(1)–空间复杂性
+时间复杂性时间复杂性的组成
+影响一个程序空间复杂性的因素也能影响程序的时间复杂性。
+一个程序P所占用的时间T(P) = 编译时间 + 运行时间。编译时间与实例的特征无关。另外，可以假定一个编译过的程序可以运行若干次而不需要重新编译。因此我们将主要关注程序的运行时间，运行时间通常用”$t_p$(实例">
+<meta property="og:updated_time" content="2016-06-04T05:39:49.126Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="程序性能(2)--时间复杂性">
+<meta name="twitter:description" content="阅读《数据结构算法与应用：C++描述》第二章程序性能所做的笔记。
+上一节，程序性能(1)–空间复杂性
+时间复杂性时间复杂性的组成
+影响一个程序空间复杂性的因素也能影响程序的时间复杂性。
+一个程序P所占用的时间T(P) = 编译时间 + 运行时间。编译时间与实例的特征无关。另外，可以假定一个编译过的程序可以运行若干次而不需要重新编译。因此我们将主要关注程序的运行时间，运行时间通常用”$t_p$(实例">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 5881344,
+      author: 'cai'
+    }
+  };
+</script>
+
+  <title> 程序性能(2)--时间复杂性 | Cai's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <!-- add Fork me on Github -->
+    <a href="https://github.com/ccc013"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
+
+    <!--add Fork me on Github  -->
+    
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Cai's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Stay hungry, stay foolish</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/abou" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                程序性能(2)--时间复杂性
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-06-04T13:32:07+08:00" content="2016-06-04">
+              2016-06-04
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/04/程序性能(2)-时间复杂性/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/04/程序性能(2)-时间复杂性/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/06/04/程序性能(2)-时间复杂性/" class="leancloud_visitors" data-flag-title="程序性能(2)--时间复杂性">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>阅读《数据结构算法与应用：C++描述》第二章程序性能所做的笔记。</p>
+<p>上一节，<a href="http://ccc013.github.io/2016/06/04/%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD-%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E6%80%A7/#more">程序性能(1)–空间复杂性</a></p>
+<h3 id="u65F6_u95F4_u590D_u6742_u6027"><a href="#u65F6_u95F4_u590D_u6742_u6027" class="headerlink" title="时间复杂性"></a>时间复杂性</h3><h4 id="u65F6_u95F4_u590D_u6742_u6027_u7684_u7EC4_u6210"><a href="#u65F6_u95F4_u590D_u6742_u6027_u7684_u7EC4_u6210" class="headerlink" title="时间复杂性的组成"></a>时间复杂性的组成</h4><blockquote>
+<p>影响一个程序空间复杂性的因素也能影响程序的时间复杂性。</p>
+<p>一个程序P所占用的时间T(P) = 编译时间 + 运行时间。编译时间与实例的特征无关。另外，可以假定一个编译过的程序可以运行若干次而不需要重新编译。因此我们将主要关注程序的运行时间，运行时间通常用”$t_p$(实例特征)”来表示。</p>
+</blockquote>
+<p>存在这一个事实：<strong>一个算术操作所需要的时间取决于操作数的类型(int,float,double等),这个事实增加了获得一个精确的计算公式的烦琐程度。所以必须按照数据类型对操作进行分类。</strong></p>
+<p>有两个更可行的方法可用来估算运行时间：</p>
+<ol>
+<li>找出一个或更多的操作，确定这些关键操作所需要的执行时间；</li>
+<li>确定程序总的执行步数。</li>
+</ol>
+<h4 id="u64CD_u4F5C_u8BA1_u6570"><a href="#u64CD_u4F5C_u8BA1_u6570" class="headerlink" title="操作计数"></a>操作计数</h4><p>估算一个程序或函数的时间复杂性的一种方式就是首先选择一种或多种操作(如加、乘和比较等),然后确定这种(些)操作分别执行了多少次。这种方法是否成功取决于识别关键操作的能力，这些关键操作对时间复杂性的影响最大。下面的几个例子都采用了这种方法。</p>
+<h5 id="u4F8B1__u591A_u9879_u5F0F_u6C42_u503C"><a href="#u4F8B1__u591A_u9879_u5F0F_u6C42_u503C" class="headerlink" title="例1 多项式求值"></a>例1 多项式求值</h5><blockquote>
+<p> 考察多项式$P(x) = \sum_{i=0}^n c_i x^n$。如果$c_n \neq 0$,则P是一个n维多项式。</p>
+</blockquote>
+<p>下列程序实现了多项式求值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/*&#22810;&#39033;&#24335;&#27714;&#20540;*/&#10;template&#60;class T&#62;&#10;T PolyEval(T coeff[], int n, const T&#38;x)&#123;&#10;    // &#35745;&#31639;n&#27425;&#22810;&#39033;&#24335;&#30340;&#20540;&#65292;coeff[0:n]&#20026;&#22810;&#39033;&#24335;&#30340;&#31995;&#25968;&#10;    T y = 1, value = coeff[0];&#10;    for (int i = 1; i &#60; n; i++)&#123;&#10;        y *= x;&#10;        value += y*coeff[i];&#10;    &#125;&#10;    return value;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<p>这里的for循环中的循环条件，书中代码是有点错误的，应该是<code>i&lt;n</code>,不能带上等于。</p>
+<p>在这个例子中，假定根据for循环内部所执行的加和乘的次数来估算时间复杂性。可以使用维数n作为实例特征。进入for循环的总次数为n，每次循环执行1次加法和乘法(这种操作计数不包含循环控制变量i每次递增所执行的加法)。加法的次数为n，乘法的次数为2n。</p>
+<p>第二种求解多项式的方法是使用<strong>Horner</strong>法则，它是采用如下的分解式计算一个多项式：<br>$$<br>P(x) = (\ldots(c<em>n*x+c</em>{n-1})<em>x+c_{n-2})</em>x+c_{n-3})<em>x+\ldots)</em>x+c_0<br>$$<br>代码实现如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/*&#20351;&#29992;Horner&#27861;&#21017;&#27714;&#35299;&#22810;&#39033;&#24335;*/&#10;template&#60;class T&#62;&#10;T Horner(T coeff[], int n, const T&#38;x)&#123;&#10;    T value = coeff[n-1];&#10;    for (int i = 2; i &#60;= n; i++)&#123;&#10;        value = value*x + coeff[n - i];&#10;    &#125;&#10;    return value;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>书中的代码也是有些问题，n应该代表的是<code>coeff</code>这个数组的大小，所以首先是<code>T value = coeff[n-1];</code>这句代码，书中是直接等于<code>coeff[n]</code>，这里应该是<code>coeff[n-1]</code>,然后就是for循环的初始条件，是<code>i=2</code>，而不是<code>i=1</code>。</p>
+<p>使用<strong>Horner</strong>后，加法还是需要n次，但是乘法也只需要n次即可。因此，使用这个函数会比<code>PolyEval</code>函数更快。</p>
+<h5 id="u4F8B2__u8BA1_u6570_u6392_u5E8F"><a href="#u4F8B2__u8BA1_u6570_u6392_u5E8F" class="headerlink" title="例2 计数排序"></a>例2 计数排序</h5><p>这里通过两段代码实现计数排序的方法。</p>
+<blockquote>
+<p>元素在队列中的名次（ r a n k）可定义为队列中所有比它小的元素数目加上在它左边出现的与它相同的元素数目。<br>例如，给定一个数组 a=[4, 3, 9, 3, 7]作为队列，则各元素<br>的名次为r =[2, 0, 4, 1, 3]</p>
+</blockquote>
+<p>这里我的实现的代码方法跟书本有所不一样，如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template&#60;class T&#62;&#10;void Rank(T a[], int n, int r[])&#123;&#10;    // &#35745;&#31639;a[0:n-1]&#20013;n&#20010;&#20803;&#32032;&#30340;&#25490;&#21517;&#10;    for (int i = 0; i &#60; n; i++)&#10;        r[i] = 0;       // &#21021;&#22987;&#21270;&#25490;&#21517;&#25968;&#32452;&#10;    // &#36880;&#23545;&#27604;&#36739;&#25152;&#26377;&#30340;&#20803;&#32032;&#10;    for (int i = 0; i &#60; n; i++)&#123;&#10;        for (int j = i+1; j &#60; n; j++)&#123;&#10;            if (a[i] &#60;= a[j])&#10;                r[j]++;&#10;            else&#10;                r[i]++;&#10;        &#125;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>书中给出的代码，其比较次数是1+2+3+···+n-1 = $(n-1)n\over 2$<br>而我给出的代码实现，其比较总次数也是相同的，$(n-1)n\over 2$,差别应该是在比较是<code>(n-1)+(n-2)+···+2+1</code>.</p>
+<blockquote>
+<p>根据例2中计算出数组中每个元素的名次，就可以利用元素名次按照递增的次序对数组中的元素进行重新排列，使得$a[0]\le a[1]\le \ldots \le a[n-1]$</p>
+</blockquote>
+<p>下面代码是使用了一个附加的数组u实现按名次排序。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/*&#21033;&#29992;Rank&#20989;&#25968;&#20013;&#24471;&#21040;&#30340;&#27599;&#20010;&#20803;&#32032;&#30340;&#21517;&#27425;&#65292;&#23545;&#25968;&#32452;&#37325;&#26032;&#25490;&#24207;*/&#10;template&#60;class T&#62;&#10;void Rearrange(T a[], int n, int r[])&#123;&#10;    // &#25353;&#39034;&#24207;&#37325;&#25490;&#25968;&#32452;a&#20013;&#30340;&#20803;&#32032;&#65292;&#20351;&#29992;&#38468;&#21152;&#25968;&#32452;u&#10;    T *u = new T[n];&#10;    // &#22312;u&#20013;&#31227;&#21160;&#21040;&#27491;&#30830;&#30340;&#20301;&#32622;&#10;    for (int i = 0; i &#60; n; i++)&#10;        u[r[i]] = a[i];&#10;    // &#31227;&#22238;&#21040;a&#20013;&#10;    for (int i = 0; i &#60; n; i++)&#10;        a[i] = u[i];&#10;    delete[] u;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这是书中给出的实现方法，这个方法需要移动元素<code>2n</code>次，因此，加上例2中的实现，整个排序需要执行，$(n-1)n\over 2$次比较操作和<code>2n</code>次移动操作，这种排序方法被称为<strong>计数排序</strong>。</p>
+<p>另一种方法是原地重排数组元素，不需要一个附加数组，实现代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template&#60;class T&#62;&#10;void Rearrange2(T a[], int n, int r[])&#10;&#123;// &#21407;&#22320;&#37325;&#25490;&#25968;&#32452;&#20803;&#32032;&#10;    for (int i = 0; i &#60; n; i++)&#10;        // &#33719;&#21462;&#24212;&#35813;&#25490;&#22312; a [ i ]&#22788;&#30340;&#20803;&#32032;&#10;    while (r[i] != i) &#123;&#10;        int t = r[i];&#10;        Swap(a[i], a[t]);&#10;        Swap(r[i], r[t]);&#10;    &#125;&#10;&#125;&#10;&#10;/*&#20132;&#25442;&#20004;&#20010;&#25968;&#32452;&#20803;&#32032;*/&#10;template&#60;class T&#62;&#10;void Swap(T&#38; a, T&#38;  b)&#123;&#10;    T temp = a;&#10;    a = b;&#10;    b = temp;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>新的程序需要执行的最少交换次数是0(初始数组已经是按序排列)，最大的交换次数是2(n-1)。注意每次交换操作至少把一个元素移动到正确位置(如a[i])，所以在n-1次交换之后，所有的n个元素已全部按序排列。</p>
+<h5 id="u4F8B3__u9009_u62E9_u6392_u5E8F"><a href="#u4F8B3__u9009_u62E9_u6392_u5E8F" class="headerlink" title="例3 选择排序"></a>例3 选择排序</h5><blockquote>
+<p>选择排序：首先找出最大的元素，把它移动到 a [ n-1 ]，然后在余下的 n-1个元素中寻找最大的元素并把它移动到a [ n-2 ]，如此进行下去，</p>
+</blockquote>
+<p>这是按照递增次序重排数组，也可以按照递减次序排序，就是每次找最小的元素，然后依次与数组的第一个元素交换。</p>
+<p>代码实现如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/*&#36873;&#25321;&#25490;&#24207;&#65292;&#25353;&#29031;&#36882;&#22686;&#27425;&#24207;&#25490;&#21015;*/&#10;template&#60;class T&#62;&#10;void selectionSort(T a[], int n)&#123;&#10;    for (int size = n; size &#62; 1; size--)&#123;&#10;        int max = Max(a, size);&#10;        Swap(a[max], a[size - 1]);&#10;    &#125;&#10;&#125;&#10;&#10;/*&#23547;&#25214;&#25968;&#32452;&#20013;&#26368;&#22823;&#20803;&#32032;*/&#10;template&#60;class T&#62;&#10;int Max(T a[], int n)&#123;&#10;    int pos = 0;&#10;    for (int i = 1; i &#60; n; i++)&#123;&#10;        if (a[pos] &#60; a[i])&#10;            pos = i;&#10;    &#125;&#10;    return pos;&#10;&#125;&#10;/*&#20132;&#25442;&#20004;&#20010;&#25968;&#32452;&#20803;&#32032;*/&#10;template&#60;class T&#62;&#10;void Swap(T&#38; a, T&#38;  b)&#123;&#10;    T temp = a;&#10;    a = b;&#10;    b = temp;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在上述函数中，Max函数会进行$(n-1)n\over 2$次比较操作，而Swap函数会进行<code>3(n-1)</code>次移动操作。</p>
+<p>这种实现方式的选择排序的一个缺点是：<strong>即使元素已经按序排列，程序仍然继续运行</strong>。</p>
+<p>因此为了终止不必要的循环，可以在查找最大元素期间检查数组是否已经按序排列，实现方式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/*&#21450;&#26102;&#32456;&#27490;&#30340;&#36873;&#25321;&#25490;&#24207;*/&#10;template&#60;class T&#62;&#10;void selectionSort2(T a[], int n)&#123;&#10;    bool isSorted = false;      // &#21152;&#20837;&#32456;&#27490;&#24490;&#29615;&#30340;&#26465;&#20214;&#10;    for (int size = n; !isSorted &#38;&#38; (size &#62; 1); size--)&#123;&#10;        int pos = 0;&#10;        isSorted = true;&#10;        // &#25214;&#26368;&#22823;&#20803;&#32032;&#10;        for (int i = 1; i &#60; size; i++)&#123;&#10;            if (a[pos] &#60;= a[i])&#10;                pos = i;&#10;            else&#10;                // &#27809;&#26377;&#25353;&#24207;&#25490;&#21015;&#10;                isSorted = false;&#10;        &#125;&#10;        Swap(a[pos], a[size - 1]);&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这种新的实现方法，最好的情况是数组已经是有序数组的情况，那么外部for循环仅需要执行一次，内部寻找最大元素的比较次数是n-1次。而最坏的情况则是外部for循环执行n-1次，执行的比较次数是$(n-1)n\over 2$次。</p>
+<h5 id="u4F8B4__u5192_u6CE1_u6392_u5E8F"><a href="#u4F8B4__u5192_u6CE1_u6392_u5E8F" class="headerlink" title="例4 冒泡排序"></a>例4 冒泡排序</h5><blockquote>
+<p>冒泡排序是采用一种“冒泡策略”把最大元素移到右部。在冒泡过程中，对相邻的元素进行比较，如果左边的元素大于右边的元素，则交换这两个元素。</p>
+</blockquote>
+<p>下面是冒泡排序的一种实现方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/*&#19968;&#27425;&#20882;&#27873;*/&#10;template&#60;class T&#62;&#10;void Bubble(T a[], int n)&#123;&#10;    for (int i = 0; i &#60; n-1; i++)&#123;&#10;        if (a[i]&#62;a[i + 1])&#10;            Swap(a[i], a[i + 1]);&#10;    &#125;&#10;&#125;&#10;&#10;/*&#23545;&#25968;&#32452;a[0:n - 1]&#20013;&#30340;n&#20010;&#20803;&#32032;&#36827;&#34892;&#20882;&#27873;&#25490;&#24207;*/&#10;template &#60;class T&#62;&#10;void BubbleSort(T a[], int n)&#10;&#123;&#10;    for (int i = n; i&#62;1; i--)&#10;            Bubble(a, i);&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这种实现方法中元素比较的次数是$(n-1)n\over 2$。</p>
+<p>冒泡排序跟选择排序一样，也是需要设计一个可以及时终止的冒泡排序函数。如果在一次冒泡过程中没有发生元素互换，这说明数组已经按序排列，没有必要再继续进行冒泡过程。</p>
+<p>实现如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/*&#19968;&#27425;&#20882;&#27873;*/&#10;template&#60;class T&#62;&#10;bool Bubble(T a[], int n)&#123;&#10;    // &#27809;&#26377;&#21457;&#29983;&#20132;&#25442;&#10;    bool isSwaped = false;&#10;    for (int i = 0; i &#60; n - 1; i++)&#123;&#10;        if (a[i]&#62;a[i + 1])&#123;&#10;            Swap(a[i], a[i + 1]);&#10;            // &#21457;&#29983;&#20102;&#20132;&#25442;&#10;            isSwaped = true;&#10;        &#125;&#10;    &#125;&#10;    return isSwaped;&#10;&#125;&#10;&#10;/*&#23545;&#25968;&#32452;a[0:n - 1]&#20013;&#30340;n&#20010;&#20803;&#32032;&#36827;&#34892;&#20882;&#27873;&#25490;&#24207;*/&#10;template &#60;class T&#62;&#10;void BubbleSort(T a[], int n)&#10;&#123;&#10;    for (int i = n; i &#62; 1 &#38;&#38; Bubble(a, i); i--)&#123;&#125;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在最好的情况下比较次数只需要n-1次，而最坏情况则和第一种实现方法相同。</p>
+<h5 id="u4F8B5__u63D2_u5165_u6392_u5E8F"><a href="#u4F8B5__u63D2_u5165_u6392_u5E8F" class="headerlink" title="例5 插入排序"></a>例5 插入排序</h5><blockquote>
+<p>因为只有一个元素的数组是一个有序数组，所以可以从仅包含欲排序的n个元素的第一个元素的数组开始。通过把第二个元素插入到这个单元数组中，可以得到大小为2的有序数组，并按照这个方法继续进行下去，最终将得到一个大小为n的有序数组。而这种排序方式就是插入排序。</p>
+</blockquote>
+<p>实现代码如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/*&#21521;&#19968;&#20010;&#26377;&#24207;&#25968;&#32452;&#20013;&#25554;&#20837;&#20803;&#32032;,&#20551;&#23450;a&#30340;&#22823;&#23567;&#36229;&#36807;n*/&#10;template&#60;class T&#62;&#10;void Insert(T a[], int&#38; n, const T&#38; x)&#123;&#10;    int i;&#10;    for (i = n - 1; i &#62;= 0 &#38;&#38; x &#60; a[i]; i--)&#10;        a[i + 1] = a[i];&#10;    a[i + 1] = x;&#10;&#125;&#10;&#10;template&#60;class T&#62;&#10;void InsertionSort(T a[], int n)&#123;&#10;    for (int i = 1; i &#60; n; i++)&#123;&#10;        T t = a[i];&#10;        Insert(a, i, t);&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这种排序方法，最好的情况下比较次数是n-1，最坏的情况是$(n-1)n\over 2$。</p>
+<h4 id="u6267_u884C_u6B65_u6570"><a href="#u6267_u884C_u6B65_u6570" class="headerlink" title="执行步数"></a>执行步数</h4><p>  上述例子都是利用操作计数方法来估算程序的时间复杂性，但会忽略了所选择操作之外其他操作的开销。</p>
+<blockquote>
+<p>在统计步数的方法中，要统计程序/函数中所有部分的时间开销。与操作计数一样，执行步数也是实例特征的函数。尽管任一个特定的程序可能会有若干个特征(如输入个数，输出个数，输入和输出的大小)，但可以把执行步数看成是其中一部分特征的函数。通常是选择一些感兴趣的特征，例如，如要了解程序的运行时间(即时间复杂性)是如何随着输入个数的增加而增加的，这种情况下，可以把执行步数看成是输入个数的函数。因此在确定一个程序的执行步数之前，必须确切地知道将要采用的实力特征，这些特征不仅定义了执行步数表达式中的变量，而且定义了以多少次计算作为一步。</p>
+</blockquote>
+<h5 id="u64CD_u4F5C_u6B65"><a href="#u64CD_u4F5C_u6B65" class="headerlink" title="操作步"></a>操作步</h5><p><strong>操作步是独立于所选特征的任意计算单位</strong>，如10次加法可以视为一步，100次乘法也可以视为一步，但n次加法不能视为一步，其中n是实例特征。</p>
+<h5 id="u7A0B_u5E8F_u6B65"><a href="#u7A0B_u5E8F_u6B65" class="headerlink" title="程序步"></a>程序步</h5><blockquote>
+<p>程序步可以定义为一个语法或语义意义上的程序片段，该片段的执行时间独立于实例特征。</p>
+</blockquote>
+<p>可以通过设置一个全局变量<code>count</code>(其初始值为0)来确定一个程序或函数为完成其预定任务所需要的执行步数。可以把count引入到程序语句之中，每当原始程序或函数中的一条语句被执行时，就为count累加上该语句所需要的执行步数。</p>
+<p>一个例子如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template&#60;class T&#62;&#10;T Sum(T a[], int n)&#10;&#123;// &#35745;&#31639; a[0:n - 1]&#20013;&#20803;&#32032;&#20043;&#21644;&#10;    T tsum = 0;&#10;    count++; // &#23545;&#24212;&#20110;tsum = 0&#10;    for (int i = 0; i &#60; n; i++) &#123;&#10;        count++; // &#23545;&#24212;&#20110;f o r&#35821;&#21477;&#10;        tsum += a[i];&#10;        count++; // &#23545;&#24212;&#20110;&#36171;&#20540;&#35821;&#21477;&#10;    &#125;&#10;    count++; // &#23545;&#24212;&#20110;&#26368;&#21518;&#19968;&#20010;f o r&#35821;&#21477;&#10;    count++; //&#23545;&#24212;&#20110;r e t u r n&#35821;&#21477;&#10;    return tsum;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上述函数<code>Sum</code>是用来计算一个数组元素之和，通过添加一个全局变量<code>count</code>来计算函数的执行步数。可以得知每次调用该函数需要执行<code>2n+3</code>步。</p>
+<h4 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h4><p>时间复杂性的介绍就到这里为止，时间复杂性是由编译时间和运行时间决定，但书中说明了编译时间是与实例特征关，同时也假定了一次编译后就可以不用编译就能进行若干次运行。而在估算运行时间的时候介绍了两种方法，分别是估算操作计数和执行步数，书中分别给出了不少例子，这里记录的例子主要是操作计数中的例子，包括了选择排序，计数排序，插入排序，冒泡排序等。</p>
+<p>还是需要在不断编程中不断实践本小节所介绍的方法。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据结构/" rel="tag">#数据结构</a>
+          
+            <a href="/tags/算法/" rel="tag">#算法</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/04/程序性能-空间复杂性/" rel="next" title="程序性能(1)--空间复杂性">
+                <i class="fa fa-chevron-left"></i> 程序性能(1)--空间复杂性
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/06/04/程序性能(2)-时间复杂性/"
+           data-title="程序性能(2)--时间复杂性" data-url="http://ccc013.github.io/2016/06/04/程序性能(2)-时间复杂性/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/favicon.png"
+               alt="cai" />
+          <p class="site-author-name" itemprop="name">cai</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ccc013" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2181051220?is_all=1" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/luo-cai" target="_blank" title="Zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/lmj623565791" title="张鸿洋的博客" target="_blank">张鸿洋的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/guolin_blog" title="郭霖的博客" target="_blank">郭霖的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/singwhatiwanna/article/category/1405419" title="任玉刚" target="_blank">任玉刚</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/Luoshengyang/" title="罗升阳" target="_blank">罗升阳</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://hukai.me/" title="胡凯" target="_blank">胡凯</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.daimajia.com/" title="代码家" target="_blank">代码家</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://hujiaweibujidao.github.io/" title="HujiaweiBujidao" target="_blank">HujiaweiBujidao</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.liaoxuefeng.com/" title="廖雪峰的博客" target="_blank">廖雪峰的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://drakeet.me/" title="Drakeet的个人博客" target="_blank">Drakeet的个人博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.kymjs.com/" title="张涛-开源实验室" target="_blank">张涛-开源实验室</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://gudong.name/" title="咕咚" target="_blank">咕咚</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u65F6_u95F4_u590D_u6742_u6027"><span class="nav-number">1.</span> <span class="nav-text">时间复杂性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u65F6_u95F4_u590D_u6742_u6027_u7684_u7EC4_u6210"><span class="nav-number">1.1.</span> <span class="nav-text">时间复杂性的组成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u64CD_u4F5C_u8BA1_u6570"><span class="nav-number">1.2.</span> <span class="nav-text">操作计数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#u4F8B1__u591A_u9879_u5F0F_u6C42_u503C"><span class="nav-number">1.2.1.</span> <span class="nav-text">例1 多项式求值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#u4F8B2__u8BA1_u6570_u6392_u5E8F"><span class="nav-number">1.2.2.</span> <span class="nav-text">例2 计数排序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#u4F8B3__u9009_u62E9_u6392_u5E8F"><span class="nav-number">1.2.3.</span> <span class="nav-text">例3 选择排序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#u4F8B4__u5192_u6CE1_u6392_u5E8F"><span class="nav-number">1.2.4.</span> <span class="nav-text">例4 冒泡排序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#u4F8B5__u63D2_u5165_u6392_u5E8F"><span class="nav-number">1.2.5.</span> <span class="nav-text">例5 插入排序</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6267_u884C_u6B65_u6570"><span class="nav-number">1.3.</span> <span class="nav-text">执行步数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#u64CD_u4F5C_u6B65"><span class="nav-number">1.3.1.</span> <span class="nav-text">操作步</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#u7A0B_u5E8F_u6B65"><span class="nav-number">1.3.2.</span> <span class="nav-text">程序步</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u603B_u7ED3"><span class="nav-number">1.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cai</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  
+</div>
+
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"cai"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("gmEY36PtfOmueA7roORTu2He-gzGzoHsz", "mzEkjGKehJYxfp1PrU0TYsW3");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+</body>
+</html>
