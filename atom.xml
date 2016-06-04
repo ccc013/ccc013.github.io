@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Stay hungry, stay foolish]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://ccc013.github.io/"/>
-  <updated>2016-06-04T05:45:00.101Z</updated>
+  <updated>2016-06-04T05:47:11.161Z</updated>
   <id>http://ccc013.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://ccc013.github.io/2016/06/04/%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD(2)-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E6%80%A7/"/>
     <id>http://ccc013.github.io/2016/06/04/程序性能(2)-时间复杂性/</id>
     <published>2016-06-04T05:32:07.000Z</published>
-    <updated>2016-06-04T05:45:00.101Z</updated>
+    <updated>2016-06-04T05:47:11.161Z</updated>
     <content type="html"><![CDATA[<p>阅读《数据结构算法与应用：C++描述》第二章程序性能所做的笔记。</p>
 <p>上一节，<a href="http://ccc013.github.io/2016/06/04/%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD-%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E6%80%A7/#more">程序性能(1)–空间复杂性</a></p>
 <h3 id="u65F6_u95F4_u590D_u6742_u6027"><a href="#u65F6_u95F4_u590D_u6742_u6027" class="headerlink" title="时间复杂性"></a>时间复杂性</h3><h4 id="u65F6_u95F4_u590D_u6742_u6027_u7684_u7EC4_u6210"><a href="#u65F6_u95F4_u590D_u6742_u6027_u7684_u7EC4_u6210" class="headerlink" title="时间复杂性的组成"></a>时间复杂性的组成</h4><blockquote>
@@ -37,7 +37,7 @@
 <p> 考察多项式$P(x) = \sum_{i=0}^n c_i x^n$。如果$c_n \neq 0$,则P是一个n维多项式。</p>
 </blockquote>
 <p>下列程序实现了多项式求值。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/*&#22810;&#39033;&#24335;&#27714;&#20540;*/&#10;    template&#60;class T&#62;&#10;    T PolyEval(T coeff[], int n, const T&#38;x)&#123;&#10;        // &#35745;&#31639;n&#27425;&#22810;&#39033;&#24335;&#30340;&#20540;&#65292;coeff[0:n]&#20026;&#22810;&#39033;&#24335;&#30340;&#31995;&#25968;&#10;        T y = 1, value = coeff[0];&#10;        for (int i = 1; i &#60; n; i++)&#123;&#10;            y *= x;&#10;            value += y*coeff[i];&#10;        &#125;&#10;        return value;&#10;    &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/*&#22810;&#39033;&#24335;&#27714;&#20540;*/&#10;template&#60;class T&#62;&#10;T PolyEval(T coeff[], int n, const T&#38;x)&#123;&#10;    // &#35745;&#31639;n&#27425;&#22810;&#39033;&#24335;&#30340;&#20540;&#65292;coeff[0:n]&#20026;&#22810;&#39033;&#24335;&#30340;&#31995;&#25968;&#10;    T y = 1, value = coeff[0];&#10;    for (int i = 1; i &#60; n; i++)&#123;&#10;        y *= x;&#10;        value += y*coeff[i];&#10;    &#125;&#10;    return value;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>这里的for循环中的循环条件，书中代码是有点错误的，应该是<code>i&lt;n</code>,不能带上等于。</p>
 <p>在这个例子中，假定根据for循环内部所执行的加和乘的次数来估算时间复杂性。可以使用维数n作为实例特征。进入for循环的总次数为n，每次循环执行1次加法和乘法(这种操作计数不包含循环控制变量i每次递增所执行的加法)。加法的次数为n，乘法的次数为2n。</p>
 <p>第二种求解多项式的方法是使用<strong>Horner</strong>法则，它是采用如下的分解式计算一个多项式：<br>$$<br>  P(x) = (\ldots(c<em>n*x+c</em>{n-1})<em>x+c_{n-2})</em>x+c_{n-3})<em>x+\ldots)</em>x+c_0<br>$$<br>代码实现如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/*&#20351;&#29992;Horner&#27861;&#21017;&#27714;&#35299;&#22810;&#39033;&#24335;*/&#10;template&#60;class T&#62;&#10;T Horner(T coeff[], int n, const T&#38;x)&#123;&#10;    T value = coeff[n-1];&#10;    for (int i = 2; i &#60;= n; i++)&#123;&#10;        value = value*x + coeff[n - i];&#10;    &#125;&#10;    return value;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
@@ -108,7 +108,7 @@
     <link href="http://ccc013.github.io/2016/06/04/%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD-%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E6%80%A7/"/>
     <id>http://ccc013.github.io/2016/06/04/程序性能-空间复杂性/</id>
     <published>2016-06-04T05:26:58.000Z</published>
-    <updated>2016-06-04T05:43:50.161Z</updated>
+    <updated>2016-06-04T05:47:32.775Z</updated>
     <content type="html"><![CDATA[<p>阅读《数据结构算法与应用：C++描述》第二章程序性能所做的笔记。</p>
 <h3 id="u4ECB_u7ECD"><a href="#u4ECB_u7ECD" class="headerlink" title="介绍"></a>介绍</h3><blockquote>
 <p>程序性能：是指运行一个程序所需要的内存大小和时间。<br>可以采用两种方法来确定一个程序的性能，一个是分析的方法，一个是实验的方法。在进行性能分析(performance analysis)时，采用分析的方法；而在进行性能测量(performance measurement)时，借助于实验的方法。</p>
