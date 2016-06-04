@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Stay hungry, stay foolish]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://ccc013.github.io/"/>
-  <updated>2016-06-04T05:39:49.126Z</updated>
+  <updated>2016-06-04T05:45:00.101Z</updated>
   <id>http://ccc013.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://ccc013.github.io/2016/06/04/%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD(2)-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E6%80%A7/"/>
     <id>http://ccc013.github.io/2016/06/04/程序性能(2)-时间复杂性/</id>
     <published>2016-06-04T05:32:07.000Z</published>
-    <updated>2016-06-04T05:39:49.126Z</updated>
+    <updated>2016-06-04T05:45:00.101Z</updated>
     <content type="html"><![CDATA[<p>阅读《数据结构算法与应用：C++描述》第二章程序性能所做的笔记。</p>
 <p>上一节，<a href="http://ccc013.github.io/2016/06/04/%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD-%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E6%80%A7/#more">程序性能(1)–空间复杂性</a></p>
 <h3 id="u65F6_u95F4_u590D_u6742_u6027"><a href="#u65F6_u95F4_u590D_u6742_u6027" class="headerlink" title="时间复杂性"></a>时间复杂性</h3><h4 id="u65F6_u95F4_u590D_u6742_u6027_u7684_u7EC4_u6210"><a href="#u65F6_u95F4_u590D_u6742_u6027_u7684_u7EC4_u6210" class="headerlink" title="时间复杂性的组成"></a>时间复杂性的组成</h4><blockquote>
@@ -37,10 +37,10 @@
 <p> 考察多项式$P(x) = \sum_{i=0}^n c_i x^n$。如果$c_n \neq 0$,则P是一个n维多项式。</p>
 </blockquote>
 <p>下列程序实现了多项式求值。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/*&#22810;&#39033;&#24335;&#27714;&#20540;*/&#10;template&#60;class T&#62;&#10;T PolyEval(T coeff[], int n, const T&#38;x)&#123;&#10;    // &#35745;&#31639;n&#27425;&#22810;&#39033;&#24335;&#30340;&#20540;&#65292;coeff[0:n]&#20026;&#22810;&#39033;&#24335;&#30340;&#31995;&#25968;&#10;    T y = 1, value = coeff[0];&#10;    for (int i = 1; i &#60; n; i++)&#123;&#10;        y *= x;&#10;        value += y*coeff[i];&#10;    &#125;&#10;    return value;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/*&#22810;&#39033;&#24335;&#27714;&#20540;*/&#10;    template&#60;class T&#62;&#10;    T PolyEval(T coeff[], int n, const T&#38;x)&#123;&#10;        // &#35745;&#31639;n&#27425;&#22810;&#39033;&#24335;&#30340;&#20540;&#65292;coeff[0:n]&#20026;&#22810;&#39033;&#24335;&#30340;&#31995;&#25968;&#10;        T y = 1, value = coeff[0];&#10;        for (int i = 1; i &#60; n; i++)&#123;&#10;            y *= x;&#10;            value += y*coeff[i];&#10;        &#125;&#10;        return value;&#10;    &#125;</span><br></pre></td></tr></table></figure>
 <p>这里的for循环中的循环条件，书中代码是有点错误的，应该是<code>i&lt;n</code>,不能带上等于。</p>
 <p>在这个例子中，假定根据for循环内部所执行的加和乘的次数来估算时间复杂性。可以使用维数n作为实例特征。进入for循环的总次数为n，每次循环执行1次加法和乘法(这种操作计数不包含循环控制变量i每次递增所执行的加法)。加法的次数为n，乘法的次数为2n。</p>
-<p>第二种求解多项式的方法是使用<strong>Horner</strong>法则，它是采用如下的分解式计算一个多项式：<br>$$<br>P(x) = (\ldots(c<em>n*x+c</em>{n-1})<em>x+c_{n-2})</em>x+c_{n-3})<em>x+\ldots)</em>x+c_0<br>$$<br>代码实现如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/*&#20351;&#29992;Horner&#27861;&#21017;&#27714;&#35299;&#22810;&#39033;&#24335;*/&#10;template&#60;class T&#62;&#10;T Horner(T coeff[], int n, const T&#38;x)&#123;&#10;    T value = coeff[n-1];&#10;    for (int i = 2; i &#60;= n; i++)&#123;&#10;        value = value*x + coeff[n - i];&#10;    &#125;&#10;    return value;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>第二种求解多项式的方法是使用<strong>Horner</strong>法则，它是采用如下的分解式计算一个多项式：<br>$$<br>  P(x) = (\ldots(c<em>n*x+c</em>{n-1})<em>x+c_{n-2})</em>x+c_{n-3})<em>x+\ldots)</em>x+c_0<br>$$<br>代码实现如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/*&#20351;&#29992;Horner&#27861;&#21017;&#27714;&#35299;&#22810;&#39033;&#24335;*/&#10;template&#60;class T&#62;&#10;T Horner(T coeff[], int n, const T&#38;x)&#123;&#10;    T value = coeff[n-1];&#10;    for (int i = 2; i &#60;= n; i++)&#123;&#10;        value = value*x + coeff[n - i];&#10;    &#125;&#10;    return value;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
 <p>书中的代码也是有些问题，n应该代表的是<code>coeff</code>这个数组的大小，所以首先是<code>T value = coeff[n-1];</code>这句代码，书中是直接等于<code>coeff[n]</code>，这里应该是<code>coeff[n-1]</code>,然后就是for循环的初始条件，是<code>i=2</code>，而不是<code>i=1</code>。</p>
 <p>使用<strong>Horner</strong>后，加法还是需要n次，但是乘法也只需要n次即可。因此，使用这个函数会比<code>PolyEval</code>函数更快。</p>
 <h5 id="u4F8B2__u8BA1_u6570_u6392_u5E8F"><a href="#u4F8B2__u8BA1_u6570_u6392_u5E8F" class="headerlink" title="例2 计数排序"></a>例2 计数排序</h5><p>这里通过两段代码实现计数排序的方法。</p>
@@ -108,7 +108,7 @@
     <link href="http://ccc013.github.io/2016/06/04/%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD-%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E6%80%A7/"/>
     <id>http://ccc013.github.io/2016/06/04/程序性能-空间复杂性/</id>
     <published>2016-06-04T05:26:58.000Z</published>
-    <updated>2016-06-04T05:35:24.076Z</updated>
+    <updated>2016-06-04T05:43:50.161Z</updated>
     <content type="html"><![CDATA[<p>阅读《数据结构算法与应用：C++描述》第二章程序性能所做的笔记。</p>
 <h3 id="u4ECB_u7ECD"><a href="#u4ECB_u7ECD" class="headerlink" title="介绍"></a>介绍</h3><blockquote>
 <p>程序性能：是指运行一个程序所需要的内存大小和时间。<br>可以采用两种方法来确定一个程序的性能，一个是分析的方法，一个是实验的方法。在进行性能分析(performance analysis)时，采用分析的方法；而在进行性能测量(performance measurement)时，借助于实验的方法。</p>
@@ -165,7 +165,7 @@
 <blockquote>
 <p>[顺序搜索] 下列程序从左至右检查数组a[0:n-1]中的元素，以查找与x相等的那些元素。如果找到一个元素与x相等，则函数返回x第一次出现所在的位置。如果在数组中没有找到这样的元素，函数返回-1.</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/*&#22312;&#26410;&#25490;&#24207;&#30340;&#25968;&#32452; a [ 0 : n-1 ]&#20013;&#25628;&#32034; x&#10;  &#22914;&#26524;&#25214;&#21040;&#65292;&#21017;&#36820;&#22238;&#25152;&#22312;&#20301;&#32622;&#65292;&#21542;&#21017;&#36820;&#22238;- 1*/&#10;template&#60;class T&#62;&#10;int SequentialSearch(T a[], const T&#38; x, int n)&#10;&#123;&#10;    int i;&#10;    for (i = 0; i &#60; n &#38;&#38; a[i] != x; i++);&#10;    if (i == n) return -1;&#10;    return i;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/*&#22312;&#26410;&#25490;&#24207;&#30340;&#25968;&#32452; a [ 0 : n-1 ]&#20013;&#25628;&#32034; x&#10;  &#22914;&#26524;&#25214;&#21040;&#65292;&#21017;&#36820;&#22238;&#25152;&#22312;&#20301;&#32622;&#65292;&#21542;&#21017;&#36820;&#22238;- 1&#10;*/&#10;template&#60;class T&#62;&#10;int SequentialSearch(T a[], const T&#38; x, int n)&#10;&#123;&#10;    int i;&#10;    for (i = 0; i &#60; n &#38;&#38; a[i] != x; i++)&#123;&#125;&#10;    if (i == n) &#10;        return -1;&#10;    return i;&#10;&#125;</span><br></pre></td></tr></table></figure>
 <p>我们希望采用实例特征n来估算该函数的空间复杂性。假定T是<code>int</code>类型，则数组a中的每个元素需要2个字节，实例x需要2个字节，传值形式参数n也需要2个字节，局部变量i需要2个字节，每个整型常量0和-1也分别需要2个字节。因此，所需要的总的数据空间是12字节，因为该空间独立于n，所以$S_{顺序搜索}$(n) = 0.</p>
 <p>注意数组a必须足够大以容纳所查找的n个元素。不过，该数组所需要的空间已在定义实际参数(对应于a)的函数中分配，所以不需要把该数组所需要的空间加到上述函数<code>SequentialSearch</code>所需要的空间上去。</p>
 <p>空间复杂性的介绍就到这里，下一节会介绍时间复杂性。</p>
