@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Stay hungry, stay foolish]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://ccc013.github.io/"/>
-  <updated>2016-06-04T05:47:11.161Z</updated>
+  <updated>2016-06-04T05:50:09.726Z</updated>
   <id>http://ccc013.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://ccc013.github.io/2016/06/04/%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD(2)-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E6%80%A7/"/>
     <id>http://ccc013.github.io/2016/06/04/程序性能(2)-时间复杂性/</id>
     <published>2016-06-04T05:32:07.000Z</published>
-    <updated>2016-06-04T05:47:11.161Z</updated>
+    <updated>2016-06-04T05:50:09.726Z</updated>
     <content type="html"><![CDATA[<p>阅读《数据结构算法与应用：C++描述》第二章程序性能所做的笔记。</p>
 <p>上一节，<a href="http://ccc013.github.io/2016/06/04/%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD-%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E6%80%A7/#more">程序性能(1)–空间复杂性</a></p>
 <h3 id="u65F6_u95F4_u590D_u6742_u6027"><a href="#u65F6_u95F4_u590D_u6742_u6027" class="headerlink" title="时间复杂性"></a>时间复杂性</h3><h4 id="u65F6_u95F4_u590D_u6742_u6027_u7684_u7EC4_u6210"><a href="#u65F6_u95F4_u590D_u6742_u6027_u7684_u7EC4_u6210" class="headerlink" title="时间复杂性的组成"></a>时间复杂性的组成</h4><blockquote>
