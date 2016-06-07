@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Stay hungry, stay foolish]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://ccc013.github.io/"/>
-  <updated>2016-06-07T08:26:30.812Z</updated>
+  <updated>2016-06-07T08:32:24.910Z</updated>
   <id>http://ccc013.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://ccc013.github.io/2016/06/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02-%E5%8D%95%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/"/>
     <id>http://ccc013.github.io/2016/06/07/机器学习笔记2-单变量线性回归/</id>
     <published>2016-06-07T08:12:26.000Z</published>
-    <updated>2016-06-07T08:26:30.812Z</updated>
+    <updated>2016-06-07T08:32:24.910Z</updated>
     <content type="html"><![CDATA[<p>继续是<a href="https://www.coursera.org/learn/machine-learning" target="_blank" rel="external">机器学习课程</a>的笔记，这节介绍的是单变量线性回归算法，线性回归算法也是一个比较基础的算法。</p>
 <h3 id="u6A21_u578B_u8868_u8FBE"><a href="#u6A21_u578B_u8868_u8FBE" class="headerlink" title="模型表达"></a>模型表达</h3><p>  首先是以房屋交易问题为例，假设我们回归问题的训练集如下图所示：<br><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D3.png" alt=""></p>
 <p>此外我们将使用以下变量来描述这个回归问题：</p>
@@ -65,14 +65,14 @@
 <p>repeat until convergence{<br>$$<br> \theta_j := \theta_j - \alpha \frac{\partial}{\partial \theta_j} J(\theta_0,\theta_1)\quad (for\quad j=0 \quad and\quad j=1)<br>$$<br> } </p>
 </blockquote>
 <p>以及线性回归模型</p>
-<p>$$<br>  h_\theta(x)  = \theta_0 + \theta_1 x \\<br>  J(\theta_0,\theta<em>1)  = \frac{1}{2m}\sum</em>{i=1}^m (h_\theta(x^i) - y^i)^2<br>$$</p>
-<p>这里的关键就是求解代价函数的导数，即：<br>$ \frac{\partial}{\partial \theta_j} J(\theta_0,\theta_1) = \frac{\partial}{\partial \theta<em>j} - \frac{1}{2m}\sum</em>{i=1}^m (h_\theta(x^i) - y^i)^2 $</p>
+<p>$$<br> h_\theta(x)  = \theta_0 + \theta_1 x \\<br> J(\theta_0,\theta<em>1)  = \frac{1}{2m}\sum</em>{i=1}^m (h_\theta(x^i) - y^i)^2<br>$$</p>
+<p>这里的关键就是求解代价函数的导数，即：<br>$\frac{\partial}{\partial \theta_j} J(\theta_0,\theta_1) = \frac{\partial}{\partial \theta<em>j} - \frac{1}{2m}\sum</em>{i=1}^m (h_\theta(x^i) - y^i)^2$</p>
 <p>进一步，可以得到：<br>$$<br> j=0: \frac{\partial}{\partial \theta_0} J(\theta_0,\theta<em>1) = \frac{1}{m}\sum</em>{i=1}^m (h_\theta(x^i) - y^i)^2 \\<br> j=1: \frac{\partial}{\partial \theta_1} J(\theta_0,\theta<em>1) = \frac{1}{m}\sum</em>{i=1}^m ((h_\theta(x^i) - y^i)^2 \cdot x^i)<br>$$<br>由此，我们的算法可以改写成：</p>
 <blockquote>
-<p>repeat until convergence{<br>$$<br>\theta_0 := \theta<em>0 - \alpha \frac{1}{m}\sum</em>{i=1}^m (h_\theta(x^i) - y^i)^2 \\<br> \theta_1 := \theta<em>1 - \alpha \frac{1}{m}\sum</em>{i=1}^m ((h_\theta(x^i) - y^i)^2 \cdot x^i)<br>$$<br> } </p>
+<p>repeat until convergence{<br>$$<br> \theta_0 := \theta<em>0 - \alpha \frac{1}{m}\sum</em>{i=1}^m (h_\theta(x^i) - y^i)^2 \\<br> \theta_1 := \theta<em>1 - \alpha \frac{1}{m}\sum</em>{i=1}^m ((h_\theta(x^i) - y^i)^2 \cdot x^i)<br>$$<br> } </p>
 </blockquote>
 <p>最后，在我们给出的梯度下降算法公式实际上是一个叫<strong>批量梯度下降(batch gradient descent)</strong>，即它在每次梯度下降中都是使用整个训练集的数据，所以公式中是带有$\sum_{i=1}^m$，当然也存在其他梯度下降法，在每次梯度下降时考虑部分数据。</p>
-<h3 id="u5C0F_u7ED3"><a href="#u5C0F_u7ED3" class="headerlink" title="小结"></a>小结</h3><p>  这里就介绍完单变量的线性回归方法，对于这个线性回归算法，我的理解是，因为正如开头介绍的经典的机器学习过程，是使用一个学习算法在给定的数据集上学习得到一个模型，然后使用该模型对新的数据进行预测，得到一个预测的结果，所以对于线性回归也是要求解其模型，其实就是我们非常熟悉的直线方程$h_\theta = \theta_0 + \theta_1 x$，就是让我们计算得到的直线方程尽可能逼近实际的直线方程，而衡量的标准就是使用代价函数，而在线性回归中，非常常用的是平方和误差函数$J(\theta_0,\theta<em>1) = {1 \over {2m}} \sum</em>{i=1}^m (h_\theta (x^i) - y^i)^2$，那么这就把问题变成求解最小的代价函数，也就是求解一对参数$\theta_0,\theta_1$使得min$J(\theta_0,\theta_1)$,而要得到这对参数，我们就是使用梯度下降方法。梯度下降法也是一个非常常用的方法，包括在神经网络中都会使用到。</p>
+<h3 id="u5C0F_u7ED3"><a href="#u5C0F_u7ED3" class="headerlink" title="小结"></a>小结</h3><p>  这里就介绍完单变量的线性回归方法，对于这个线性回归算法，我的理解是，因为正如开头介绍的经典的机器学习过程，是使用一个学习算法在给定的数据集上学习得到一个模型，然后使用该模型对新的数据进行预测，得到一个预测的结果，所以对于线性回归也是要求解其模型，其实就是我们非常熟悉的直线方程$h_\theta = \theta_0 + \theta_1 x$，就是让我们计算得到的直线方程尽可能逼近实际的直线方程，而衡量的标准就是使用代价函数，而在线性回归中，非常常用的是平方和误差函数$J(\theta_0,\theta<em>1)=\frac{1}{2m} \sum</em>{i=1}^m (h_\theta (x^i) - y^i)^2$，那么这就把问题变成求解最小的代价函数，也就是求解一对参数$\theta_0$和$\theta_1$使得min$J(\theta_0,\theta_1)$,而要得到这对参数，我们就是使用梯度下降方法。梯度下降法也是一个非常常用的方法，包括在神经网络中都会使用到。</p>
 ]]></content>
     <summary type="html">
     <![CDATA[<p>继续是<a href="https://www.coursera.org/learn/machine-learning" target="_blank" rel="external">机器学习课程</a>的笔记，这节介绍的是单变量线性回归算法，线性回归算法也是一个比较基础的]]>
