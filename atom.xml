@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Stay hungry, stay foolish]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://ccc013.github.io/"/>
-  <updated>2016-06-07T09:00:49.396Z</updated>
+  <updated>2016-06-07T09:08:22.733Z</updated>
   <id>http://ccc013.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://ccc013.github.io/2016/06/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02-%E5%8D%95%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/"/>
     <id>http://ccc013.github.io/2016/06/07/机器学习笔记2-单变量线性回归/</id>
     <published>2016-06-07T08:12:26.000Z</published>
-    <updated>2016-06-07T09:00:49.396Z</updated>
+    <updated>2016-06-07T09:08:22.733Z</updated>
     <content type="html"><![CDATA[<p>继续是<a href="https://www.coursera.org/learn/machine-learning" target="_blank" rel="external">机器学习课程</a>的笔记，这节介绍的是单变量线性回归算法，线性回归算法也是一个比较基础的算法。</p>
 <h3 id="u6A21_u578B_u8868_u8FBE"><a href="#u6A21_u578B_u8868_u8FBE" class="headerlink" title="模型表达"></a>模型表达</h3><p>  首先是以房屋交易问题为例，假设我们回归问题的训练集如下图所示：<br><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D3.png" alt=""></p>
 <p>此外我们将使用以下变量来描述这个回归问题：</p>
@@ -38,11 +38,11 @@
 <p>  我们选择的参数决定了我们得到的直线相对于我们的训练集的准确程度，模型所预测的值与训练集中实际值之间的差距就是<strong>建模误差</strong>(modeling error),如下图所示：<br>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/costFunction.png" alt="此处输入图片的描述"></p>
 <p>  上图中，$h_\theta (x^i)$是对第i个输入变量的预测输出值，而$y^i$则是对应的真实值。</p>
 <p>  因此我们的目标是选择出可以使得建模误差的平方和能够最小的模型参数,也就是min($h_\theta (x^i)$ -$y^i$)。</p>
-<p>  这里就使用一个代价函数$J(\theta_0,\theta<em>1) = {1 \over {2m}}\sum</em>{i=1}^m (h_\theta (x^i) - y^i)^2$。</p>
+<p>  这里就使用一个代价函数$J(\theta_0,\theta<em>1) = \frac{1}{2m} \sum</em>{i=1}^m (h_\theta (x^i) - y^i)^2$。</p>
 <p>  这里的代价函数也叫做平方误差代价函数，这是最常用的解决回归问题的方法。当然还有其他代价函数，这将在后面提及。</p>
 <h3 id="u68AF_u5EA6_u4E0B_u964D"><a href="#u68AF_u5EA6_u4E0B_u964D" class="headerlink" title="梯度下降"></a>梯度下降</h3><p>  梯度下降是一个用来求函数最小值的算法，我们将使用梯度下降算法来求出代价函数$J(\theta_0,\theta_1)$的最小值。</p>
-<h4 id="u601D_u60F3_u8FC7_u7A0B"><a href="#u601D_u60F3_u8FC7_u7A0B" class="headerlink" title="思想过程"></a>思想过程</h4><p>  梯度下降算法的思想如下：</p>
-<p>首先，我们有一个代价函数，假设是J$(\theta_0,\theta<em>1)$，我们的目标是$min</em>{\theta_0,\theta_1}J(\theta_0,\theta_1)$。</p>
+<h4 id="u601D_u60F3_u8FC7_u7A0B"><a href="#u601D_u60F3_u8FC7_u7A0B" class="headerlink" title="思想过程"></a>思想过程</h4><p>梯度下降算法的思想如下：</p>
+<p>首先,我们有一个代价函数,假设是J$(\theta_0,\theta<em>1)$,我们的目标是$min</em>{\theta_0,\theta_1}J(\theta_0,\theta_1)$。</p>
 <p>接下来的做法是：</p>
 <ul>
 <li>首先是随机选择一个参数的组合$(\theta_0,\theta_1)$,视频中说一般是设$\theta_0 = 0,\theta_1 = 0$;</li>
@@ -56,15 +56,14 @@
 <p>也就是在梯度下降中，不断重复上述公式直到收敛，也就是找到$\color{red}{局部最小值}$。其中符号<code>:=</code>是赋值符号的意思。</p>
 <p>公式中的$\alpha$称为<strong>学习率(learning rate)</strong>，它决定了我们沿着能让代价函数下降程度最大的方向向下迈进的步子有多大。</p>
 <p>在梯度下降中，还涉及都一个参数更新的问题，即更新$(\theta_0,\theta_1)$，一般我们的做法是<strong>同步更新</strong>：<br>$$<br> temp_0  := \theta_0 - \alpha \frac{\partial}{\partial \theta_0} J(\theta_0,\theta_1) \\<br> temp_1  := \theta_1 - \alpha \frac{\partial}{\partial \theta_1} J(\theta_0,\theta_1) \\<br> \theta_0  := temp_0  \\<br> \theta_1  := temp_1<br>$$</p>
-<h4 id="u7B97_u6CD5_u8BE6_u89E3"><a href="#u7B97_u6CD5_u8BE6_u89E3" class="headerlink" title="算法详解"></a>算法详解</h4><p>  在上述公式中$\frac{\partial}{\partial \theta_j} J(\theta_0,\theta_1)$是一个偏导数，其含义就是函数$J(\theta_0,\theta_1)$的斜率，假设我们要求的代价函数$J(\theta_0,\theta_1)$如下图所示，初始点是图中的红色的点，那么由于在该点上的切线斜率是一个正数，而学习率也是正数，所以更新后的$\theta_1$会减小，也就是会向左移动，并靠近局部最小值。<br>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D2.png" alt="此处输入图片的描述"><br>  当然，如果起始点是在上述曲线左侧，其切线斜率则是负值，那么会导致\theta_1$逐渐变大，同样也是靠近局部最小值。</p>
+<h4 id="u7B97_u6CD5_u8BE6_u89E3"><a href="#u7B97_u6CD5_u8BE6_u89E3" class="headerlink" title="算法详解"></a>算法详解</h4><p>  在上述公式中$\frac{\partial}{\partial \theta_j} J(\theta_0,\theta_1)$是一个偏导数，其含义就是函数$J(\theta_0,\theta_1)$的斜率，假设我们要求的代价函数$J(\theta_0,\theta_1)$如下图所示，初始点是图中的红色的点，那么由于在该点上的切线斜率是一个正数，而学习率也是正数，所以更新后的$\theta_1$会减小，也就是会向左移动，并靠近局部最小值。<br>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D2.png" alt="此处输入图片的描述"><br>  当然，如果起始点是在上述曲线左侧，其切线斜率则是负值，那么会导致$\theta_1$逐渐变大，同样也是靠近局部最小值。</p>
 <p>  公式中的学习率$\alpha$是决定找到局部最小值的快慢，同时也决定了能否找到局部最小值，因为如果取值过大，就可能错过局部最小值，并且可能会导致无法收；但是取值过小，学习的速度就会比较慢。</p>
 <p>  视频中也提到一个问题，如果初始点就是一个局部最小点，那么由于局部最小值的切线斜率是0，那么会导致参数不变，因为其实已经在局部最小值了。<br>  此外，即使学习率$\alpha$是一个固定值，梯度下降法也是可以收敛到一个局部最小值，原因是在接近局部最小值时，$\frac{\partial}{\partial \theta_j} J(\theta_0,\theta_1)$会自动变得更小，然后就可以慢慢接近局部最小值，而不需要改变学习率。</p>
 <h4 id="u5E94_u7528_u4E8E_u7EBF_u6027_u56DE_u5F52"><a href="#u5E94_u7528_u4E8E_u7EBF_u6027_u56DE_u5F52" class="headerlink" title="应用于线性回归"></a>应用于线性回归</h4><p>  根据前面内容，我们有<br>  梯度下降算法公式：</p>
 <blockquote>
 <p>repeat until convergence{<br>$$<br> \theta_j := \theta_j - \alpha \frac{\partial}{\partial \theta_j} J(\theta_0,\theta_1)\quad (for\quad j=0 \quad and\quad j=1)<br>$$<br> } </p>
 </blockquote>
-<p>以及线性回归模型</p>
-<p>$$h_\theta (x) = \theta_0 + \theta_1 x \\<br> J(\theta_0,\theta<em>1) = \frac{1}{2m}\sum</em>{i=1}^m (h_\theta(x^i) - y^i)^2$$</p>
+<p>以及线性回归模型<br>$$<br> h_\theta (x) = \theta_0 + \theta_1 x \\<br> J(\theta_0,\theta<em>1) = \frac{1}{2m}\sum</em>{i=1}^m (h_\theta(x^i) - y^i)^2<br> $$</p>
 <p>这里的关键就是求解代价函数的导数，即：<br>$\frac{\partial}{\partial \theta_j} J(\theta_0,\theta_1) = \frac{\partial}{\partial \theta<em>j} - \frac{1}{2m}\sum</em>{i=1}^m (h_\theta(x^i) - y^i)^2$</p>
 <p>进一步，可以得到：<br>$$<br> j=0 : \frac{\partial}{\partial \theta_0} J(\theta_0,\theta<em>1) = \frac{1}{m}\sum</em>{i=1}^m (h_\theta(x^i) - y^i)^2 \\<br> j=1 : \frac{\partial}{\partial \theta_1} J(\theta_0,\theta<em>1) = \frac{1}{m}\sum</em>{i=1}^m ((h_\theta(x^i) - y^i)^2 \cdot x^i)<br>$$<br>由此，我们的算法可以改写成：</p>
 <blockquote>
