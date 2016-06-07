@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Stay hungry, stay foolish]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://ccc013.github.io/"/>
-  <updated>2016-06-07T08:56:56.400Z</updated>
+  <updated>2016-06-07T09:00:49.396Z</updated>
   <id>http://ccc013.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://ccc013.github.io/2016/06/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02-%E5%8D%95%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/"/>
     <id>http://ccc013.github.io/2016/06/07/机器学习笔记2-单变量线性回归/</id>
     <published>2016-06-07T08:12:26.000Z</published>
-    <updated>2016-06-07T08:56:56.400Z</updated>
+    <updated>2016-06-07T09:00:49.396Z</updated>
     <content type="html"><![CDATA[<p>继续是<a href="https://www.coursera.org/learn/machine-learning" target="_blank" rel="external">机器学习课程</a>的笔记，这节介绍的是单变量线性回归算法，线性回归算法也是一个比较基础的算法。</p>
 <h3 id="u6A21_u578B_u8868_u8FBE"><a href="#u6A21_u578B_u8868_u8FBE" class="headerlink" title="模型表达"></a>模型表达</h3><p>  首先是以房屋交易问题为例，假设我们回归问题的训练集如下图所示：<br><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D3.png" alt=""></p>
 <p>此外我们将使用以下变量来描述这个回归问题：</p>
@@ -66,7 +66,7 @@
 <p>以及线性回归模型</p>
 <p>$$h_\theta (x) = \theta_0 + \theta_1 x \\<br> J(\theta_0,\theta<em>1) = \frac{1}{2m}\sum</em>{i=1}^m (h_\theta(x^i) - y^i)^2$$</p>
 <p>这里的关键就是求解代价函数的导数，即：<br>$\frac{\partial}{\partial \theta_j} J(\theta_0,\theta_1) = \frac{\partial}{\partial \theta<em>j} - \frac{1}{2m}\sum</em>{i=1}^m (h_\theta(x^i) - y^i)^2$</p>
-<p>进一步，可以得到：<br>$$j=0 : \frac{\partial}{\partial \theta_0} J(\theta_0,\theta<em>1) = \frac{1}{m}\sum</em>{i=1}^m (h_\theta(x^i) - y^i)^2 \\<br>j=1 : \frac{\partial}{\partial \theta_1} J(\theta_0,\theta<em>1) = \frac{1}{m}\sum</em>{i=1}^m ((h_\theta(x^i) - y^i)^2 \cdot x^i)$$<br>由此，我们的算法可以改写成：</p>
+<p>进一步，可以得到：<br>$$<br> j=0 : \frac{\partial}{\partial \theta_0} J(\theta_0,\theta<em>1) = \frac{1}{m}\sum</em>{i=1}^m (h_\theta(x^i) - y^i)^2 \\<br> j=1 : \frac{\partial}{\partial \theta_1} J(\theta_0,\theta<em>1) = \frac{1}{m}\sum</em>{i=1}^m ((h_\theta(x^i) - y^i)^2 \cdot x^i)<br>$$<br>由此，我们的算法可以改写成：</p>
 <blockquote>
 <p>repeat until convergence{<br>$$<br> \theta_0 := \theta<em>0 - \alpha \frac{1}{m}\sum</em>{i=1}^m (h_\theta(x^i) - y^i)^2 \\<br> \theta_1 := \theta<em>1 - \alpha \frac{1}{m}\sum</em>{i=1}^m ((h_\theta(x^i) - y^i)^2 \cdot x^i)<br>$$<br> } </p>
 </blockquote>
