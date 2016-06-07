@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Stay hungry, stay foolish]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://ccc013.github.io/"/>
-  <updated>2016-06-07T08:22:54.276Z</updated>
+  <updated>2016-06-07T08:26:30.812Z</updated>
   <id>http://ccc013.github.io/</id>
   
   <author>
@@ -19,9 +19,9 @@
     <link href="http://ccc013.github.io/2016/06/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02-%E5%8D%95%E5%8F%98%E9%87%8F%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/"/>
     <id>http://ccc013.github.io/2016/06/07/机器学习笔记2-单变量线性回归/</id>
     <published>2016-06-07T08:12:26.000Z</published>
-    <updated>2016-06-07T08:22:54.276Z</updated>
+    <updated>2016-06-07T08:26:30.812Z</updated>
     <content type="html"><![CDATA[<p>继续是<a href="https://www.coursera.org/learn/machine-learning" target="_blank" rel="external">机器学习课程</a>的笔记，这节介绍的是单变量线性回归算法，线性回归算法也是一个比较基础的算法。</p>
-<h3 id="u6A21_u578B_u8868_u8FBE"><a href="#u6A21_u578B_u8868_u8FBE" class="headerlink" title="模型表达"></a>模型表达</h3><p>  首先是以房屋交易问题为例，假设我们回归问题的训练集如下表所示：<br>|Size in $feet^2$ (x) | Price(\$) in 1000’s (y)|<br>| :—–:   | :—-:  |<br>|2104       |462    |<br>|1416       |232    |<br>|1534       |315    |<br>|852        |178    |<br>|…        |…    |</p>
+<h3 id="u6A21_u578B_u8868_u8FBE"><a href="#u6A21_u578B_u8868_u8FBE" class="headerlink" title="模型表达"></a>模型表达</h3><p>  首先是以房屋交易问题为例，假设我们回归问题的训练集如下图所示：<br><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D3.png" alt=""></p>
 <p>此外我们将使用以下变量来描述这个回归问题：</p>
 <ul>
 <li>m 代表训练集中实例的数量</li>
@@ -56,7 +56,7 @@
 </blockquote>
 <p>也就是在梯度下降中，不断重复上述公式直到收敛，也就是找到$\color{red}{局部最小值}$。其中符号<code>:=</code>是赋值符号的意思。</p>
 <p>公式中的$\alpha$称为<strong>学习率(learning rate)</strong>，它决定了我们沿着能让代价函数下降程度最大的方向向下迈进的步子有多大。</p>
-<p>在梯度下降中，还涉及都一个参数更新的问题，即更新$(\theta_0,\theta_1)$，一般我们的做法是<strong>同步更新</strong>：<br>$$<br> temp_0  := \theta_0 - \alpha \frac{\partial}{\partial \theta_0} J(\theta_0,\theta_1) \\<br> temp_1  := \theta_1 - \alpha \frac{\partial}{\partial \theta_1} J(\theta_0,\theta_1) \\<br> \theta_0  := temp_0 \\<br> \theta_1  := temp_1<br>$$</p>
+<p>在梯度下降中，还涉及都一个参数更新的问题，即更新$(\theta_0,\theta_1)$，一般我们的做法是<strong>同步更新</strong>：<br>$$<br> temp_0  := \theta_0 - \alpha \frac{\partial}{\partial \theta_0} J(\theta_0,\theta_1) \\<br> temp_1  := \theta_1 - \alpha \frac{\partial}{\partial \theta_1} J(\theta_0,\theta_1) \\<br> \theta_0  := temp_0  \\<br> \theta_1  := temp_1<br>$$</p>
 <h4 id="u7B97_u6CD5_u8BE6_u89E3"><a href="#u7B97_u6CD5_u8BE6_u89E3" class="headerlink" title="算法详解"></a>算法详解</h4><p>  在上述公式中$\frac{\partial}{\partial \theta_j} J(\theta_0,\theta_1)$是一个偏导数，其含义就是函数$J(\theta_0,\theta_1)$的斜率，假设我们要求的代价函数$J(\theta_0,\theta_1)$如下图所示，初始点是图中的红色的点，那么由于在该点上的切线斜率是一个正数，而学习率也是正数，所以更新后的$\theta_1$会减小，也就是会向左移动，并靠近局部最小值。<br>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D2.png" alt="此处输入图片的描述"><br>  当然，如果起始点是在上述曲线左侧，其切线斜率则是负值，那么会导致\theta_1$逐渐变大，同样也是靠近局部最小值。</p>
 <p>  公式中的学习率$\alpha$是决定找到局部最小值的快慢，同时也决定了能否找到局部最小值，因为如果取值过大，就可能错过局部最小值，并且可能会导致无法收；但是取值过小，学习的速度就会比较慢。</p>
 <p>  视频中也提到一个问题，如果初始点就是一个局部最小点，那么由于局部最小值的切线斜率是0，那么会导致参数不变，因为其实已经在局部最小值了。<br>  此外，即使学习率$\alpha$是一个固定值，梯度下降法也是可以收敛到一个局部最小值，原因是在接近局部最小值时，$\frac{\partial}{\partial \theta_j} J(\theta_0,\theta_1)$会自动变得更小，然后就可以慢慢接近局部最小值，而不需要改变学习率。</p>
@@ -65,9 +65,7 @@
 <p>repeat until convergence{<br>$$<br> \theta_j := \theta_j - \alpha \frac{\partial}{\partial \theta_j} J(\theta_0,\theta_1)\quad (for\quad j=0 \quad and\quad j=1)<br>$$<br> } </p>
 </blockquote>
 <p>以及线性回归模型</p>
-<blockquote>
 <p>$$<br>  h_\theta(x)  = \theta_0 + \theta_1 x \\<br>  J(\theta_0,\theta<em>1)  = \frac{1}{2m}\sum</em>{i=1}^m (h_\theta(x^i) - y^i)^2<br>$$</p>
-</blockquote>
 <p>这里的关键就是求解代价函数的导数，即：<br>$ \frac{\partial}{\partial \theta_j} J(\theta_0,\theta_1) = \frac{\partial}{\partial \theta<em>j} - \frac{1}{2m}\sum</em>{i=1}^m (h_\theta(x^i) - y^i)^2 $</p>
 <p>进一步，可以得到：<br>$$<br> j=0: \frac{\partial}{\partial \theta_0} J(\theta_0,\theta<em>1) = \frac{1}{m}\sum</em>{i=1}^m (h_\theta(x^i) - y^i)^2 \\<br> j=1: \frac{\partial}{\partial \theta_1} J(\theta_0,\theta<em>1) = \frac{1}{m}\sum</em>{i=1}^m ((h_\theta(x^i) - y^i)^2 \cdot x^i)<br>$$<br>由此，我们的算法可以改写成：</p>
 <blockquote>
