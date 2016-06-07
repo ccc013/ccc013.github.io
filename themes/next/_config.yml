@@ -278,7 +278,7 @@ duoshuo_shortname: cai
 #google_analytics:
 
 # CNZZ count
-cnzz_siteid: 
+cnzz_siteid: 1257376919
 
 
 # Make duoshuo show UA
@@ -288,7 +288,7 @@ duoshuo_info:
   ua_enable: true
   admin_enable: true
   user_id: 5881344
-  admin_nickname: cai
+  admin_nickname: 博主
 
 
 # Facebook SDK Support.
