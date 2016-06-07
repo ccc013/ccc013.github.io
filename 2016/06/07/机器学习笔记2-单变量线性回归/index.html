@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="线性代数," />
+  <meta name="keywords" content="机器学习," />
 
 
 
@@ -86,26 +86,23 @@
 
 
 
-<meta name="description" content="这是记录麻省理工学院公开课：线性代数的笔记，网址是麻省理工公开课：线性代数第一节课说的是有关方程组的几何解释。网址是方程组的几何解释
-
- 首先是介绍方程组的几何解释，提出可以用矩阵表示，然后矩阵表示有两种表达方式，分别是行图像和列图像。行图像比较常见，比如两条直线相交，而列图像则比较少见。
-两个未知数两个方程 然后老师举例说明，首先是两个方程组两个未知数的例子，例子如下所示：$$ \begin{c">
+<meta name="description" content="继续是机器学习课程的笔记，这节介绍的是单变量线性回归算法，线性回归算法也是一个比较基础的算法。
+模型表达  首先是以房屋交易问题为例，假设我们回归问题的训练集如下表所示：|Size in $feet^2$ (x) | Price(\$) in 1000’s (y)|| :—–:   | :—-:  ||2104       |462    ||1416       |232    ||1534">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[线性代数]Note 1--方程组的几何解释">
-<meta property="og:url" content="http://ccc013.github.io/2016/05/30/线性代数-Note-1-方程组的几何解释/index.html">
+<meta property="og:title" content="机器学习笔记2--单变量线性回归">
+<meta property="og:url" content="http://ccc013.github.io/2016/06/07/机器学习笔记2-单变量线性回归/index.html">
 <meta property="og:site_name" content="Cai's blog">
-<meta property="og:description" content="这是记录麻省理工学院公开课：线性代数的笔记，网址是麻省理工公开课：线性代数第一节课说的是有关方程组的几何解释。网址是方程组的几何解释
-
- 首先是介绍方程组的几何解释，提出可以用矩阵表示，然后矩阵表示有两种表达方式，分别是行图像和列图像。行图像比较常见，比如两条直线相交，而列图像则比较少见。
-两个未知数两个方程 然后老师举例说明，首先是两个方程组两个未知数的例子，例子如下所示：$$ \begin{c">
-<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E6%89%AB%E6%8F%8F_20160529215117.jpg">
-<meta property="og:updated_time" content="2016-05-30T11:06:52.501Z">
+<meta property="og:description" content="继续是机器学习课程的笔记，这节介绍的是单变量线性回归算法，线性回归算法也是一个比较基础的算法。
+模型表达  首先是以房屋交易问题为例，假设我们回归问题的训练集如下表所示：|Size in $feet^2$ (x) | Price(\$) in 1000’s (y)|| :—–:   | :—-:  ||2104       |462    ||1416       |232    ||1534">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E6%A8%A1%E5%9E%8B%E8%A1%A8%E8%BE%BE%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/costFunction.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D2.png">
+<meta property="og:updated_time" content="2016-06-07T08:14:25.024Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[线性代数]Note 1--方程组的几何解释">
-<meta name="twitter:description" content="这是记录麻省理工学院公开课：线性代数的笔记，网址是麻省理工公开课：线性代数第一节课说的是有关方程组的几何解释。网址是方程组的几何解释
-
- 首先是介绍方程组的几何解释，提出可以用矩阵表示，然后矩阵表示有两种表达方式，分别是行图像和列图像。行图像比较常见，比如两条直线相交，而列图像则比较少见。
-两个未知数两个方程 然后老师举例说明，首先是两个方程组两个未知数的例子，例子如下所示：$$ \begin{c">
+<meta name="twitter:title" content="机器学习笔记2--单变量线性回归">
+<meta name="twitter:description" content="继续是机器学习课程的笔记，这节介绍的是单变量线性回归算法，线性回归算法也是一个比较基础的算法。
+模型表达  首先是以房屋交易问题为例，假设我们回归问题的训练集如下表所示：|Size in $feet^2$ (x) | Price(\$) in 1000’s (y)|| :—–:   | :—-:  ||2104       |462    ||1416       |232    ||1534">
 
 
 
@@ -123,7 +120,7 @@
   };
 </script>
 
-  <title> [线性代数]Note 1--方程组的几何解释 | Cai's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> 机器学习笔记2--单变量线性回归 | Cai's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -284,7 +281,7 @@
             
             
               
-                [线性代数]Note 1--方程组的几何解释
+                机器学习笔记2--单变量线性回归
               
             
           </h1>
@@ -296,8 +293,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-30T14:06:39+08:00" content="2016-05-30">
-              2016-05-30
+            <time itemprop="dateCreated" datetime="2016-06-07T16:12:26+08:00" content="2016-06-07">
+              2016-06-07
             </time>
           </span>
 
@@ -307,8 +304,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/30/线性代数-Note-1-方程组的几何解释/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/30/线性代数-Note-1-方程组的几何解释/" itemprop="commentsCount"></span>
+                <a href="/2016/06/07/机器学习笔记2-单变量线性回归/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/07/机器学习笔记2-单变量线性回归/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -318,7 +315,7 @@
 
           
           
-             <span id="/2016/05/30/线性代数-Note-1-方程组的几何解释/" class="leancloud_visitors" data-flag-title="[线性代数]Note 1--方程组的几何解释">
+             <span id="/2016/06/07/机器学习笔记2-单变量线性回归/" class="leancloud_visitors" data-flag-title="机器学习笔记2--单变量线性回归">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -341,30 +338,61 @@
       
 
       
-        <p>这是记录麻省理工学院公开课：线性代数的笔记，网址是<a href="http://open.163.com/special/opencourse/daishu.html" target="_blank" rel="external">麻省理工公开课：线性代数</a><br>第一节课说的是有关方程组的几何解释。网址是<a href="http://open.163.com/movie/2010/11/7/3/M6V0BQC4M_M6V29E773.html" target="_blank" rel="external">方程组的几何解释</a></p>
-<hr>
-<p> 首先是介绍方程组的几何解释，提出可以用矩阵表示，然后矩阵表示有两种表达方式，分别是行图像和列图像。行图像比较常见，比如两条直线相交，而列图像则比较少见。</p>
-<h3 id="u4E24_u4E2A_u672A_u77E5_u6570_u4E24_u4E2A_u65B9_u7A0B"><a href="#u4E24_u4E2A_u672A_u77E5_u6570_u4E24_u4E2A_u65B9_u7A0B" class="headerlink" title="两个未知数两个方程"></a>两个未知数两个方程</h3><p> 然后老师举例说明，首先是两个方程组两个未知数的例子，例子如下所示：<br>$$<br> \begin{cases}<br> \ 2x-y = 0 \\<br> \ -x+3y= 3<br> \end{cases}<br>$$</p>
-<p>用行图像表示如下所示：<br>$$<br> \left[\begin{matrix}2 &amp; -1  \\ -1 &amp; 3  \end{matrix} \right] \left[\begin{matrix} x \\ y \end{matrix}\right]  = \left[\begin{matrix} 0 \\ 3 \end{matrix}\right]<br>$$</p>
-<p>这里用<strong>A</strong>=$ \left[\begin{matrix} 2 &amp; -1  \\ -1 &amp; 3  \end{matrix} \right]$,<strong>x</strong> = $\left[\begin{matrix} x\\ y \end{matrix}\right]$,<strong>b</strong>=$\left[\begin{matrix} 0 \\ 3 \end{matrix}\right] $,可以得到<code>Ax =b</code></p>
-<p>这里表示的就是两条直线，并且它们相交于点<code>(1,2)</code>。</p>
-<p>如果是用列向量，则如下所示：<br>$$<br> x\left[\begin{matrix}2 \\ -1 \end{matrix} \right] + y\left[\begin{matrix}-1\\3\end{matrix}\right] = \left[\begin{matrix} 0\\ 3 \end{matrix}\right]<br>$$</p>
-<p>对于这种写法，老师称之为列向量的线性组合，然后在二维坐标平面上表示了这两个向量，而这个列向量的线性组合的解，其实在用行图像表示的时候已经得到了，就是<code>x=1, y=2</code>。</p>
-<h3 id="u4E09_u4E2A_u672A_u77E5_u6570_u4E09_u4E2A_u65B9_u7A0B_u7EC4"><a href="#u4E09_u4E2A_u672A_u77E5_u6570_u4E09_u4E2A_u65B9_u7A0B_u7EC4" class="headerlink" title="三个未知数三个方程组"></a>三个未知数三个方程组</h3><p>  接着老师给出了三个未知数的情况，举例如下所示<br>$$<br> \begin{cases}<br> \ 2x-y = 0 \\<br> \ -x+2y-z = -1 \\<br> \    -3y+4z = 4<br> \end{cases}<br>$$<br> 使用行图像表示，<strong>A</strong> = $ \left[\begin{matrix}2 &amp; -1 &amp; 0 \\ -1 &amp; 2 &amp; -1 \\ 0 &amp; -3 &amp; 4\end{matrix}\right]$,<strong>b</strong>=$\left[\begin{matrix}0 \\ -1 \\4\end{matrix}\right]$,</p>
-<p> 使用列图像表示是如下所示：<br> $$<br>  x\left[ \begin{matrix} 2 \\ -1 \\0\end{matrix} \right]+y\left[ \begin{matrix}-1 \\ 2 \\ -3\end{matrix} \right]+z\left[ \begin{matrix}0 \\ -1 \\ 4\end{matrix} \right]=\left[ \begin{matrix} 0 \\ -1 \\ 4\end{matrix} \right]<br> $$</p>
-<p> 如果通过行图像来求解，需要通过在三维坐标轴上画出3个平面求平面的交点，这是非常困难的。(这里老师也说了下一节课会介绍消元法来求解)。</p>
-<p> 而如果看列图像，则可以轻松得到答案：<code>x=0,y=0,z=1</code>，当然这是老师特意设计的题目，所以才这么容易得到这个答案。</p>
-<p> 然后老师就问了一个问题：</p>
+        <p>继续是<a href="https://www.coursera.org/learn/machine-learning" target="_blank" rel="external">机器学习课程</a>的笔记，这节介绍的是单变量线性回归算法，线性回归算法也是一个比较基础的算法。</p>
+<h3 id="u6A21_u578B_u8868_u8FBE"><a href="#u6A21_u578B_u8868_u8FBE" class="headerlink" title="模型表达"></a>模型表达</h3><p>  首先是以房屋交易问题为例，假设我们回归问题的训练集如下表所示：<br>|Size in $feet^2$ (x) | Price(\$) in 1000’s (y)|<br>| :—–:   | :—-:  |<br>|2104       |462    |<br>|1416       |232    |<br>|1534       |315    |<br>|852        |178    |<br>|…        |…    |</p>
+<p>此外我们将使用以下变量来描述这个回归问题：</p>
+<ul>
+<li>m 代表训练集中实例的数量</li>
+<li>x 代表特征/输入变量</li>
+<li>y 代表目标变量/输出变量</li>
+<li>(x,y) 代表训练集中的实例</li>
+<li>($x^i,y^i$) 代表第i个观察实例</li>
+<li>h 代表学习算法的解决方案或函数，也成为假设(hypothesis)</li>
+</ul>
+<p>下面是一个典型的机器学习过程：<br><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E6%A8%A1%E5%9E%8B%E8%A1%A8%E8%BE%BE%E6%B5%81%E7%A8%8B%E5%9B%BE.png" alt="此处输入图片的描述"></p>
+<p>所以对于房价预测问题，我们是在训练集上执行学习算法，学习到一个假设<code>h</code>，然后将要预测的房屋的尺寸作为输入变量输入给<code>h</code>，而输出结果就是该房屋的交易价格。</p>
+<p>这里的<code>h</code>也就是一个模型，是一个从输入变量<code>x</code>都输出变量<code>y</code>的函数映射。它的一种可能的表达式为:<br>$$<br> h_\theta = \theta_0 + \theta_1 x<br>$$<br>这个表达式只含有一个特征/输入变量，因此这样的问题叫作<strong>单变量线性回归问题</strong>.</p>
+<h3 id="u4EE3_u4EF7_u51FD_u6570"><a href="#u4EE3_u4EF7_u51FD_u6570" class="headerlink" title="代价函数"></a>代价函数</h3><p>  当我们得到一个模型后，就必须选择合适的参数$\theta_0$和$\theta_1$.在房价问题中，对应的就是直线的斜率和在y轴上的截距。</p>
+<p>  我们选择的参数决定了我们得到的直线相对于我们的训练集的准确程度，模型所预测的值与训练集中实际值之间的差距就是<strong>建模误差</strong>(modeling error),如下图所示：<br>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/costFunction.png" alt="此处输入图片的描述"></p>
+<p>  上图中，$h_\theta (x^i)$是对第i个输入变量的预测输出值，而$y^i$则是对应的真实值。</p>
+<p>  因此我们的目标是选择出可以使得建模误差的平方和能够最小的模型参数,也就是min($h_\theta (x^i)$ -$y^i$)。</p>
+<p>  这里就使用一个代价函数$J(\theta_0,\theta<em>1) = {1\over {2m}} \sum</em>{i=1}^m (h_\theta(x^i) - y^i)^2$</p>
+<p>  这里的代价函数也叫做平方误差代价函数，这是最常用的解决回归问题的方法。当然还有其他代价函数，这将在后面提及。</p>
+<h3 id="u68AF_u5EA6_u4E0B_u964D"><a href="#u68AF_u5EA6_u4E0B_u964D" class="headerlink" title="梯度下降"></a>梯度下降</h3><p>  梯度下降是一个用来求函数最小值的算法，我们将使用梯度下降算法来求出代价函数$J(\theta_0,\theta_1)$的最小值。</p>
+<h4 id="u601D_u60F3_u8FC7_u7A0B"><a href="#u601D_u60F3_u8FC7_u7A0B" class="headerlink" title="思想过程"></a>思想过程</h4><p>  梯度下降算法的思想如下：</p>
 <blockquote>
-<p>对任意的<strong>b</strong>，都能令<code>Ax = b</code>有解吗？<br>这个问题对于这个三个未知数的例子来说，等价于这个例子中的列向量的线性组合是否能覆盖整个三维空间？</p>
+<p>首先，我们有一个代价函数，假设是$J(\theta_0,\theta<em>1)$，我们的目标是$min</em>{\theta_0,\theta_1}J(\theta_0,\theta_1)$。<br>接下来的做法是：</p>
+<ul>
+<li>首先是随机选择一个参数的组合$(\theta_0,\theta_1)$,视频中说一般是设$\theta_0 = 0,\theta_1 = 0$;</li>
+<li>然后是不断改变$(\theta_0,\theta_1)$，并计算代价函数，直到一个<strong>局部最小值</strong>。之所以是<strong>局部最小值</strong>，是因为我们并没有尝试完所有的参数组合，所以不能确定我们得到的局部最小值是否便是<strong>全局最小值</strong>，选择不同的初始参数组合，可能会找到不同的局部最小值。</li>
+</ul>
 </blockquote>
-<p>这里的答案当然是不能确定的，如果三个列向量都是在同一个平面上，那么得到的解也就只是在同一个平面的。</p>
-<h3 id="u77E9_u9635_u5411_u91CF_u76F8_u4E58_u7684_u89E3_u6CD5"><a href="#u77E9_u9635_u5411_u91CF_u76F8_u4E58_u7684_u89E3_u6CD5" class="headerlink" title="矩阵向量相乘的解法"></a>矩阵向量相乘的解法</h3><p>最后老师介绍了矩阵与向量相乘的两种解法，首先是一个例子<br>$$<br> \left[ \begin{matrix}2 &amp; 5\\1 &amp; 3\end{matrix}\right] \left[\begin{matrix}1\\2\end{matrix}\right]<br>$$<br>两种解法分别是按照行向量还是列向量来解答的。</p>
-<p>第一种，如果是按照列向量解答，则可以写成如下所示：<br>$$<br> \left[ \begin{matrix}2 &amp; 5\\1 &amp; 3\end{matrix}\right] \left[\begin{matrix}1\\2\end{matrix}\right] = 1\left[ \begin{matrix}2 \\1\end{matrix}\right]+ 2 \left[ \begin{matrix}5\\3\end{matrix}\right] = \left[ \begin{matrix}12\\7\end{matrix}\right]<br>$$</p>
-<p>第二种，就是按行来求解，如下所示：<br>$$<br>  \left[ \begin{matrix}2 &amp; 5 \\ 1 &amp; 3 \end{matrix}\right] \left[\begin{matrix}1\\ 2 \end{matrix}\right] = \left[ \begin{matrix} 2*1+5*2 \\ 1*1+3*2 \end{matrix}\right] = \left[ \begin{matrix} 12 \\ 7 \end{matrix}\right]<br>$$<br>也就是第一个矩阵的第一行乘以第二个向量的对应列，然后第二行乘以第二个向量的对应列。</p>
-<p>这种解法也是当初刚开始学习线性代数所学习的方法。</p>
-<h3 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h3><p>这节课的收获主要是了解到列向量这种求法，之前对于矩阵的求解，还是通过按行来相乘求解的。不过在这节课中的例子都是矩阵乘以向量得到一个向量，如果是矩阵之间的相乘，不知道是否还是可以如此解决。</p>
-<p>最后是手写笔记如下所示<br> <img src="http://7xrluf.com1.z0.glb.clouddn.com/%E6%89%AB%E6%8F%8F_20160529215117.jpg" alt="image"></p>
+<p>下图是视频中给出的梯度下降法是如何工作的：<br><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D.png" alt="此处输入图片的描述"></p>
+<h4 id="u7B97_u6CD5_u516C_u5F0F"><a href="#u7B97_u6CD5_u516C_u5F0F" class="headerlink" title="算法公式"></a>算法公式</h4><p>   下面给出梯度下降算法的公式：</p>
+<blockquote>
+<p>repeat until convergence{<br>$$<br> \theta_j := \theta_j - \alpha \frac{\partial}{\partial \theta_j} J(\theta_0,\theta_1)\quad (for\quad j=0 \quad and\quad j=1)<br>$$<br> } </p>
+</blockquote>
+<p>也就是在梯度下降中，不断重复上述公式直到收敛，也就是找到$\color{red}{局部最小值}$。其中符号<code>:=</code>是赋值符号的意思。</p>
+<p>公式中的$\alpha$称为<strong>学习率(learning rate)</strong>，它决定了我们沿着能让代价函数下降程度最大的方向向下迈进的步子有多大。</p>
+<p>在梯度下降中，还涉及都一个参数更新的问题，即更新$(\theta_0,\theta_1)$，一般我们的做法是<strong>同步更新</strong>：<br>$$<br> temp_0  := \theta_0 - \alpha \frac{\partial}{\partial \theta_0} J(\theta_0,\theta_1) \<br> temp_1  := \theta_1 - \alpha \frac{\partial}{\partial \theta_1} J(\theta_0,\theta_1) \<br> \theta_0  := temp_0 \<br> \theta_1  := temp_1<br>$$</p>
+<h4 id="u7B97_u6CD5_u8BE6_u89E3"><a href="#u7B97_u6CD5_u8BE6_u89E3" class="headerlink" title="算法详解"></a>算法详解</h4><p>  在上述公式中$\frac{\partial}{\partial \theta_j} J(\theta_0,\theta_1)$是一个偏导数，其含义就是函数$J(\theta_0,\theta_1)$的斜率，假设我们要求的代价函数$J(\theta_0,\theta_1)$如下图所示，初始点是图中的红色的点，那么由于在该点上的切线斜率是一个正数，而学习率也是正数，所以更新后的$\theta_1$会减小，也就是会向左移动，并靠近局部最小值。<br>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D2.png" alt="此处输入图片的描述"><br>  当然，如果起始点是在上述曲线左侧，其切线斜率则是负值，那么会导致\theta_1$逐渐变大，同样也是靠近局部最小值。</p>
+<p>  公式中的学习率$\alpha$是决定找到局部最小值的快慢，同时也决定了能否找到局部最小值，因为如果取值过大，就可能错过局部最小值，并且可能会导致无法收；但是取值过小，学习的速度就会比较慢。</p>
+<p>  视频中也提到一个问题，如果初始点就是一个局部最小点，那么由于局部最小值的切线斜率是0，那么会导致参数不变，因为其实已经在局部最小值了。<br>  此外，即使学习率$\alpha$是一个固定值，梯度下降法也是可以收敛到一个局部最小值，原因是在接近局部最小值时，$\frac{\partial}{\partial \theta_j} J(\theta_0,\theta_1)$会自动变得更小，然后就可以慢慢接近局部最小值，而不需要改变学习率。</p>
+<h4 id="u5E94_u7528_u4E8E_u7EBF_u6027_u56DE_u5F52"><a href="#u5E94_u7528_u4E8E_u7EBF_u6027_u56DE_u5F52" class="headerlink" title="应用于线性回归"></a>应用于线性回归</h4><p>  根据前面内容，我们有<br>  梯度下降算法公式：</p>
+<blockquote>
+<p>repeat until convergence{<br>$$<br> \theta_j := \theta_j - \alpha \frac{\partial}{\partial \theta_j} J(\theta_0,\theta_1)\quad (for\quad j=0 \quad and\quad j=1)<br>$$<br> } </p>
+</blockquote>
+<p>以及线性回归模型</p>
+<blockquote>
+<p>$$<br>  h_\theta(x)  = \theta_0 + \theta_1 x \<br>  J(\theta_0,\theta<em>1)  = \frac{1}{2m}\sum</em>{i=1}^m (h_\theta(x^i) - y^i)^2<br>$$</p>
+</blockquote>
+<p>这里的关键就是求解代价函数的导数，即：<br>$\frac{\partial}{\partial \theta_j} J(\theta_0,\theta_1) = \frac{\partial}{\partial \theta<em>j} - \frac{1}{2m}\sum</em>{i=1}^m (h_\theta(x^i) - y^i)^2$</p>
+<p>进一步，可以得到：<br>$$<br> j=0: \frac{\partial}{\partial \theta_0} J(\theta_0,\theta<em>1) = \frac{1}{m}\sum</em>{i=1}^m (h_\theta(x^i) - y^i)^2\<br> j=1: \frac{\partial}{\partial \theta_1} J(\theta_0,\theta<em>1) = \frac{1}{m}\sum</em>{i=1}^m ((h_\theta(x^i) - y^i)^2 \cdot x^i)<br>$$<br>由此，我们的算法可以改写成：</p>
+<blockquote>
+<p>repeat until convergence{<br>$$<br>\theta_0 := \theta<em>0 - \alpha \frac{1}{m}\sum</em>{i=1}^m (h_\theta(x^i) - y^i)^2\ \<br> \theta_1 := \theta<em>1 - \alpha \frac{1}{m}\sum</em>{i=1}^m ((h_\theta(x^i) - y^i)^2 \cdot x^i)<br>$$<br> } </p>
+</blockquote>
+<p>最后，在我们给出的梯度下降算法公式实际上是一个叫<strong>批量梯度下降(batch gradient descent)</strong>，即它在每次梯度下降中都是使用整个训练集的数据，所以公式中是带有$\sum_{i=1}^m$，当然也存在其他梯度下降法，在每次梯度下降时考虑部分数据。</p>
+<h3 id="u5C0F_u7ED3"><a href="#u5C0F_u7ED3" class="headerlink" title="小结"></a>小结</h3><p>  这里就介绍完单变量的线性回归方法，对于这个线性回归算法，我的理解是，因为正如开头介绍的经典的机器学习过程，是使用一个学习算法在给定的数据集上学习得到一个模型，然后使用该模型对新的数据进行预测，得到一个预测的结果，所以对于线性回归也是要求解其模型，其实就是我们非常熟悉的直线方程$h_\theta = \theta_0 + \theta_1 x$，就是让我们计算得到的直线方程尽可能逼近实际的直线方程，而衡量的标准就是使用代价函数，而在线性回归中，非常常用的是平方和误差函数$J(\theta_0,\theta<em>1) = {1\over {2m}} \sum</em>{i=1}^m (h_\theta(x^i) - y^i)^2$，那么这就把问题变成求解最小的代价函数，也就是求解一对参数$\theta_0,\theta_1$使得$minJ(\theta_0,\theta_1)$,而要得到这对参数，我们就是使用梯度下降方法。梯度下降法也是一个非常常用的方法，包括在神经网络中都会使用到。</p>
 
       
     </div>
@@ -386,7 +414,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/线性代数/" rel="tag">#线性代数</a>
+            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
           
         </div>
       
@@ -395,17 +423,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/20/Device-Compatibility/" rel="next" title="Android官方文档Guide阅读系列(2)--Device Compatibility">
-                <i class="fa fa-chevron-left"></i> Android官方文档Guide阅读系列(2)--Device Compatibility
+              <a href="/2016/06/07/机器学习笔记1-机器学习简介/" rel="next" title="机器学习笔记1--机器学习简介">
+                <i class="fa fa-chevron-left"></i> 机器学习笔记1--机器学习简介
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/06/04/程序性能1-空间复杂性/" rel="prev" title="程序性能1--空间复杂性">
-                程序性能1--空间复杂性 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -431,8 +455,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/05/30/线性代数-Note-1-方程组的几何解释/"
-           data-title="[线性代数]Note 1--方程组的几何解释" data-url="http://ccc013.github.io/2016/05/30/线性代数-Note-1-方程组的几何解释/">
+      <div class="ds-thread" data-thread-key="2016/06/07/机器学习笔记2-单变量线性回归/"
+           data-title="机器学习笔记2--单变量线性回归" data-url="http://ccc013.github.io/2016/06/07/机器学习笔记2-单变量线性回归/">
       </div>
     
   </div>
@@ -612,7 +636,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u4E24_u4E2A_u672A_u77E5_u6570_u4E24_u4E2A_u65B9_u7A0B"><span class="nav-number">1.</span> <span class="nav-text">两个未知数两个方程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u4E09_u4E2A_u672A_u77E5_u6570_u4E09_u4E2A_u65B9_u7A0B_u7EC4"><span class="nav-number">2.</span> <span class="nav-text">三个未知数三个方程组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u77E9_u9635_u5411_u91CF_u76F8_u4E58_u7684_u89E3_u6CD5"><span class="nav-number">3.</span> <span class="nav-text">矩阵向量相乘的解法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u603B_u7ED3"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u6A21_u578B_u8868_u8FBE"><span class="nav-number">1.</span> <span class="nav-text">模型表达</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u4EE3_u4EF7_u51FD_u6570"><span class="nav-number">2.</span> <span class="nav-text">代价函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u68AF_u5EA6_u4E0B_u964D"><span class="nav-number">3.</span> <span class="nav-text">梯度下降</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u601D_u60F3_u8FC7_u7A0B"><span class="nav-number">3.1.</span> <span class="nav-text">思想过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u7B97_u6CD5_u516C_u5F0F"><span class="nav-number">3.2.</span> <span class="nav-text">算法公式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u7B97_u6CD5_u8BE6_u89E3"><span class="nav-number">3.3.</span> <span class="nav-text">算法详解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u5E94_u7528_u4E8E_u7EBF_u6027_u56DE_u5F52"><span class="nav-number">3.4.</span> <span class="nav-text">应用于线性回归</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5C0F_u7ED3"><span class="nav-number">4.</span> <span class="nav-text">小结</span></a></li></ol></div>
             
           </div>
         </section>
