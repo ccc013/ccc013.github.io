@@ -27,7 +27,7 @@ since: 2015
 menu:
   home: /
   archives: /archives
-  categories: /categories
+  # categories: /categories
   about: /abou
   tags: /tags
   commonweal: /404.html
@@ -222,7 +222,7 @@ toc_list_number: false
 # Please use <!-- more --> in the post to control excerpt accurately.
 auto_excerpt:
   enable: true
-  length: 150
+  length: 10
 
 
 # Wechat Subscriber
