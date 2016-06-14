@@ -86,30 +86,32 @@
 
 
 
-<meta name="description" content="继续是《数据结构算法与应用：C++语言描述》第3章数据描述的笔记。本小节主要介绍链表，以及单向链表的代码实现。
+<meta name="description" content="继续是《数据结构算法与应用：C++语言描述》第3章数据描述的笔记。本小节主要介绍链表，以及单向链表和单向循环链表，双向链表的介绍。
 链表描述类ChainNode和Node
 链表描述中，数据对象实例的每个元素都放在单元或节点中进行描述，不过每个节点不必是一个数组元素，但都包含了与该节点相关的其他节点的位置信息，这种关于其他节点的位置信息被称为链(link)或指针(pointer)。
 
-令$L=(e_1,e_2,\ldo">
+令$L=(e_">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据描述2--单向链表">
 <meta property="og:url" content="http://ccc013.github.io/2016/06/09/数据描述2-单向链表/index.html">
 <meta property="og:site_name" content="Cai's blog">
-<meta property="og:description" content="继续是《数据结构算法与应用：C++语言描述》第3章数据描述的笔记。本小节主要介绍链表，以及单向链表的代码实现。
+<meta property="og:description" content="继续是《数据结构算法与应用：C++语言描述》第3章数据描述的笔记。本小节主要介绍链表，以及单向链表和单向循环链表，双向链表的介绍。
 链表描述类ChainNode和Node
 链表描述中，数据对象实例的每个元素都放在单元或节点中进行描述，不过每个节点不必是一个数组元素，但都包含了与该节点相关的其他节点的位置信息，这种关于其他节点的位置信息被称为链(link)或指针(pointer)。
 
-令$L=(e_1,e_2,\ldo">
+令$L=(e_">
 <meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E9%93%BE%E8%A1%A81.png">
 <meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E9%93%BE%E8%A1%A82.png">
-<meta property="og:updated_time" content="2016-06-09T10:16:22.514Z">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E9%93%BE%E8%A1%A83.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E9%93%BE%E8%A1%A84.png">
+<meta property="og:updated_time" content="2016-06-14T01:03:57.695Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据描述2--单向链表">
-<meta name="twitter:description" content="继续是《数据结构算法与应用：C++语言描述》第3章数据描述的笔记。本小节主要介绍链表，以及单向链表的代码实现。
+<meta name="twitter:description" content="继续是《数据结构算法与应用：C++语言描述》第3章数据描述的笔记。本小节主要介绍链表，以及单向链表和单向循环链表，双向链表的介绍。
 链表描述类ChainNode和Node
 链表描述中，数据对象实例的每个元素都放在单元或节点中进行描述，不过每个节点不必是一个数组元素，但都包含了与该节点相关的其他节点的位置信息，这种关于其他节点的位置信息被称为链(link)或指针(pointer)。
 
-令$L=(e_1,e_2,\ldo">
+令$L=(e_">
 
 
 
@@ -335,7 +337,7 @@
       
 
       
-        <p>继续是《数据结构算法与应用：C++语言描述》第3章数据描述的笔记。本小节主要介绍链表，以及单向链表的代码实现。</p>
+        <p>继续是《数据结构算法与应用：C++语言描述》第3章数据描述的笔记。本小节主要介绍链表，以及单向链表和单向循环链表，双向链表的介绍。</p>
 <h3 id="u94FE_u8868_u63CF_u8FF0"><a href="#u94FE_u8868_u63CF_u8FF0" class="headerlink" title="链表描述"></a>链表描述</h3><h4 id="u7C7BChainNode_u548CNode"><a href="#u7C7BChainNode_u548CNode" class="headerlink" title="类ChainNode和Node"></a>类ChainNode和Node</h4><blockquote>
 <p>链表描述中，数据对象实例的每个元素都放在单元或节点中进行描述，不过每个节点不必是一个数组元素，但都包含了与该节点相关的其他节点的位置信息，这种关于其他节点的位置信息被称为链(link)或指针(pointer)。</p>
 </blockquote>
@@ -370,6 +372,21 @@
 <p>其使用例子如下,此时<strong>Output</strong>函数不是<strong>Chain</strong>类的成员函数。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template&#60;class T&#62;&#10;void Output(const Chain&#60;T&#62;&#38; X)&#123;&#10;    int *x;&#10;    ChainIterator&#60;T&#62; c;&#10;    x = c.Initialize(X);&#10;    while (x)&#123;&#10;        cout &#60;&#60; *x &#60;&#60; &#39; &#39;;&#10;        x = c.Next();&#10;    &#125;&#10;    cout &#60;&#60; endl;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
 <p>使用遍历器可以实现在线性时间内输出链表，如上述程序所示。</p>
 <p>更完整的例子可以查看<strong><a href="https://github.com/ccc013/DataStructe-Algorithms_Study/blob/master/LinearList/ChainList.h" target="_blank" rel="external">ChainList</a></strong>。</p>
+<h4 id="u5FAA_u73AF_u94FE_u8868"><a href="#u5FAA_u73AF_u94FE_u8868" class="headerlink" title="循环链表"></a>循环链表</h4><p>  我们可以采纳下面一条或两条措施使得链表的应用代码可以更加简洁和高效：</p>
+<ol>
+<li>把线性表描述成一个<strong>单向循环链表</strong>，或简称<strong>循环链表</strong>；</li>
+<li>在链表的前部增加一个附加的节点，称之为<strong>头节点</strong>。</li>
+</ol>
+<p>通过把单向链表最后一个节点的链接指针改为指向第一个节点，就可以把一个单向链表改造成循环链表，如下图(a)所示，而图(b)给出了一个带有头指针的非空的循环链表，图(c)给出了一个带有头指针的空的循环链表。<br>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/%E9%93%BE%E8%A1%A83.png" alt="此处输入图片的描述"><br><code>CircularList</code>类的定义与<code>Chain</code>类定义相似。尽管链表搜索的复杂性仍然保持为$O(n)$，但代码本身要稍微简单一些，如下所示，程序在for循环的每次循环中执行的比较次数较少，因此会比<code>Chain</code>类中的搜索运行得更快一些。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template&#60;class T&#62;&#10;int CircularList&#60;T&#62;::Search(const T&#38; x)const&#123;&#10;    // &#22312;&#24102;&#26377;&#22836;&#33410;&#28857;&#30340;&#24490;&#29615;&#38142;&#34920;&#20013;&#26597;&#25214;x&#10;    ChainNode&#60;T&#62;* current = first-&#62;link;&#10;    int index = 1;&#10;    first-&#62;data = x;    // &#25226;x&#25918;&#20837;&#22836;&#33410;&#28857;&#10;    while (current-&#62;data != x)&#123;&#10;        current = current-&#62;link;&#10;        index++;&#10;    &#125;&#10;    // &#21028;&#26029;&#26159;&#21542;&#26159;&#38142;&#34920;&#22836;&#33410;&#28857;&#10;    return ((current == first) ? 0 : index);&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>更完整的<code>CircularList</code>可以查看我的<a href="https://github.com/ccc013/DataStructe-Algorithms_Study/tree/master/LinearList" target="_blank" rel="external">github</a></p>
+<h4 id="u4E0E_u516C_u5F0F_u5316_u63CF_u8FF0_u65B9_u6CD5_u7684_u6BD4_u8F83"><a href="#u4E0E_u516C_u5F0F_u5316_u63CF_u8FF0_u65B9_u6CD5_u7684_u6BD4_u8F83" class="headerlink" title="与公式化描述方法的比较"></a>与公式化描述方法的比较</h4><p>  使用公式化描述方法的线性表仅需要能够保持所有元素的空间以及保存表长的空间，而链表和循环链表描述还需要额外的空间，用来保存链接指针。<strong>采用链表描述所实现的插入和删除操作要比公式化描述时执行得更快，当每个元素都很长时(字节数多)，尤其如此。</strong></p>
+<p>  还可以使用链接模式来描述很多表，这样做不会降低空间利用率，也不会降低执行效率；而对于公式化描述，为了提高空间利用率，不得不把所有的表都放在一个数组中，并使用了另外两个数组来对这个数组进行索引，更有甚者，与一个表对应一个数组的情形相比，插入和删除操作变得更加复杂，而且存在一个很显著的最坏运行时间。<br>  采用公式化描述，可以在$\theta(1)$的时间内访问第k个元素，而这种操作在链表中是需要$O(k)$。</p>
+<h4 id="u53CC_u5411_u94FE_u8868"><a href="#u53CC_u5411_u94FE_u8868" class="headerlink" title="双向链表"></a>双向链表</h4><blockquote>
+<p>双向链表就是每个链表元素既有指向下一个元素的指针，又有指向前一个元素的指针。</p>
+</blockquote>
+<p>下图是一个双向链表表示。<br><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E9%93%BE%E8%A1%A84.png" alt="此处输入图片的描述"></p>
+<p>双向链表的类定义如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template&#60;class T&#62;&#10;class DoubleNode&#123;&#10;    T data;&#10;    DoubleNode&#60;T&#62;*left, *right;&#10;&#125;;&#10;&#10;template&#60;class T&#62;&#10;class DoubleChainList&#123;&#10;private:&#10;    DoubleNode&#60;T&#62;* LeftEnd, *RightEnd;&#10;public:&#10;    DoubleChainList()&#123; LeftEnd = RightEnd = 0 &#125;;&#10;    ~DoubleChainList();&#10;    int Length() const;&#10;    bool Find(int k, T&#38; x)const;&#10;    int Search(const T&#38; x)const;&#10;    DoubleChainList&#60;T&#62;&#38; Delete(int k, T&#38; x);&#10;    DoubleChainList&#60;T&#62;&#38; Insert(int k, const T&#38; x);&#10;    void Output(std::ostream &#38; out)const;&#10;&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>此外在双向链表的左部和/或右部添加头节点，并且把链表变成循环的链表，可以提高双向链表的性能。在一个非空的双向链表中，<code>LeftEnd-&gt;left</code>是一个指向最右边结点的指针(即<code>RightEnd</code>),<code>RightEnd-&gt;right</code>是一个指向最左边节点的指针，这样可以省去<code>RightEnd</code>，只需要简单地使用变量<code>LeftEnd</code>来跟踪链表。</p>
 
       
     </div>
@@ -624,7 +641,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u94FE_u8868_u63CF_u8FF0"><span class="nav-number">1.</span> <span class="nav-text">链表描述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u7C7BChainNode_u548CNode"><span class="nav-number">1.1.</span> <span class="nav-text">类ChainNode和Node</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u64CD_u4F5C"><span class="nav-number">1.2.</span> <span class="nav-text">操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#u5220_u9664_u64CD_u4F5C"><span class="nav-number">1.2.1.</span> <span class="nav-text">删除操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#u63D2_u5165_u64CD_u4F5C"><span class="nav-number">1.2.2.</span> <span class="nav-text">插入操作</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6269_u5145_u7C7BChain"><span class="nav-number">1.3.</span> <span class="nav-text">扩充类Chain</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u94FE_u8868_u904D_u5386_u5668_u7C7B"><span class="nav-number">1.4.</span> <span class="nav-text">链表遍历器类</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u94FE_u8868_u63CF_u8FF0"><span class="nav-number">1.</span> <span class="nav-text">链表描述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u7C7BChainNode_u548CNode"><span class="nav-number">1.1.</span> <span class="nav-text">类ChainNode和Node</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u64CD_u4F5C"><span class="nav-number">1.2.</span> <span class="nav-text">操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#u5220_u9664_u64CD_u4F5C"><span class="nav-number">1.2.1.</span> <span class="nav-text">删除操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#u63D2_u5165_u64CD_u4F5C"><span class="nav-number">1.2.2.</span> <span class="nav-text">插入操作</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6269_u5145_u7C7BChain"><span class="nav-number">1.3.</span> <span class="nav-text">扩充类Chain</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u94FE_u8868_u904D_u5386_u5668_u7C7B"><span class="nav-number">1.4.</span> <span class="nav-text">链表遍历器类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u5FAA_u73AF_u94FE_u8868"><span class="nav-number">1.5.</span> <span class="nav-text">循环链表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u4E0E_u516C_u5F0F_u5316_u63CF_u8FF0_u65B9_u6CD5_u7684_u6BD4_u8F83"><span class="nav-number">1.6.</span> <span class="nav-text">与公式化描述方法的比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u53CC_u5411_u94FE_u8868"><span class="nav-number">1.7.</span> <span class="nav-text">双向链表</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
