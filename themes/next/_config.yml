@@ -222,7 +222,7 @@ toc_list_number: false
 # Please use <!-- more --> in the post to control excerpt accurately.
 auto_excerpt:
   enable: true
-  length: 10
+  length: 30
 
 
 # Wechat Subscriber
