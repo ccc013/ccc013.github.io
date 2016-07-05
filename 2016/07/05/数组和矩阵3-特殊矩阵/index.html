@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="线性代数," />
+  <meta name="keywords" content="数据结构,算法," />
 
 
 
@@ -86,26 +86,44 @@
 
 
 
-<meta name="description" content="这是记录麻省理工学院公开课：线性代数的笔记，网址是麻省理工公开课：线性代数第一节课说的是有关方程组的几何解释。网址是方程组的几何解释
+<meta name="description" content="继续是《数据结构算法与应用：C++语言描述》，第四章数组和矩阵的笔记。本小节介绍几种特殊矩阵的内容。
+定义和应用
+方阵是指具有相同行数和列数的矩阵。
 
- 首先是介绍方程组的几何解释，提出可以用矩阵表示，然后矩阵表示有两种表达方式，分别是行图像和列图像。行图像比较常见，比如两条直线相交，而列图像则比较少见。
-两个未知数两个方程 然后老师举例说明，首先是两个方程组两个未知数的例子，例子如下所示：$$ \begin{c">
+一些常用的特殊方阵如下：
+
+
+对角矩阵 $M$是一个对角矩阵，当前仅当$i \neq j$时，有$M(i,j)=0$。如下图a所示
+三对角矩阵 $M$是一个三对角矩阵，当前仅当$|i-j| \gt 1$时有$M(i,j)=0$。如下图b所示
+下三角">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[线性代数]Note 1--方程组的几何解释">
-<meta property="og:url" content="http://ccc013.github.io/2016/05/30/线性代数-Note-1-方程组的几何解释/index.html">
+<meta property="og:title" content="数组和矩阵3-特殊矩阵">
+<meta property="og:url" content="http://ccc013.github.io/2016/07/05/数组和矩阵3-特殊矩阵/index.html">
 <meta property="og:site_name" content="Cai's blog">
-<meta property="og:description" content="这是记录麻省理工学院公开课：线性代数的笔记，网址是麻省理工公开课：线性代数第一节课说的是有关方程组的几何解释。网址是方程组的几何解释
+<meta property="og:description" content="继续是《数据结构算法与应用：C++语言描述》，第四章数组和矩阵的笔记。本小节介绍几种特殊矩阵的内容。
+定义和应用
+方阵是指具有相同行数和列数的矩阵。
 
- 首先是介绍方程组的几何解释，提出可以用矩阵表示，然后矩阵表示有两种表达方式，分别是行图像和列图像。行图像比较常见，比如两条直线相交，而列图像则比较少见。
-两个未知数两个方程 然后老师举例说明，首先是两个方程组两个未知数的例子，例子如下所示：$$ \begin{c">
-<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E6%89%AB%E6%8F%8F_20160529215117.jpg">
-<meta property="og:updated_time" content="2016-05-30T11:06:52.501Z">
+一些常用的特殊方阵如下：
+
+
+对角矩阵 $M$是一个对角矩阵，当前仅当$i \neq j$时，有$M(i,j)=0$。如下图a所示
+三对角矩阵 $M$是一个三对角矩阵，当前仅当$|i-j| \gt 1$时有$M(i,j)=0$。如下图b所示
+下三角">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E7%9F%A9%E9%98%B52.png">
+<meta property="og:updated_time" content="2016-07-05T12:07:03.764Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[线性代数]Note 1--方程组的几何解释">
-<meta name="twitter:description" content="这是记录麻省理工学院公开课：线性代数的笔记，网址是麻省理工公开课：线性代数第一节课说的是有关方程组的几何解释。网址是方程组的几何解释
+<meta name="twitter:title" content="数组和矩阵3-特殊矩阵">
+<meta name="twitter:description" content="继续是《数据结构算法与应用：C++语言描述》，第四章数组和矩阵的笔记。本小节介绍几种特殊矩阵的内容。
+定义和应用
+方阵是指具有相同行数和列数的矩阵。
 
- 首先是介绍方程组的几何解释，提出可以用矩阵表示，然后矩阵表示有两种表达方式，分别是行图像和列图像。行图像比较常见，比如两条直线相交，而列图像则比较少见。
-两个未知数两个方程 然后老师举例说明，首先是两个方程组两个未知数的例子，例子如下所示：$$ \begin{c">
+一些常用的特殊方阵如下：
+
+
+对角矩阵 $M$是一个对角矩阵，当前仅当$i \neq j$时，有$M(i,j)=0$。如下图a所示
+三对角矩阵 $M$是一个三对角矩阵，当前仅当$|i-j| \gt 1$时有$M(i,j)=0$。如下图b所示
+下三角">
 
 
 
@@ -123,7 +141,7 @@
   };
 </script>
 
-  <title> [线性代数]Note 1--方程组的几何解释 | Cai's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> 数组和矩阵3-特殊矩阵 | Cai's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -274,7 +292,7 @@
             
             
               
-                [线性代数]Note 1--方程组的几何解释
+                数组和矩阵3-特殊矩阵
               
             
           </h1>
@@ -286,8 +304,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-30T14:06:39+08:00" content="2016-05-30">
-              2016-05-30
+            <time itemprop="dateCreated" datetime="2016-07-05T20:06:20+08:00" content="2016-07-05">
+              2016-07-05
             </time>
           </span>
 
@@ -297,8 +315,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/30/线性代数-Note-1-方程组的几何解释/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/30/线性代数-Note-1-方程组的几何解释/" itemprop="commentsCount"></span>
+                <a href="/2016/07/05/数组和矩阵3-特殊矩阵/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/05/数组和矩阵3-特殊矩阵/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -308,7 +326,7 @@
 
           
           
-             <span id="/2016/05/30/线性代数-Note-1-方程组的几何解释/" class="leancloud_visitors" data-flag-title="[线性代数]Note 1--方程组的几何解释">
+             <span id="/2016/07/05/数组和矩阵3-特殊矩阵/" class="leancloud_visitors" data-flag-title="数组和矩阵3-特殊矩阵">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -331,30 +349,40 @@
       
 
       
-        <p>这是记录麻省理工学院公开课：线性代数的笔记，网址是<a href="http://open.163.com/special/opencourse/daishu.html" target="_blank" rel="external">麻省理工公开课：线性代数</a><br>第一节课说的是有关方程组的几何解释。网址是<a href="http://open.163.com/movie/2010/11/7/3/M6V0BQC4M_M6V29E773.html" target="_blank" rel="external">方程组的几何解释</a></p>
-<hr>
-<p> 首先是介绍方程组的几何解释，提出可以用矩阵表示，然后矩阵表示有两种表达方式，分别是行图像和列图像。行图像比较常见，比如两条直线相交，而列图像则比较少见。</p>
-<h3 id="u4E24_u4E2A_u672A_u77E5_u6570_u4E24_u4E2A_u65B9_u7A0B"><a href="#u4E24_u4E2A_u672A_u77E5_u6570_u4E24_u4E2A_u65B9_u7A0B" class="headerlink" title="两个未知数两个方程"></a>两个未知数两个方程</h3><p> 然后老师举例说明，首先是两个方程组两个未知数的例子，例子如下所示：<br>$$<br> \begin{cases}<br> \ 2x-y = 0 \\<br> \ -x+3y= 3<br> \end{cases}<br>$$</p>
-<p>用行图像表示如下所示：<br>$$<br> \left[\begin{matrix}2 &amp; -1  \\ -1 &amp; 3  \end{matrix} \right] \left[\begin{matrix} x \\ y \end{matrix}\right]  = \left[\begin{matrix} 0 \\ 3 \end{matrix}\right]<br>$$</p>
-<p>这里用<strong>A</strong>=$ \left[\begin{matrix} 2 &amp; -1  \\ -1 &amp; 3  \end{matrix} \right]$,<strong>x</strong> = $\left[\begin{matrix} x\\ y \end{matrix}\right]$,<strong>b</strong>=$\left[\begin{matrix} 0 \\ 3 \end{matrix}\right] $,可以得到<code>Ax =b</code></p>
-<p>这里表示的就是两条直线，并且它们相交于点<code>(1,2)</code>。</p>
-<p>如果是用列向量，则如下所示：<br>$$<br> x\left[\begin{matrix}2 \\ -1 \end{matrix} \right] + y\left[\begin{matrix}-1\\3\end{matrix}\right] = \left[\begin{matrix} 0\\ 3 \end{matrix}\right]<br>$$</p>
-<p>对于这种写法，老师称之为列向量的线性组合，然后在二维坐标平面上表示了这两个向量，而这个列向量的线性组合的解，其实在用行图像表示的时候已经得到了，就是<code>x=1, y=2</code>。</p>
-<h3 id="u4E09_u4E2A_u672A_u77E5_u6570_u4E09_u4E2A_u65B9_u7A0B_u7EC4"><a href="#u4E09_u4E2A_u672A_u77E5_u6570_u4E09_u4E2A_u65B9_u7A0B_u7EC4" class="headerlink" title="三个未知数三个方程组"></a>三个未知数三个方程组</h3><p>  接着老师给出了三个未知数的情况，举例如下所示<br>$$<br> \begin{cases}<br> \ 2x-y = 0 \\<br> \ -x+2y-z = -1 \\<br> \    -3y+4z = 4<br> \end{cases}<br>$$<br> 使用行图像表示，<strong>A</strong> = $ \left[\begin{matrix}2 &amp; -1 &amp; 0 \\ -1 &amp; 2 &amp; -1 \\ 0 &amp; -3 &amp; 4\end{matrix}\right]$,<strong>b</strong>=$\left[\begin{matrix}0 \\ -1 \\4\end{matrix}\right]$,</p>
-<p> 使用列图像表示是如下所示：<br> $$<br>  x\left[ \begin{matrix} 2 \\ -1 \\0\end{matrix} \right]+y\left[ \begin{matrix}-1 \\ 2 \\ -3\end{matrix} \right]+z\left[ \begin{matrix}0 \\ -1 \\ 4\end{matrix} \right]=\left[ \begin{matrix} 0 \\ -1 \\ 4\end{matrix} \right]<br> $$</p>
-<p> 如果通过行图像来求解，需要通过在三维坐标轴上画出3个平面求平面的交点，这是非常困难的。(这里老师也说了下一节课会介绍消元法来求解)。</p>
-<p> 而如果看列图像，则可以轻松得到答案：<code>x=0,y=0,z=1</code>，当然这是老师特意设计的题目，所以才这么容易得到这个答案。</p>
-<p> 然后老师就问了一个问题：</p>
-<blockquote>
-<p>对任意的<strong>b</strong>，都能令<code>Ax = b</code>有解吗？<br>这个问题对于这个三个未知数的例子来说，等价于这个例子中的列向量的线性组合是否能覆盖整个三维空间？</p>
+        <p>继续是《数据结构算法与应用：C++语言描述》，第四章数组和矩阵的笔记。本小节介绍几种特殊矩阵的内容。</p>
+<h3 id="u5B9A_u4E49_u548C_u5E94_u7528"><a href="#u5B9A_u4E49_u548C_u5E94_u7528" class="headerlink" title="定义和应用"></a>定义和应用</h3><blockquote>
+<p>方阵是指具有相同行数和列数的矩阵。</p>
 </blockquote>
-<p>这里的答案当然是不能确定的，如果三个列向量都是在同一个平面上，那么得到的解也就只是在同一个平面的。</p>
-<h3 id="u77E9_u9635_u5411_u91CF_u76F8_u4E58_u7684_u89E3_u6CD5"><a href="#u77E9_u9635_u5411_u91CF_u76F8_u4E58_u7684_u89E3_u6CD5" class="headerlink" title="矩阵向量相乘的解法"></a>矩阵向量相乘的解法</h3><p>最后老师介绍了矩阵与向量相乘的两种解法，首先是一个例子<br>$$<br> \left[ \begin{matrix}2 &amp; 5\\1 &amp; 3\end{matrix}\right] \left[\begin{matrix}1\\2\end{matrix}\right]<br>$$<br>两种解法分别是按照行向量还是列向量来解答的。</p>
-<p>第一种，如果是按照列向量解答，则可以写成如下所示：<br>$$<br> \left[ \begin{matrix}2 &amp; 5\\1 &amp; 3\end{matrix}\right] \left[\begin{matrix}1\\2\end{matrix}\right] = 1\left[ \begin{matrix}2 \\1\end{matrix}\right]+ 2 \left[ \begin{matrix}5\\3\end{matrix}\right] = \left[ \begin{matrix}12\\7\end{matrix}\right]<br>$$</p>
-<p>第二种，就是按行来求解，如下所示：<br>$$<br>  \left[ \begin{matrix}2 &amp; 5 \\ 1 &amp; 3 \end{matrix}\right] \left[\begin{matrix}1\\ 2 \end{matrix}\right] = \left[ \begin{matrix} 2*1+5*2 \\ 1*1+3*2 \end{matrix}\right] = \left[ \begin{matrix} 12 \\ 7 \end{matrix}\right]<br>$$<br>也就是第一个矩阵的第一行乘以第二个向量的对应列，然后第二行乘以第二个向量的对应列。</p>
-<p>这种解法也是当初刚开始学习线性代数所学习的方法。</p>
-<h3 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h3><p>这节课的收获主要是了解到列向量这种求法，之前对于矩阵的求解，还是通过按行来相乘求解的。不过在这节课中的例子都是矩阵乘以向量得到一个向量，如果是矩阵之间的相乘，不知道是否还是可以如此解决。</p>
-<p>最后是手写笔记如下所示<br> <img src="http://7xrluf.com1.z0.glb.clouddn.com/%E6%89%AB%E6%8F%8F_20160529215117.jpg" alt="image"></p>
+<p>一些常用的特殊方阵如下：</p>
+<blockquote>
+<ul>
+<li><strong>对角矩阵</strong> $M$是一个对角矩阵，当前仅当$i \neq j$时，有$M(i,j)=0$。如下图a所示</li>
+<li><strong>三对角矩阵</strong> $M$是一个三对角矩阵，当前仅当$|i-j| \gt 1$时有$M(i,j)=0$。如下图b所示</li>
+<li><strong>下三角矩阵</strong> $M$是一个下三角矩阵，当前仅当$i\lt j$时有$M(i,j)=0$。如下图c所示</li>
+<li><strong>上三角矩阵</strong> $M$是一个上三角矩阵，当前仅当$i\gt j$时有$M(i,j)=0$。如下图d所示</li>
+<li><strong>对称矩阵</strong> $M$是一个对称矩阵，当前仅当对于所有的$i 和 j$有$M(i,j)=M(j,i)$。如下图e所示</li>
+</ul>
+</blockquote>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E7%9F%A9%E9%98%B52.png" alt="此处输入图片的描述"></p>
+<h3 id="u5BF9_u89D2_u77E9_u9635"><a href="#u5BF9_u89D2_u77E9_u9635" class="headerlink" title="对角矩阵"></a>对角矩阵</h3><p>  可以采用<code>T d[n][n]</code>这样的二维数组来描述一个元素类型为T的$n \times n$对角矩阵D。<br>  使用数组元素<code>d[i-1][j-1]</code>来表示矩阵元素<strong>D(i,j)</strong>，这种描述形式所需要的存储空间为$n^2 * sizeof(T)$。</p>
+<p>  由于一个对角矩阵最大包含n个非0元素，所以可以采用<code>T d[n]</code>一维数组来描述对角矩阵。其中使用<code>d[i-1]</code>表示矩阵元素<strong>D(i,i)</strong>，而根据对角矩阵的定义，所有未在一维数组中出现的矩阵元素均为0.</p>
+<p>  这里使用如下自定义类<strong>DiagonalMatrix</strong>来实现这种描述。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#ifndef DIAGONALMATRIX_H_&#10;#define DIAGONALMATRIX_H_&#10;&#10;template&#60;class T&#62;&#10;class DiagonalMatrix&#123;&#10;private:&#10;    // &#30697;&#38453;&#32500;&#25968;&#10;    int n;&#10;    // &#23384;&#20648;&#23545;&#35282;&#20803;&#32032;&#30340;&#19968;&#32500;&#25968;&#32452;&#10;    T *d;       &#10;public:&#10;    DiagonalMatrix(int size = 10): n(size)&#123;&#10;        d = new T[n];&#10;    &#125;&#10;    ~DiagonalMatrix()&#123; delete[] d; &#125;&#10;    DiagonalMatrix&#60;T&#62;&#38; Store(const T&#38; x, int i, int j);&#10;    T Retrieve(int i, int j)const;&#10;&#125;;&#10;&#10;template&#60;class T&#62;&#10;DiagonalMatrix&#60;T&#62;&#38; DiagonalMatrix&#60;T&#62;::Store(const T&#38;x, int i, int j)&#123;&#10;    // &#23558;x&#23384;&#20026;D(i,j)&#10;    if (i&#60;1 || j&#60;1 || i&#62;n || j&#62;n)&#10;        throw OutOfBounds();&#10;    if (i != j &#38;&#38; x != 0)&#10;        // &#24517;&#39035;&#28385;&#36275;&#23545;&#35282;&#30697;&#38453;&#30340;&#26465;&#20214;&#65306;i != j &#26102;&#65292;x&#24517;&#39035;&#20026;0&#10;        throw MustBeZero();&#10;    if (i == j)&#10;        d[i - 1] = x;&#10;    return *this;&#10;&#125;&#10;&#10;template&#60;class T&#62;&#10;T DiagonalMatrix&#60;T&#62;::Retrieve(int i, int j)const&#123;&#10;    if (i&#60;1 || j&#60;1 || i&#62;n || j&#62;n)&#10;        throw OutOfBounds();&#10;    if (i == j)&#10;        return d[i - 1];&#10;    return 0;&#10;&#125;&#10;#endif</span><br></pre></td></tr></table></figure></p>
+<p>对于存储和搜索操作，提供了两个不同的函数，而不是使用重载操作符()来完成。此外在存储一个值时，必须保证不会在非对角线位置放置一个非0值；而搜索一个值时，没有必要检查对角线以外的值，因此有必要对这两种情形区别对待。两个函数的复杂性均为$\theta(1)$。</p>
+<h3 id="u4E09_u5BF9_u89D2_u77E9_u9635"><a href="#u4E09_u5BF9_u89D2_u77E9_u9635" class="headerlink" title="三对角矩阵"></a>三对角矩阵</h3><p>  在一个$n \times n$三对角矩阵T中，非0元素排列在如下的三条对角线上：</p>
+<ol>
+<li>主对角线——<strong>i=j</strong></li>
+<li>主对角线之下的对角线(称低对角线)——<strong>i=j+1</strong></li>
+<li>主对角线之上的对角线(称高对角线)——<strong>i=j-1</strong></li>
+</ol>
+<p>这三条对角线上的元素总数为<strong>3n-2</strong>，故可以使用一个拥有3n-2个位置的一维数组来描述T。考察上述图b中所示的$4\times 4$三对角矩阵，三条对角线上总共10个元素。如果将其逐行映射到一维数组t中，则有<code>t[0:9]=[2,1,3,1,3,5,2,7,9,0]</code>;如果逐列映射到t中，则有<code>t=[2,3,1,1,5,3,2,9,7,0]</code>;如果按照对角线的次序，从最下面的对角线开始进行映射，则有<code>t=[3,5,9,2,1,2,0,1,3,7]</code>。所以这里有三种不同的方式来进行T到t的映射。<br>下面的程序定义了类<strong>TridiagonalMatrix</strong>,其中采用了对角线映射方式。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template&#60;class T&#62;&#10;class TridiagonalMatrix&#123;&#10;private:&#10;    int n;&#10;    T *t;&#10;public:&#10;    TridiagonalMatrix(int size = 10) : n(size)&#123;&#10;        t = new T[3 * n - 2];&#10;    &#125;&#10;    ~TridiagonalMatrix()&#123;delete[] t;&#125;&#10;    TridiagonalMatrix&#60;T&#62;&#38; Store(const T&#38; x, int i, int j);&#10;    T Retrieve(int i, int j)const;&#10;&#125;;&#10;&#10;template&#60;class T&#62;&#10;TridiagonalMatrix&#60;T&#62;&#38; TridiagonalMatrix&#60;T&#62;::Store(const T&#38; x, int i, int j)&#123;&#10;    // &#25226;x&#23384;&#20026;T(i,j)&#10;    if (i&#60;1 || j&#60;1 || i&#62;n || j&#62;n)&#10;        throw OutOfBounds();&#10;    switch (i-j)&#123;&#10;        case 1:&#10;            // &#20302;&#23545;&#35282;&#32447;&#10;            t[i - 2] = x;&#10;            break;&#10;        case 0:&#10;            // &#20027;&#23545;&#35282;&#32447;&#10;            t[n - 2 + i] = x;&#10;            break;&#10;        case -1:&#10;            // &#39640;&#23545;&#35282;&#32447;&#10;            t[2 * n - 2 + i] = x;&#10;            break;&#10;        default:&#10;            if (x != 0)&#10;                throw MustBeZero();&#10;    &#125;&#10;    return *this;&#10;&#125;&#10;&#10;template&#60;class T&#62;&#10;T TridiagonalMatrix&#60;T&#62;::Retrieve(int i, int j)const&#123;&#10;    if (i&#60;1 || j&#60;1 || i&#62;n || j&#62;n)&#10;        throw OutOfBounds();&#10;    switch (i - j)&#123;&#10;    case 1:&#10;        // &#20302;&#23545;&#35282;&#32447;&#10;        return t[i - 2];&#10;    case 0:&#10;        // &#20027;&#23545;&#35282;&#32447;&#10;        return t[n - 2 + i];&#10;    case -1:&#10;        // &#39640;&#23545;&#35282;&#32447;&#10;        return t[2 * n - 2 + i];&#10;    default:&#10;        return 0;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里首先是从最下面的对角线开始，也就是低对角线，那么T(i,j)对应的一维数组是t[i-2]，接着轮到主对角线的时候，只需要用i加上低对角线的元素总数，即n-2个，也就是对应数组t[n-2+i]，因为i是依次从1，按行逐渐增加；最后对于高对角线，也是同样的计算方法。</p>
+<h3 id="u4E09_u89D2_u77E9_u9635"><a href="#u4E09_u89D2_u77E9_u9635" class="headerlink" title="三角矩阵"></a>三角矩阵</h3><p>  在三角矩阵中，无论是上三角还是下三角矩阵，非0元素总数均为$\frac{n(n+1)}{2}$。</p>
+<p>  两种三角矩阵都可以用一个大小为$\frac{n(n+1)}{2}$的一维数组进行描述。考虑把一个下三角矩阵映射到一个一维数组$l$，可以采用按行和按列两种不同的方式进行映射。如果按行映射，上图c中$4\times 4$下三角矩阵可以得到$l[0:9] = (2,5,1,0,3,1,4,2,7,0)$;若按列的方式，得到$l[0:9] =(2,5,0,4,1,3,2,1,7,0)$。</p>
+<p>  所以对于下三角矩阵中的一个元素$L(i,j)$，如果$i\lt j$,则$L(i,j)=0$;如果$i\le j$，则$L(i,j)$位于非0元素区域，且其对应的一维数组是<strong>t[$\frac{i(i-1)}{2}+j-1$]</strong>，其映射规则是先统计前i-1行的非0元素数量然后加上当前元素所在第i行的所在列数j-1。下面给出自定义类<strong>LowerMatrix</strong>实现下三角矩阵,并且是按行来映射。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template&#60;class T&#62;&#10;class LowerMatrix&#123;&#10;private:&#10;    // &#30697;&#38453;&#32500;&#25968;&#10;    int n;&#10;    // &#23384;&#20648;&#23545;&#35282;&#20803;&#32032;&#30340;&#19968;&#32500;&#25968;&#32452;&#10;    T *t;&#10;public:&#10;    LowerMatrix(int size = 10) : n(size)&#123;&#10;        t = new T[n*(n+1)/2];&#10;    &#125;&#10;    ~LowerMatrix()&#123; delete[] t; &#125;&#10;    LowerMatrix&#60;T&#62;&#38; Store(const T&#38; x, int i, int j);&#10;    T Retrieve(int i, int j)const;&#10;&#125;;&#10;&#10;template&#60;class T&#62;&#10;LowerMatrix&#60;T&#62;&#38; LowerMatrix&#60;T&#62;::Store(const T&#38;x, int i, int j)&#123;&#10;    // &#23558;x&#23384;&#20026;D(i,j)&#10;    if (i&#60;1 || j&#60;1 || i&#62;n || j&#62;n)&#10;        throw OutOfBounds();&#10;    // &#24403;&#21069;&#20165;&#24403; i &#62;= j&#26102;&#65292;(i,j)&#20301;&#20110;&#19979;&#19977;&#35282;&#10;    if (i &#62;= j)&#10;        t[i*(i - 1) / 2 + j - 1] = x;&#10;    else if (x != 0)&#10;        throw MustBeZero();&#10;    return *this;&#10;&#125;&#10;&#10;template&#60;class T&#62;&#10;T LowerMatrix&#60;T&#62;::Retrieve(int i, int j)const&#123;&#10;    if (i&#60;1 || j&#60;1 || i&#62;n || j&#62;n)&#10;        throw OutOfBounds();&#10;    if (i &#62;= j)&#10;        return t[i*(i - 1) / 2 + j - 1];&#10;    else&#10;        return 0;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上三角矩阵的实现方式也是相同的，只需要改变判断条件，将$i \ge j$变成$i \le j$即可。</p>
+<h3 id="u5BF9_u79F0_u77E9_u9635"><a href="#u5BF9_u79F0_u77E9_u9635" class="headerlink" title="对称矩阵"></a>对称矩阵</h3><p>  一个$n\times n$的对称矩阵可以用一个大小为$\frac{n(n+1)}{2}$的一维数组来描述，可参考三角矩阵的存储模式来存储矩阵的上三角或下三角，即可以根据已经存储的元素来推算出未存储的元素。即如果存储下三角的元素，当需要给出在上三角的元素，只需要将行和列对调，再来搜索即可得到需要的元素值，这样做可以更节省空间。</p>
+<h3 id="u5C0F_u7ED3"><a href="#u5C0F_u7ED3" class="headerlink" title="小结"></a>小结</h3><p>  本小节主要是介绍几种特殊矩阵，都是属于方阵，分别是三角矩阵，三对角矩阵，上三角和下三角矩阵以及对称矩阵，并且都自定义类来实现这几种特殊的矩阵。</p>
+<p>  更完整的例子可以查看我的<a href="https://github.com/ccc013/DataStructe-Algorithms_Study/tree/master/ArrayAndMatrix" target="_blank" rel="external">Github</a></p>
 
       
     </div>
@@ -376,7 +404,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/线性代数/" rel="tag">#线性代数</a>
+            <a href="/tags/数据结构/" rel="tag">#数据结构</a>
+          
+            <a href="/tags/算法/" rel="tag">#算法</a>
           
         </div>
       
@@ -385,17 +415,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/20/Device-Compatibility/" rel="next" title="Android官方文档Guide阅读系列(2)--Device Compatibility">
-                <i class="fa fa-chevron-left"></i> Android官方文档Guide阅读系列(2)--Device Compatibility
+              <a href="/2016/06/30/数组和矩阵2-矩阵/" rel="next" title="数组和矩阵2-矩阵">
+                <i class="fa fa-chevron-left"></i> 数组和矩阵2-矩阵
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/06/04/程序性能1-空间复杂性/" rel="prev" title="程序性能1--空间复杂性">
-                程序性能1--空间复杂性 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -421,8 +447,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/05/30/线性代数-Note-1-方程组的几何解释/"
-           data-title="[线性代数]Note 1--方程组的几何解释" data-url="http://ccc013.github.io/2016/05/30/线性代数-Note-1-方程组的几何解释/">
+      <div class="ds-thread" data-thread-key="2016/07/05/数组和矩阵3-特殊矩阵/"
+           data-title="数组和矩阵3-特殊矩阵" data-url="http://ccc013.github.io/2016/07/05/数组和矩阵3-特殊矩阵/">
       </div>
     
   </div>
@@ -611,7 +637,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u4E24_u4E2A_u672A_u77E5_u6570_u4E24_u4E2A_u65B9_u7A0B"><span class="nav-number">1.</span> <span class="nav-text">两个未知数两个方程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u4E09_u4E2A_u672A_u77E5_u6570_u4E09_u4E2A_u65B9_u7A0B_u7EC4"><span class="nav-number">2.</span> <span class="nav-text">三个未知数三个方程组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u77E9_u9635_u5411_u91CF_u76F8_u4E58_u7684_u89E3_u6CD5"><span class="nav-number">3.</span> <span class="nav-text">矩阵向量相乘的解法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u603B_u7ED3"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u5B9A_u4E49_u548C_u5E94_u7528"><span class="nav-number">1.</span> <span class="nav-text">定义和应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5BF9_u89D2_u77E9_u9635"><span class="nav-number">2.</span> <span class="nav-text">对角矩阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u4E09_u5BF9_u89D2_u77E9_u9635"><span class="nav-number">3.</span> <span class="nav-text">三对角矩阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u4E09_u89D2_u77E9_u9635"><span class="nav-number">4.</span> <span class="nav-text">三角矩阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5BF9_u79F0_u77E9_u9635"><span class="nav-number">5.</span> <span class="nav-text">对称矩阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5C0F_u7ED3"><span class="nav-number">6.</span> <span class="nav-text">小结</span></a></li></ol></div>
             
           </div>
         </section>
