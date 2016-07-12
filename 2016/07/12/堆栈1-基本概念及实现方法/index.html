@@ -86,41 +86,28 @@
 
 
 
-<meta name="description" content="阅读《数据结构算法与应用：C++描述》第二章程序性能所做的笔记。
-第2章程序性能的所有笔记如下：
+<meta name="description" content="继续是《数据结构算法与应用：C++语言描述》的笔记，这次是新的一章内容，第五章堆栈。
 
-程序性能1–空间复杂性
-程序性能2–时间复杂性
-程序性能3–渐进符号
+堆栈数据结构是通过对线性表的插入和删除操作进行限制而得到的，即插入和删除操作都必须在表的同一端完成，因此堆栈是一个后进先出(last-in-first-out,LIFO)的数据结构。
 
-介绍
-程序性能：是指运行一个程序所需要的内存大小和时间。可以采用两种方法来确定一个程序的性能，一个是分析的方法，一个是实验的方法。在进行性能分析(performance analysis)时，采用分析的方法；而在进行性能测量(p">
+由于堆栈是一种特殊的线性表，所以可以很自然地从相应的线性表类中派生出堆栈类，既可以从基于公式描述的类LinearList类派生">
 <meta property="og:type" content="article">
-<meta property="og:title" content="程序性能1--空间复杂性">
-<meta property="og:url" content="http://ccc013.github.io/2016/06/04/程序性能1-空间复杂性/index.html">
+<meta property="og:title" content="堆栈1--基本概念及实现方法">
+<meta property="og:url" content="http://ccc013.github.io/2016/07/12/堆栈1-基本概念及实现方法/index.html">
 <meta property="og:site_name" content="Cai's blog">
-<meta property="og:description" content="阅读《数据结构算法与应用：C++描述》第二章程序性能所做的笔记。
-第2章程序性能的所有笔记如下：
+<meta property="og:description" content="继续是《数据结构算法与应用：C++语言描述》的笔记，这次是新的一章内容，第五章堆栈。
 
-程序性能1–空间复杂性
-程序性能2–时间复杂性
-程序性能3–渐进符号
+堆栈数据结构是通过对线性表的插入和删除操作进行限制而得到的，即插入和删除操作都必须在表的同一端完成，因此堆栈是一个后进先出(last-in-first-out,LIFO)的数据结构。
 
-介绍
-程序性能：是指运行一个程序所需要的内存大小和时间。可以采用两种方法来确定一个程序的性能，一个是分析的方法，一个是实验的方法。在进行性能分析(performance analysis)时，采用分析的方法；而在进行性能测量(p">
-<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE2-1.png">
-<meta property="og:updated_time" content="2016-06-07T01:42:44.506Z">
+由于堆栈是一种特殊的线性表，所以可以很自然地从相应的线性表类中派生出堆栈类，既可以从基于公式描述的类LinearList类派生">
+<meta property="og:updated_time" content="2016-07-12T07:23:34.127Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="程序性能1--空间复杂性">
-<meta name="twitter:description" content="阅读《数据结构算法与应用：C++描述》第二章程序性能所做的笔记。
-第2章程序性能的所有笔记如下：
+<meta name="twitter:title" content="堆栈1--基本概念及实现方法">
+<meta name="twitter:description" content="继续是《数据结构算法与应用：C++语言描述》的笔记，这次是新的一章内容，第五章堆栈。
 
-程序性能1–空间复杂性
-程序性能2–时间复杂性
-程序性能3–渐进符号
+堆栈数据结构是通过对线性表的插入和删除操作进行限制而得到的，即插入和删除操作都必须在表的同一端完成，因此堆栈是一个后进先出(last-in-first-out,LIFO)的数据结构。
 
-介绍
-程序性能：是指运行一个程序所需要的内存大小和时间。可以采用两种方法来确定一个程序的性能，一个是分析的方法，一个是实验的方法。在进行性能分析(performance analysis)时，采用分析的方法；而在进行性能测量(p">
+由于堆栈是一种特殊的线性表，所以可以很自然地从相应的线性表类中派生出堆栈类，既可以从基于公式描述的类LinearList类派生">
 
 
 
@@ -138,7 +125,7 @@
   };
 </script>
 
-  <title> 程序性能1--空间复杂性 | Cai's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> 堆栈1--基本概念及实现方法 | Cai's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -289,7 +276,7 @@
             
             
               
-                程序性能1--空间复杂性
+                堆栈1--基本概念及实现方法
               
             
           </h1>
@@ -301,8 +288,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-04T13:26:58+08:00" content="2016-06-04">
-              2016-06-04
+            <time itemprop="dateCreated" datetime="2016-07-12T15:22:48+08:00" content="2016-07-12">
+              2016-07-12
             </time>
           </span>
 
@@ -312,8 +299,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/06/04/程序性能1-空间复杂性/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/04/程序性能1-空间复杂性/" itemprop="commentsCount"></span>
+                <a href="/2016/07/12/堆栈1-基本概念及实现方法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/12/堆栈1-基本概念及实现方法/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -323,7 +310,7 @@
 
           
           
-             <span id="/2016/06/04/程序性能1-空间复杂性/" class="leancloud_visitors" data-flag-title="程序性能1--空间复杂性">
+             <span id="/2016/07/12/堆栈1-基本概念及实现方法/" class="leancloud_visitors" data-flag-title="堆栈1--基本概念及实现方法">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -346,71 +333,36 @@
       
 
       
-        <p>阅读《数据结构算法与应用：C++描述》第二章程序性能所做的笔记。</p>
-<p>第2章程序性能的所有笔记如下：</p>
-<ol>
-<li><a href="http://ccc013.github.io/2016/06/04/%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD1-%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E6%80%A7/">程序性能1–空间复杂性</a></li>
-<li><a href="http://ccc013.github.io/2016/06/04/%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD2-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E6%80%A7/">程序性能2–时间复杂性</a></li>
-<li><a href="http://ccc013.github.io/2016/06/07/%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD3-%E6%B8%90%E8%BF%9B%E7%AC%A6%E5%8F%B7/">程序性能3–渐进符号</a></li>
-</ol>
-<h3 id="u4ECB_u7ECD"><a href="#u4ECB_u7ECD" class="headerlink" title="介绍"></a>介绍</h3><blockquote>
-<p>程序性能：是指运行一个程序所需要的内存大小和时间。<br>可以采用两种方法来确定一个程序的性能，一个是分析的方法，一个是实验的方法。在进行性能分析(performance analysis)时，采用分析的方法；而在进行性能测量(performance measurement)时，借助于实验的方法。</p>
-<p>程序的空间复杂性是指运行完一个程序所需要的内存大小。</p>
-<p>程序的时间复杂性是指运行完该程序所需要的时间。</p>
-</blockquote>
-<h3 id="u7A7A_u95F4_u590D_u6742_u6027"><a href="#u7A7A_u95F4_u590D_u6742_u6027" class="headerlink" title="空间复杂性"></a>空间复杂性</h3><h4 id="u7A7A_u95F4_u590D_u6742_u6027_u7684_u7EC4_u6210"><a href="#u7A7A_u95F4_u590D_u6742_u6027_u7684_u7EC4_u6210" class="headerlink" title="空间复杂性的组成"></a>空间复杂性的组成</h4><p>程序所需要的空间主要由以下部分构成：</p>
-<ul>
-<li>指令空间：是值用来存储经过编译之后的程序指令所需要的空间。</li>
-<li>数据空间：是指用来存储所有常量和变量值所需的空间。其主要由两个部分构成：<ul>
-<li>存储常量和简单变量所需要的空间</li>
-<li>存储复合变量所需要的空间。这一类空间包括数据结构所需要的空间动态分配的空间</li>
-</ul>
-</li>
-<li>环境栈空间：用来保存函数调用返回时恢复运行所需要的信息。例如，如果函数fun1调用了函数fun2，那么至少必须保存fun2结束时fun1将要继续执行的指令的地址。</li>
-</ul>
-<h5 id="u6307_u4EE4_u7A7A_u95F4"><a href="#u6307_u4EE4_u7A7A_u95F4" class="headerlink" title="指令空间"></a>指令空间</h5><p>  程序所需要的指定空间的数据取决于如下因素：</p>
-<ul>
-<li>把程序编译成机器代码的编译器；</li>
-<li>编译时实际采用的编译器选项；</li>
-<li>目标计算机。</li>
-</ul>
-<p>在决定最终代码需要多少空间的时候，编译器是一个最重要的因素。下图给出了计算表达式<code>a+b+b*c+(a+b-c)/(a+b)+4</code>的三段可能的代码，它们都指向完全相同的算术操作，但每段代码所需要的空间都不一样。所用的编译器将确定产生哪一种代码。</p>
-<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE2-1.png" alt="此处输入图片的描述"></p>
-<p>即使采用相同的编译器，所产生程序代码的大小也可能不一样。例如，一个编译器可能为用户提供优化选项，<strong>如代码优化以及执行时间优化等</strong>。如，在图2-1中，非优化模式下，编译器可以产生图2-1b的代码，而优化模式下，则会产生图2-1c中更短更高效的代码。<strong>使用优化模式通常会增加程序编译所需要的时间</strong>。</p>
-<p>另一种可以显著减少程序空间的编译器选项就是<strong>覆盖选项</strong></p>
+        <p>继续是《数据结构算法与应用：C++语言描述》的笔记，这次是新的一章内容，第五章堆栈。</p>
 <blockquote>
-<p>覆盖模式：空间仅分配给当前正在执行的程序模块，在调用一个新的模块时，需要从磁盘或从其他设备中读取，新模块的代码将覆盖原模块的代码。所以程序的空间就等价于最大的模块所需要的空间，而不是所有模块之和。</p>
+<p>堆栈数据结构是通过对线性表的插入和删除操作进行限制而得到的，即插入和删除操作都必须在表的同一端完成，因此堆栈是一个<strong>后进先出(last-in-first-out,LIFO)</strong>的数据结构。</p>
 </blockquote>
-<p>目标计算机的配置也会影响代码的规模。比如计算机具有浮点处理硬件，则每个浮点操作都可以转换成一条机器指令。如果没有安装浮点处理硬件，则必须生成仿真的浮点计算代码。</p>
-<h5 id="u6570_u636E_u7A7A_u95F4"><a href="#u6570_u636E_u7A7A_u95F4" class="headerlink" title="数据空间"></a>数据空间</h5><p>对于简单变量和常量来说，所需要的空间取决于<strong>所使用的计算机和编译器以及变量与常量的数目</strong>。</p>
-<p>对于一个结构变量，可以把它的每个成员所占用的空间累加起来即可得到该变量所需要的内存。类似地，可以得到一个数组变量所需要的空间，方法是用数组的大小乘以单个数组元素所需要的空间。</p>
-<p>比如对于<code>double a[100];</code>，数组a需要的空间是100个double类型元素所占用的空间，若每个元素占用8个字节，则分配给数组的空间总量为800字节。</p>
-<h5 id="u73AF_u5883_u6808"><a href="#u73AF_u5883_u6808" class="headerlink" title="环境栈"></a>环境栈</h5><p> 每当一个函数被调用时，下面的数据将被保存在环境栈中：</p>
-<ul>
-<li>返回地址</li>
-<li>函数被调用时所有局部变量的值以及传值形式参数的值(仅对于递归函数而言)</li>
-<li>所有引用参数及常量引用参数的定义。</li>
-</ul>
-<p><strong>值得注意的是</strong>，有些编译器在保留局部变量的值、传值形式参数的值以及引用参数和常量引用参数的定义时，对于递归函数和非递归函数一视同仁，而有些编译器仅为递归函数保存上述内容。所以实际使用的编译器将影响环境栈所需要的空间。</p>
-<h5 id="u5C0F_u7ED3"><a href="#u5C0F_u7ED3" class="headerlink" title="小结"></a>小结</h5><p> <strong>指令空间的大小对于所解决的特定问题不够敏感。常量及简单变量所需要的数据空间也独立于所解决的问题</strong>，除非相关数的大小对于所选定的数据类型来说实在太大，这时，要么改变数据类型，要么使用多精度算法重写该程序，然后再对新程序进行分析。<br>  <strong>复合变量及动态分配所需要的空间同样独立于问题的规模</strong>。<strong>而环境栈通常独立于实例的特征</strong>，除非正在使用递归函数。在使用递归函数时，实例特征通常(但不总是)会影响环境栈所需要的空间数量。</p>
+<p>由于堆栈是一种特殊的线性表，所以可以很自然地从相应的线性表类中派生出堆栈类，既可以从基于公式描述的类<strong>LinearList</strong>类派生，也可以从基于链表结构的类<strong>Chain</strong>派生出堆栈类。</p>
+<h3 id="u62BD_u8C61_u6570_u636E_u7C7B_u578B"><a href="#u62BD_u8C61_u6570_u636E_u7C7B_u578B" class="headerlink" title="抽象数据类型"></a>抽象数据类型</h3><p>  这里给出堆栈的抽象数据类型描述<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#25277;&#35937;&#25968;&#25454;&#31867;&#22411;Stack&#123;&#10;&#23454;&#20363;&#10;    &#20803;&#32032;&#32447;&#24615;&#34920;&#65292;&#26632;&#24213;&#65292;&#26632;&#39030;&#10;&#25805;&#20316;&#10;    Create(): &#21019;&#24314;&#19968;&#20010;&#31354;&#30340;&#22534;&#26632;&#10;    IsEmpty(): &#22914;&#26524;&#22534;&#26632;&#20026;&#31354;&#65292;&#21017;&#36820;&#22238;true&#65292;&#21542;&#21017;&#36820;&#22238;false&#10;    IsFull(): &#22914;&#26524;&#22534;&#26632;&#28385;&#65292;&#21017;&#36820;&#22238;true&#65292;&#21542;&#21017;&#36820;&#22238;false&#10;    Top(): &#36820;&#22238;&#26632;&#39030;&#20803;&#32032;&#10;    Add(x): &#21521;&#22534;&#26632;&#20013;&#28155;&#21152;&#20803;&#32032;x&#10;    Delete(x): &#21024;&#38500;&#26632;&#39030;&#20803;&#32032;&#65292;&#24182;&#23558;&#23427;&#20256;&#36882;&#32473;x&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="u6D3E_u751F_u7C7B_u548C_u7EE7_u627F"><a href="#u6D3E_u751F_u7C7B_u548C_u7EE7_u627F" class="headerlink" title="派生类和继承"></a>派生类和继承</h3><p>  若类B是类A的限制版本，那么可以从类A派生出类B。<strong>我们称类A是基类，类B是派生类。</strong>从类A派生出的类B继承了基类A的所有成员——共享成员、保护成员和私有成员。类型为B的每个对象都与A所有的数据成员和函数相关联。<strong>类B可以采用如下三种基本方式之一来继承类A的成员————共享成员、保护成员和私有成员。</strong>比如，对于共享成员方式，可以采用如下语法形式：<code>class B:public A</code></p>
+<p>  <strong>一个类可以从多个类派生而来</strong>。比如，类B从A和C派生而来，并且以共享成员方式继承A的属性，以私有成员方法继承C的属性，相应的语法形式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">class B:public A, private C</span><br></pre></td></tr></table></figure></p>
 <blockquote>
-<p>实例的特征包含决定问题规模的因素，如输入输出的数量或相关数的大小。例如，对于一个对n个元素进行排序的程序，可以确定该程序所需要的空间为n的函数；</p>
+<p>在所有继承方式中，基类A的私有成员仍是A的私有成员，类B的成员不能够访问它们。不同的继承方式仅影响对基类的保护成员和共享成员的访问。</p>
+<p>当B按照共享成员方式从A派生出来，A的保护成员成为B的保护成员，A的共享成员成为B的共享成员。</p>
+<p>如果继承方式是保护成员，那么A的共享成员和保护成员均成为B的保护成员。</p>
+<p>如果继承方式是私有成员，那么A的共享成员和保护成员均成为B的私有成员。</p>
 </blockquote>
-<p>因此，可以把一个程序所需要的空间分成两部分：</p>
-<blockquote>
-<ul>
-<li>固定部分，它独立于实例的特征。一般来说，这一部分包含指定空间(即代码空间)、简单变量及定长复合变量所占用空间、常量占用空间等；</li>
-<li>可变部分，它由以下部分构成：复合变量所需的空间(这些变量的大小依赖于所解决的具体问题)，动态分配的空间(这种空间一般都依赖于实例的特征)，以及递归栈所需要的空间(该空间也依赖于实例的特征).</li>
-</ul>
-</blockquote>
-<p>任意程序P所需要的空间<code>S(P)</code>可以表示为：<br>$S(P) = c + S_p(实例特征)$<br>其中c是一个常量，表示固定部分所需要的空间，而$S_p$表示可变部分所需要的空间。一个精确的分析还应当包括在<strong>编译期间所产生的临时变量所需要的空间，这种空间是与编译器直接相关的，除依赖于递归函数外，它还依赖于实例的特征</strong>。<br>在分析程序的空间复杂性时，我们将把注意力集中在估算$S_p$(实例特征)上。对于任意给定的问题，首先需要确定实例的特征以便于估算空间需求。<strong>一般，实例特征的选择会受到相关数的数量以及程序输入和输出的规模的限制。</strong></p>
-<h4 id="u4E3E_u4F8B"><a href="#u4E3E_u4F8B" class="headerlink" title="举例"></a>举例</h4><p>这里举例说明，例子如下：</p>
-<blockquote>
-<p>[顺序搜索] 下列程序从左至右检查数组a[0:n-1]中的元素，以查找与x相等的那些元素。如果找到一个元素与x相等，则函数返回x第一次出现所在的位置。如果在数组中没有找到这样的元素，函数返回-1.</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/*&#22312;&#26410;&#25490;&#24207;&#30340;&#25968;&#32452; a [ 0 : n-1 ]&#20013;&#25628;&#32034; x&#10;  &#22914;&#26524;&#25214;&#21040;&#65292;&#21017;&#36820;&#22238;&#25152;&#22312;&#20301;&#32622;&#65292;&#21542;&#21017;&#36820;&#22238;- 1*/&#10;template&#60;class T&#62;&#10;int SequentialSearch(T a[], const T&#38; x, int n)&#10;&#123;&#10;    int i;&#10;    for (i = 0; i &#60; n &#38;&#38; a[i] != x; i++);&#10;    if (i == n) return -1;&#10;    return i;&#10;&#125;</span><br></pre></td></tr></table></figure>
-<p>我们希望采用实例特征n来估算该函数的空间复杂性。假定T是<code>int</code>类型，则数组a中的每个元素需要2个字节，实例x需要2个字节，传值形式参数n也需要2个字节，局部变量i需要2个字节，每个整型常量0和-1也分别需要2个字节。因此，所需要的总的数据空间是12字节，因为该空间独立于n，所以$S_{顺序搜索}$(n) = 0.</p>
-<p>注意数组a必须足够大以容纳所查找的n个元素。不过，该数组所需要的空间已在定义实际参数(对应于a)的函数中分配，所以不需要把该数组所需要的空间加到上述函数<code>SequentialSearch</code>所需要的空间上去。</p>
+<h3 id="u516C_u5F0F_u5316_u63CF_u8FF0"><a href="#u516C_u5F0F_u5316_u63CF_u8FF0" class="headerlink" title="公式化描述"></a>公式化描述</h3><p>  由于堆栈是一个受限的线性表，因此可以参考<a href="http://ccc013.github.io/2016/06/08/%E6%95%B0%E6%8D%AE%E6%8F%8F%E8%BF%B01-%E7%BA%BF%E6%80%A7%E8%A1%A8/">数据描述1-线性表</a>中的公式化描述，令栈顶元素存储在<code>element[length-1]</code>，栈底元素存储在<code>element[0]</code>中。下列程序定义的Stack类将使用私有成员方法继承<a href="http://ccc013.github.io/2016/06/08/%E6%95%B0%E6%8D%AE%E6%8F%8F%E8%BF%B01-%E7%BA%BF%E6%80%A7%E8%A1%A8/">数据描述1-线性表</a>中定义的类LinearList。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#ifndef INHERITSTACK_H_&#10;#define INHERITSTACK_H_&#10;#include&#60;iostream&#62;&#10;&#10;template&#60;class T&#62;&#10;class Stack : private LinearList&#60;T&#62;&#10;&#123;&#10;public:&#10;    Stack(int MaxStackSize = 10) : LinearList&#60;T&#62;(MaxStackSize)&#123;&#125;&#10;    bool IsEmpty() const&#123;&#10;        return LinearList&#60;T&#62;::isEmpty();&#10;    &#125;&#10;    bool IsFull() const&#123;&#10;        return (Length() == GetMaxSize());&#10;    &#125;&#10;    T Top() const;&#10;    Stack&#60;T&#62;&#38; Add(const T&#38; x);&#10;    Stack&#60;T&#62;&#38; Delete(T&#38; x);&#10;    void Output(std::ostream&#38; out)const;&#10;&#125;;&#10;&#10;template&#60;class T&#62;&#10;T Stack&#60;T&#62;::Top() const&#123;&#10;    if (IsEmpty())&#10;        throw OutOfBounds();&#10;    T x;&#10;    Find(Length(), x);&#10;    return x;&#10;&#125;&#10;&#10;template&#60;class T&#62;&#10;Stack&#60;T&#62;&#38; Stack&#60;T&#62;::Add(const T&#38; x)&#123;&#10;    Insert(Length(), x);&#10;    return *this;&#10;&#125;&#10;&#10;template&#60;class T&#62;&#10;Stack&#60;T&#62;&#38; Stack&#60;T&#62;::Delete(T&#38; x)&#123;&#10;    LinearList&#60;T&#62;::Delete(Length(), x);&#10;    return *this;&#10;&#125;&#10;&#10;template&#60;class T&#62;&#10;void Stack&#60;T&#62;::Output(std::ostream&#38; out)const&#123;&#10;    &#10;    for (int i = 0; i &#60; length; i++)&#10;        out &#60;&#60; element[i] &#60;&#60; &#34; &#34;;&#10;    out &#60;&#60; &#34;\n&#34;;&#10;&#125;&#10;&#10;// &#37325;&#36733; &#60;&#60;&#10;template&#60;class T&#62;&#10;std::ostream&#38; operator&#60;&#60;(std::ostream&#38;out, const Stack&#60;T&#62;&#38; x)&#123;&#10;    x.Output(out);&#10;    return out;&#10;&#125;&#10;#endif</span><br></pre></td></tr></table></figure></p>
+<p>这里，Stack的构造函数简单调用线性表的构造函数，提供的参数为堆栈的大小<strong>MaxStackSize</strong>。这里使用操作符<strong>::</strong>来区分基类和派生类的同名成员。</p>
+<p>在实现函数<strong>IsFull</strong>时，由于Stack的成员不能直接访问基类的私有成员，因此可以在基类LinearList中增加一个保护成员的函数<strong>GetMaxSize</strong>，其实现如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">protected:&#10;    int GetMaxSize() const&#123;&#10;        return MaxSize;&#10;    &#125;</span><br></pre></td></tr></table></figure></p>
+<h4 id="Stack_u7684_u6548_u7387"><a href="#Stack_u7684_u6548_u7387" class="headerlink" title="Stack的效率"></a>Stack的效率</h4><p>  当T是一个内部数据类型时，堆栈的构造函数和析构函数的复杂性均为$\theta(1)$,当T时用户自定义的类时，构造函数和析构函数的复杂性均为$O(MaxStackSize)$。其余每个堆栈操作的复杂性均为$\theta(1)$。</p>
+<p>  这里通过从<code>LinearList</code>派生<code>Stack</code>，一方面大大减少了编码量，另一方面也使得程序的可靠性得到很大提高，因为<code>LinearList</code>经过测试被认为是正确的。</p>
+<p>  当然，继承有利的一方面，也有弊端。代码编写的简化带来了运行效率的损失。比如，为了向堆栈中添加一个元素，首先要确定堆栈的长度<code>Length()</code>，然后调用函数<code>Insert()</code>。<code>Insert()</code>函数首先会判断插入操作是否会越界，然后需要付出一个for循环的开销来执行0个元素的移动。为了消除额外的开销，可以把<code>Stack</code>定义为一个基类，而不是一个派生类。</p>
+<p>  另一个潜在问题是派生类<code>Stack</code>也会受到<code>LinearList</code>本身所受限制的影响。比如，必须为数据类型为T的成员定义操作符&lt;&lt;和==，因为前者用于对线性表操作&lt;&lt;的重载，后者用于对<code>LinearList::Search</code>的重载。</p>
+<h4 id="u81EA_u5B9A_u4E49Stack"><a href="#u81EA_u5B9A_u4E49Stack" class="headerlink" title="自定义Stack"></a>自定义Stack</h4><p>  下面是自定义Stack的类定义实现。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#ifndef STACK_H_&#10;#define STACK_H_&#10;#include&#60;iostream&#62;&#10;&#10;template&#60;class T&#62;&#10;class Stack&#123;&#10;private:&#10;    // &#26632;&#39030;&#10;    int top;&#10;    // &#26368;&#22823;&#30340;&#26632;&#39030;&#20540;&#10;    int MaxTop;&#10;    // &#22534;&#26632;&#20803;&#32032;&#25968;&#32452;&#10;    T* stack;&#10;public:&#10;    Stack(int MaxStackSize = 10);&#10;    ~Stack()&#123; delete[] stack; &#125;&#10;    bool IsEmpty() const&#123; return top == -1; &#125;&#10;    bool IsFull() const &#123; return top == MaxTop; &#125;&#10;    T Top() const;&#10;    Stack&#60;T&#62;&#38; Add(const T&#38; x);&#10;    Stack&#60;T&#62;&#38; Delete(T&#38; x);&#10;    template&#60;class T&#62;&#10;    friend std::ostream&#38; operator&#60;&#60;(std::ostream&#38;, const Stack&#60;T&#62;&#38;);&#10;&#125;;&#10;#endif</span><br></pre></td></tr></table></figure></p>
+<p>下面是类成员函数的定义实现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template&#60;class T&#62;&#10;Stack&#60;T&#62;::Stack(int MaxStackSize)&#123;&#10;    // &#26500;&#36896;&#20989;&#25968;&#10;    MaxTop = MaxStackSize - 1;&#10;    stack = new T[MaxStackSize];&#10;    top = -1;&#10;&#125;&#10;&#10;template&#60;class T&#62;&#10;T Stack&#60;T&#62;::Top()const&#123;&#10;    // &#36820;&#22238;&#26632;&#39030;&#20803;&#32032;&#10;    if (IsEmpty())&#10;        throw OutOfBounds();&#10;    else&#10;        return stack[top];&#10;&#125;&#10;&#10;template&#60;class T&#62;&#10;Stack&#60;T&#62;&#38; Stack&#60;T&#62;::Add(const T&#38; x)&#123;&#10;    // &#28155;&#21152;&#20803;&#32032;&#10;    if (IsFull())&#10;        throw NoMem();&#10;    stack[++top] = x;&#10;    return *this;&#10;&#125;&#10;&#10;template&#60;class T&#62;&#10;Stack&#60;T&#62;&#38; Stack&#60;T&#62;::Delete(T&#38; x)&#123;&#10;    // &#21024;&#38500;&#26632;&#39030;&#20803;&#32032;&#65292;&#24182;&#23558;&#20854;&#20256;&#36865;&#20837;x&#10;    if (IsEmpty())&#10;        throw OutOfBounds();&#10;    x = stack[top--];&#10;    return *this;&#10;&#125;&#10;&#10;template&#60;class T&#62;&#10;std::ostream&#38; operator&#60;&#60;(std::ostream&#38; out, const Stack&#60;T&#62;&#38; x)&#123;&#10;    int pos = x.top;&#10;    if (x.IsEmpty())&#10;        std::cout &#60;&#60; &#34;There is no elements in stack&#34;;&#10;    while (pos != -1)&#123;&#10;        std::cout &#60;&#60; x.stack[pos] &#60;&#60; &#34; &#34;;&#10;        pos--;&#10;    &#125;&#10;    std::cout &#60;&#60; &#34;\n&#34;;&#10;    return out;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>通过测试，自定义Stack在添加和删除操作要比通过继承而得到的类Stack的相应操作要更快。</p>
+<h3 id="u94FE_u8868_u63CF_u8FF0"><a href="#u94FE_u8868_u63CF_u8FF0" class="headerlink" title="链表描述"></a>链表描述</h3><p>  上一节给出用数组实现堆栈的方法即优雅又高效，但是若同时使用多个堆栈，这种方法将浪费大量的空间。</p>
+<p>  这里可以使用链表描述，下面给出自定义链表类<code>LinkedStack</code>的类定义声明。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#ifndef LINKEDSTACK_H_&#10;#define LINKEDSTACK_H_&#10;#include&#60;iostream&#62;&#10;using std::ostream;&#10;template&#60;class T&#62;&#10;class LinkedStack;&#10;&#10;template&#60;class T&#62;&#10;class Node&#123;&#10;    friend LinkedStack&#60;T&#62;;&#10;private:&#10;    T data;&#10;    Node&#60;T&#62;* link;&#10;&#125;;&#10;&#10;template&#60;class T&#62;&#10;class LinkedStack&#123;&#10;private:&#10;    Node&#60;T&#62;* top;&#10;public:&#10;    LinkedStack()&#123; top = 0; &#125;&#10;    ~LinkedStack();&#10;    bool IsEmpty() const&#123; return top == 0; &#125;&#10;    bool IsFull() const;&#10;    T Top()const;&#10;    LinkedStack&#60;T&#62;&#38; Add(const T&#38; x);&#10;    LinkedStack&#60;T&#62;&#38; Delete(T&#38; x);&#10;    void Output(ostream&#38;);&#10;&#125;;&#10;#endif</span><br></pre></td></tr></table></figure></p>
+<p>其类成员函数实现如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;// &#26512;&#26500;&#20989;&#25968;&#10;template&#60;class T&#62;&#10;LinkedStack&#60;T&#62;::~LinkedStack()&#123;&#10;    Node&#60;T&#62;* next;&#10;    while (top)&#123;&#10;        next = top-&#62;link;&#10;        delete top;&#10;        top = next;&#10;    &#125;&#10;&#125;&#10;&#10;template&#60;class T&#62;&#10;bool LinkedStack&#60;T&#62;::IsFull()const&#123;&#10;    try&#123;&#10;        Node&#60;T&#62;* p = new Node&#60;T&#62;;&#10;        delete p;&#10;        return false;&#10;    &#125;&#10;    catch (NoMem)&#123;&#10;        return true;&#10;    &#125;&#10;&#125;&#10;&#10;template&#60;class T&#62;&#10;T LinkedStack&#60;T&#62;::Top()const&#123;&#10;    if (IsEmpty())&#10;        throw OutOfBounds();&#10;    return top-&#62;data;&#10;&#125;&#10;&#10;template&#60;class T&#62;&#10;LinkedStack&#60;T&#62;&#38; LinkedStack&#60;T&#62;::Add(const T&#38; x)&#123;&#10;    // &#28155;&#21152;&#20803;&#32032;x&#10;    Node&#60;T&#62;* p = new Node&#60;T&#62;;&#10;    p-&#62;data = x;&#10;    p-&#62;link = top;&#10;    top = p;&#10;    return *this;&#10;&#125;&#10;&#10;template&#60;class T&#62;&#10;LinkedStack&#60;T&#62;&#38; LinkedStack&#60;T&#62;::Delete(T&#38; x)&#123;&#10;    // &#21024;&#38500;&#20803;&#32032;&#65292;&#24182;&#20256;&#32473;x&#36820;&#22238;&#10;    if (IsEmpty())&#10;        throw OutOfBounds();&#10;    x = top-&#62;data;&#10;    Node&#60;T&#62;* p = top;&#10;    top = top-&#62;link;&#10;    delete p;&#10;    return *this;&#10;&#125;&#10;&#10;template&#60;class T&#62;&#10;void LinkedStack&#60;T&#62;::Output(ostream&#38; out)&#123;&#10;    if (IsEmpty())&#10;        out &#60;&#60; &#34;There is no elements in LinkedStack&#34;;&#10;    Node&#60;T&#62;* p = top;&#10;    while (p)&#123;&#10;        out &#60;&#60; p-&#62;data &#60;&#60; &#34; &#34;;&#10;        p = p-&#62;link;&#10;    &#125;&#10;    out &#60;&#60; &#34;\n&#34;;&#10;&#125;&#10;&#10;template&#60;class T&#62;&#10;ostream&#38; operator&#60;&#60;(ostream&#38; out,LinkedStack&#60;T&#62;&#38; x)&#123;&#10;    x.Output(out);&#10;    return out;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里仅给出自定义链栈<code>LinkedStack</code>，同样可以通过继承线性表的链表实现类来派生出链栈，但是<code>LinkedStack</code>在添加和删除操作上的效率要更加高点。</p>
+<p>代码实现可以查看我的<a href="https://github.com/ccc013/DataStructe-Algorithms_Study/tree/master/Stack" target="_blank" rel="external">Github</a></p>
+<h3 id="u5C0F_u7ED3"><a href="#u5C0F_u7ED3" class="headerlink" title="小结"></a>小结</h3><p>  本小节主要是介绍了堆栈的基本实现方法，分为数组实现和链表实现，实现的代码也是比较简单的。下面一节会介绍堆栈的一些应用，包括括号匹配，汉诺塔等。</p>
 
       
     </div>
@@ -443,17 +395,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/30/线性代数-Note-1-方程组的几何解释/" rel="next" title="[线性代数]Note 1--方程组的几何解释">
-                <i class="fa fa-chevron-left"></i> [线性代数]Note 1--方程组的几何解释
+              <a href="/2016/07/07/数组和矩阵4-稀疏矩阵/" rel="next" title="数组和矩阵4-稀疏矩阵">
+                <i class="fa fa-chevron-left"></i> 数组和矩阵4-稀疏矩阵
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/06/04/程序性能2-时间复杂性/" rel="prev" title="程序性能2--时间复杂性">
-                程序性能2--时间复杂性 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -479,8 +427,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/06/04/程序性能1-空间复杂性/"
-           data-title="程序性能1--空间复杂性" data-url="http://ccc013.github.io/2016/06/04/程序性能1-空间复杂性/">
+      <div class="ds-thread" data-thread-key="2016/07/12/堆栈1-基本概念及实现方法/"
+           data-title="堆栈1--基本概念及实现方法" data-url="http://ccc013.github.io/2016/07/12/堆栈1-基本概念及实现方法/">
       </div>
     
   </div>
@@ -669,7 +617,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u4ECB_u7ECD"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u7A7A_u95F4_u590D_u6742_u6027"><span class="nav-number">2.</span> <span class="nav-text">空间复杂性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u7A7A_u95F4_u590D_u6742_u6027_u7684_u7EC4_u6210"><span class="nav-number">2.1.</span> <span class="nav-text">空间复杂性的组成</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#u6307_u4EE4_u7A7A_u95F4"><span class="nav-number">2.1.1.</span> <span class="nav-text">指令空间</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#u6570_u636E_u7A7A_u95F4"><span class="nav-number">2.1.2.</span> <span class="nav-text">数据空间</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#u73AF_u5883_u6808"><span class="nav-number">2.1.3.</span> <span class="nav-text">环境栈</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#u5C0F_u7ED3"><span class="nav-number">2.1.4.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u4E3E_u4F8B"><span class="nav-number">2.2.</span> <span class="nav-text">举例</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u62BD_u8C61_u6570_u636E_u7C7B_u578B"><span class="nav-number">1.</span> <span class="nav-text">抽象数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u6D3E_u751F_u7C7B_u548C_u7EE7_u627F"><span class="nav-number">2.</span> <span class="nav-text">派生类和继承</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u516C_u5F0F_u5316_u63CF_u8FF0"><span class="nav-number">3.</span> <span class="nav-text">公式化描述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Stack_u7684_u6548_u7387"><span class="nav-number">3.1.</span> <span class="nav-text">Stack的效率</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u81EA_u5B9A_u4E49Stack"><span class="nav-number">3.2.</span> <span class="nav-text">自定义Stack</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u94FE_u8868_u63CF_u8FF0"><span class="nav-number">4.</span> <span class="nav-text">链表描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5C0F_u7ED3"><span class="nav-number">5.</span> <span class="nav-text">小结</span></a></li></ol></div>
             
           </div>
         </section>
