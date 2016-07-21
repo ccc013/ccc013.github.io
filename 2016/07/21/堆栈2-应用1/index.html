@@ -1,0 +1,911 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="数据结构,算法," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Cai's blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon/favicon.png?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="继续是《数据结构算法与应用：C++语言描述》的笔记，继续第五章堆栈的内容，这节是最后关于应用方面的内容。这节先介绍括号的匹配，汉诺塔，火车车厢重排三个问题。
+括号的匹配  括号的匹配就是要匹配一个字符串中的左、右括号。目标是编写一个C++程序，其输入为一个字符串，输出为相互匹配的括号以及未能匹配的括号。注意，括号匹配问题可用来解决C++程序中的{和}的匹配问题。
+  可以观察到，如果从左至右扫描一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="堆栈2-应用1">
+<meta property="og:url" content="http://ccc013.github.io/2016/07/21/堆栈2-应用1/index.html">
+<meta property="og:site_name" content="Cai's blog">
+<meta property="og:description" content="继续是《数据结构算法与应用：C++语言描述》的笔记，继续第五章堆栈的内容，这节是最后关于应用方面的内容。这节先介绍括号的匹配，汉诺塔，火车车厢重排三个问题。
+括号的匹配  括号的匹配就是要匹配一个字符串中的左、右括号。目标是编写一个C++程序，其输入为一个字符串，输出为相互匹配的括号以及未能匹配的括号。注意，括号匹配问题可用来解决C++程序中的{和}的匹配问题。
+  可以观察到，如果从左至右扫描一">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E5%A0%86%E6%A0%881.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E5%A0%86%E6%A0%882.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E5%A0%86%E6%A0%883.png">
+<meta property="og:updated_time" content="2016-07-21T11:08:35.050Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="堆栈2-应用1">
+<meta name="twitter:description" content="继续是《数据结构算法与应用：C++语言描述》的笔记，继续第五章堆栈的内容，这节是最后关于应用方面的内容。这节先介绍括号的匹配，汉诺塔，火车车厢重排三个问题。
+括号的匹配  括号的匹配就是要匹配一个字符串中的左、右括号。目标是编写一个C++程序，其输入为一个字符串，输出为相互匹配的括号以及未能匹配的括号。注意，括号匹配问题可用来解决C++程序中的{和}的匹配问题。
+  可以观察到，如果从左至右扫描一">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 5881344,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 堆栈2-应用1 | Cai's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1257376919&web_id=1257376919" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <!-- add Fork me on Github -->
+    <a href="https://github.com/ccc013"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
+
+    <!--add Fork me on Github  -->
+    
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Cai's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Stay hungry, stay foolish</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/abou" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                堆栈2-应用1
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-21T19:05:25+08:00" content="2016-07-21">
+              2016-07-21
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/21/堆栈2-应用1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/21/堆栈2-应用1/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/07/21/堆栈2-应用1/" class="leancloud_visitors" data-flag-title="堆栈2-应用1">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>继续是《数据结构算法与应用：C++语言描述》的笔记，继续第五章堆栈的内容，这节是最后关于应用方面的内容。这节先介绍括号的匹配，汉诺塔，火车车厢重排三个问题。</p>
+<h3 id="u62EC_u53F7_u7684_u5339_u914D"><a href="#u62EC_u53F7_u7684_u5339_u914D" class="headerlink" title="括号的匹配"></a>括号的匹配</h3><p>  括号的匹配就是要匹配一个字符串中的左、右括号。目标是编写一个C++程序，其输入为一个字符串，输出为相互匹配的括号以及未能匹配的括号。注意，括号匹配问题可用来解决C++程序中的{和}的匹配问题。</p>
+<p>  可以观察到，<strong>如果从左至右扫描一个字符串，那么最近每个右括号将于最近遇到的未匹配的左括号相匹配</strong>。因此，我们可以在从左至右的扫描过程中，把所遇到的左括号放到堆栈内，每当遇到一个右括号时，就将它与栈顶的左括号(如果存在)相匹配，同时从栈顶删除该左括号。</p>
+<p>  下面给出括号匹配问题实现的代码，其时间复杂性是$\theta(n),其中n$是输入串的长度。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// &#26368;&#22823;&#30340;&#23383;&#31526;&#20018;&#38271;&#24230;&#10;const int MaxLength = 100;&#10;// &#25324;&#21495;&#21305;&#37197;&#10;void PrintMatchedPairs(char* expr)&#123;&#10;    Stack&#60;int&#62; s(MaxLength);&#10;    int j, length = strlen(expr);&#10;    for (int i = 1; i &#60;= length; i++)&#123;&#10;        // &#20174;&#24038;&#21040;&#21491;&#25195;&#25551;&#23383;&#31526;&#20018;&#10;        if (expr[i - 1] == &#39;(&#39;)&#10;            // &#26632;&#20013;&#28155;&#21152;&#24038;&#25324;&#21495;&#30340;&#20301;&#32622;&#32034;&#24341;&#20540;&#10;            s.Add(i);&#10;        else if (expr[i - 1] == &#39;)&#39;)&#123;&#10;            try&#123;&#10;                s.Delete(j);&#10;                cout &#60;&#60; j &#60;&#60; &#34; &#34; &#60;&#60; i &#60;&#60; endl;&#10;            &#125;&#10;            catch (OutOfBounds)&#123;&#10;                cout &#60;&#60; &#34;No match for right parenthesis&#34; &#60;&#60; &#34; at &#34; &#60;&#60; i &#60;&#60; endl;&#10;            &#125;&#10;        &#125;   &#10;    &#125;&#10;    // &#22534;&#26632;&#20013;&#21097;&#19979;&#30340;( &#37117;&#26159;&#26410;&#21305;&#37197;&#30340;&#10;    while (!s.IsEmpty())&#123;&#10;        s.Delete(j);&#10;        cout &#60;&#60; &#34;No match for left parenthesis at &#34; &#60;&#60; j &#60;&#60; endl;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>测试例子如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#include&#60;iostream&#62;&#10;#include&#34;xcept.h&#34;&#10;#include&#34;Stack.h&#34;&#10;&#10;using std::cout;&#10;using std::endl;&#10;using std::cin;&#10;&#10;void testMathedParis()&#123;&#10;    // &#27979;&#35797;&#25324;&#21495;&#21305;&#37197;&#10;    char expr[MaxLength];&#10;    cout &#60;&#60; &#34;Type an expression of length at most &#34; &#60;&#60; MaxLength &#60;&#60; endl;&#10;    cin.getline(expr, MaxLength);&#10;    cout &#60;&#60; &#34;The pairs of matching parentheses in &#34; &#60;&#60; endl;&#10;    puts(expr);&#10;    cout &#60;&#60; &#34;are&#34; &#60;&#60; endl;&#10;    PrintMatchedPairs(expr);&#10;&#125;&#10;&#10;int main()&#123;&#10;&#10;    testMathedParis();&#10;&#10;    system(&#34;pause&#34;);&#10;    return 0;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出结果如下图所示：<br><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%A0%86%E6%A0%881.png" alt="此处输入图片的描述"></p>
+<h3 id="u6C49_u8BFA_u5854"><a href="#u6C49_u8BFA_u5854" class="headerlink" title="汉诺塔"></a>汉诺塔</h3><blockquote>
+<p>在汉诺塔问题中，已知有n个碟子和3座塔。初始时所有的碟子按从大到小次序从塔1的底部堆放至顶部，我们需要把碟子都移动到塔2，每次移动一个碟子，而且任何时候都不能把大碟放在小碟子的上面。</p>
+</blockquote>
+<p>一个非常优雅的解决办法是使用<strong>递归</strong>。为了把最大的碟子移动到塔2，可以先将其余的n-1个碟子移动到塔3，然后把最大的碟子移动到塔2。接下来是把塔3上的n-1个碟子移动到塔2，因此要借用塔1和塔2，此时可以完全忽视塔2上已经有一个碟子的事实，因为这个碟子是所有碟子中最大的一个。</p>
+<p>下面是按照递归方式实现的代码。初始调用的语句是<code>TowersOfHanoi(n,1,2,3)</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// &#27721;&#35834;&#22612;&#38382;&#39064;,&#25226;n&#20010;&#30879;&#23376;&#20174;&#22612;x&#31227;&#21160;&#21040;&#22612;y&#65292;&#21487;&#20511;&#21161;&#20110;&#22612;z&#10;void TowersOfHanoi(int n, int x, int y, int z)&#123;&#10;    if (n &#62; 0)&#123;&#10;        TowersOfHanoi(n - 1, x, z, y);&#10;        cout &#60;&#60; &#34;Move top disk from tower &#34; &#60;&#60; x &#60;&#60; &#34; to top of tower &#34; &#60;&#60; y &#60;&#60; endl;&#10;        TowersOfHanoi(n - 1, z, y, x);&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>该程序所花费的时间正比于所输出的信息行数目，而信息行的数目等价于碟子移动的次数，其碟子移动次数<code>moves(n)</code>如下所示：<br>$$<br>moves(n)=<br>\begin{cases}<br>0 &amp; n=0 \<br>2moves(n-1)+1 &amp; n&gt;0<br>\end{cases}<br>$$<br>也就是有$moves(n)=2^n-1$,所以上述函数的时间复杂性是$\theta(2^n)$。</p>
+<p>上述函数只是输出把碟子从塔1移动到塔2所需要的碟子移动次序。假定希望给出每次移动之后三座塔的状态，即塔上的碟子及其次序，那么必须在内存中保留塔的状态，并在每次移动碟子之后，修改塔的状态。</p>
+<p>由于从每个塔上移走碟子时是按照LIFO的方式进行，因此可以把每个塔表示成一个堆栈。三座塔在任何时候都总共拥有n个碟子，因此，如果使用链表形式的堆栈，只需申请n个元素所需要的空间。如果使用的是基于公式化描述的堆栈，则塔1和塔2的容量都必须是n，而塔3的容量必须为n-1，因而所需要的空间总数为3n-1。</p>
+<p>前面的分析指出，汉诺塔问题的复杂性是以n为指数的函数，因此在可以接受的时间范围内，只能解决n值比较小(如$n\le 30$)的汉诺塔问题。而对于这些较小的n值，基于公式化描述和基于链表描述的堆栈在空间需求上的差别相当小，因此可以随意使用。</p>
+<p>下面给出基于公式化描述的堆栈。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#ifndef HANOI_H_&#10;#define HANOI_H_&#10;&#10;#include&#34;Stack.h&#34;&#10;#include&#60;iostream&#62;&#10;&#10;class Hanoi&#123;&#10;    friend void useTowersOfHanoi(int);&#10;public:&#10;    void TowersOfHanoi(int n, int x, int y, int z);&#10;private:&#10;    Stack&#60;int&#62; *S[4];&#10;&#125;;&#10;&#10;void Hanoi::TowersOfHanoi(int n, int x, int y, int z)&#123;&#10;    // &#25226;n&#20010;&#30879;&#23376;&#20174;&#22612;x&#31227;&#21160;&#21040;&#22612;y&#65292;&#21487;&#20511;&#21161;&#20110;&#22612;z&#10;    // &#30879;&#23376;&#32534;&#21495;&#10;    int d; &#10;    if (n &#62; 0)&#123;&#10;        TowersOfHanoi(n - 1, x, z, y);&#10;        // &#20174;x&#20013;&#31227;&#21160;&#36208;&#19968;&#20010;&#30879;&#23376;&#10;        S[x]-&#62;Delete(d);&#10;        // &#25918;&#21040;y&#19978;&#10;        S[y]-&#62;Add(d);&#10;        ShowState();&#10;        TowersOfHanoi(n - 1, z, y, x);&#10;    &#125;&#10;&#125;&#10;&#10;void useTowersOfHanoi(int n)&#123;&#10;    // &#39044;&#22788;&#29702;&#31243;&#24207;&#10;    Hanoi X;&#10;    X.S[1] = new Stack&#60;int&#62;(n);&#10;    X.S[2] = new Stack&#60;int&#62;(n);&#10;    X.S[3] = new Stack&#60;int&#62;(n);&#10;&#10;    for (int d = n; d &#62; 0; d--)&#10;        // &#23558;&#30879;&#23376;&#25918;&#21040;&#22612;1&#19978;&#10;        X.S[1]-&#62;Add(d);&#10;&#10;    X.TowersOfHanoi(n, 1, 2, 3);&#10;&#125;&#10;#endif</span><br></pre></td></tr></table></figure></p>
+<p>上述函数没有给出<code>ShowState()</code>方法的具体实现，这是由于该函数的实现取决于输出设备的性质（如计算机屏幕、打印机等）</p>
+<h3 id="u706B_u8F66_u8F66_u53A2_u91CD_u6392"><a href="#u706B_u8F66_u8F66_u53A2_u91CD_u6392" class="headerlink" title="火车车厢重排"></a>火车车厢重排</h3><blockquote>
+<p>一列货运列车共有n节车厢，每节车厢将停放在不同的车站。假定 n个车站的编号分别为1~n，货运列车按照第 n站至第1站的次序经过这些车站。车厢的编号与它们的目的地相同。为了便于从列车上卸掉相应的车厢，必须重新排列车厢，使各车厢从前至后按编号 1到n的次序排列。当所有的车厢都按照这种次序排列时，在每个车站只需卸掉最后一节车厢即可。</p>
+</blockquote>
+<p>这里可以在一个转轨站里完成车厢的重排工作，在转轨站中有一个入轨、一个出轨和k个缓冲铁轨（位于入轨和出轨之间），如下图所示，其中有k=3个缓冲铁轨H1，H2，和H3。下图a是一个初始的袋重排的车厢次序，而图b则是按照要求的次序重排后的结果。</p>
+<p>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%A0%86%E6%A0%882.png" alt="此处输入图片的描述"></p>
+<p>为了重排车厢，需从前至后依次检查入轨上的所有车厢。如果正在检查的车厢是下一个满足排列要求的车厢，可以直接把它放在出轨上。如果不是，则把它移动到缓冲铁轨上，直到按输出次序要求轮到它时才将它放到出轨上。缓冲铁轨是按照LIFO的方式使用的，因此车厢的进和出都是在缓存铁轨的顶部进行的。在重排车厢过程中，仅允许以下移动：</p>
+<ul>
+<li>车厢可以从入轨的前部（即右端）移动到一个缓冲铁轨的顶部或者出轨的左端</li>
+<li>车厢可以从缓冲铁轨的顶部移动到出轨的左端</li>
+</ul>
+<p>考虑图a的情况，由于要求的次序是递增的方式，即1号是最先出轨，然后按顺序从2到9，因此在缓冲铁轨中也应该是从顶部到底部是递增的方式，即在顶部是编号小的，所以缓冲铁轨的中间状态如下所示：</p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%A0%86%E6%A0%883.png" alt="此处输入图片的描述"></p>
+<p>接下来剩下三个车厢，输出顺序就变得明了了。在这个分配过程中，主要是遵循这样一条规则：<strong>新的车厢u应送入这样的缓冲铁轨：其顶部的车厢编号v满足$v \gt u$，且v是所有满足这种条件的缓冲铁轨顶部车厢编号中最小的一个编号。</strong></p>
+<p>对于图a的例子，进行车厢重排的时候，只需要3个缓冲铁轨就足够了，但是对于其他的初始次序，可能需要更多的缓冲铁轨。</p>
+<p>因此，这里使用k个链表形式的堆栈来描述k个缓冲铁轨。下列函数<strong>Railroad</strong>用于确定重排n个车厢，它最多可使用k个缓冲铁轨并假定车厢的次序为p[1:n]。如果不能成功重排，函数将返回false，否则返回true。具体实现如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// &#28779;&#36710;&#36710;&#21410;&#37325;&#25490;&#10;bool Railroad(int p[], int n, int k)&#123;&#10;    // k&#20010;&#32531;&#20914;&#38081;&#36712;&#65292;&#36710;&#21410;&#21021;&#22987;&#25490;&#24207;&#20026;p[1:n], &#22914;&#26524;&#37325;&#25490;&#25104;&#21151;&#65292;&#36820;&#22238;true&#65292;&#21542;&#21017;&#36820;&#22238;false&#65292;&#22914;&#26524;&#20869;&#23384;&#19981;&#36275;&#65292;&#21017;&#24341;&#21457;&#24322;&#24120;NoMem&#10;    // &#21019;&#24314;&#20110;&#32531;&#20914;&#38081;&#36712;&#23545;&#24212;&#30340;&#22534;&#26632;&#10;    LinkedStack&#60;int&#62; *H = new LinkedStack&#60;int&#62;[k+1];&#10;    // &#19979;&#19968;&#27425;&#35201;&#36755;&#20986;&#30340;&#36710;&#21410;&#10;    int NowOut = 1;&#10;    // &#32531;&#20914;&#38081;&#36712;&#20013;&#32534;&#21495;&#26368;&#23567;&#30340;&#36710;&#21410;&#10;    int minH = n + 1;&#10;    // minH&#21495;&#36710;&#21410;&#23545;&#24212;&#30340;&#32531;&#20914;&#38081;&#36712;&#10;    int minS;&#10;    // &#36827;&#34892;&#36710;&#21410;&#37325;&#25490;&#10;    for (int i = 1; i &#60;= n; i++)&#123;&#10;        if (p[i] == NowOut)&#123;&#10;            // &#30452;&#25509;&#36755;&#20986;&#10;            cout &#60;&#60; &#34;More car &#34; &#60;&#60; p[i] &#60;&#60; &#34; from input to output&#34; &#60;&#60; endl;&#10;            NowOut++;&#10;            while (minH == NowOut)&#123;&#10;                Output(minH, minS, H, k, n);&#10;                NowOut++;&#10;            &#125;&#10;        &#125;&#10;        else&#123;&#10;            // &#23558;p[i]&#36865;&#20837;&#26576;&#20010;&#32531;&#20914;&#38081;&#36712;&#10;            if (!Hold(p[i], minH, minS, H, k, n))&#10;                return false;&#10;        &#125;&#10;    &#125;&#10;    return true;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>下面则给出函数<strong>Railroad</strong>中使用的函数<strong>Output和Hold</strong>的代码实现，前者主要是用于将一节车厢从缓冲铁轨中输出到出轨处，同时修改minH和minS，而后者则是根据分配规则将车厢c送入某个缓冲铁轨，并在必要的时候修改minH和minS。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">void Output(int&#38; minH, int&#38; minS, LinkedStack&#60;int&#62; H[], int k, int n)&#123;&#10;    // &#25226;&#36710;&#21410;&#20174;&#32531;&#20914;&#38081;&#36712;&#36865;&#33267;&#20986;&#36712;&#22788;&#65292;&#21516;&#26102;&#20462;&#25913;minS&#21644;minH&#10;    // &#36710;&#21410;&#32034;&#24341;&#10;    int c;&#10;    // &#20174;&#22534;&#26632;minS&#20013;&#21024;&#38500;&#32534;&#21495;&#26368;&#23567;&#30340;&#36710;&#21410;minH&#10;    H[minS].Delete(c);&#10;    cout &#60;&#60; &#34;More car &#34; &#60;&#60; minH &#60;&#60; &#34; from holding track &#34; &#60;&#60; minS &#60;&#60; &#34; to output\n&#34;;&#10;    // &#36890;&#36807;&#26816;&#26597;&#25152;&#26377;&#30340;&#26632;&#39030;&#65292;&#25628;&#32034;&#26032;&#30340;minH&#21644;minS&#10;    minH = n + 2;&#10;    for (int i = 1; i &#60;= k; i++)&#123;&#10;        if (!H[i].IsEmpty() &#38;&#38; (c = H[i].Top()) &#60; minH)&#123;&#10;            minH = c;&#10;            minS = i;&#10;        &#125;&#10;    &#125;&#10;&#125;&#10;&#10;bool Hold(int c, int&#38; minH, int&#38; minS, LinkedStack&#60;int&#62; H[], int k, int n)&#123;&#10;    // &#22312;&#19968;&#20010;&#32531;&#20914;&#38081;&#36712;&#20013;&#25918;&#20837;&#36710;&#21410;c,&#22914;&#26524;&#27809;&#26377;&#21487;&#29992;&#30340;&#32531;&#20914;&#38081;&#36712;&#65292;&#36820;&#22238;false&#65292;&#22914;&#26524;&#31354;&#38388;&#19981;&#36275;&#65292;&#21017;&#24341;&#21457;&#24322;&#24120;NoMem&#10;    // &#30446;&#21069;&#26368;&#20248;&#30340;&#38081;&#36712;&#10;    int BestTrack = 0;&#10;    // &#26368;&#20248;&#38081;&#36712;&#19978;&#30340;&#22836;&#36742;&#36710;&#21410;&#21495;&#10;    int BestTop = n + 1;&#10;    // &#36710;&#21410;&#32034;&#24341;&#10;    int x;&#10;    // &#25195;&#25551;&#32531;&#20914;&#38081;&#36712;&#10;    for (int i = 1; i &#60;= k; i++)&#123;&#10;        if (!H[i].IsEmpty())&#123;&#10;            x = H[i].Top();&#10;            if (c &#60; x &#38;&#38; x &#60; BestTop)&#123;&#10;                BestTop = c;&#10;                BestTrack = i;&#10;            &#125;&#10;        &#125;&#10;        else&#123;&#10;            // &#38081;&#36712;&#26159;&#31354;&#10;            if (!BestTrack)&#10;                BestTrack = i;&#10;        &#125;&#10;    &#125;&#10;    if (!BestTrack)&#10;        return false;&#10;    // &#25226;&#36710;&#21410;c&#36865;&#20837;&#32531;&#20914;&#38081;&#36712;&#10;    H[BestTrack].Add(c);&#10;    cout &#60;&#60; &#34;More car &#34; &#60;&#60; c &#60;&#60; &#34; from input to holding track &#34; &#60;&#60; BestTrack &#60;&#60; endl;&#10;    // &#24517;&#35201;&#26102;&#20462;&#25913;minH&#21644;minS&#10;    if (c &#60; minH)&#123;&#10;        minH = c;&#10;        minS = BestTrack;&#10;    &#125;&#10;    return true;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上述两个函数Output和Hold的时间复杂性都是$\theta(k)$。而在函数Railroad中的while循环最多可以输出n-1节车厢，else语句也是最多有n-1节车厢被送入缓冲铁轨，因此，这两个函数所消耗的总时间是$O(kn)$。而Railroad函数中for循环部分的其余部分耗时$\theta(n)$,因此该函数的时间复杂性是$O(kn)$。</p>
+<p>这里如果使用一个平衡折半搜索树来存储缓冲铁轨顶部的车厢编号（在第11章介绍），程序的复杂性可由将至$O(nlogk)$。</p>
+<p>更详细的内容可以查看<a href="https://github.com/ccc013/DataStructe-Algorithms_Study/blob/master/Stack/StackExamples.md" target="_blank" rel="external">我的Github</a></p>
+<h3 id="u5C0F_u7ED3"><a href="#u5C0F_u7ED3" class="headerlink" title="小结"></a>小结</h3><p>  本小节主要是介绍堆栈的三个应用，分别是括号的匹配，汉诺塔以及火车车厢重排问题，都是利用堆栈的LIFO性质。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据结构/" rel="tag">#数据结构</a>
+          
+            <a href="/tags/算法/" rel="tag">#算法</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/12/堆栈1-基本概念及实现方法/" rel="next" title="堆栈1--基本概念及实现方法">
+                <i class="fa fa-chevron-left"></i> 堆栈1--基本概念及实现方法
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/07/21/堆栈2-应用1/"
+           data-title="堆栈2-应用1" data-url="http://ccc013.github.io/2016/07/21/堆栈2-应用1/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/favicon.png"
+               alt="cai" />
+          <p class="site-author-name" itemprop="name">cai</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">19</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ccc013" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2181051220?is_all=1" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/luo-cai" target="_blank" title="Zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Zhihu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net/lc013?viewmode=contents" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  CSDN
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/lmj623565791" title="张鸿洋的博客" target="_blank">张鸿洋的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/guolin_blog" title="郭霖的博客" target="_blank">郭霖的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/singwhatiwanna/article/category/1405419" title="任玉刚" target="_blank">任玉刚</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/Luoshengyang/" title="罗升阳" target="_blank">罗升阳</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://hukai.me/" title="胡凯" target="_blank">胡凯</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.daimajia.com/" title="代码家" target="_blank">代码家</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://hujiaweibujidao.github.io/" title="HujiaweiBujidao" target="_blank">HujiaweiBujidao</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.liaoxuefeng.com/" title="廖雪峰的博客" target="_blank">廖雪峰的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://drakeet.me/" title="Drakeet的个人博客" target="_blank">Drakeet的个人博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.kymjs.com/" title="张涛-开源实验室" target="_blank">张涛-开源实验室</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://gudong.name/" title="咕咚" target="_blank">咕咚</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u62EC_u53F7_u7684_u5339_u914D"><span class="nav-number">1.</span> <span class="nav-text">括号的匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u6C49_u8BFA_u5854"><span class="nav-number">2.</span> <span class="nav-text">汉诺塔</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u706B_u8F66_u8F66_u53A2_u91CD_u6392"><span class="nav-number">3.</span> <span class="nav-text">火车车厢重排</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5C0F_u7ED3"><span class="nav-number">4.</span> <span class="nav-text">小结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cai</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  
+</div>
+
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"cai"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("gmEY36PtfOmueA7roORTu2He-gzGzoHsz", "mzEkjGKehJYxfp1PrU0TYsW3");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+</body>
+</html>
