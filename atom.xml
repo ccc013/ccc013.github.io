@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Stay hungry, stay foolish]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://ccc013.github.io/"/>
-  <updated>2016-07-21T11:08:35.050Z</updated>
+  <updated>2016-07-21T11:37:47.861Z</updated>
   <id>http://ccc013.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://ccc013.github.io/2016/07/21/%E5%A0%86%E6%A0%882-%E5%BA%94%E7%94%A81/"/>
     <id>http://ccc013.github.io/2016/07/21/堆栈2-应用1/</id>
     <published>2016-07-21T11:05:25.000Z</published>
-    <updated>2016-07-21T11:08:35.050Z</updated>
+    <updated>2016-07-21T11:37:47.861Z</updated>
     <content type="html"><![CDATA[<p>继续是《数据结构算法与应用：C++语言描述》的笔记，继续第五章堆栈的内容，这节是最后关于应用方面的内容。这节先介绍括号的匹配，汉诺塔，火车车厢重排三个问题。</p>
 <h3 id="u62EC_u53F7_u7684_u5339_u914D"><a href="#u62EC_u53F7_u7684_u5339_u914D" class="headerlink" title="括号的匹配"></a>括号的匹配</h3><p>  括号的匹配就是要匹配一个字符串中的左、右括号。目标是编写一个C++程序，其输入为一个字符串，输出为相互匹配的括号以及未能匹配的括号。注意，括号匹配问题可用来解决C++程序中的{和}的匹配问题。</p>
 <p>  可以观察到，<strong>如果从左至右扫描一个字符串，那么最近每个右括号将于最近遇到的未匹配的左括号相匹配</strong>。因此，我们可以在从左至右的扫描过程中，把所遇到的左括号放到堆栈内，每当遇到一个右括号时，就将它与栈顶的左括号(如果存在)相匹配，同时从栈顶删除该左括号。</p>
@@ -30,8 +30,8 @@
 <p>在汉诺塔问题中，已知有n个碟子和3座塔。初始时所有的碟子按从大到小次序从塔1的底部堆放至顶部，我们需要把碟子都移动到塔2，每次移动一个碟子，而且任何时候都不能把大碟放在小碟子的上面。</p>
 </blockquote>
 <p>一个非常优雅的解决办法是使用<strong>递归</strong>。为了把最大的碟子移动到塔2，可以先将其余的n-1个碟子移动到塔3，然后把最大的碟子移动到塔2。接下来是把塔3上的n-1个碟子移动到塔2，因此要借用塔1和塔2，此时可以完全忽视塔2上已经有一个碟子的事实，因为这个碟子是所有碟子中最大的一个。</p>
-<p>下面是按照递归方式实现的代码。初始调用的语句是<code>TowersOfHanoi(n,1,2,3)</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// &#27721;&#35834;&#22612;&#38382;&#39064;,&#25226;n&#20010;&#30879;&#23376;&#20174;&#22612;x&#31227;&#21160;&#21040;&#22612;y&#65292;&#21487;&#20511;&#21161;&#20110;&#22612;z&#10;void TowersOfHanoi(int n, int x, int y, int z)&#123;&#10;    if (n &#62; 0)&#123;&#10;        TowersOfHanoi(n - 1, x, z, y);&#10;        cout &#60;&#60; &#34;Move top disk from tower &#34; &#60;&#60; x &#60;&#60; &#34; to top of tower &#34; &#60;&#60; y &#60;&#60; endl;&#10;        TowersOfHanoi(n - 1, z, y, x);&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
-<p>该程序所花费的时间正比于所输出的信息行数目，而信息行的数目等价于碟子移动的次数，其碟子移动次数<code>moves(n)</code>如下所示：<br>$$<br>moves(n)=<br>\begin{cases}<br>0 &amp; n=0 \<br>2moves(n-1)+1 &amp; n&gt;0<br>\end{cases}<br>$$<br>也就是有$moves(n)=2^n-1$,所以上述函数的时间复杂性是$\theta(2^n)$。</p>
+<p>下面是按照递归方式实现的代码。初始调用的语句是<code>TowersOfHanoi(n,1,2,3)</code><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 汉诺塔问题,把n个碟子从塔x移动到塔y，可借助于塔z</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">TowersOfHanoi</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> z)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n &gt; <span class="number">0</span>)&#123;</span><br><span class="line">        TowersOfHanoi(n - <span class="number">1</span>, x, z, y);</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Move top disk from tower "</span> &lt;&lt; x &lt;&lt; <span class="string">" to top of tower "</span> &lt;&lt; y &lt;&lt; endl;</span><br><span class="line">        TowersOfHanoi(n - <span class="number">1</span>, z, y, x);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>该程序所花费的时间正比于所输出的信息行数目，而信息行的数目等价于碟子移动的次数，其碟子移动次数<code>moves(n)</code>如下所示：<br>$$<br>moves(n)=<br>\begin{cases}<br>0 &amp; n=0 \\<br>2moves(n-1)+1 &amp; n&gt;0<br>\end{cases}<br>$$<br>也就是有$moves(n)=2^n-1$,所以上述函数的时间复杂性是$\theta(2^n)$。</p>
 <p>上述函数只是输出把碟子从塔1移动到塔2所需要的碟子移动次序。假定希望给出每次移动之后三座塔的状态，即塔上的碟子及其次序，那么必须在内存中保留塔的状态，并在每次移动碟子之后，修改塔的状态。</p>
 <p>由于从每个塔上移走碟子时是按照LIFO的方式进行，因此可以把每个塔表示成一个堆栈。三座塔在任何时候都总共拥有n个碟子，因此，如果使用链表形式的堆栈，只需申请n个元素所需要的空间。如果使用的是基于公式化描述的堆栈，则塔1和塔2的容量都必须是n，而塔3的容量必须为n-1，因而所需要的空间总数为3n-1。</p>
 <p>前面的分析指出，汉诺塔问题的复杂性是以n为指数的函数，因此在可以接受的时间范围内，只能解决n值比较小(如$n\le 30$)的汉诺塔问题。而对于这些较小的n值，基于公式化描述和基于链表描述的堆栈在空间需求上的差别相当小，因此可以随意使用。</p>
