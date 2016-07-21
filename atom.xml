@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Stay hungry, stay foolish]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://ccc013.github.io/"/>
-  <updated>2016-07-21T11:40:46.552Z</updated>
+  <updated>2016-07-21T11:45:03.160Z</updated>
   <id>http://ccc013.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://ccc013.github.io/2016/07/21/%E5%A0%86%E6%A0%882-%E5%BA%94%E7%94%A81/"/>
     <id>http://ccc013.github.io/2016/07/21/堆栈2-应用1/</id>
     <published>2016-07-21T11:05:25.000Z</published>
-    <updated>2016-07-21T11:40:46.552Z</updated>
+    <updated>2016-07-21T11:45:03.160Z</updated>
     <content type="html"><![CDATA[<p>继续是《数据结构算法与应用：C++语言描述》的笔记，继续第五章堆栈的内容，这节是最后关于应用方面的内容。这节先介绍括号的匹配，汉诺塔，火车车厢重排三个问题。</p>
 <h3 id="u62EC_u53F7_u7684_u5339_u914D"><a href="#u62EC_u53F7_u7684_u5339_u914D" class="headerlink" title="括号的匹配"></a>括号的匹配</h3><p>  括号的匹配就是要匹配一个字符串中的左、右括号。目标是编写一个C++程序，其输入为一个字符串，输出为相互匹配的括号以及未能匹配的括号。注意，括号匹配问题可用来解决C++程序中的{和}的匹配问题。</p>
 <p>  可以观察到，<strong>如果从左至右扫描一个字符串，那么最近每个右括号将于最近遇到的未匹配的左括号相匹配</strong>。因此，我们可以在从左至右的扫描过程中，把所遇到的左括号放到堆栈内，每当遇到一个右括号时，就将它与栈顶的左括号(如果存在)相匹配，同时从栈顶删除该左括号。</p>
