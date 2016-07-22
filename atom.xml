@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Stay hungry, stay foolish]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://ccc013.github.io/"/>
-  <updated>2016-07-21T11:45:03.160Z</updated>
+  <updated>2016-07-22T11:57:24.038Z</updated>
   <id>http://ccc013.github.io/</id>
   
   <author>
@@ -15,12 +15,12 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[堆栈2-应用1]]></title>
+    <title><![CDATA[堆栈2-应用]]></title>
     <link href="http://ccc013.github.io/2016/07/21/%E5%A0%86%E6%A0%882-%E5%BA%94%E7%94%A81/"/>
     <id>http://ccc013.github.io/2016/07/21/堆栈2-应用1/</id>
     <published>2016-07-21T11:05:25.000Z</published>
-    <updated>2016-07-21T11:45:03.160Z</updated>
-    <content type="html"><![CDATA[<p>继续是《数据结构算法与应用：C++语言描述》的笔记，继续第五章堆栈的内容，这节是最后关于应用方面的内容。这节先介绍括号的匹配，汉诺塔，火车车厢重排三个问题。</p>
+    <updated>2016-07-22T11:57:24.038Z</updated>
+    <content type="html"><![CDATA[<p>继续是《数据结构算法与应用：C++语言描述》的笔记，继续第五章堆栈的内容，这节是最后关于应用方面的内容。这节会介绍括号的匹配，汉诺塔，火车车厢重排三个问题。</p>
 <h3 id="u62EC_u53F7_u7684_u5339_u914D"><a href="#u62EC_u53F7_u7684_u5339_u914D" class="headerlink" title="括号的匹配"></a>括号的匹配</h3><p>  括号的匹配就是要匹配一个字符串中的左、右括号。目标是编写一个C++程序，其输入为一个字符串，输出为相互匹配的括号以及未能匹配的括号。注意，括号匹配问题可用来解决C++程序中的{和}的匹配问题。</p>
 <p>  可以观察到，<strong>如果从左至右扫描一个字符串，那么最近每个右括号将于最近遇到的未匹配的左括号相匹配</strong>。因此，我们可以在从左至右的扫描过程中，把所遇到的左括号放到堆栈内，每当遇到一个右括号时，就将它与栈顶的左括号(如果存在)相匹配，同时从栈顶删除该左括号。</p>
 <p>  下面给出括号匹配问题实现的代码，其时间复杂性是$\theta(n),其中n$是输入串的长度。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// &#26368;&#22823;&#30340;&#23383;&#31526;&#20018;&#38271;&#24230;&#10;const int MaxLength = 100;&#10;// &#25324;&#21495;&#21305;&#37197;&#10;void PrintMatchedPairs(char* expr)&#123;&#10;    Stack&#60;int&#62; s(MaxLength);&#10;    int j, length = strlen(expr);&#10;    for (int i = 1; i &#60;= length; i++)&#123;&#10;        // &#20174;&#24038;&#21040;&#21491;&#25195;&#25551;&#23383;&#31526;&#20018;&#10;        if (expr[i - 1] == &#39;(&#39;)&#10;            // &#26632;&#20013;&#28155;&#21152;&#24038;&#25324;&#21495;&#30340;&#20301;&#32622;&#32034;&#24341;&#20540;&#10;            s.Add(i);&#10;        else if (expr[i - 1] == &#39;)&#39;)&#123;&#10;            try&#123;&#10;                s.Delete(j);&#10;                cout &#60;&#60; j &#60;&#60; &#34; &#34; &#60;&#60; i &#60;&#60; endl;&#10;            &#125;&#10;            catch (OutOfBounds)&#123;&#10;                cout &#60;&#60; &#34;No match for right parenthesis&#34; &#60;&#60; &#34; at &#34; &#60;&#60; i &#60;&#60; endl;&#10;            &#125;&#10;        &#125;   &#10;    &#125;&#10;    // &#22534;&#26632;&#20013;&#21097;&#19979;&#30340;( &#37117;&#26159;&#26410;&#21305;&#37197;&#30340;&#10;    while (!s.IsEmpty())&#123;&#10;        s.Delete(j);&#10;        cout &#60;&#60; &#34;No match for left parenthesis at &#34; &#60;&#60; j &#60;&#60; endl;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
@@ -59,7 +59,7 @@
 <h3 id="u5C0F_u7ED3"><a href="#u5C0F_u7ED3" class="headerlink" title="小结"></a>小结</h3><p>  本小节主要是介绍堆栈的三个应用，分别是括号的匹配，汉诺塔以及火车车厢重排问题，都是利用堆栈的LIFO性质。</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>继续是《数据结构算法与应用：C++语言描述》的笔记，继续第五章堆栈的内容，这节是最后关于应用方面的内容。这节先介绍括号的匹配，汉诺塔，火车车厢重排三个问题。</p>
+    <![CDATA[<p>继续是《数据结构算法与应用：C++语言描述》的笔记，继续第五章堆栈的内容，这节是最后关于应用方面的内容。这节会介绍括号的匹配，汉诺塔，火车车厢重排三个问题。</p>
 <h3 id="u62EC_u53F7_u7684_u5339_u914D"><a href="#u62EC]]>
     </summary>
     
