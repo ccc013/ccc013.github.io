@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo,技术," />
+  <meta name="keywords" content="数据结构,算法," />
 
 
 
@@ -86,58 +86,37 @@
 
 
 
-<meta name="description" content="添加统计代码上周成功用Hexo+Github Pages搭建好博客，但是还有很多功能等待添加的,今天就继续进行优化，首先是添加统计代码，数据统计方面有以下几个:
+<meta name="description" content="继续是《数据结构算法与应用：C++语言描述》的笔记，这是第六章队列的内容。
 
-Google Analytics
-百度统计
-不蒜子
+队列是一种特殊的线性表，其插入和删除操作分别在线性表的两端进行，因此，队列是一个先进先出(first-in-first-out,FIFO)的线性表。
 
-然后就是站长工具:
-
-CNZZ|站长统计
-谷歌站长工具
-百度站长工具
-站长之家工具
-360搜索站长平台
-
-感觉站长工具会比较详细点，所以就采用站长工具，用的是cnzz的，参考了hex">
+抽象数据类型
+定义  队列(queue)是一个线性表，其插入和删除操作分别在表的不同端进行。添加新元素的那一端称为队尾(rear),而删除元素的那一端被称为队首(fron">
 <meta property="og:type" content="article">
-<meta property="og:title" content="hexo博客的优化与配置">
-<meta property="og:url" content="http://ccc013.github.io/2016/01/26/hexo博客的优化与配置/index.html">
+<meta property="og:title" content="队列1-基本概念及实现方法">
+<meta property="og:url" content="http://ccc013.github.io/2016/07/23/队列1-基本概念及实现方法/index.html">
 <meta property="og:site_name" content="Cai's blog">
-<meta property="og:description" content="添加统计代码上周成功用Hexo+Github Pages搭建好博客，但是还有很多功能等待添加的,今天就继续进行优化，首先是添加统计代码，数据统计方面有以下几个:
+<meta property="og:description" content="继续是《数据结构算法与应用：C++语言描述》的笔记，这是第六章队列的内容。
 
-Google Analytics
-百度统计
-不蒜子
+队列是一种特殊的线性表，其插入和删除操作分别在线性表的两端进行，因此，队列是一个先进先出(first-in-first-out,FIFO)的线性表。
 
-然后就是站长工具:
-
-CNZZ|站长统计
-谷歌站长工具
-百度站长工具
-站长之家工具
-360搜索站长平台
-
-感觉站长工具会比较详细点，所以就采用站长工具，用的是cnzz的，参考了hex">
-<meta property="og:updated_time" content="2016-01-26T09:23:09.580Z">
+抽象数据类型
+定义  队列(queue)是一个线性表，其插入和删除操作分别在表的不同端进行。添加新元素的那一端称为队尾(rear),而删除元素的那一端被称为队首(fron">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E9%98%9F%E5%88%971.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E9%98%9F%E5%88%972.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E9%98%9F%E5%88%973.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E9%98%9F%E5%88%974.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E9%98%9F%E5%88%975.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E9%98%9F%E5%88%976.png">
+<meta property="og:updated_time" content="2016-07-23T09:44:03.677Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hexo博客的优化与配置">
-<meta name="twitter:description" content="添加统计代码上周成功用Hexo+Github Pages搭建好博客，但是还有很多功能等待添加的,今天就继续进行优化，首先是添加统计代码，数据统计方面有以下几个:
+<meta name="twitter:title" content="队列1-基本概念及实现方法">
+<meta name="twitter:description" content="继续是《数据结构算法与应用：C++语言描述》的笔记，这是第六章队列的内容。
 
-Google Analytics
-百度统计
-不蒜子
+队列是一种特殊的线性表，其插入和删除操作分别在线性表的两端进行，因此，队列是一个先进先出(first-in-first-out,FIFO)的线性表。
 
-然后就是站长工具:
-
-CNZZ|站长统计
-谷歌站长工具
-百度站长工具
-站长之家工具
-360搜索站长平台
-
-感觉站长工具会比较详细点，所以就采用站长工具，用的是cnzz的，参考了hex">
+抽象数据类型
+定义  队列(queue)是一个线性表，其插入和删除操作分别在表的不同端进行。添加新元素的那一端称为队尾(rear),而删除元素的那一端被称为队首(fron">
 
 
 
@@ -155,7 +134,7 @@ CNZZ|站长统计
   };
 </script>
 
-  <title> hexo博客的优化与配置 | Cai's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> 队列1-基本概念及实现方法 | Cai's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -306,7 +285,7 @@ CNZZ|站长统计
             
             
               
-                hexo博客的优化与配置
+                队列1-基本概念及实现方法
               
             
           </h1>
@@ -318,8 +297,8 @@ CNZZ|站长统计
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-26T16:22:04+08:00" content="2016-01-26">
-              2016-01-26
+            <time itemprop="dateCreated" datetime="2016-07-23T17:43:35+08:00" content="2016-07-23">
+              2016-07-23
             </time>
           </span>
 
@@ -329,8 +308,8 @@ CNZZ|站长统计
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/01/26/hexo博客的优化与配置/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/26/hexo博客的优化与配置/" itemprop="commentsCount"></span>
+                <a href="/2016/07/23/队列1-基本概念及实现方法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/23/队列1-基本概念及实现方法/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -340,7 +319,7 @@ CNZZ|站长统计
 
           
           
-             <span id="/2016/01/26/hexo博客的优化与配置/" class="leancloud_visitors" data-flag-title="hexo博客的优化与配置">
+             <span id="/2016/07/23/队列1-基本概念及实现方法/" class="leancloud_visitors" data-flag-title="队列1-基本概念及实现方法">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -363,36 +342,35 @@ CNZZ|站长统计
       
 
       
-        <h1 id="u6DFB_u52A0_u7EDF_u8BA1_u4EE3_u7801"><a href="#u6DFB_u52A0_u7EDF_u8BA1_u4EE3_u7801" class="headerlink" title="添加统计代码"></a>添加统计代码</h1><p>上周成功用Hexo+Github Pages搭建好博客，但是还有很多功能等待添加的,今天就继续进行优化，首先是添加统计代码，数据统计方面有以下几个:</p>
-<ol>
-<li><a href="http://www.google.com/analytics/web/?hl=zh-CN" target="_blank" rel="external">Google Analytics</a></li>
-<li><a href="http://tongji.baidu.com/web/welcome/login" target="_blank" rel="external">百度统计</a></li>
-<li><a href="http://busuanzi.ibruce.info/" target="_blank" rel="external">不蒜子</a></li>
-</ol>
-<p>然后就是站长工具:</p>
-<ol>
-<li><a href="http://zhanzhang.cnzz.com/" target="_blank" rel="external">CNZZ|站长统计</a></li>
-<li><a href="http://www.google.com/intl/zh-CN/webmasters" target="_blank" rel="external">谷歌站长工具</a></li>
-<li><a href="http://zhanzhang.baidu.com/" target="_blank" rel="external">百度站长工具</a></li>
-<li><a href="http://tool.chinaz.com/" target="_blank" rel="external">站长之家工具</a></li>
-<li><a href="http://zhanzhang.so.com/" target="_blank" rel="external">360搜索站长平台</a></li>
-</ol>
-<p>感觉站长工具会比较详细点，所以就采用站长工具，用的是cnzz的，参考了<a href="http://blog.csdn.net/whjkm/article/details/37884563" target="_blank" rel="external">hexo博客的优化与配置——添加统计代码</a>.</p>
-<p>首先在<code>\theme\yilia\_config.yml</code>添加一行代码:</p>
-<pre><code>#### Analytics
-cnzz: true
-</code></pre><p>这里我用的是<strong>yilia</strong>主题。</p>
-<p>登录<a href="http://zhanzhang.cnzz.com/" target="_blank" rel="external">CNZZ</a>中，注册，添加网站，然后会得到代码，选择想要显示的形式，可以只是文字形式，也可以是图表形式，复制给出的代码，然后在<code>\theme\yilia\layout\_partial</code>里面创建一个<strong>cnzz.ejs</strong>文件，把刚刚复制的代码添加进去:</p>
-<pre><code>&lt;% if (theme.cnzz){ %&gt; 
-&lt;script type=&quot;text/javascript&quot;&gt;
-    var cnzz_protocol = ((&quot;https:&quot; == document.location.protocol) ? &quot; https://&quot; : &quot; http://&quot;);
-    document.write(unescape(&quot;%3Cspan id=&apos;cnzz_stat_icon_1257376919&apos;%3E%3C/span%3E%3Cscript src=&apos;&quot; + cnzz_protocol + &quot;s11.cnzz.com/z_stat.php%3Fid%3D1257376919&apos; type=&apos;text/javascript&apos;%3E%3C/script%3E&quot;));
-&lt;/script&gt; 
-&lt;% } %&gt;
-</code></pre><p>主要是替代这段代码中第二行<strong>&lt;script </strong>开始到倒数第二行的<strong></strong>。</p>
-<p>最后在after_footer.ejs（或者footer，或head，可以自己选择需要出现站长统计的位置）的后面添加一行代码即可:</p>
-<pre><code>&lt;%- partial(&apos;cnzz&apos;) %&gt; 
-</code></pre><p>这样就可以了，然后就执行<code>hexo generate</code>,<code>hexo deploy</code>发布网站即可。</p>
+        <p>继续是《数据结构算法与应用：C++语言描述》的笔记，这是第六章队列的内容。</p>
+<blockquote>
+<p>队列是一种特殊的线性表，其插入和删除操作分别在线性表的两端进行，因此，队列是一个<strong>先进先出(first-in-first-out,FIFO)的线性表</strong>。</p>
+</blockquote>
+<h3 id="u62BD_u8C61_u6570_u636E_u7C7B_u578B"><a href="#u62BD_u8C61_u6570_u636E_u7C7B_u578B" class="headerlink" title="抽象数据类型"></a>抽象数据类型</h3><blockquote>
+<p>定义  队列(queue)是一个线性表，其插入和删除操作分别在表的不同端进行。添加新元素的那一端称为队尾(rear),而删除元素的那一端被称为队首(front)。</p>
+</blockquote>
+<p>其抽象数据类型如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#25277;&#35937;&#25968;&#25454;&#31867;&#22411;Queue&#123;&#10;&#23454;&#20363;&#10;    &#26377;&#24207;&#32447;&#24615;&#34920;&#65292;&#19968;&#31471;&#31216;&#20026;front&#65292;&#21478;&#19968;&#31471;&#31216;&#20026;rear&#65307;&#10;&#25805;&#20316;&#10;    Create(): &#21019;&#24314;&#19968;&#20010;&#31354;&#30340;&#38431;&#21015;&#65307;&#10;    IsEmpty(): &#22914;&#26524;&#38431;&#21015;&#20026;&#31354;&#65292;&#21017;&#36820;&#22238;true&#65292;&#21542;&#21017;&#36820;&#22238;false&#65307;&#10;    IsFull(): &#22914;&#26524;&#38431;&#21015;&#28385;&#65292;&#21017;&#36820;&#22238;true&#65292;&#21542;&#21017;&#36820;&#22238;false&#65307;&#10;    First(): &#36820;&#22238;&#38431;&#21015;&#30340;&#31532;&#19968;&#20010;&#20803;&#32032;&#65307;&#10;    Last(): &#36820;&#22238;&#38431;&#21015;&#30340;&#26368;&#21518;&#19968;&#20010;&#20803;&#32032;&#65307;&#10;    Add(x): &#21521;&#38431;&#21015;&#20013;&#28155;&#21152;&#20803;&#32032;x&#65307;&#10;    Delete(x): &#21024;&#38500;&#38431;&#39318;&#20803;&#32032;&#65292;&#24182;&#36865;&#20837;x&#65307;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="u516C_u5F0F_u63CF_u8FF0"><a href="#u516C_u5F0F_u63CF_u8FF0" class="headerlink" title="公式描述"></a>公式描述</h3><p>  使用公式$location(i)=i-1$来描述一个队列，那么所使用的数组是<code>queue[MaxSize]</code>,那么第一个元素是queue[0],第二个元素是queue<a href="http://7xrluf.com1.z0.glb.clouddn.com/%E9%98%9F%E5%88%971.png" target="_blank" rel="external">1</a>,$\cdots$。<strong>front总是为0，而rear始终是最后一个元素的位置，队列的长度为rear+1，对于一个空队列有rear=-1</strong>。</p>
+<p>  按照上述公式描述队列，在添加一个元素的时候，需要将rear加1，并把新元素放入queue[rear]，其所需要的时间是$O(1)$。而删除一个元素，则需要将位置1到位置n的元素分别左移一个位置，即删除一个元素需要花费的时间是$\theta(n)$，n是删除完成后队列中的元素数目。因此，这个公式对于队列的删除操作会花费比较多时间，虽然其应用在堆栈的时候，堆栈的添加和删除操作所需时间只需要$\theta(1)$。</p>
+<p>  这里考虑另一个公式$location(i)=location(1)+i-1$,它可以使得队列的删除操作所需要的时间减小至$\theta(1)$。因为在删除的时候，只需要简单的将location(1)加1即可。在用该公式的时候，<strong>front = location(1), rear=location(最后一个元素),一个空队列具有形状$rear \lt front$</strong>。</p>
+<p>  如下图所示，每次操作将导致front右移一个位置。</p>
+<p>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/%E9%98%9F%E5%88%971.png" alt="此处输入图片的描述"></p>
+<p>  当$rear \lt MaxSize-1$时才可以直接在队列的尾部添加新元素。若$rear = MaxSize-1且front \gt 0$时（表明队列未满），为了能够继续向队列添加新元素，必须将所有元素平移到队列的左端，如下图所示，以便在队列的右端留出空间。在使用新的公式情况下，最坏情况下的时间复杂性增加了$\theta(n)$，所以，新公式在提高删除操作执行效率的同时，却降低了添加操作的执行效率。</p>
+<p>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/%E9%98%9F%E5%88%972.png" alt="此处输入图片的描述"></p>
+<p>  上述两个公式都各有缺点，所以这里就有了第三个公式，可以将队列的添加和删除操作在最坏情况下的时间复杂性均为$\theta(1)$,如下所示：<br>$$<br>location(i) = (location(1)+i-1)\% MaxSize<br>$$<br>这个时候用来描述队列的数组被视为一个环，如下所示，此时，<strong>front指向队列首元素的下一个位置（逆时针），而rear的含义不变</strong>。下图b是添加一个元素，而图c表示的是删除了一个元素。</p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E9%98%9F%E5%88%973.png" alt="此处输入图片的描述"></p>
+<p>当且仅当front=rear时队列为空，但是由于队列满的条件也是front=rear，所以为了避免这种问题，可以不允许队列被填满，在添加元素前，先判断本次操作是否会导致队列被填满，如果是，则报错。因此，队列的最大容量实际上是MaxSize-1。</p>
+<p>下面给出基于公式化描述的类Queue的代码实现。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#ifndef QUEUE_H_&#10;#define QUEUE_H_&#10;#include&#60;iostream&#62;&#10;&#10;template&#60;class T&#62;&#10;class Queue&#123;&#10;private:&#10;    // &#19982;&#31532;&#19968;&#20010;&#20803;&#32032;&#22312;&#36870;&#26102;&#38024;&#26041;&#21521;&#19978;&#30456;&#24046;&#19968;&#20010;&#20301;&#32622;&#10;    int front;&#10;    // &#25351;&#21521;&#26368;&#21518;&#19968;&#20010;&#20803;&#32032;&#10;    int rear;&#10;    int MaxSize;&#10;    T* queue;&#10;public:&#10;    Queue(int MaxQueueSize = 10);&#10;    ~Queue()&#123; delete[] queue; &#125;&#10;    bool IsEmpty() const &#123; return front == rear; &#125;&#10;    bool IsFull() const &#123;&#10;        return (((rear + 1) % MaxSize == front) ? 1 : 0);&#10;    &#125;&#10;    T First() const;&#10;    T Last() const;&#10;    Queue&#60;T&#62;&#38; Add(const T&#38; x);&#10;    Queue&#60;T&#62;&#38; Delete(T&#38; x);&#10;    void Output(std::ostream&#38;);&#10;&#125;;&#10;#endif</span><br></pre></td></tr></table></figure></p>
+<p>下面给出其添加和删除操作函数的实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template&#60;class T&#62;&#10;Queue&#60;T&#62;&#38; Queue&#60;T&#62;::Add(const T&#38; x)&#123;&#10;    // &#23558;x&#28155;&#21152;&#21040;&#38431;&#21015;&#30340;&#23614;&#37096;&#10;    if (IsFull())&#10;        throw NoMem();&#10;    rear = (rear + 1) % MaxSize;&#10;    queue[rear] = x;&#10;    return *this;&#10;&#125;&#10;&#10;template&#60;class T&#62;&#10;Queue&#60;T&#62;&#38; Queue&#60;T&#62;::Delete(T&#38; x)&#123;&#10;    // &#21024;&#38500;&#31532;&#19968;&#20010;&#20803;&#32032;&#65292;&#24182;&#23558;&#20854;&#36865;&#20837;x&#10;    if (IsEmpty())&#10;        throw OutOfBounds();&#10;    front = (front + 1)&#38;MaxSize;&#10;    x = queue[front];&#10;    return *this;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其他成员函数实现可以查看<a href="https://github.com/ccc013/DataStructe-Algorithms_Study/blob/master/Queue/Queue.h" target="_blank" rel="external">Queue-数组实现</a>。</p>
+<h3 id="u94FE_u8868_u63CF_u8FF0"><a href="#u94FE_u8868_u63CF_u8FF0" class="headerlink" title="链表描述"></a>链表描述</h3><p>  像堆栈一样，也可以使用链表来实现一个队列。此时需要两个变量<strong>front和rear</strong>分别跟踪队列的两端。这时有两种情形：从front开始链接到rear，如下图a所示，或者从rear开始链接到front，如下图b所示。</p>
+<p>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/%E9%98%9F%E5%88%974.png" alt="此处输入图片的描述"></p>
+<p>  下面两张图分别展示了两种情形添加和删除操作，两种情形都适合于添加操作，而从front到rear的链接更便于删除操作的执行，因此，我们将采用从front到rear的链接模式。</p>
+<p>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/%E9%98%9F%E5%88%975.png" alt="此处输入图片的描述"> <img src="http://7xrluf.com1.z0.glb.clouddn.com/%E9%98%9F%E5%88%976.png" alt="此处输入图片的描述"></p>
+<p>  可以取处置<strong>front=rear=0，且当且仅当队列为空时front=0</strong>。下面程序给出自定义类<strong>LinkedQueue</strong>。除了析构函数外，链表队列所有成员函数的复杂性均为$\theta(1)$。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#ifndef LINKEDQUEUE_H_&#10;#define LINKEDQUEUE_H_&#10;#include&#60;iostream&#62;&#10;&#10;template&#60;class T&#62;&#10;class LinkedQueue;&#10;&#10;template&#60;class T&#62;&#10;class Node&#123;&#10;    friend LinkedQueue&#60;T&#62;;&#10;private:&#10;    T data;&#10;    Node&#60;T&#62;* link;&#10;&#125;;&#10;&#10;template&#60;class T&#62;&#10;class LinkedQueue&#123;&#10;private:&#10;    Node&#60;T&#62;* front;&#10;    Node&#60;T&#62;* rear;&#10;public:&#10;    LinkedQueue()&#123; front = rear = 0; &#125;&#10;    ~LinkedQueue();&#10;    bool IsEmpty() const&#123;&#10;        return ((front) ? false : true);&#10;    &#125;&#10;    bool IsFull() const;&#10;    T First() const;&#10;    T Last() const;&#10;    LinkedQueue&#60;T&#62;&#38; Add(const T&#38; x);&#10;    LinkedQueue&#60;T&#62;&#38; Delete(T&#38; x);&#10;    void Output(std::ostream&#38;);&#10;&#125;;&#10;#endif</span><br></pre></td></tr></table></figure></p>
+<p>然后同样是给出添加和删除操作的实现代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template&#60;class T&#62;&#10;LinkedQueue&#60;T&#62;&#38; LinkedQueue&#60;T&#62;::Add(const T&#38; x)&#123;&#10;    // &#28155;&#21152;&#20803;&#32032;x&#10;    Node&#60;T&#62;* p = new Node&#60;T&#62;;&#10;    p-&#62;data = x;&#10;    p-&#62;link = 0;&#10;    if (front)&#10;        // &#38431;&#21015;&#19981;&#20026;&#31354;&#10;        rear-&#62;link = p;&#10;    else&#10;        // &#38431;&#21015;&#20026;&#31354;&#10;        front = p;&#10;    rear = p;&#10;&#10;    return *this;&#10;&#125;&#10;&#10;template&#60;class T&#62;&#10;LinkedQueue&#60;T&#62;&#38; LinkedQueue&#60;T&#62;::Delete(T&#38; x)&#123;&#10;    // &#21024;&#38500;&#31532;&#19968;&#20010;&#20803;&#32032;&#65292;&#24182;&#25918;&#20837;x&#10;    if (IsEmpty())&#10;        throw OutOfBounds();&#10;    x = front-&#62;data;&#10;&#10;    // &#21024;&#38500;&#31532;&#19968;&#20010;&#33410;&#28857;&#10;    Node&#60;T&#62;* p = front;&#10;    front = front-&#62;link;&#10;    delete p;&#10;&#10;    return *this;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>具体实现可以查看<a href="https://github.com/ccc013/DataStructe-Algorithms_Study/blob/master/Queue/LinkedQueue.h" target="_blank" rel="external">链表实现的队列</a></p>
+<h3 id="u5C0F_u7ED3"><a href="#u5C0F_u7ED3" class="headerlink" title="小结"></a>小结</h3><p>  本节主要是简单介绍了队列的定义以及使用数组和链表来实现的方法。</p>
 
       
     </div>
@@ -414,9 +392,9 @@ cnzz: true
       
         <div class="post-tags">
           
-            <a href="/tags/Hexo/" rel="tag">#Hexo</a>
+            <a href="/tags/数据结构/" rel="tag">#数据结构</a>
           
-            <a href="/tags/技术/" rel="tag">#技术</a>
+            <a href="/tags/算法/" rel="tag">#算法</a>
           
         </div>
       
@@ -425,17 +403,13 @@ cnzz: true
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/01/21/2015总结-2016展望/" rel="next" title="2015总结 & 2016展望">
-                <i class="fa fa-chevron-left"></i> 2015总结 & 2016展望
+              <a href="/2016/07/21/堆栈2-应用1/" rel="next" title="堆栈2-应用">
+                <i class="fa fa-chevron-left"></i> 堆栈2-应用
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/04/20/Application-Fundamentals/" rel="prev" title="Android官方文档Guide阅读系列(1)--Application Fundamentals">
-                Android官方文档Guide阅读系列(1)--Application Fundamentals <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -461,8 +435,8 @@ cnzz: true
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/01/26/hexo博客的优化与配置/"
-           data-title="hexo博客的优化与配置" data-url="http://ccc013.github.io/2016/01/26/hexo博客的优化与配置/">
+      <div class="ds-thread" data-thread-key="2016/07/23/队列1-基本概念及实现方法/"
+           data-title="队列1-基本概念及实现方法" data-url="http://ccc013.github.io/2016/07/23/队列1-基本概念及实现方法/">
       </div>
     
   </div>
@@ -651,7 +625,7 @@ cnzz: true
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#u6DFB_u52A0_u7EDF_u8BA1_u4EE3_u7801"><span class="nav-number">1.</span> <span class="nav-text">添加统计代码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u62BD_u8C61_u6570_u636E_u7C7B_u578B"><span class="nav-number">1.</span> <span class="nav-text">抽象数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u516C_u5F0F_u63CF_u8FF0"><span class="nav-number">2.</span> <span class="nav-text">公式描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u94FE_u8868_u63CF_u8FF0"><span class="nav-number">3.</span> <span class="nav-text">链表描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5C0F_u7ED3"><span class="nav-number">4.</span> <span class="nav-text">小结</span></a></li></ol></div>
             
           </div>
         </section>
