@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Stay hungry, stay foolish]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://ccc013.github.io/"/>
-  <updated>2016-08-07T10:40:16.987Z</updated>
+  <updated>2016-08-07T10:54:23.902Z</updated>
   <id>http://ccc013.github.io/</id>
   
   <author>
@@ -19,8 +19,8 @@
     <link href="http://ccc013.github.io/2016/08/07/%E8%B7%B3%E8%A1%A8-%E6%95%A3%E5%88%972-%E6%95%A3%E5%88%97/"/>
     <id>http://ccc013.github.io/2016/08/07/跳表-散列2-散列/</id>
     <published>2016-08-07T10:38:48.000Z</published>
-    <updated>2016-08-07T10:40:16.987Z</updated>
-    <content type="html"><![CDATA[<p>继续是《数据结构算法与应用：C++语言描述》的笔记，这是第七章跳表和散列的内容，本节内容是介绍字典的另一种描述方法–散列以及一个有关文本压缩的应用。</p>
+    <updated>2016-08-07T10:54:23.902Z</updated>
+    <content type="html"><![CDATA[<p>继续是《数据结构算法与应用：C++语言描述》的笔记，这是第七章跳表和散列的内容，本节内容是介绍字典的另一种描述方法–散列。</p>
 <h3 id="u6563_u5217_u8868_u63CF_u8FF0"><a href="#u6563_u5217_u8868_u63CF_u8FF0" class="headerlink" title="散列表描述"></a>散列表描述</h3><h4 id="u7406_u60F3_u6563_u5217"><a href="#u7406_u60F3_u6563_u5217" class="headerlink" title="理想散列"></a>理想散列</h4><blockquote>
 <p>字典的另一种描述方法就是<strong>散列（hash）</strong>，它是用一个散列函数（hash function）把关键字映射到散列表（hash table）中的特定位置。</p>
 </blockquote>
@@ -58,8 +58,8 @@
 <h3 id="u5C0F_u7ED3"><a href="#u5C0F_u7ED3" class="headerlink" title="小结"></a>小结</h3><p>  本节介绍了字典的另一种实现方法–散列的实现。</p>
 ]]></content>
     <summary type="html">
-    <![CDATA[<p>继续是《数据结构算法与应用：C++语言描述》的笔记，这是第七章跳表和散列的内容，本节内容是介绍字典的另一种描述方法–散列以及一个有关文本压缩的应用。</p>
-<h3 id="u6563_u5217_u8868_u63CF_u8FF0"><a href="#u6563_u52]]>
+    <![CDATA[<p>继续是《数据结构算法与应用：C++语言描述》的笔记，这是第七章跳表和散列的内容，本节内容是介绍字典的另一种描述方法–散列。</p>
+<h3 id="u6563_u5217_u8868_u63CF_u8FF0"><a href="#u6563_u5217_u8868_u63C]]>
     </summary>
     
       <category term="数据结构" scheme="http://ccc013.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
