@@ -1,0 +1,919 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="数据结构,算法," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Cai's blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon/favicon.png?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="继续是《数据结构算法与应用：C++语言描述》的笔记，这是第七章跳表和散列的内容，本节内容是介绍字典的另一种描述方法–散列以及一个有关文本压缩的应用。
+散列表描述理想散列
+字典的另一种描述方法就是散列（hash），它是用一个散列函数（hash function）把关键字映射到散列表（hash table）中的特定位置。
+
+也就是使用哈希表来描述字典了。
+在理想情况下，如果元素e的关键字是k，散列函数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="跳表&散列2-散列">
+<meta property="og:url" content="http://ccc013.github.io/2016/08/07/跳表-散列2-散列/index.html">
+<meta property="og:site_name" content="Cai's blog">
+<meta property="og:description" content="继续是《数据结构算法与应用：C++语言描述》的笔记，这是第七章跳表和散列的内容，本节内容是介绍字典的另一种描述方法–散列以及一个有关文本压缩的应用。
+散列表描述理想散列
+字典的另一种描述方法就是散列（hash），它是用一个散列函数（hash function）把关键字映射到散列表（hash table）中的特定位置。
+
+也就是使用哈希表来描述字典了。
+在理想情况下，如果元素e的关键字是k，散列函数">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E6%95%A3%E5%88%971.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E6%95%A3%E5%88%972.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E6%95%A3%E5%88%973.png">
+<meta property="og:updated_time" content="2016-08-07T10:40:16.987Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="跳表&散列2-散列">
+<meta name="twitter:description" content="继续是《数据结构算法与应用：C++语言描述》的笔记，这是第七章跳表和散列的内容，本节内容是介绍字典的另一种描述方法–散列以及一个有关文本压缩的应用。
+散列表描述理想散列
+字典的另一种描述方法就是散列（hash），它是用一个散列函数（hash function）把关键字映射到散列表（hash table）中的特定位置。
+
+也就是使用哈希表来描述字典了。
+在理想情况下，如果元素e的关键字是k，散列函数">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 5881344,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 跳表&散列2-散列 | Cai's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1257376919&web_id=1257376919" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <!-- add Fork me on Github -->
+    <a href="https://github.com/ccc013"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
+
+    <!--add Fork me on Github  -->
+    
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Cai's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Stay hungry, stay foolish</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/abou" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                跳表&散列2-散列
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-07T18:38:48+08:00" content="2016-08-07">
+              2016-08-07
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/07/跳表-散列2-散列/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/07/跳表-散列2-散列/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/08/07/跳表-散列2-散列/" class="leancloud_visitors" data-flag-title="跳表&散列2-散列">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>继续是《数据结构算法与应用：C++语言描述》的笔记，这是第七章跳表和散列的内容，本节内容是介绍字典的另一种描述方法–散列以及一个有关文本压缩的应用。</p>
+<h3 id="u6563_u5217_u8868_u63CF_u8FF0"><a href="#u6563_u5217_u8868_u63CF_u8FF0" class="headerlink" title="散列表描述"></a>散列表描述</h3><h4 id="u7406_u60F3_u6563_u5217"><a href="#u7406_u60F3_u6563_u5217" class="headerlink" title="理想散列"></a>理想散列</h4><blockquote>
+<p>字典的另一种描述方法就是<strong>散列（hash）</strong>，它是用一个散列函数（hash function）把关键字映射到散列表（hash table）中的特定位置。</p>
+</blockquote>
+<p>也就是使用哈希表来描述字典了。</p>
+<p>在理想情况下，如果元素e的关键字是k，散列函数是f，那么e在散列表中的位置为$f(k)$。要搜索关键字为k的元素，首先要计算出$f(k)$，然后看$f(k)$处是否有元素，如果有，则找到该元素，如果没有，说明该字典中不包含该元素。在前一种情况中，如果要删除该元素，只需要把表中$f(k)$位置置为空即可，在后一种情况中，可以通过把元素放在$f(k)$位置以实现插入。</p>
+<p>理想情况下，初始化一个空字典需要的时间为$\theta(b)$(b是散列表中位置的个数），搜索、插入和删除操作的时间均为$\theta(1)$。在许多场合都可以使用理想的散列方法，但对于关键字变化范围太大的应用是不能创建这样一个散列表的。</p>
+<h4 id="u7EBF_u6027_u5F00_u578B_u5BFB_u5740_u6563_u5217"><a href="#u7EBF_u6027_u5F00_u578B_u5BFB_u5740_u6563_u5217" class="headerlink" title="线性开型寻址散列"></a>线性开型寻址散列</h4><p>  当关键字的范围太大，不能用理想方法表示时，可以采用比关键字范围小的散列表以及把多个关键字映射到同一个位置的散列函数。虽然有多种函数映射方法，但最常用的还是<strong>除法映射</strong>。其形式如下：<br>$$<br>f(k) = k \% D<br>$$<br>其中k是关键字，而D是散列表的大小，也就是位置数，而%是求模操作符。散列表中的位置号从0到D-1，每一个位置称为<strong>桶（bucket）</strong>。若关键字不是正整数型（如int，long,char, unsigned char等），则在计算f(k)之前必须把它转换成非负整数。对于一个长字符串，可以采用取其2个或4个字母来变成无符号整数或无符号长整数的方法。f(k)是存储关键字为k的元素的<strong>起始桶</strong>，在良性情况下，起始桶中存储的元素即是关键字为K的元素。</p>
+<p>下图中给出一个散列表ht，桶号从0到10，在图a中，表中只有3个元素，除数D是11，由于80%11=3，所以80的位置是3,40%11=7,65%11=10，每个元素都在相应的桶中，散列表中余下的桶为空。</p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E6%95%A3%E5%88%971.png" alt="此处输入图片的描述"></p>
+<p>现在假设要插入58,58的起始桶应该是f(58)=58%11=3,但是此时该桶中已经放了80了，这个时候就发生了<strong>碰撞</strong>。一般来说，一个桶中是可以存储多个元素的，而存储桶中若没有空间就发生<strong>溢出</strong>。但在我们的表中，每个桶只能存储一个元素，因此同时发生了碰撞和溢出。这个时候处理58的最简单的办法就是将其存储到表中下一个可用的桶中，这种解决溢出的方法叫做<strong>线性开型寻址(linear open addressing)</strong>。</p>
+<p>因此如图b所示，将58存放在4号桶中。假设下一个要插入的元素值是24，其起始桶应该是2，然后就放入2号桶中，然后要插入35，其起始桶是2号，使用线性开型寻址的方法，它将被放入5号桶，最后一个要插入的是98，而10号桶已经满了，此时它被插入0号桶中。<strong>因此，在寻找下一个可用桶时，表被视为环形的。</strong></p>
+<p>下面给出采用线性开型寻址的散列表的类定义。在类定义中假定散列表中每个元素的类型都是E，每个元素都有一个类型为K的key域。key域是用来计算起始桶的，因此类型K必须能够适应取模操作%。散列表使用了两个数组，ht和empty。当且仅当ht[i]中不含有元素时，empty[i]为true。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template&#60;class E, class K&#62;&#10;class HashTable&#123;&#10;private:&#10;    int hSearch(const K&#38; k)const;&#10;    // &#25955;&#21015;&#20989;&#25968;&#30340;&#38500;&#25968;&#10;    int D;&#10;    // &#25955;&#21015;&#25968;&#32452;&#10;    E *ht;&#10;    // &#19968;&#32500;&#25968;&#32452;&#10;    bool *empty;&#10;public:&#10;    HashTable(int divisor = 11);&#10;    ~HashTable()&#123; &#10;        delete[] ht;&#10;        delete[] empty;&#10;    &#125;&#10;    bool Search(const K&#38; k, E&#38; e)const;&#10;    HashTable&#60;E, K&#62;&#38; Insert(const E&#38;e);&#10;    HashTable&#60;E, K&#62;&#38; Delete(const K&#38;k, E&#38; e);&#10;    void Output(std::ostream&#38;);&#10;&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>下面给出搜索操作的实现，对于私有成员<strong>hSearch</strong>会返回b号桶的三种情况有：1）<code>empty[b] == false &amp;&amp; ht[b] == k</code>；2）<code>empty[b] == true</code>，即表中没有关键字值为k的元素；3）<code>empty[b] == true &amp;&amp; ht[b] != k</code>,且表已满。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template&#60;class E, class K&#62;&#10;int HashTable&#60;E, K&#62;::hSearch(const K&#38; k)const&#123;&#10;    // &#26597;&#25214;&#19968;&#20010;&#24320;&#22320;&#22336;&#34920;&#65292;&#22914;&#26524;&#23384;&#22312;&#65292;&#36820;&#22238;k&#30340;&#20301;&#32622;&#65292;&#21542;&#21017;&#36820;&#22238;&#25554;&#20837;&#28857;&#65288;&#22914;&#26524;&#26377;&#36275;&#22815;&#31354;&#38388;&#65289;&#10;    // &#36215;&#22987;&#26742;&#10;    int i = k % D;&#10;    // &#22312;&#36215;&#22987;&#26742;&#24320;&#22987;&#10;    int j = i;  &#10;    do&#123;&#10;        if (empty[j] || ht[j] == k)&#10;            return j;&#10;        // &#19979;&#19968;&#20010;&#26742;&#10;        j = (j + 1) % D;&#10;    &#125; while (j != i); // j== i &#34920;&#31034;&#22238;&#21040;&#36215;&#22987;&#26742;&#10;&#10;    // &#34920;&#24050;&#32463;&#28385;&#10;    return j;&#10;&#125;&#10;&#10;template&#60;class E, class K&#62;&#10;bool HashTable&#60;E, K&#62;::Search(const K&#38; k, E&#38; e)const&#123;&#10;    // &#25628;&#32034;&#19982;k&#30456;&#21305;&#37197;&#30340;&#20803;&#32032;&#24182;&#25918;&#20837;e&#65292;&#22914;&#26524;&#19981;&#23384;&#22312;&#65292;&#21017;&#36820;&#22238;false;&#10;    int b = hSearch(k);&#10;    if (empty[b] || ht[b] != k)&#10;        return false;&#10;    e = ht[b];&#10;    return true;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>插入和删除操作如下，其中书中没有实现删除操作，而是作为课后练习题，所以删除操作是自己实现的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template&#60;class E, class K&#62;&#10;HashTable&#60;E, K&#62;&#38; HashTable&#60;E, K&#62;::Insert(const E&#38; e)&#123;&#10;    // &#22312;&#25955;&#21015;&#34920;&#20013;&#25554;&#20837;&#19968;&#20010;&#20803;&#32032;&#10;    K k = e;&#10;    int b = hSearch(k);&#10;&#10;    // &#26816;&#26597;&#26159;&#21542;&#33021;&#23436;&#25104;&#25554;&#20837;&#10;    if (empty[b])&#123;&#10;        empty[b] = false;&#10;        ht[b] = e;&#10;        return *this;&#10;    &#125;&#10;&#10;    // &#19981;&#33021;&#25554;&#20837;&#65292;&#26816;&#26597;&#26159;&#21542;&#26377;&#37325;&#22797;&#20540;&#25110;&#32773;&#34920;&#28385;&#10;    if (ht[b] == k)&#123;&#10;        std::cerr &#60;&#60; &#34;The key &#34; &#60;&#60; k &#60;&#60; &#34; already in the HashTable\n&#34;;&#10;        return *this;&#10;    &#125;&#10;    else&#123;&#10;        std::cerr &#60;&#60; &#34;The  HashTable is full.\n&#34;;&#10;        return *this;&#10;    &#125;&#10;&#125;&#10;&#10;template&#60;class E, class K&#62;&#10;HashTable&#60;E, K&#62;&#38; HashTable&#60;E, K&#62;::Delete(const K&#38; k, E&#38; e)&#123;&#10;    // &#21024;&#38500;&#19982;k&#30456;&#21305;&#37197;&#30340;&#20803;&#32032;&#65292;&#24182;&#25918;&#20837;e&#10;    int b = hSearch(k);&#10;&#10;    // &#26816;&#26597;&#26159;&#21542;&#33021;&#36827;&#34892;&#21024;&#38500;&#25805;&#20316;&#10;    if (empty[b])&#123;&#10;        std::cerr &#60;&#60; &#34;The key &#34; &#60;&#60; k &#60;&#60; &#34; is not in the HashTable\n&#34;;&#10;        return *this;&#10;    &#125;&#10;&#10;    // &#21487;&#20197;&#21024;&#38500;&#10;    e = ht[b];&#10;    empty[b] = true;&#10;    ht[b] = 0;&#10;    int i = b;&#10;    int j = (b+1) % D;&#10;    // &#20174;&#19979;&#19968;&#20010;&#26742;&#24320;&#22987;&#25628;&#32034;&#26159;&#21542;&#23384;&#22312;&#21478;&#19968;&#20010;&#36215;&#22987;&#26742;&#19968;&#26679;&#30340;&#20803;&#32032;&#10;    do&#123;&#10;        if (!empty[j])&#123;&#10;            if (ht[j] % D == i)&#123;&#10;                empty[i] = false;&#10;                ht[i] = ht[j];&#10;                empty[j] = true;&#10;                ht[j] = 0;&#10;                i = j;&#10;            &#125;&#10;        &#125;&#10;        j = (j + 1) % D;&#10;    &#125; while (j != b || empty[j]);&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>更详细的例子可以查看<a href="https://github.com/ccc013/DataStructe-Algorithms_Study/blob/master/SkipList&amp;HashTable/HashTable.h" target="_blank" rel="external">字典–哈希表实现</a></p>
+<p>设b是散列表中桶的个数，散列函数中D为除数，且b=D。初始化表的时间是$\theta(b)$。当表中有n个元素时，最坏情况下插入和搜索时间均为$\theta(n)$。而当所有n个关键字值都在同一个桶中时出现最坏的情况。通过比较散列在最坏情况下的复杂性与线性表在最坏情况下的复杂性，可以看到两者完全相同。</p>
+<p>但散列的平均性能还是相当好的。用$S_n$和$U_n$来分别表示一次成功搜索和不成功搜索中平均搜索的桶的个数。对于线性开型寻址，有如下公式成立：<br>$$<br>U_n \sim \frac{1}{2} (1+\frac{1}{(1-\alpha)^2}) \<br>S_n \sim \frac{1}{2} (1+\frac{1}{1-\alpha})<br>$$<br>其中$\alpha = \frac{n}{b}$是负载因子。</p>
+<p>所以若$\alpha =0.5$，则在不成功搜索时平均搜索的桶的个数为2.5个，而成功搜索时则是1.5个。当$\alpha =0.8$，则是50.5和5.5。所以当负载因子为0.5时，使用线性开型寻址散列表的平均性能要比线性表好。</p>
+<p>另一个影响性能的参数是D。<strong>当D是素数或者D没有小于20的素数因子时，可以使性能达到最佳（D等于桶的个数b）</strong>。</p>
+<p>而确定D的值，首先要了解影响成功搜索和不成功搜索性能的因素。通过$S_n$和$U_n$的公式，可以确定$\alpha$的值,然后再结合n的值，可以得到b的最小许可值，然后找到一个比b大的最小整数，这个整数要么是素数，要么没有小于20的素数因子，这个整数即可作为D和b的值。</p>
+<p>另一种计算D的方法是首先根据散列表的最大空间来确定b的最大可能值，然后取D为不大于这个最大值的整数，该整数要么是素数，要么没有小于20的素数因子。例如，如果在表中最多可以分配530个桶，则D和b的最佳选择为23(因23*23=529)。</p>
+<h4 id="u94FE_u8868_u6563_u5217"><a href="#u94FE_u8868_u6563_u5217" class="headerlink" title="链表散列"></a>链表散列</h4><p>  当散列发生溢出的时候，链表是一种好的解决方法。下图给出了散列表在发生溢出时采用链表来进行解决的方法。</p>
+<p>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/%E6%95%A3%E5%88%972.png" alt="此处输入图片的描述"></p>
+<p>  在该散列表的组织中，每个桶仅含有一个节点指针，所有的元素都是存储在该指针所指向的链表中。</p>
+<p>  下面给出代码实现，该类使用了类<strong>SortedChain</strong>的成员。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template&#60;class E, class K&#62;&#10;class ChainHashTable&#123;&#10;private:&#10;    // &#20301;&#32622;&#25968;&#10;    int D;&#10;    // &#38142;&#34920;&#25968;&#32452;&#10;    SortedChain&#60;E, K&#62;* ht;&#10;public:&#10;    ChainHashTable(int divisor = 11)&#123;&#10;        D = divisor;&#10;        ht = new SortedChain&#60;E, K&#62;[D];&#10;    &#125;&#10;    ~ChainHashTable()&#123;&#10;        delete[] ht;&#10;    &#125;&#10;    bool Search(const K&#38;k, E&#38; e)const&#123;&#10;        return ht[k%D].Search(k, e);&#10;    &#125;&#10;    ChainHashTable&#60;E, K&#62;&#38; Insert(const K&#38; k, E&#38; e)&#123;&#10;        ht[k%D].DistinctInsert(k, e);&#10;        return *this;&#10;    &#125;&#10;    ChainHashTable&#60;E, K&#62;&#38; Delete(const K&#38; k, E&#38; e)&#123;&#10;        ht[k%D].Delete(k, e);&#10;        return *this;&#10;    &#125;&#10;    void Output(std::ostream&#38;) const;&#10;&#125;;</span><br></pre></td></tr></table></figure></p>
+<p><strong>一种改进方法是在每条链表中添加一个尾节点，尾节点中的关键字值最起码要比散列中所有元素的关键字值都大。</strong>如下图所示。在实际实现的过程中，所有的链表可以共用同一个尾节点。</p>
+<p>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/%E6%95%A3%E5%88%973.png" alt="此处输入图片的描述"></p>
+<h4 id="u7EBF_u6027_u5F00_u578B_u5BFB_u5740_u4E0E_u94FE_u8868_u6563_u5217_u7684_u6BD4_u8F83"><a href="#u7EBF_u6027_u5F00_u578B_u5BFB_u5740_u4E0E_u94FE_u8868_u6563_u5217_u7684_u6BD4_u8F83" class="headerlink" title="线性开型寻址与链表散列的比较"></a>线性开型寻址与链表散列的比较</h4><p>  将线性开型寻址与没有尾节点的链表散列进行比较。令s为每个元素需占用的空间（以字节为单位），每个指针和每个整数类型的变量各占用2个字节空间。同时，设散列表中有b个桶和n个元素。首先注意到使用线性开型寻址时有$n \le b$,而使用链表散列则是n可能大于b。</p>
+<p>  采用线性开型寻址所需要的空间为$b(s+2)$个字节，其中s为每个元素所占用的字节数。而使用链表所需要的空间为$2b+2n+ns$字节，当$n \lt \frac{bs}{s+2}$时，链表所用的空间要比开型寻址少。</p>
+<p>  在最坏情况下，两种方法进行搜索，都需要搜索所有的n个元素。链表散列的平均搜索次数，其一次不成功搜索和一次成功搜索的平均搜索的桶数如下公式所示：<br>$$<br>U_n   \sim \frac{\alpha+1}{2},\alpha \ge 1 \<br>S_n   \sim 1+\frac{\alpha}{2}<br>$$</p>
+<p>将线性开型寻址的公式与链表散列的公式相比较，可以看到使用链表时的平均性能要优于使用线性开型寻址。例如，当$\alpha = 0.9$时，链表散列的一次不成功搜索，平均需要检查0.95个元素，一次成功搜索需要检查1.45个元素。而对于线性开型寻址，则是分别为50.5个5.5个元素。</p>
+<h4 id="u6563_u5217_u4E0E_u8DF3_u8868_u6BD4_u8F83"><a href="#u6563_u5217_u4E0E_u8DF3_u8868_u6BD4_u8F83" class="headerlink" title="散列与跳表比较"></a>散列与跳表比较</h4><p>  散列与跳表均使用了随机过程来提高字典操作的性能。<strong>使用跳表时，插入操作用随机过程来决定一个元素的级数。</strong>这种级数分配不需要考虑插入元素的值。<strong>在散列中，当对不同元素进行插入时，散列函数随机地位不同元素分配桶，但散列函数需要使用元素的值。</strong></p>
+<p>  <strong>通过使用随机过程，跳表和散列操作的平均复杂性分别为对数时间和常数时间。</strong>跳表的最坏时间复杂性为$(n+ MaxLevel)$，而散列的最坏时间复杂性为$\theta(n)$ 。跳表中指针平均占用的空间约为$Maxlevel+\frac{n}{1-p}$，在最坏情况下可能相当大。链表散列的指针所占用的空间为$D+n$。</p>
+<p>不过，跳表比散列更灵活。例如，只需简单地沿着0级链就可以在线性时间内按升序输出所有的元素。而采用链表散列时，需要$\theta(D+n)$时间去收集n个元素并且需要$O(nlogn)$时间进行排序，之后才能输出。对于其他的操作，如查找或删除最大或最小元素，散列可能要花费更多的时间（仅考虑平均复杂性）。</p>
+<h3 id="u5C0F_u7ED3"><a href="#u5C0F_u7ED3" class="headerlink" title="小结"></a>小结</h3><p>  本节介绍了字典的另一种实现方法–散列的实现。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据结构/" rel="tag">#数据结构</a>
+          
+            <a href="/tags/算法/" rel="tag">#算法</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/27/跳表-散列1-字典-跳表/" rel="next" title="跳表&散列1-字典&跳表">
+                <i class="fa fa-chevron-left"></i> 跳表&散列1-字典&跳表
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/07/跳表-散列2-散列/"
+           data-title="跳表&散列2-散列" data-url="http://ccc013.github.io/2016/08/07/跳表-散列2-散列/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/favicon.png"
+               alt="cai" />
+          <p class="site-author-name" itemprop="name">cai</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ccc013" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2181051220?is_all=1" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/luo-cai" target="_blank" title="Zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Zhihu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net/lc013?viewmode=contents" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  CSDN
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/lmj623565791" title="张鸿洋的博客" target="_blank">张鸿洋的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/guolin_blog" title="郭霖的博客" target="_blank">郭霖的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/singwhatiwanna/article/category/1405419" title="任玉刚" target="_blank">任玉刚</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/Luoshengyang/" title="罗升阳" target="_blank">罗升阳</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://hukai.me/" title="胡凯" target="_blank">胡凯</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.daimajia.com/" title="代码家" target="_blank">代码家</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://hujiaweibujidao.github.io/" title="HujiaweiBujidao" target="_blank">HujiaweiBujidao</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.liaoxuefeng.com/" title="廖雪峰的博客" target="_blank">廖雪峰的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://drakeet.me/" title="Drakeet的个人博客" target="_blank">Drakeet的个人博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.kymjs.com/" title="张涛-开源实验室" target="_blank">张涛-开源实验室</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://gudong.name/" title="咕咚" target="_blank">咕咚</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u6563_u5217_u8868_u63CF_u8FF0"><span class="nav-number">1.</span> <span class="nav-text">散列表描述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u7406_u60F3_u6563_u5217"><span class="nav-number">1.1.</span> <span class="nav-text">理想散列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u7EBF_u6027_u5F00_u578B_u5BFB_u5740_u6563_u5217"><span class="nav-number">1.2.</span> <span class="nav-text">线性开型寻址散列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u94FE_u8868_u6563_u5217"><span class="nav-number">1.3.</span> <span class="nav-text">链表散列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u7EBF_u6027_u5F00_u578B_u5BFB_u5740_u4E0E_u94FE_u8868_u6563_u5217_u7684_u6BD4_u8F83"><span class="nav-number">1.4.</span> <span class="nav-text">线性开型寻址与链表散列的比较</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6563_u5217_u4E0E_u8DF3_u8868_u6BD4_u8F83"><span class="nav-number">1.5.</span> <span class="nav-text">散列与跳表比较</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5C0F_u7ED3"><span class="nav-number">2.</span> <span class="nav-text">小结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cai</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  
+</div>
+
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"cai"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("gmEY36PtfOmueA7roORTu2He-gzGzoHsz", "mzEkjGKehJYxfp1PrU0TYsW3");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+</body>
+</html>
