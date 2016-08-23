@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Stay hungry, stay foolish]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://ccc013.github.io/"/>
-  <updated>2016-08-18T07:05:37.766Z</updated>
+  <updated>2016-08-23T12:31:01.615Z</updated>
   <id>http://ccc013.github.io/</id>
   
   <author>
@@ -13,6 +13,63 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[优先队列1--堆]]></title>
+    <link href="http://ccc013.github.io/2016/08/23/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%971-%E5%A0%86/"/>
+    <id>http://ccc013.github.io/2016/08/23/优先队列1-堆/</id>
+    <published>2016-08-23T12:27:57.000Z</published>
+    <updated>2016-08-23T12:31:01.615Z</updated>
+    <content type="html"><![CDATA[<p>继续是《数据结构算法与应用：C++语言描述》的笔记，这是第九章优先队列的内容。本小节主要介绍的是优先队列的定义以及其中一种实现方法–最大堆的实现，最后是堆的一个应用–堆排序。</p>
+<p>优先队列删除元素时根据优先权高或低的次序，而不是元素进行队列的次序，这与之前第六章介绍的FIFO结构的队列不同。</p>
+<p><strong>可以利用堆数据结构来高效地实现优先队列，堆是一棵完全二叉树</strong>。</p>
+<h3 id="u5F15_u8A00"><a href="#u5F15_u8A00" class="headerlink" title="引言"></a>引言</h3><blockquote>
+<p>优先队列（priority queue)是0个或多个元素的集合，每个元素都有一个优先权或值，对优先队列执行的操作有1）查找；2）插入一个新元素；3）删除。</p>
+</blockquote>
+<p>优先队列可以按搜索的是优先权大或小的元素分为最大优先队列或者最小优先队列，而删除操作则是用来删除对应查找的元素。另外，优先队列中的元素可以有相同的优先权，查找和删除操作可根据任意优先权进行。</p>
+<p>下面给出最大优先队列的抽象数据类型，最小优先队列的抽象数据类型与之相似，只需要将最大改为最小。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#25277;&#35937;&#25968;&#25454;&#31867;&#22411;MaxPriorityQueue&#123;&#10;&#23454;&#20363;&#10;    &#26377;&#38480;&#30340;&#20803;&#32032;&#38598;&#21512;&#65292;&#27599;&#20010;&#20803;&#32032;&#37117;&#26377;&#19968;&#20010;&#20248;&#20808;&#26435;&#10;&#25805;&#20316;&#10;    Create(): &#21019;&#24314;&#19968;&#20010;&#31354;&#30340;&#20248;&#20808;&#38431;&#21015;&#10;    Size(): &#36820;&#22238;&#38431;&#21015;&#20013;&#30340;&#20803;&#32032;&#25968;&#30446;&#10;    Max(): &#36820;&#22238;&#20855;&#26377;&#26368;&#22823;&#20248;&#20808;&#26435;&#30340;&#20803;&#32032;&#10;    Insert(x): &#23558;x&#25554;&#20837;&#38431;&#21015;&#10;    DeleteMax(x): &#20174;&#38431;&#21015;&#20013;&#21024;&#38500;&#20855;&#26377;&#26368;&#22823;&#20248;&#20808;&#26435;&#30340;&#20803;&#32032;&#65292;&#24182;&#23558;&#35813;&#20803;&#32032;&#36820;&#22238;&#33267;x&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="u5806"><a href="#u5806" class="headerlink" title="堆"></a>堆</h3><h4 id="u5B9A_u4E49"><a href="#u5B9A_u4E49" class="headerlink" title="定义"></a>定义</h4><blockquote>
+<p>[最大树（最小树）] 每个节点的值都大于（小于）或等于其子节点（如果有的话）值的树。</p>
+</blockquote>
+<p>最大树与最小树的例子分别如下图9-1,9-2所示。虽然这些树都是二叉树，但最大树不必是二叉树，最大树或最小树节点的子节点个数可以大于2。</p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%A0%861.png" alt="此处输入图片的描述"></p>
+<blockquote>
+<p>[最大堆(最小堆)] 最大（最小）的完全二叉树。</p>
+</blockquote>
+<p>上图9-1b并所示的最大树并不是最大堆，因为它不是完全二叉树，而其他两个最大树是最大堆。同样，图9-2b也不是完全二叉树，所以也不是最小堆，其他两个最小树则是最小堆。</p>
+<p>堆是完成二叉树，可以利用<a href="http://ccc013.github.io/2016/08/18/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%92%8C%E5%AE%9E%E7%8E%B0/">二叉树的基本概念和实现</a>中介绍的公式化描述方案，可用一维数组有效地描述堆，利用二叉树的特性4可将堆中的节点移动到其父节点或子节点处。<strong>另外，堆是完全二叉树，拥有n个元素的堆高度是$\left\lceil  log_2(n+1) \right\rceil$,因此，如果可在$O(height)$时间内完成插入和删除操作，其复杂性是$O(log_2n)$。</strong></p>
+<h4 id="u6700_u5927_u5806_u7684_u63D2_u5165"><a href="#u6700_u5927_u5806_u7684_u63D2_u5165" class="headerlink" title="最大堆的插入"></a>最大堆的插入</h4><p>  如下图9-3a是一个具有5个元素的最大堆，当要加入一个元素的时候，因为堆是完全二叉树，得到的新树结构必然如9-3b所示，这个时候如果新元素的值是5，它比2要大，此时需要将2下移变成左孩子，如图9-3c所示，此外还要与根节点进行比较，这里如果新插入的元素值是21，就大于根节点的20了，此时还需要将20下移到原来2的位置，变成如图9-3d所示。</p>
+<p>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%A0%862.png" alt="此处输入图片的描述"></p>
+<p>  插入策略从叶到根只有单一路径，每层工作需耗时$\theta(1)$,因此实现此策略的时间复杂性是$O(height)=O(log_2n)$。</p>
+<h4 id="u6700_u5927_u5806_u7684_u5220_u9664"><a href="#u6700_u5927_u5806_u7684_u5220_u9664" class="headerlink" title="最大堆的删除"></a>最大堆的删除</h4><p>  假设对图9-3d的最大堆进行删除，需要删除的是元素21，这个时候只剩下5个元素，需要重新构建最大堆的结构，那么最终应该得到如图9-3a的最大堆形式。然后接下来要删除的是元素20，并得到如图9-4b所示的结构，则首先10从位置5移出，但将其放在根节点的位置得到的不是最大堆，则把根节点的两个孩子15和2中较大的一个放到根节点，然后假设将10插入位置2，但是还不是最大堆，因此将14上移到位置2,10放到位置4，得到如图9-4c所示。</p>
+<p>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%A0%863.png" alt="此处输入图片的描述"></p>
+<p>  删除策略如插入策略一样，从堆的根节点到叶节点只有单一路径，每层工作需耗时$\theta(1)$,因此实现此策略的时间复杂性是$O(height)=O(log_2n)$。</p>
+<h4 id="u6700_u5927_u5806_u7684_u521D_u59CB_u5316"><a href="#u6700_u5927_u5806_u7684_u521D_u59CB_u5316" class="headerlink" title="最大堆的初始化"></a>最大堆的初始化</h4><p>  现在假设开始有数组a，它有n个元素，n=10，它可以用如图9-5a所示的完全二叉树表示，但它不是最大堆。为了将其转化为最大堆，从第一个具有孩子的节点开始（即节点10），<strong>这个元素在数组中的位置是$i=[n/2]$，如果以这个元素为根的子树已经是最大堆，则不需要调整，否则必须调整子树成为最大堆，然后继续检查$i-1,i-2,\ldots$等节点为根的子树，直到检查到根节点为止。</strong></p>
+<p>  对图9-5a所示的完全二叉树，首先i=5，因为$10&gt;1$,所以以位置i为根的子树已经是最大堆，接下来检查位置4的子树，$15&lt;17$,它不是最大堆，将其变为最大堆，可得到如图9-5b所示，然后依次检查位置3，位置2以及根节点，分别得到如图9-5c，d所示的最大堆。</p>
+<p>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%A0%864.png" alt="此处输入图片的描述"></p>
+<h4 id="u7C7BMaxHeap"><a href="#u7C7BMaxHeap" class="headerlink" title="类MaxHeap"></a>类MaxHeap</h4><p>  下面程序给出最大堆的类定义。n是私有成员，代表目前堆中的元素的个数；MaxSize是堆的最大容量；heap是存储堆元素的数组，默认大小是10。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template&#60;class T&#62;&#10;class MaxHeap&#123;&#10;private:&#10;    int CurrentSize, MaxSize;&#10;    T* heap;&#10;public:&#10;    MaxHeap(int MaxHeapSize = 10);&#10;    ~MaxHeap()&#123; delete[] heap; &#125;&#10;    int Size() const&#123; return CurrentSize; &#125;&#10;    T Max()&#123;&#10;        if (CurrentSize == 0)&#10;            throw OutOfBounds();&#10;        return heap[1];&#10;    &#125;&#10;    MaxHeap&#60;T&#62;&#38; Insert(const T&#38; x);&#10;    MaxHeap&#60;T&#62;&#38; DeleteMax(T&#38; x);&#10;    void Initialize(T a[], int size, int ArraySize);&#10;&#125;;</span><br></pre></td></tr></table></figure>
+<p>下面给出最大堆的插入、删除和初始化代码实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template&#60;class T&#62;&#10;MaxHeap&#60;T&#62;&#38; MaxHeap&#60;T&#62;::Insert(const T&#38; x)&#123;&#10;    // &#23558;x&#25554;&#20837;&#21040;&#26368;&#22823;&#22534;&#20013;&#10;    if (CurrentSize == MaxSize)&#10;        throw NoMem();&#10;&#10;    // &#20026;x&#23547;&#25214;&#25554;&#20837;&#20301;&#32622;&#10;    int i = ++CurrentSize;&#10;    while (i != 1 &#38;&#38; x &#62; heap[i / 2])&#123;&#10;        // &#19981;&#33021;&#22815;&#23558;x&#25918;&#20837;heap[i]&#10;        heap[i] = heap[i / 2];  // &#23558;&#20803;&#32032;&#19979;&#31227;&#10;        i /= 2; // &#31227;&#21521;&#29238;&#33410;&#28857;&#10;    &#125;&#10;&#10;    heap[i] = x;&#10;    return *this;&#10;&#125;&#10;&#10;template&#60;class T&#62;&#10;MaxHeap&#60;T&#62;&#38; MaxHeap&#60;T&#62;::DeleteMax(T&#38; x)&#123;&#10;    // &#23558;&#26368;&#22823;&#20803;&#32032;&#25918;&#20837;x&#65292;&#24182;&#20174;&#22534;&#20013;&#21024;&#38500;&#26368;&#22823;&#20803;&#32032;&#10;    if (CurrentSize == 0)&#10;        throw OutOfBounds();&#10;&#10;    x = heap[1];    // &#26368;&#22823;&#20803;&#32032;&#10;&#10;    // &#37325;&#26500;&#22534;&#10;    T y = heap[CurrentSize--];  // &#26368;&#21518;&#19968;&#20010;&#20803;&#32032;&#10;&#10;    // &#20174;&#26681;&#24320;&#22987;&#65292;&#20026;y&#23547;&#25214;&#21512;&#36866;&#30340;&#20301;&#32622;&#10;    int i = 1, ci = 2;&#10;    while (ci &#60;= CurrentSize)&#123;&#10;        // heap[ci]&#24212;&#26159;i&#36739;&#22823;&#30340;&#23401;&#23376;&#10;        if (ci &#60; CurrentSize &#38;&#38; heap[ci] &#60; heap[ci + 1])&#10;            ci++;&#10;&#10;        // &#21028;&#26029;&#26159;&#21542;&#33021;&#23558;y&#25918;&#20837;heap[i]&#10;        if (y &#62;= heap[ci])&#10;            break;&#10;&#10;        // &#19981;&#33021;&#10;        heap[i] = heap[ci];&#10;        // &#19979;&#31227;&#19968;&#23618;&#10;        i = ci;&#10;        ci *= 2;&#10;    &#125;&#10;    heap[i] = y;&#10;&#10;    return *this;&#10;&#125;&#10;&#10;template&#60;class T&#62;&#10;void MaxHeap&#60;T&#62;::Initialize(T a[], int size, int ArraySize)&#123;&#10;    // &#25226;&#26368;&#22823;&#22534;&#21021;&#22987;&#21270;&#20026;a&#10;    delete[] heap;&#10;    heap = new T[size + 1];&#10;    for (int s = 1; s &#60;= size; s++)&#123;&#10;        heap[s] = a[s - 1];&#10;    &#125;&#10;    CurrentSize = size;&#10;    MaxSize = ArraySize;&#10;&#10;    //&#20135;&#29983;&#19968;&#20010;&#26368;&#22823;&#22534;&#10;    for (int i = CurrentSize / 2; i &#62;= 1; i--)&#123;&#10;        T y = heap[i];&#10;&#10;        // &#23547;&#25214;&#25918;&#32622;y&#30340;&#20301;&#32622;&#10;        int c = 2 * i;&#10;        while (c &#60;= CurrentSize)&#123;&#10;            if (c &#60; CurrentSize&#38;&#38;heap[c] &#60; heap[c + 1])&#10;                c++;&#10;&#10;            if (y &#62;= heap[c])&#10;                break;&#10;&#10;            heap[c / 2] = heap[c];&#10;            c *= 2;&#10;        &#125;&#10;        heap[c / 2] = y;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>插入代码中，i从新创建的叶节点位置CurrentSize开始，对从该位置到根的路径进行遍历，对每个位置，都检查是否到达跟(i=1)或在i处插入新元素不会改变最大树的性质–$x \le heap[i/2]$，只要满足其中一个条件，就可以在i处插入x，否则会执行循环体中的代码。插入操作的时间复杂性是$O(logn)$。</p>
+<p>删除操作的时间复杂性也是$O(logn)$。</p>
+<p>初始化函数<strong>Initialize</strong>中for循环每次所花时间是$O(logn)$,循环次数是n/2，总的复杂性是$O(nlogn)$。实际应用中，初始化操作的复杂性是$\theta(n)$。</p>
+<p>更完整的代码例子可以查看<a href="https://github.com/ccc013/DataStructe-Algorithms_Study/blob/master/PriorityQueue/MaxHeap.h" target="_blank" rel="external">最大堆的实现</a>。</p>
+<h3 id="u5806_u6392_u5E8F"><a href="#u5806_u6392_u5E8F" class="headerlink" title="堆排序"></a>堆排序</h3><p>  利用堆来实现n个元素的排序，所需时间是$O(nlogn)$,可以将先要排序的n个元素初始化为一个最大堆，然后每次从堆中提取（即删除）元素，各元素将按递减次序排列。初始化所需要的时间是$\theta(n)$,每次删除所需要的时间是$O(logn)$,因此总时间是$O(nlogn)$。</p>
+<p>实现代码如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template&#60;class T&#62;&#10;void HeapSort(T a[], int n)&#123;&#10;    // &#21033;&#29992;&#22534;&#25490;&#24207;&#31639;&#27861;&#23545;a[1:n]&#36827;&#34892;&#25490;&#24207;&#10;    MaxHeap&#60;T&#62; H(1);&#10;    H.Initialize(a, n, n);&#10;&#10;    // &#20174;&#26368;&#22823;&#22534;&#20013;&#36880;&#20010;&#25277;&#21462;&#20803;&#32032;&#10;    T x;&#10;    for (int i=n - 1; i &#62;= 0; i--)&#123;&#10;        H.DeleteMax(x);&#10;        a[i] = x;&#10;    &#125;&#10;&#10;    // &#22312;&#22534;&#30340;&#26512;&#26500;&#20989;&#25968;&#20013;&#20445;&#23384;&#25968;&#32452;a&#10;    H.Deactivate();&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>测试例子如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int main(void)&#123;&#10;    int a[] = &#123; 20, 12, 35, 15, 10, 80, 30, 17, 2, 1 &#125;;&#10;    HeapSort(a, 10);&#10;    for (int i = 0; i &#60; 10; i++)&#10;        cout &#60;&#60; a[i] &#60;&#60; &#34;, &#34;;&#10;&#10;    cout &#60;&#60; &#34;\n&#34;;&#10;&#10;    system(&#34;pause&#34;);&#10;    return 0;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出如下图所示：</p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%A0%865.png" alt="此处输入图片的描述"></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>继续是《数据结构算法与应用：C++语言描述》的笔记，这是第九章优先队列的内容。本小节主要介绍的是优先队列的定义以及其中一种实现方法–最大堆的实现，最后是堆的一个应用–堆排序。</p>
+<p>优先队列删除元素时根据优先权高或低的次序，而不是元素进行队列的次序，这与之前第六章介]]>
+    </summary>
+    
+      <category term="数据结构" scheme="http://ccc013.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+      <category term="算法" scheme="http://ccc013.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[二叉树的基本概念和实现]]></title>
@@ -1322,53 +1379,6 @@
       <category term="Android" scheme="http://ccc013.github.io/tags/Android/"/>
     
       <category term="阅读笔记" scheme="http://ccc013.github.io/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[hexo博客的优化与配置]]></title>
-    <link href="http://ccc013.github.io/2016/01/26/hexo%E5%8D%9A%E5%AE%A2%E7%9A%84%E4%BC%98%E5%8C%96%E4%B8%8E%E9%85%8D%E7%BD%AE/"/>
-    <id>http://ccc013.github.io/2016/01/26/hexo博客的优化与配置/</id>
-    <published>2016-01-26T08:22:04.000Z</published>
-    <updated>2016-01-26T09:23:09.580Z</updated>
-    <content type="html"><![CDATA[<h1 id="u6DFB_u52A0_u7EDF_u8BA1_u4EE3_u7801"><a href="#u6DFB_u52A0_u7EDF_u8BA1_u4EE3_u7801" class="headerlink" title="添加统计代码"></a>添加统计代码</h1><p>上周成功用Hexo+Github Pages搭建好博客，但是还有很多功能等待添加的,今天就继续进行优化，首先是添加统计代码，数据统计方面有以下几个:</p>
-<ol>
-<li><a href="http://www.google.com/analytics/web/?hl=zh-CN" target="_blank" rel="external">Google Analytics</a></li>
-<li><a href="http://tongji.baidu.com/web/welcome/login" target="_blank" rel="external">百度统计</a></li>
-<li><a href="http://busuanzi.ibruce.info/" target="_blank" rel="external">不蒜子</a></li>
-</ol>
-<p>然后就是站长工具:</p>
-<ol>
-<li><a href="http://zhanzhang.cnzz.com/" target="_blank" rel="external">CNZZ|站长统计</a></li>
-<li><a href="http://www.google.com/intl/zh-CN/webmasters" target="_blank" rel="external">谷歌站长工具</a></li>
-<li><a href="http://zhanzhang.baidu.com/" target="_blank" rel="external">百度站长工具</a></li>
-<li><a href="http://tool.chinaz.com/" target="_blank" rel="external">站长之家工具</a></li>
-<li><a href="http://zhanzhang.so.com/" target="_blank" rel="external">360搜索站长平台</a></li>
-</ol>
-<p>感觉站长工具会比较详细点，所以就采用站长工具，用的是cnzz的，参考了<a href="http://blog.csdn.net/whjkm/article/details/37884563" target="_blank" rel="external">hexo博客的优化与配置——添加统计代码</a>.</p>
-<p>首先在<code>\theme\yilia\_config.yml</code>添加一行代码:</p>
-<pre><code>#### Analytics
-cnzz: true
-</code></pre><p>这里我用的是<strong>yilia</strong>主题。</p>
-<p>登录<a href="http://zhanzhang.cnzz.com/" target="_blank" rel="external">CNZZ</a>中，注册，添加网站，然后会得到代码，选择想要显示的形式，可以只是文字形式，也可以是图表形式，复制给出的代码，然后在<code>\theme\yilia\layout\_partial</code>里面创建一个<strong>cnzz.ejs</strong>文件，把刚刚复制的代码添加进去:</p>
-<pre><code>&lt;% if (theme.cnzz){ %&gt; 
-&lt;script type=&quot;text/javascript&quot;&gt;
-    var cnzz_protocol = ((&quot;https:&quot; == document.location.protocol) ? &quot; https://&quot; : &quot; http://&quot;);
-    document.write(unescape(&quot;%3Cspan id=&apos;cnzz_stat_icon_1257376919&apos;%3E%3C/span%3E%3Cscript src=&apos;&quot; + cnzz_protocol + &quot;s11.cnzz.com/z_stat.php%3Fid%3D1257376919&apos; type=&apos;text/javascript&apos;%3E%3C/script%3E&quot;));
-&lt;/script&gt; 
-&lt;% } %&gt;
-</code></pre><p>主要是替代这段代码中第二行<strong>&lt;script </strong>开始到倒数第二行的<strong></strong>。</p>
-<p>最后在after_footer.ejs（或者footer，或head，可以自己选择需要出现站长统计的位置）的后面添加一行代码即可:</p>
-<pre><code>&lt;%- partial(&apos;cnzz&apos;) %&gt; 
-</code></pre><p>这样就可以了，然后就执行<code>hexo generate</code>,<code>hexo deploy</code>发布网站即可。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h1 id="u6DFB_u52A0_u7EDF_u8BA1_u4EE3_u7801"><a href="#u6DFB_u52A0_u7EDF_u8BA1_u4EE3_u7801" class="headerlink" title="添加统计代码"></a>添加统计代码</h1]]>
-    </summary>
-    
-      <category term="Hexo" scheme="http://ccc013.github.io/tags/Hexo/"/>
-    
-      <category term="技术" scheme="http://ccc013.github.io/tags/%E6%8A%80%E6%9C%AF/"/>
     
   </entry>
   

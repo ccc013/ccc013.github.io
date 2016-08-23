@@ -86,44 +86,33 @@
 
 
 
-<meta name="description" content="继续是《数据结构算法与应用：C++语言描述》，第四章数组和矩阵的笔记。本小节介绍几种特殊矩阵的内容。
-定义和应用
-方阵是指具有相同行数和列数的矩阵。
-
-一些常用的特殊方阵如下：
-
-
-对角矩阵 $M$是一个对角矩阵，当前仅当$i \neq j$时，有$M(i,j)=0$。如下图a所示
-三对角矩阵 $M$是一个三对角矩阵，当前仅当$|i-j| \gt 1$时有$M(i,j)=0$。如下图b所示
-下三角">
+<meta name="description" content="继续是《数据结构算法与应用：C++语言描述》的笔记，这是第九章优先队列的内容。本小节主要介绍的是优先队列的定义以及其中一种实现方法–最大堆的实现，最后是堆的一个应用–堆排序。
+优先队列删除元素时根据优先权高或低的次序，而不是元素进行队列的次序，这与之前第六章介绍的FIFO结构的队列不同。
+可以利用堆数据结构来高效地实现优先队列，堆是一棵完全二叉树。
+引言
+优先队列（priority queue)是">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数组和矩阵3-特殊矩阵">
-<meta property="og:url" content="http://ccc013.github.io/2016/07/05/数组和矩阵3-特殊矩阵/index.html">
+<meta property="og:title" content="优先队列1--堆">
+<meta property="og:url" content="http://ccc013.github.io/2016/08/23/优先队列1-堆/index.html">
 <meta property="og:site_name" content="Cai's blog">
-<meta property="og:description" content="继续是《数据结构算法与应用：C++语言描述》，第四章数组和矩阵的笔记。本小节介绍几种特殊矩阵的内容。
-定义和应用
-方阵是指具有相同行数和列数的矩阵。
-
-一些常用的特殊方阵如下：
-
-
-对角矩阵 $M$是一个对角矩阵，当前仅当$i \neq j$时，有$M(i,j)=0$。如下图a所示
-三对角矩阵 $M$是一个三对角矩阵，当前仅当$|i-j| \gt 1$时有$M(i,j)=0$。如下图b所示
-下三角">
-<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E7%9F%A9%E9%98%B52.png">
-<meta property="og:updated_time" content="2016-07-05T12:07:03.764Z">
+<meta property="og:description" content="继续是《数据结构算法与应用：C++语言描述》的笔记，这是第九章优先队列的内容。本小节主要介绍的是优先队列的定义以及其中一种实现方法–最大堆的实现，最后是堆的一个应用–堆排序。
+优先队列删除元素时根据优先权高或低的次序，而不是元素进行队列的次序，这与之前第六章介绍的FIFO结构的队列不同。
+可以利用堆数据结构来高效地实现优先队列，堆是一棵完全二叉树。
+引言
+优先队列（priority queue)是">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E5%A0%861.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E5%A0%862.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E5%A0%863.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E5%A0%864.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E5%A0%865.png">
+<meta property="og:updated_time" content="2016-08-23T12:31:01.615Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="数组和矩阵3-特殊矩阵">
-<meta name="twitter:description" content="继续是《数据结构算法与应用：C++语言描述》，第四章数组和矩阵的笔记。本小节介绍几种特殊矩阵的内容。
-定义和应用
-方阵是指具有相同行数和列数的矩阵。
-
-一些常用的特殊方阵如下：
-
-
-对角矩阵 $M$是一个对角矩阵，当前仅当$i \neq j$时，有$M(i,j)=0$。如下图a所示
-三对角矩阵 $M$是一个三对角矩阵，当前仅当$|i-j| \gt 1$时有$M(i,j)=0$。如下图b所示
-下三角">
+<meta name="twitter:title" content="优先队列1--堆">
+<meta name="twitter:description" content="继续是《数据结构算法与应用：C++语言描述》的笔记，这是第九章优先队列的内容。本小节主要介绍的是优先队列的定义以及其中一种实现方法–最大堆的实现，最后是堆的一个应用–堆排序。
+优先队列删除元素时根据优先权高或低的次序，而不是元素进行队列的次序，这与之前第六章介绍的FIFO结构的队列不同。
+可以利用堆数据结构来高效地实现优先队列，堆是一棵完全二叉树。
+引言
+优先队列（priority queue)是">
 
 
 
@@ -141,7 +130,7 @@
   };
 </script>
 
-  <title> 数组和矩阵3-特殊矩阵 | Cai's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> 优先队列1--堆 | Cai's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -292,7 +281,7 @@
             
             
               
-                数组和矩阵3-特殊矩阵
+                优先队列1--堆
               
             
           </h1>
@@ -304,8 +293,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-05T20:06:20+08:00" content="2016-07-05">
-              2016-07-05
+            <time itemprop="dateCreated" datetime="2016-08-23T20:27:57+08:00" content="2016-08-23">
+              2016-08-23
             </time>
           </span>
 
@@ -315,8 +304,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/07/05/数组和矩阵3-特殊矩阵/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/05/数组和矩阵3-特殊矩阵/" itemprop="commentsCount"></span>
+                <a href="/2016/08/23/优先队列1-堆/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/23/优先队列1-堆/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -326,7 +315,7 @@
 
           
           
-             <span id="/2016/07/05/数组和矩阵3-特殊矩阵/" class="leancloud_visitors" data-flag-title="数组和矩阵3-特殊矩阵">
+             <span id="/2016/08/23/优先队列1-堆/" class="leancloud_visitors" data-flag-title="优先队列1--堆">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -349,40 +338,45 @@
       
 
       
-        <p>继续是《数据结构算法与应用：C++语言描述》，第四章数组和矩阵的笔记。本小节介绍几种特殊矩阵的内容。</p>
-<h3 id="u5B9A_u4E49_u548C_u5E94_u7528"><a href="#u5B9A_u4E49_u548C_u5E94_u7528" class="headerlink" title="定义和应用"></a>定义和应用</h3><blockquote>
-<p>方阵是指具有相同行数和列数的矩阵。</p>
+        <p>继续是《数据结构算法与应用：C++语言描述》的笔记，这是第九章优先队列的内容。本小节主要介绍的是优先队列的定义以及其中一种实现方法–最大堆的实现，最后是堆的一个应用–堆排序。</p>
+<p>优先队列删除元素时根据优先权高或低的次序，而不是元素进行队列的次序，这与之前第六章介绍的FIFO结构的队列不同。</p>
+<p><strong>可以利用堆数据结构来高效地实现优先队列，堆是一棵完全二叉树</strong>。</p>
+<h3 id="u5F15_u8A00"><a href="#u5F15_u8A00" class="headerlink" title="引言"></a>引言</h3><blockquote>
+<p>优先队列（priority queue)是0个或多个元素的集合，每个元素都有一个优先权或值，对优先队列执行的操作有1）查找；2）插入一个新元素；3）删除。</p>
 </blockquote>
-<p>一些常用的特殊方阵如下：</p>
+<p>优先队列可以按搜索的是优先权大或小的元素分为最大优先队列或者最小优先队列，而删除操作则是用来删除对应查找的元素。另外，优先队列中的元素可以有相同的优先权，查找和删除操作可根据任意优先权进行。</p>
+<p>下面给出最大优先队列的抽象数据类型，最小优先队列的抽象数据类型与之相似，只需要将最大改为最小。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#25277;&#35937;&#25968;&#25454;&#31867;&#22411;MaxPriorityQueue&#123;&#10;&#23454;&#20363;&#10;    &#26377;&#38480;&#30340;&#20803;&#32032;&#38598;&#21512;&#65292;&#27599;&#20010;&#20803;&#32032;&#37117;&#26377;&#19968;&#20010;&#20248;&#20808;&#26435;&#10;&#25805;&#20316;&#10;    Create(): &#21019;&#24314;&#19968;&#20010;&#31354;&#30340;&#20248;&#20808;&#38431;&#21015;&#10;    Size(): &#36820;&#22238;&#38431;&#21015;&#20013;&#30340;&#20803;&#32032;&#25968;&#30446;&#10;    Max(): &#36820;&#22238;&#20855;&#26377;&#26368;&#22823;&#20248;&#20808;&#26435;&#30340;&#20803;&#32032;&#10;    Insert(x): &#23558;x&#25554;&#20837;&#38431;&#21015;&#10;    DeleteMax(x): &#20174;&#38431;&#21015;&#20013;&#21024;&#38500;&#20855;&#26377;&#26368;&#22823;&#20248;&#20808;&#26435;&#30340;&#20803;&#32032;&#65292;&#24182;&#23558;&#35813;&#20803;&#32032;&#36820;&#22238;&#33267;x&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="u5806"><a href="#u5806" class="headerlink" title="堆"></a>堆</h3><h4 id="u5B9A_u4E49"><a href="#u5B9A_u4E49" class="headerlink" title="定义"></a>定义</h4><blockquote>
+<p>[最大树（最小树）] 每个节点的值都大于（小于）或等于其子节点（如果有的话）值的树。</p>
+</blockquote>
+<p>最大树与最小树的例子分别如下图9-1,9-2所示。虽然这些树都是二叉树，但最大树不必是二叉树，最大树或最小树节点的子节点个数可以大于2。</p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%A0%861.png" alt="此处输入图片的描述"></p>
 <blockquote>
-<ul>
-<li><strong>对角矩阵</strong> $M$是一个对角矩阵，当前仅当$i \neq j$时，有$M(i,j)=0$。如下图a所示</li>
-<li><strong>三对角矩阵</strong> $M$是一个三对角矩阵，当前仅当$|i-j| \gt 1$时有$M(i,j)=0$。如下图b所示</li>
-<li><strong>下三角矩阵</strong> $M$是一个下三角矩阵，当前仅当$i\lt j$时有$M(i,j)=0$。如下图c所示</li>
-<li><strong>上三角矩阵</strong> $M$是一个上三角矩阵，当前仅当$i\gt j$时有$M(i,j)=0$。如下图d所示</li>
-<li><strong>对称矩阵</strong> $M$是一个对称矩阵，当前仅当对于所有的$i 和 j$有$M(i,j)=M(j,i)$。如下图e所示</li>
-</ul>
+<p>[最大堆(最小堆)] 最大（最小）的完全二叉树。</p>
 </blockquote>
-<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E7%9F%A9%E9%98%B52.png" alt="此处输入图片的描述"></p>
-<h3 id="u5BF9_u89D2_u77E9_u9635"><a href="#u5BF9_u89D2_u77E9_u9635" class="headerlink" title="对角矩阵"></a>对角矩阵</h3><p>  可以采用<code>T d[n][n]</code>这样的二维数组来描述一个元素类型为T的$n \times n$对角矩阵D。<br>  使用数组元素<code>d[i-1][j-1]</code>来表示矩阵元素<strong>D(i,j)</strong>，这种描述形式所需要的存储空间为$n^2 * sizeof(T)$。</p>
-<p>  由于一个对角矩阵最大包含n个非0元素，所以可以采用<code>T d[n]</code>一维数组来描述对角矩阵。其中使用<code>d[i-1]</code>表示矩阵元素<strong>D(i,i)</strong>，而根据对角矩阵的定义，所有未在一维数组中出现的矩阵元素均为0.</p>
-<p>  这里使用如下自定义类<strong>DiagonalMatrix</strong>来实现这种描述。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#ifndef DIAGONALMATRIX_H_&#10;#define DIAGONALMATRIX_H_&#10;&#10;template&#60;class T&#62;&#10;class DiagonalMatrix&#123;&#10;private:&#10;    // &#30697;&#38453;&#32500;&#25968;&#10;    int n;&#10;    // &#23384;&#20648;&#23545;&#35282;&#20803;&#32032;&#30340;&#19968;&#32500;&#25968;&#32452;&#10;    T *d;       &#10;public:&#10;    DiagonalMatrix(int size = 10): n(size)&#123;&#10;        d = new T[n];&#10;    &#125;&#10;    ~DiagonalMatrix()&#123; delete[] d; &#125;&#10;    DiagonalMatrix&#60;T&#62;&#38; Store(const T&#38; x, int i, int j);&#10;    T Retrieve(int i, int j)const;&#10;&#125;;&#10;&#10;template&#60;class T&#62;&#10;DiagonalMatrix&#60;T&#62;&#38; DiagonalMatrix&#60;T&#62;::Store(const T&#38;x, int i, int j)&#123;&#10;    // &#23558;x&#23384;&#20026;D(i,j)&#10;    if (i&#60;1 || j&#60;1 || i&#62;n || j&#62;n)&#10;        throw OutOfBounds();&#10;    if (i != j &#38;&#38; x != 0)&#10;        // &#24517;&#39035;&#28385;&#36275;&#23545;&#35282;&#30697;&#38453;&#30340;&#26465;&#20214;&#65306;i != j &#26102;&#65292;x&#24517;&#39035;&#20026;0&#10;        throw MustBeZero();&#10;    if (i == j)&#10;        d[i - 1] = x;&#10;    return *this;&#10;&#125;&#10;&#10;template&#60;class T&#62;&#10;T DiagonalMatrix&#60;T&#62;::Retrieve(int i, int j)const&#123;&#10;    if (i&#60;1 || j&#60;1 || i&#62;n || j&#62;n)&#10;        throw OutOfBounds();&#10;    if (i == j)&#10;        return d[i - 1];&#10;    return 0;&#10;&#125;&#10;#endif</span><br></pre></td></tr></table></figure></p>
-<p>对于存储和搜索操作，提供了两个不同的函数，而不是使用重载操作符()来完成。此外在存储一个值时，必须保证不会在非对角线位置放置一个非0值；而搜索一个值时，没有必要检查对角线以外的值，因此有必要对这两种情形区别对待。两个函数的复杂性均为$\theta(1)$。</p>
-<h3 id="u4E09_u5BF9_u89D2_u77E9_u9635"><a href="#u4E09_u5BF9_u89D2_u77E9_u9635" class="headerlink" title="三对角矩阵"></a>三对角矩阵</h3><p>  在一个$n \times n$三对角矩阵T中，非0元素排列在如下的三条对角线上：</p>
-<ol>
-<li>主对角线——<strong>i=j</strong></li>
-<li>主对角线之下的对角线(称低对角线)——<strong>i=j+1</strong></li>
-<li>主对角线之上的对角线(称高对角线)——<strong>i=j-1</strong></li>
-</ol>
-<p>这三条对角线上的元素总数为<strong>3n-2</strong>，故可以使用一个拥有3n-2个位置的一维数组来描述T。考察上述图b中所示的$4\times 4$三对角矩阵，三条对角线上总共10个元素。如果将其逐行映射到一维数组t中，则有<code>t[0:9]=[2,1,3,1,3,5,2,7,9,0]</code>;如果逐列映射到t中，则有<code>t=[2,3,1,1,5,3,2,9,7,0]</code>;如果按照对角线的次序，从最下面的对角线开始进行映射，则有<code>t=[3,5,9,2,1,2,0,1,3,7]</code>。所以这里有三种不同的方式来进行T到t的映射。<br>下面的程序定义了类<strong>TridiagonalMatrix</strong>,其中采用了对角线映射方式。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template&#60;class T&#62;&#10;class TridiagonalMatrix&#123;&#10;private:&#10;    int n;&#10;    T *t;&#10;public:&#10;    TridiagonalMatrix(int size = 10) : n(size)&#123;&#10;        t = new T[3 * n - 2];&#10;    &#125;&#10;    ~TridiagonalMatrix()&#123;delete[] t;&#125;&#10;    TridiagonalMatrix&#60;T&#62;&#38; Store(const T&#38; x, int i, int j);&#10;    T Retrieve(int i, int j)const;&#10;&#125;;&#10;&#10;template&#60;class T&#62;&#10;TridiagonalMatrix&#60;T&#62;&#38; TridiagonalMatrix&#60;T&#62;::Store(const T&#38; x, int i, int j)&#123;&#10;    // &#25226;x&#23384;&#20026;T(i,j)&#10;    if (i&#60;1 || j&#60;1 || i&#62;n || j&#62;n)&#10;        throw OutOfBounds();&#10;    switch (i-j)&#123;&#10;        case 1:&#10;            // &#20302;&#23545;&#35282;&#32447;&#10;            t[i - 2] = x;&#10;            break;&#10;        case 0:&#10;            // &#20027;&#23545;&#35282;&#32447;&#10;            t[n - 2 + i] = x;&#10;            break;&#10;        case -1:&#10;            // &#39640;&#23545;&#35282;&#32447;&#10;            t[2 * n - 2 + i] = x;&#10;            break;&#10;        default:&#10;            if (x != 0)&#10;                throw MustBeZero();&#10;    &#125;&#10;    return *this;&#10;&#125;&#10;&#10;template&#60;class T&#62;&#10;T TridiagonalMatrix&#60;T&#62;::Retrieve(int i, int j)const&#123;&#10;    if (i&#60;1 || j&#60;1 || i&#62;n || j&#62;n)&#10;        throw OutOfBounds();&#10;    switch (i - j)&#123;&#10;    case 1:&#10;        // &#20302;&#23545;&#35282;&#32447;&#10;        return t[i - 2];&#10;    case 0:&#10;        // &#20027;&#23545;&#35282;&#32447;&#10;        return t[n - 2 + i];&#10;    case -1:&#10;        // &#39640;&#23545;&#35282;&#32447;&#10;        return t[2 * n - 2 + i];&#10;    default:&#10;        return 0;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
-<p>这里首先是从最下面的对角线开始，也就是低对角线，那么T(i,j)对应的一维数组是t[i-2]，接着轮到主对角线的时候，只需要用i加上低对角线的元素总数，即n-2个，也就是对应数组t[n-2+i]，因为i是依次从1，按行逐渐增加；最后对于高对角线，也是同样的计算方法。</p>
-<h3 id="u4E09_u89D2_u77E9_u9635"><a href="#u4E09_u89D2_u77E9_u9635" class="headerlink" title="三角矩阵"></a>三角矩阵</h3><p>  在三角矩阵中，无论是上三角还是下三角矩阵，非0元素总数均为$\frac{n(n+1)}{2}$。</p>
-<p>  两种三角矩阵都可以用一个大小为$\frac{n(n+1)}{2}$的一维数组进行描述。考虑把一个下三角矩阵映射到一个一维数组$l$，可以采用按行和按列两种不同的方式进行映射。如果按行映射，上图c中$4\times 4$下三角矩阵可以得到$l[0:9] = (2,5,1,0,3,1,4,2,7,0)$;若按列的方式，得到$l[0:9] =(2,5,0,4,1,3,2,1,7,0)$。</p>
-<p>  所以对于下三角矩阵中的一个元素$L(i,j)$，如果$i\lt j$,则$L(i,j)=0$;如果$i\le j$，则$L(i,j)$位于非0元素区域，且其对应的一维数组是<strong>t[$\frac{i(i-1)}{2}+j-1$]</strong>，其映射规则是先统计前i-1行的非0元素数量然后加上当前元素所在第i行的所在列数j-1。下面给出自定义类<strong>LowerMatrix</strong>实现下三角矩阵,并且是按行来映射。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template&#60;class T&#62;&#10;class LowerMatrix&#123;&#10;private:&#10;    // &#30697;&#38453;&#32500;&#25968;&#10;    int n;&#10;    // &#23384;&#20648;&#23545;&#35282;&#20803;&#32032;&#30340;&#19968;&#32500;&#25968;&#32452;&#10;    T *t;&#10;public:&#10;    LowerMatrix(int size = 10) : n(size)&#123;&#10;        t = new T[n*(n+1)/2];&#10;    &#125;&#10;    ~LowerMatrix()&#123; delete[] t; &#125;&#10;    LowerMatrix&#60;T&#62;&#38; Store(const T&#38; x, int i, int j);&#10;    T Retrieve(int i, int j)const;&#10;&#125;;&#10;&#10;template&#60;class T&#62;&#10;LowerMatrix&#60;T&#62;&#38; LowerMatrix&#60;T&#62;::Store(const T&#38;x, int i, int j)&#123;&#10;    // &#23558;x&#23384;&#20026;D(i,j)&#10;    if (i&#60;1 || j&#60;1 || i&#62;n || j&#62;n)&#10;        throw OutOfBounds();&#10;    // &#24403;&#21069;&#20165;&#24403; i &#62;= j&#26102;&#65292;(i,j)&#20301;&#20110;&#19979;&#19977;&#35282;&#10;    if (i &#62;= j)&#10;        t[i*(i - 1) / 2 + j - 1] = x;&#10;    else if (x != 0)&#10;        throw MustBeZero();&#10;    return *this;&#10;&#125;&#10;&#10;template&#60;class T&#62;&#10;T LowerMatrix&#60;T&#62;::Retrieve(int i, int j)const&#123;&#10;    if (i&#60;1 || j&#60;1 || i&#62;n || j&#62;n)&#10;        throw OutOfBounds();&#10;    if (i &#62;= j)&#10;        return t[i*(i - 1) / 2 + j - 1];&#10;    else&#10;        return 0;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
-<p>上三角矩阵的实现方式也是相同的，只需要改变判断条件，将$i \ge j$变成$i \le j$即可。</p>
-<h3 id="u5BF9_u79F0_u77E9_u9635"><a href="#u5BF9_u79F0_u77E9_u9635" class="headerlink" title="对称矩阵"></a>对称矩阵</h3><p>  一个$n\times n$的对称矩阵可以用一个大小为$\frac{n(n+1)}{2}$的一维数组来描述，可参考三角矩阵的存储模式来存储矩阵的上三角或下三角，即可以根据已经存储的元素来推算出未存储的元素。即如果存储下三角的元素，当需要给出在上三角的元素，只需要将行和列对调，再来搜索即可得到需要的元素值，这样做可以更节省空间。</p>
-<h3 id="u5C0F_u7ED3"><a href="#u5C0F_u7ED3" class="headerlink" title="小结"></a>小结</h3><p>  本小节主要是介绍几种特殊矩阵，都是属于方阵，分别是三角矩阵，三对角矩阵，上三角和下三角矩阵以及对称矩阵，并且都自定义类来实现这几种特殊的矩阵。</p>
-<p>  更完整的例子可以查看我的<a href="https://github.com/ccc013/DataStructe-Algorithms_Study/tree/master/ArrayAndMatrix" target="_blank" rel="external">Github</a></p>
+<p>上图9-1b并所示的最大树并不是最大堆，因为它不是完全二叉树，而其他两个最大树是最大堆。同样，图9-2b也不是完全二叉树，所以也不是最小堆，其他两个最小树则是最小堆。</p>
+<p>堆是完成二叉树，可以利用<a href="http://ccc013.github.io/2016/08/18/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%92%8C%E5%AE%9E%E7%8E%B0/">二叉树的基本概念和实现</a>中介绍的公式化描述方案，可用一维数组有效地描述堆，利用二叉树的特性4可将堆中的节点移动到其父节点或子节点处。<strong>另外，堆是完全二叉树，拥有n个元素的堆高度是$\left\lceil  log_2(n+1) \right\rceil$,因此，如果可在$O(height)$时间内完成插入和删除操作，其复杂性是$O(log_2n)$。</strong></p>
+<h4 id="u6700_u5927_u5806_u7684_u63D2_u5165"><a href="#u6700_u5927_u5806_u7684_u63D2_u5165" class="headerlink" title="最大堆的插入"></a>最大堆的插入</h4><p>  如下图9-3a是一个具有5个元素的最大堆，当要加入一个元素的时候，因为堆是完全二叉树，得到的新树结构必然如9-3b所示，这个时候如果新元素的值是5，它比2要大，此时需要将2下移变成左孩子，如图9-3c所示，此外还要与根节点进行比较，这里如果新插入的元素值是21，就大于根节点的20了，此时还需要将20下移到原来2的位置，变成如图9-3d所示。</p>
+<p>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%A0%862.png" alt="此处输入图片的描述"></p>
+<p>  插入策略从叶到根只有单一路径，每层工作需耗时$\theta(1)$,因此实现此策略的时间复杂性是$O(height)=O(log_2n)$。</p>
+<h4 id="u6700_u5927_u5806_u7684_u5220_u9664"><a href="#u6700_u5927_u5806_u7684_u5220_u9664" class="headerlink" title="最大堆的删除"></a>最大堆的删除</h4><p>  假设对图9-3d的最大堆进行删除，需要删除的是元素21，这个时候只剩下5个元素，需要重新构建最大堆的结构，那么最终应该得到如图9-3a的最大堆形式。然后接下来要删除的是元素20，并得到如图9-4b所示的结构，则首先10从位置5移出，但将其放在根节点的位置得到的不是最大堆，则把根节点的两个孩子15和2中较大的一个放到根节点，然后假设将10插入位置2，但是还不是最大堆，因此将14上移到位置2,10放到位置4，得到如图9-4c所示。</p>
+<p>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%A0%863.png" alt="此处输入图片的描述"></p>
+<p>  删除策略如插入策略一样，从堆的根节点到叶节点只有单一路径，每层工作需耗时$\theta(1)$,因此实现此策略的时间复杂性是$O(height)=O(log_2n)$。</p>
+<h4 id="u6700_u5927_u5806_u7684_u521D_u59CB_u5316"><a href="#u6700_u5927_u5806_u7684_u521D_u59CB_u5316" class="headerlink" title="最大堆的初始化"></a>最大堆的初始化</h4><p>  现在假设开始有数组a，它有n个元素，n=10，它可以用如图9-5a所示的完全二叉树表示，但它不是最大堆。为了将其转化为最大堆，从第一个具有孩子的节点开始（即节点10），<strong>这个元素在数组中的位置是$i=[n/2]$，如果以这个元素为根的子树已经是最大堆，则不需要调整，否则必须调整子树成为最大堆，然后继续检查$i-1,i-2,\ldots$等节点为根的子树，直到检查到根节点为止。</strong></p>
+<p>  对图9-5a所示的完全二叉树，首先i=5，因为$10&gt;1$,所以以位置i为根的子树已经是最大堆，接下来检查位置4的子树，$15&lt;17$,它不是最大堆，将其变为最大堆，可得到如图9-5b所示，然后依次检查位置3，位置2以及根节点，分别得到如图9-5c，d所示的最大堆。</p>
+<p>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%A0%864.png" alt="此处输入图片的描述"></p>
+<h4 id="u7C7BMaxHeap"><a href="#u7C7BMaxHeap" class="headerlink" title="类MaxHeap"></a>类MaxHeap</h4><p>  下面程序给出最大堆的类定义。n是私有成员，代表目前堆中的元素的个数；MaxSize是堆的最大容量；heap是存储堆元素的数组，默认大小是10。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template&#60;class T&#62;&#10;class MaxHeap&#123;&#10;private:&#10;    int CurrentSize, MaxSize;&#10;    T* heap;&#10;public:&#10;    MaxHeap(int MaxHeapSize = 10);&#10;    ~MaxHeap()&#123; delete[] heap; &#125;&#10;    int Size() const&#123; return CurrentSize; &#125;&#10;    T Max()&#123;&#10;        if (CurrentSize == 0)&#10;            throw OutOfBounds();&#10;        return heap[1];&#10;    &#125;&#10;    MaxHeap&#60;T&#62;&#38; Insert(const T&#38; x);&#10;    MaxHeap&#60;T&#62;&#38; DeleteMax(T&#38; x);&#10;    void Initialize(T a[], int size, int ArraySize);&#10;&#125;;</span><br></pre></td></tr></table></figure>
+<p>下面给出最大堆的插入、删除和初始化代码实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template&#60;class T&#62;&#10;MaxHeap&#60;T&#62;&#38; MaxHeap&#60;T&#62;::Insert(const T&#38; x)&#123;&#10;    // &#23558;x&#25554;&#20837;&#21040;&#26368;&#22823;&#22534;&#20013;&#10;    if (CurrentSize == MaxSize)&#10;        throw NoMem();&#10;&#10;    // &#20026;x&#23547;&#25214;&#25554;&#20837;&#20301;&#32622;&#10;    int i = ++CurrentSize;&#10;    while (i != 1 &#38;&#38; x &#62; heap[i / 2])&#123;&#10;        // &#19981;&#33021;&#22815;&#23558;x&#25918;&#20837;heap[i]&#10;        heap[i] = heap[i / 2];  // &#23558;&#20803;&#32032;&#19979;&#31227;&#10;        i /= 2; // &#31227;&#21521;&#29238;&#33410;&#28857;&#10;    &#125;&#10;&#10;    heap[i] = x;&#10;    return *this;&#10;&#125;&#10;&#10;template&#60;class T&#62;&#10;MaxHeap&#60;T&#62;&#38; MaxHeap&#60;T&#62;::DeleteMax(T&#38; x)&#123;&#10;    // &#23558;&#26368;&#22823;&#20803;&#32032;&#25918;&#20837;x&#65292;&#24182;&#20174;&#22534;&#20013;&#21024;&#38500;&#26368;&#22823;&#20803;&#32032;&#10;    if (CurrentSize == 0)&#10;        throw OutOfBounds();&#10;&#10;    x = heap[1];    // &#26368;&#22823;&#20803;&#32032;&#10;&#10;    // &#37325;&#26500;&#22534;&#10;    T y = heap[CurrentSize--];  // &#26368;&#21518;&#19968;&#20010;&#20803;&#32032;&#10;&#10;    // &#20174;&#26681;&#24320;&#22987;&#65292;&#20026;y&#23547;&#25214;&#21512;&#36866;&#30340;&#20301;&#32622;&#10;    int i = 1, ci = 2;&#10;    while (ci &#60;= CurrentSize)&#123;&#10;        // heap[ci]&#24212;&#26159;i&#36739;&#22823;&#30340;&#23401;&#23376;&#10;        if (ci &#60; CurrentSize &#38;&#38; heap[ci] &#60; heap[ci + 1])&#10;            ci++;&#10;&#10;        // &#21028;&#26029;&#26159;&#21542;&#33021;&#23558;y&#25918;&#20837;heap[i]&#10;        if (y &#62;= heap[ci])&#10;            break;&#10;&#10;        // &#19981;&#33021;&#10;        heap[i] = heap[ci];&#10;        // &#19979;&#31227;&#19968;&#23618;&#10;        i = ci;&#10;        ci *= 2;&#10;    &#125;&#10;    heap[i] = y;&#10;&#10;    return *this;&#10;&#125;&#10;&#10;template&#60;class T&#62;&#10;void MaxHeap&#60;T&#62;::Initialize(T a[], int size, int ArraySize)&#123;&#10;    // &#25226;&#26368;&#22823;&#22534;&#21021;&#22987;&#21270;&#20026;a&#10;    delete[] heap;&#10;    heap = new T[size + 1];&#10;    for (int s = 1; s &#60;= size; s++)&#123;&#10;        heap[s] = a[s - 1];&#10;    &#125;&#10;    CurrentSize = size;&#10;    MaxSize = ArraySize;&#10;&#10;    //&#20135;&#29983;&#19968;&#20010;&#26368;&#22823;&#22534;&#10;    for (int i = CurrentSize / 2; i &#62;= 1; i--)&#123;&#10;        T y = heap[i];&#10;&#10;        // &#23547;&#25214;&#25918;&#32622;y&#30340;&#20301;&#32622;&#10;        int c = 2 * i;&#10;        while (c &#60;= CurrentSize)&#123;&#10;            if (c &#60; CurrentSize&#38;&#38;heap[c] &#60; heap[c + 1])&#10;                c++;&#10;&#10;            if (y &#62;= heap[c])&#10;                break;&#10;&#10;            heap[c / 2] = heap[c];&#10;            c *= 2;&#10;        &#125;&#10;        heap[c / 2] = y;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>插入代码中，i从新创建的叶节点位置CurrentSize开始，对从该位置到根的路径进行遍历，对每个位置，都检查是否到达跟(i=1)或在i处插入新元素不会改变最大树的性质–$x \le heap[i/2]$，只要满足其中一个条件，就可以在i处插入x，否则会执行循环体中的代码。插入操作的时间复杂性是$O(logn)$。</p>
+<p>删除操作的时间复杂性也是$O(logn)$。</p>
+<p>初始化函数<strong>Initialize</strong>中for循环每次所花时间是$O(logn)$,循环次数是n/2，总的复杂性是$O(nlogn)$。实际应用中，初始化操作的复杂性是$\theta(n)$。</p>
+<p>更完整的代码例子可以查看<a href="https://github.com/ccc013/DataStructe-Algorithms_Study/blob/master/PriorityQueue/MaxHeap.h" target="_blank" rel="external">最大堆的实现</a>。</p>
+<h3 id="u5806_u6392_u5E8F"><a href="#u5806_u6392_u5E8F" class="headerlink" title="堆排序"></a>堆排序</h3><p>  利用堆来实现n个元素的排序，所需时间是$O(nlogn)$,可以将先要排序的n个元素初始化为一个最大堆，然后每次从堆中提取（即删除）元素，各元素将按递减次序排列。初始化所需要的时间是$\theta(n)$,每次删除所需要的时间是$O(logn)$,因此总时间是$O(nlogn)$。</p>
+<p>实现代码如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template&#60;class T&#62;&#10;void HeapSort(T a[], int n)&#123;&#10;    // &#21033;&#29992;&#22534;&#25490;&#24207;&#31639;&#27861;&#23545;a[1:n]&#36827;&#34892;&#25490;&#24207;&#10;    MaxHeap&#60;T&#62; H(1);&#10;    H.Initialize(a, n, n);&#10;&#10;    // &#20174;&#26368;&#22823;&#22534;&#20013;&#36880;&#20010;&#25277;&#21462;&#20803;&#32032;&#10;    T x;&#10;    for (int i=n - 1; i &#62;= 0; i--)&#123;&#10;        H.DeleteMax(x);&#10;        a[i] = x;&#10;    &#125;&#10;&#10;    // &#22312;&#22534;&#30340;&#26512;&#26500;&#20989;&#25968;&#20013;&#20445;&#23384;&#25968;&#32452;a&#10;    H.Deactivate();&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>测试例子如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int main(void)&#123;&#10;    int a[] = &#123; 20, 12, 35, 15, 10, 80, 30, 17, 2, 1 &#125;;&#10;    HeapSort(a, 10);&#10;    for (int i = 0; i &#60; 10; i++)&#10;        cout &#60;&#60; a[i] &#60;&#60; &#34;, &#34;;&#10;&#10;    cout &#60;&#60; &#34;\n&#34;;&#10;&#10;    system(&#34;pause&#34;);&#10;    return 0;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出如下图所示：</p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%A0%865.png" alt="此处输入图片的描述"></p>
 
       
     </div>
@@ -415,17 +409,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/06/30/数组和矩阵2-矩阵/" rel="next" title="数组和矩阵2-矩阵">
-                <i class="fa fa-chevron-left"></i> 数组和矩阵2-矩阵
+              <a href="/2016/08/18/二叉树的基本概念和实现/" rel="next" title="二叉树的基本概念和实现">
+                <i class="fa fa-chevron-left"></i> 二叉树的基本概念和实现
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/07/数组和矩阵4-稀疏矩阵/" rel="prev" title="数组和矩阵4-稀疏矩阵">
-                数组和矩阵4-稀疏矩阵 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -451,8 +441,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/07/05/数组和矩阵3-特殊矩阵/"
-           data-title="数组和矩阵3-特殊矩阵" data-url="http://ccc013.github.io/2016/07/05/数组和矩阵3-特殊矩阵/">
+      <div class="ds-thread" data-thread-key="2016/08/23/优先队列1-堆/"
+           data-title="优先队列1--堆" data-url="http://ccc013.github.io/2016/08/23/优先队列1-堆/">
       </div>
     
   </div>
@@ -641,7 +631,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u5B9A_u4E49_u548C_u5E94_u7528"><span class="nav-number">1.</span> <span class="nav-text">定义和应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5BF9_u89D2_u77E9_u9635"><span class="nav-number">2.</span> <span class="nav-text">对角矩阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u4E09_u5BF9_u89D2_u77E9_u9635"><span class="nav-number">3.</span> <span class="nav-text">三对角矩阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u4E09_u89D2_u77E9_u9635"><span class="nav-number">4.</span> <span class="nav-text">三角矩阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5BF9_u79F0_u77E9_u9635"><span class="nav-number">5.</span> <span class="nav-text">对称矩阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5C0F_u7ED3"><span class="nav-number">6.</span> <span class="nav-text">小结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u5F15_u8A00"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5806"><span class="nav-number">2.</span> <span class="nav-text">堆</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u5B9A_u4E49"><span class="nav-number">2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6700_u5927_u5806_u7684_u63D2_u5165"><span class="nav-number">2.2.</span> <span class="nav-text">最大堆的插入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6700_u5927_u5806_u7684_u5220_u9664"><span class="nav-number">2.3.</span> <span class="nav-text">最大堆的删除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6700_u5927_u5806_u7684_u521D_u59CB_u5316"><span class="nav-number">2.4.</span> <span class="nav-text">最大堆的初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u7C7BMaxHeap"><span class="nav-number">2.5.</span> <span class="nav-text">类MaxHeap</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5806_u6392_u5E8F"><span class="nav-number">3.</span> <span class="nav-text">堆排序</span></a></li></ol></div>
             
           </div>
         </section>
