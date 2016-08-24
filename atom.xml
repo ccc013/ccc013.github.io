@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Stay hungry, stay foolish]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://ccc013.github.io/"/>
-  <updated>2016-08-23T12:31:01.615Z</updated>
+  <updated>2016-08-24T10:53:12.434Z</updated>
   <id>http://ccc013.github.io/</id>
   
   <author>
@@ -13,6 +13,55 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[优先队列2-左高树]]></title>
+    <link href="http://ccc013.github.io/2016/08/24/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%972-%E5%B7%A6%E9%AB%98%E6%A0%91/"/>
+    <id>http://ccc013.github.io/2016/08/24/优先队列2-左高树/</id>
+    <published>2016-08-24T10:50:30.000Z</published>
+    <updated>2016-08-24T10:53:12.434Z</updated>
+    <content type="html"><![CDATA[<p>继续是《数据结构算法与应用：C++语言描述》的笔记，这是第九章优先队列的内容。本节将介绍另一种实现优先队列的数据结构–左高树</p>
+<h3 id="u9AD8_u5EA6_u4E0E_u5BBD_u5EA6_u4F18_u5148_u7684_u6700_u5927_u53CA_u6700_u5C0F_u5DE6_u9AD8_u6811"><a href="#u9AD8_u5EA6_u4E0E_u5BBD_u5EA6_u4F18_u5148_u7684_u6700_u5927_u53CA_u6700_u5C0F_u5DE6_u9AD8_u6811" class="headerlink" title="高度与宽度优先的最大及最小左高树"></a>高度与宽度优先的最大及最小左高树</h3><p>  上一节讲述的堆结构是一种<strong>隐式数据结构</strong>，用完全二叉树表示的堆在数组中时隐式存储的（即没有明确的指针或其他数据能够重构这种结构）。由于没有存储结构信息，这种描述方法空间利用率很高，事实上是没有空间浪费，尽管堆结构的时间和空间效率都很高，但它不适合所有优先队列的应用，尤其是当需要合并两个优先队列或多个长度不同的队列时，需要借助其他数据结构来实现这类应用，比如<strong>左高树(leftist tree)</strong>。</p>
+<p>  考察一棵二叉树，如下图9-6a所示，它有一类特殊的节点叫做<strong>外部节点，用来代替树中的空子树，其余节点叫做内部节点。</strong>增加了外部节点的二叉树被称为扩充二叉树，如下图9-6b所示，外部节点用阴影框表示，并且为了方便起见，这些节点用a~f标注。</p>
+<p>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%B7%A6%E9%AB%98%E6%A0%911.png" alt="此处输入图片的描述"></p>
+<p>  令$s(x)$是从节点$x$到它的子树的外部节点的所有路径横纵最短的一条，根据其定义可知，如果$x$是外部节点，则$s$=0，若$x$是内部节点，则其$s$值为$min{s(L),s(R)}+1$，其中$L,R$分别是$x$的左右子树。所以上述扩充二叉树各节点的s值如上图9-c所示。</p>
+<blockquote>
+<p>定义 [高度优先左高树] 当且仅当一棵二叉树的任何一个内部节点，<strong>其左孩子的$s$值大于等于右孩子的$s$值时</strong>，该二叉树是高度优先左高树(height-biased leftist tree,HBLT)。</p>
+<p>定义 [最大(小)HBLT] 即同时是最大(小)树的HBLT; </p>
+</blockquote>
+<p>图9-6a所示的二叉树并不是HBLT，因为外部节点a的父节点，其左孩子$s$=0，右孩子$s$=1，不满足条件，如果将这两个子树进行交换就可以满足HBLT的条件。</p>
+<blockquote>
+<p>定理9-1 若x是一个HBLT的内部节点，则<br>1) 以$x$为根的子树的节点数目至少是$2^{s(x)}-1$.<br>2) 若子树$x$有$m$个节点，$s(x)$最多为$log_2(m+1)$<br>3) 通过最右路径（即路径是从$x$开始沿右孩子移动）从$x$到达外部节点的路径长度是$s(x)$。</p>
+</blockquote>
+<p><strong>可以通过考察子树的节点数目来得到另一类左高树。</strong>定义$x$的重量$w(x)$是以$x$为根的子树的内部节点数目。如果$x$是外部节点，则其重量为0；若$x$是内部节点，则其重量是其孩子节点的重量之和加1，如上图9-6d展示了二叉树各节点的重量。</p>
+<blockquote>
+<p>定义 [重量优先左高树] 当且仅当一棵二叉树的任何一个内部节点，其左孩子的$w$值大于等于右孩子的$w$时，该二叉树为重量优先左高树(weight-biased leftist tree,WBLT);</p>
+</blockquote>
+<p>[最大(小)WBLT]即同时又是最大(小)树的WBLT。</p>
+<p>同HBLT类似，具有$m$个节点的WBLT的最右路径长度最多为$log_2(m+1)$。可以对WBLT和HBLT执行优先队列的查找、插入和删除操作，其时间复杂性与堆的相应操作相同。并且跟堆一样，WBLT和HBLT可以在线性时间内完成初始化。用WBLT或HBLT描述的两个优先队列可在对数时间内合并为一个，而堆描述的优先队列无法做到。</p>
+<p>接下来将介绍HBLT的操作，而WBLT的查找、插入、删除、合并和初始化操作与HBLT非常相似。</p>
+<h3 id="u6700_u5927HBLT_u7684_u63D2_u5165"><a href="#u6700_u5927HBLT_u7684_u63D2_u5165" class="headerlink" title="最大HBLT的插入"></a>最大HBLT的插入</h3><p>  <strong>插入操作可借助于合并操作来完成。</strong>它可以通过先建立一棵仅包含待插入元素的HBLT，然后与原来的HBLT合并即可。</p>
+<h3 id="u6700_u5927HBLT_u7684_u5220_u9664"><a href="#u6700_u5927HBLT_u7684_u5220_u9664" class="headerlink" title="最大HBLT的删除"></a>最大HBLT的删除</h3><p>  根是最大元素，如果跟被删除，将留下分别以其左右孩子为根的两棵HBLT的子树，将其合并到一起，便得到包含除删除元素外所有元素的最大HBLT。</p>
+<h3 id="u5408_u5E76_u4E24_u68F5_u6700_u5927HBLT"><a href="#u5408_u5E76_u4E24_u68F5_u6700_u5927HBLT" class="headerlink" title="合并两棵最大HBLT"></a>合并两棵最大HBLT</h3><p>  具有$n$个元素的最大HBLT，其最右路径的长度为$O(logn)$。合并操作操作仅需遍历欲合并的HBLT的最右路径，即仅需移动右孩子。</p>
+<p> 合并策略最好用递归来实现。令$A,B$是需要合并的两棵最大HBLT，假设两者均不为空，为实现合并，首先需要检查两个根元素，较大者是合并后HBLT的根。假设$A$具有较大的根，且其左子树是$L$,$C$是由$A$的右子树与$B$合并而成的HBLT。所以$A,B$合并的结果是以$A$的根为根，$L,C$为左右子树的最大HBLT。如果$L$的$s$值小于$C$的$s$值，则$C$是右子树，$L$是左子树。</p>
+<h3 id="u521D_u59CB_u5316_u6700_u5927HBLT"><a href="#u521D_u59CB_u5316_u6700_u5927HBLT" class="headerlink" title="初始化最大HBLT"></a>初始化最大HBLT</h3><p>  通过将$n$个元素插入到最初为空的最大HBLT中来进行初始化，所需时间是$O(logn)$。为得到具有线性时间的初始化算法，首先创建$n$个最大HBLT，每个树中仅包含$n$个元素中的某一个，这$n$棵树排成一个FIFO队列，然后从队列中依次删除两个HBLT，将其合并，然后再加入队列末尾，直到最后只有一棵HBLT。</p>
+<h3 id="u7C7BMaxHBLT"><a href="#u7C7BMaxHBLT" class="headerlink" title="类MaxHBLT"></a>类MaxHBLT</h3><p>  最大HBLT的每个节点均需要$data,LeftChild,RightChild和s$四个域，相应的节点类是$HBLTNode$,如下代码所示。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template&#60;class T&#62;&#10;class MaxHBLT;&#10;&#10;template&#60;class T&#62;&#10;class HBLTNode&#123;&#10;    friend MaxHBLT&#60;T&#62;;&#10;private:&#10;    int s;&#10;    T data;&#10;    HBLTNode&#60;T&#62;* LeftChild, *RightChild;&#10;public:&#10;    HBLTNode(const T&#38;e, const int sh)&#123;&#10;        data = e;&#10;        s = sh;&#10;        LeftChild = RightChild = 0;&#10;    &#125;&#10;&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>而最大HBLT可用下面代码定义的类MaxHBLT来实现。类MaxHBLT的每个对象都有一个唯一的私有成员$root$，用来指向最大HBLT的根。构造函数在初始化时将其置为0，因此初始的最大HBLT是空。析构函数通过调用私有成员函数$Free$来删除HBLT中的所有节点，该函数按后序遍历整棵HBLT，每访问一个节点就删除该节点。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template&#60;class T&#62;&#10;class MaxHBLT&#123;&#10;private:&#10;    HBLTNode&#60;T&#62; *root;&#10;    void PostOrder(void(*Visit)(HBLTNode&#60;T&#62;*u), HBLTNode&#60;T&#62;* t)&#123;&#10;        // &#21518;&#24207;&#36941;&#21382;&#10;        if (t)&#123;&#10;            PostOrder(Visit, t-&#62;LeftChild);&#10;            PostOrder(Visit, t-&#62;RightChild);&#10;            Visit(t);&#10;        &#125;&#10;    &#125;&#10;    static void free(HBLTNode&#60;T&#62;* t)&#123;&#10;        delete t;&#10;    &#125;&#10;    void Free(HBLTNode&#60;T&#62; *t)&#123;&#10;        PostOrder(free, t);&#10;        t = 0;&#10;    &#125;&#10;    void Meld(HBLTNode&#60;T&#62; * &#38;x, HBLTNode&#60;T&#62;* y);&#10;public:&#10;    MaxHBLT()&#123; root = 0 &#125;;&#10;    ~MaxHBLT()&#123; Free(root); &#125;&#10;    T Max()&#123;&#10;        if (!root)&#10;            throw OutOfBounds();&#10;        return root-&#62;data;&#10;    &#125;&#10;    MaxHBLT&#60;T&#62;&#38; Insert(const T&#38; x);&#10;    MaxHBLT&#60;T&#62;&#38; DeleteMax(T&#38; x);&#10;    MaxHBLT&#60;T&#62;&#38; Meld(MaxHBLT&#60;T&#62;&#38; x)&#123;&#10;        Meld(root, x.root);&#10;        x.root = 0;&#10;        return *this;&#10;    &#125;&#10;    void Initialize(T a[], int n);&#10;&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>接下来先给出合并操作的函数实现代码，该函数首先要处理合并的树中至少有一个为空的特殊情况。当没有空树时要确保$x$指向根值较大的树，如果$x$不是指向根值较大的树，则将$x$和$y$的指针进行交换。接下来把$x$的右子树与以$y$为根的最大HBLT进行递归合并。合并后为保证整棵树是最大HBLT，$x$的左右孩子可能需要交换，这是通过计算$x$的$s$值来确定的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template&#60;class T&#62;&#10;void MaxHBLT&#60;T&#62;::Meld(HBLTNode&#60;T&#62;* &#38;x, HBLTNode&#60;T&#62;* y)&#123;&#10;    // &#21512;&#24182;&#20004;&#26869;&#26681;&#20998;&#21035;&#26159;*x&#21644;*y&#30340;&#24038;&#39640;&#26641;&#65292;&#36820;&#22238;&#25351;&#21521;&#26032;&#26681; x&#30340;&#25351;&#38024;&#10;    if (!y)&#10;        return;&#10;    if (!x)&#123;&#10;        x = y;&#10;        return;&#10;    &#125;&#10;    if (x-&#62;data &#60; y-&#62;data)&#123;&#10;        // &#20132;&#25442;x&#21644;y&#10;        HBLTNode&#60;T&#62; * temp = y;&#10;        y = x;&#10;        x = temp;&#10;    &#125;&#10;    Meld(x-&#62;RightChild, y);&#10;    if (!x-&#62;LeftChild)&#123;&#10;        // &#24038;&#23376;&#26641;&#20026;&#31354;,&#20132;&#25442;&#23376;&#26641;&#10;        x-&#62;LeftChild = x-&#62;RightChild;&#10;        x-&#62;RightChild = 0;&#10;        x-&#62;s = 1;&#10;    &#125;&#10;    else&#123;&#10;        if (x-&#62;LeftChild-&#62;s &#60; x-&#62;RightChild-&#62;s)&#123;&#10;            // &#20132;&#25442;&#24038;&#21491;&#23376;&#26641;&#10;            HBLTNode&#60;T&#62; * temp = x-&#62;LeftChild;&#10;            x-&#62;RightChild = x-&#62;LeftChild;&#10;            x-&#62;LeftChild = temp;&#10;        &#125;&#10;        x-&#62;s = x-&#62;RightChild-&#62;s + 1;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>最后给出插入，删除和初始化函数的代码实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template&#60;class T&#62;&#10;MaxHBLT&#60;T&#62;&#38; MaxHBLT&#60;T&#62;::Insert(const T&#38; x)&#123;&#10;    // &#23558;x&#25554;&#20837;&#24038;&#39640;&#26641;&#10;    HBLTNode&#60;T&#62;* q = new HBLTNode&#60;T&#62;(x, 1);&#10;    // &#23558;q&#19982;&#21407;&#26641;&#21512;&#24182;&#10;    Meld(root, q);&#10;    return *this;&#10;&#125;&#10;&#10;template&#60;class T&#62;&#10;MaxHBLT&#60;T&#62;&#38; MaxHBLT&#60;T&#62;::DeleteMax(T&#38; x)&#123;&#10;    // &#21024;&#38500;&#26368;&#22823;&#20803;&#32032;&#65292;&#24182;&#23558;&#20854;&#25918;&#20837;x&#10;    if (!root)&#10;        throw OutOfBounds();&#10;&#10;    x = root-&#62;data;&#10;    HBLTNode&#60;T&#62;*L = root-&#62;LeftChild;&#10;    HBLTNode&#60;T&#62;*R = root-&#62;RightChild;&#10;    delete root;&#10;    root = L;&#10;    Meld(root, R);&#10;    return *this;&#10;&#125;&#10;&#10;template&#60;class T&#62;&#10;void MaxHBLT&#60;T&#62;::Initialize(T a[], int n)&#123;&#10;    // &#21021;&#22987;&#21270;&#26377;n&#20010;&#20803;&#32032;&#30340;HBLT&#26641;&#10;    Queue&#60;HBLTNode&#60;T&#62;*&#62;Q(n);&#10;    // &#21024;&#38500;&#32769;&#33410;&#28857;&#10;    Free(root);&#10;    for (int i = 1; i &#60;= n; i++)&#123;&#10;        HBLTNode&#60;T&#62;* q = new HBLTNode&#60;T&#62;(a[i-1], 1);&#10;        Q.Add(q);&#10;    &#125;&#10;&#10;    // &#19981;&#26029;&#21512;&#24182;&#38431;&#21015;&#20013;&#30340;&#26641;&#65307;&#10;    HBLTNode&#60;T&#62;*b, *c;&#10;    for (int i = 1; i &#60;= n - 1; i++) &#123;&#10;        Q.Delete(b).Delete(c);&#10;        Meld(b, c);&#10;        // &#23558;&#21512;&#24182;&#21518;&#24471;&#21040;&#30340;&#26641;&#25918;&#20837;&#23545;&#20102;&#10;        Q.Add(b);&#10;    &#125;&#10;&#10;    if (n)&#10;        Q.Delete(root);&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>对于上述函数的复杂性，构造函数只需要耗时$\theta(1)$,而析构函数需要$\theta(n)$，其中$n$是要删除的最大HBLT中的元素个数。<strong>Max</strong>函数的复杂性是$\theta(1)$，<strong>Insert,DeleteMax</strong>及共享成员函数<strong>Meld</strong>的复杂性与私有成员函数<strong>Meld</strong>的复杂性相同，由于私有成员函数<strong>Meld</strong>仅在以$<em>x$和$</em>y$为根的树的右子树中移动，因此其复杂性是$O(x-&gt;s+y-&gt;s)$。又由于$<em>x$和$</em>y$的最大$s$值分别为$log_2(m+1)$和$log_2(n+1)$,其中$m,n$分别是以$<em>x$和$</em>y$为根的最大HBLT中的元素个数，所以私有成员函数<strong>Meld</strong>的复杂性是$O(logmn)$。</p>
+<p>更完整的代码例子可以查看<a href="https://github.com/ccc013/DataStructe-Algorithms_Study/blob/master/PriorityQueue/MaxHBLT.h" target="_blank" rel="external">最大高度优先左高树的实现</a>。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>继续是《数据结构算法与应用：C++语言描述》的笔记，这是第九章优先队列的内容。本节将介绍另一种实现优先队列的数据结构–左高树</p>
+<h3 id="u9AD8_u5EA6_u4E0E_u5BBD_u5EA6_u4F18_u5148_u7684_u6700_u5927_u5]]>
+    </summary>
+    
+      <category term="数据结构" scheme="http://ccc013.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+      <category term="算法" scheme="http://ccc013.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[优先队列1--堆]]></title>
@@ -1255,125 +1304,6 @@
 ]]></content>
     <summary type="html">
     <![CDATA[<p>第二篇文章：<a href="http://android.xsoftlab.net/guide/practices/compatibility.html" target="_blank" rel="external">设备的兼容性(Device Compatibility]]>
-    </summary>
-    
-      <category term="Android" scheme="http://ccc013.github.io/tags/Android/"/>
-    
-      <category term="阅读笔记" scheme="http://ccc013.github.io/tags/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Android官方文档Guide阅读系列(1)--Application Fundamentals]]></title>
-    <link href="http://ccc013.github.io/2016/04/20/Application-Fundamentals/"/>
-    <id>http://ccc013.github.io/2016/04/20/Application-Fundamentals/</id>
-    <published>2016-04-20T06:10:54.000Z</published>
-    <updated>2016-05-18T10:50:37.857Z</updated>
-    <content type="html"><![CDATA[<p>最近打算好好看看android的官方文档，<code>Training</code>的已经看过了，打算看下<code>Guide</code>指导文档，这个比<code>Training</code>会介绍得更加详细。</p>
-<p>谷歌的官网因为被墙，所以这里介绍一个国内的镜像<a href="http://android.xsoftlab.net/index.html" target="_blank" rel="external">Android 6.0官网</a>，本篇文章是第一篇文章，地址是<a href="http://android.xsoftlab.net/guide/components/fundamentals.html" target="_blank" rel="external">Application Fundamentals</a></p>
-<p>主要是翻译<code>Guide</code>文档的内容，但不一定会逐句翻译，因为英语水平问题，可能会有选择的翻译一些自己认为比较重要的内容，但是介绍的知识点会尽可能保证都翻译到。</p>
-<h2 id="u5E94_u7528_u57FA_u7840_28Application_Fundamentals_29"><a href="#u5E94_u7528_u57FA_u7840_28Application_Fundamentals_29" class="headerlink" title="应用基础(Application Fundamentals)"></a>应用基础(Application Fundamentals)</h2><p>Android的app是使用Java语言编写的。Android SDK工具是用来将你写的代码以及一些数据和资源文件，编译成一个APK，APK是一个android的包，是一个后缀名为<code>.apk</code>的归档文件(archive file)。一个APK文件包含了一个android app的所有内容，也是使用android系统的设备用来安装app的文件。</p>
-<p>一旦在一个设备上安装了，每个 android app 都是运行在自己的安全沙箱中：</p>
-<ul>
-<li>android的操作系统是一个多用户的Linux系统，每个app是一个不同的用户</li>
-<li>默认情况下，系统会给每个app分配一个独立的Linux用户ID(这个ID只是系统使用，app是不知道这个ID的)。系统会给一个app中所有文件都设置了权限，只有分配给这个app的用户ID才可以使用这些文件</li>
-<li>每个进程都有自己的虚拟机(virtual machine,VM),因此每个app都是相互隔离地运行自己的代码的</li>
-<li>默认情况，每个app都是运行在自己的Linux进程。当app的组件需要被执行时，Android会开始其进程，而在其不用执行或者系统必须给其他应用分配内存(recover memory)时会关掉这个进程。</li>
-</ul>
-<p>通过上述方式，Android系统实现了最少特权原则(the principle of least privilege)。也就是对于每个app，默认情况，它只可以使用用于完成其工作的组件。这就创造了一个非常安全的环境，每个app都无法获取它没有得到权限的系统功能或服务。</p>
-<p>然而，对每个app，还是有方法可以跟其他app分享数据以及使用系统的服务的：</p>
-<ul>
-<li>给两个app分享同一个Linux的用户ID是有可能的，在这种情况下它们是可以使用对方的文件。出于节省系统资源的考虑，拥有一样用户ID的apps会分配到同一个Linux进程中，并且共享同一个VM(这些apps都必须签署同样的证书)</li>
-<li>一个应用是可以要求获取使用设备数据的权限，如用户的联系人，短信，SD卡，照相机，蓝牙等等。所有的应用权限都必须在安装的时候得到用户的同意。</li>
-</ul>
-<p>以上内容包含了基本的关于一个android应用如何存在于系统中，本文接下来的将介绍以下内容：</p>
-<ul>
-<li>定义app中的核心框架组件</li>
-<li><code>mainfest</code>文件，用于声明组件以及要求设备功能</li>
-<li>跟app代码分开的资源文件，用于让你的应用可以在面对多种设备配置时优雅地优化其行为</li>
-</ul>
-<hr>
-<h3 id="u5E94_u7528_u7EC4_u4EF6_28App_Components_29"><a href="#u5E94_u7528_u7EC4_u4EF6_28App_Components_29" class="headerlink" title="应用组件(App Components)"></a>应用组件(App Components)</h3><p>应用组件是一个Android应用的基本建筑基石。每个组件是一个系统可以进入应用的不同点。但不是所有的组件是用户实际的入口点，其中一些需要相互依赖，但每一个都是作为一个实体存在并且扮演一个特殊的角色——每一个组件都是一个帮助开发者定义其应用整体行为的基石。</p>
-<p>总共有4种不同类型的应用组件。每一种类型都是用于一个明显的用途，并且都有一个清楚的定义了其如何创建和摧毁的生命周期。</p>
-<h5 id="Activities"><a href="#Activities" class="headerlink" title="Activities"></a>Activities</h5><p>一个活动表示用户界面上一个单独的屏幕。例如，在一个电子邮件的应用中会有一个展示新邮件列表的活动，一个活动是用于写信，以及一个读取邮件内容的活动。尽管在这个应用中这些活动一起运作形成了一个有凝聚力的用户体验，但每个活动都是相互独立的。同样地，另一个不同的应用是可以打开这些活动中的任何一个(在获得该电子邮件应用的允许的前提下)。例如，一个照相应用可以打开这个电子邮件应用中的写信的活动，以便于用户可以分享一张图片。</p>
-<h5 id="Services"><a href="#Services" class="headerlink" title="Services"></a>Services</h5><p>一个服务是一个运行在后台，执行长时间运算或者执行远程进程的工作的组件。服务是没有用户界面的。例如，当用户在使用其他应用的时候，一个服务正在后台播放音乐，或者它是在通过网络获取一些数据但没有阻碍用户与一个活动界面进行交互。其他的组件，如一个活动，可以开启服务并让它运行，或者绑定这个服务来与它进行交互。</p>
-<h5 id="Content_providers"><a href="#Content_providers" class="headerlink" title="Content providers"></a>Content providers</h5><p>一个内容提供器是管理一个用于分享的应用数据集。开发者可以通过文件系统，一个SQLite数据库，网络，或其他固定的应用可以访问的存储位置来保存数据。通过内容提供器，其他的应用可以查询甚至修改数据(在这个内容提供器允许前提下)。例如，Android系统提供了一个管理用户联系人信息的内容提供器。正因为如此，任何一个应用在有合法的权限下都可以查询这个内容提供器(如<code>ContactsContract.Data</code>)来读写一个特定的人的信息。</p>
-<h5 id="Broadcast_receivers"><a href="#Broadcast_receivers" class="headerlink" title="Broadcast receivers"></a>Broadcast receivers</h5><p>一个广播接收器是一个用于响应系统全局广播通知的组件。很多广播都是起源于系统——例如，一个广播通知屏幕要关闭，电量低，或者截屏。应用也可以初始化广播——例如，让其他应用知道有些数据被下载到设备中并且可以提供给它们使用。尽管广播接收器没有显示一个用户界面，但是它们可以创建一条状态栏的通知来提醒用户有一个广播事件发生了。但更普遍的情况是，一个广播接收器仅仅是一个通向其他组件的“门(gateway)”，并且一般只做很少量的工作，例如，广播接收器可能就是开启一个基于广播事件的执行一些任务的服务。</p>
-<hr>
-<h3 id="Activating_Components"><a href="#Activating_Components" class="headerlink" title="Activating Components"></a>Activating Components</h3><p>在4种组件类型中有三种–活动、服务和广播接收器–都是通过一个叫做<code>intent</code>的异步信息启动的。Intents可以在运行时将独立的组件绑定在一起(可以将它们看做是需要从其他组件中要求一个<code>action</code>的信使)，无论这个组件是否属于你的应用。</p>
-<p>通过使用一个<code>Intent</code>对象可以创建一个<code>intent</code>，它可以使用一个信息来启动一个特定的组件或者一类组件，即<code>intent</code>是分为显式的和隐式的。</p>
-<p>对于活动和服务，一个intent定义了需要执行的<code>action</code>(如发送或者查看)，有可能还会特定数据的<code>URI</code>，比如需要打开一个网页的时候，这个<code>URI</code>就是网页的网址了。在某些情况下，活动在使用一个intent后，还可以接受返回的结果，这个结果也是通过<code>Intent</code>返回的。</p>
-<p>对于广播接收器，intent只是简单定义了正在广播的通知。</p>
-<p>对于内容提供器，它是由<code>ContentResolver</code>来启动的。它可以处理跟内容提供器所有的直接事务。</p>
-<p>对不同组件有不同的开启方法：</p>
-<ul>
-<li>对于活动，可以传递一个<code>Intent</code>给<code>startActivity()</code>或者<code>startActivityForResult()</code>(当需要开启的活动返回一个结果时);</li>
-<li>对于服务，传递一个<code>Intent</code>给<code>startService()</code>方法来开启服务，绑定服务则是传递给<code>bindService()</code>;</li>
-<li>初始化一个广播可以通过传递<code>Intent</code>给如<code>sendBroadcast()</code>,<code>sendOrderedBroadcast()</code>,或者<code>sendStickyBroadcast()</code>;</li>
-<li>通过调用<code>ContentResolver</code>的<code>query()</code>可以实现对内容提供器的查询。</li>
-</ul>
-<hr>
-<h3 id="The_Manifest_File"><a href="#The_Manifest_File" class="headerlink" title="The Manifest File"></a>The Manifest File</h3><p>所有的组件都必须在一个文件——<code>AndroidManifest.xml</code>中声明，Android 系统才能使用它，这个文件必须是在应用项目文件的根目录中。</p>
-<p>除了用于声明组件，它还有以下这些功能：</p>
-<ul>
-<li>声明应用所需要的用户权限，比如网络连接或者是读取用户的联系人；</li>
-<li>声明该应用要求的最低 API Level，(在Android Studio中这个功能是放在<code>build.gradle</code>中了)</li>
-<li>声明应用需要用到或者要求的硬件和软件的功能特性，比如照相机，蓝牙，或者是一个多点触摸的屏幕</li>
-<li>应用需要链接到的 API 库，比如 Google Maps library</li>
-<li>等等</li>
-</ul>
-<h5 id="u58F0_u660E_u7EC4_u4EF6"><a href="#u58F0_u660E_u7EC4_u4EF6" class="headerlink" title="声明组件"></a>声明组件</h5><p><code>manifest</code>的主要任务是声明组件，比如，一个声明活动的例子如下：</p>
-<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;manifest ... &gt;
-    &lt;application android:icon=&quot;@drawable/app_icon.png&quot; ... &gt;
-        &lt;activity android:name=&quot;com.example.project.ExampleActivity&quot;
-                  android:label=&quot;@string/example_label&quot; ... &gt;
-        &lt;/activity&gt;
-        ...
-    &lt;/application&gt;
-&lt;/manifest&gt;
-</code></pre><p>没有在这个文件声明的组件是不可以使用的，除了广播接收器外。</p>
-<p>广播接收器即可以在该文件中声明，也可以在代码中动态地创建，并使用<code>registerReceiver()</code>方法在进行注册。</p>
-<h5 id="u58F0_u660E_u7EC4_u4EF6_u7684_u529F_u80FD"><a href="#u58F0_u660E_u7EC4_u4EF6_u7684_u529F_u80FD" class="headerlink" title="声明组件的功能"></a>声明组件的功能</h5><p><code>Intent</code>的真正作用体现在使用隐式intent上，这种intent简单描述了需要执行的行为类型，有时还会说明需要使用的数据，然后系统就会寻找可以执行这种行为的组件并启动它，而如果有多种组件，那么用户可以选择使用哪一个。</p>
-<p>通过在<code>AndroidManifest.xml</code>声明组件时，使用一个<code>&lt;intent-filter&gt;</code>可以声明该组件的功能，也就是其能执行的行为。</p>
-<p>下面是一个邮件应用中用户写信的一个活动的声明例子：</p>
-<pre><code>&lt;manifest ... &gt;
-    ...
-    &lt;application ... &gt;
-        &lt;activity android:name=&quot;com.example.project.ComposeEmailActivity&quot;&gt;
-            &lt;intent-filter&gt;
-                &lt;action android:name=&quot;android.intent.action.SEND&quot; /&gt;
-                &lt;data android:type=&quot;*/*&quot; /&gt;
-                &lt;category android:name=&quot;android.intent.category.DEFAULT&quot; /&gt;
-            &lt;/intent-filter&gt;
-        &lt;/activity&gt;
-    &lt;/application&gt;
-&lt;/manifest&gt;
-</code></pre><p>这个例子中的活动可以响应需要<code>ACTION_SEND</code>的intent</p>
-<h5 id="u58F0_u660E_u5E94_u7528_u7684_u5FC5_u8981_u6761_u4EF6"><a href="#u58F0_u660E_u5E94_u7528_u7684_u5FC5_u8981_u6761_u4EF6" class="headerlink" title="声明应用的必要条件"></a>声明应用的必要条件</h5><p>由于Android的设备非常多，但不是所有的设备都拥有同样的功能和特性，在<code>AndroidManifest.xml</code>文件中声明应用所需要的硬件和软件功能和特性是有必要的。</p>
-<p>不过大部分这些声明都只是信息，系统也不会读取它们，但对于如 Google Play 会读取它们然后给用户进行过滤。</p>
-<p>例如，你的应用需要使用照相功能并且使用 Android 2.1(API Level 7)的 API，应该如下所示：</p>
-<pre><code>&lt;manifest ... &gt;
-    &lt;uses-feature android:name=&quot;android.hardware.camera.any&quot;
-                  android:required=&quot;true&quot; /&gt;
-    &lt;uses-sdk android:minSdkVersion=&quot;7&quot; android:targetSdkVersion=&quot;19&quot; /&gt;
-    ...
-&lt;/manifest&gt;
-</code></pre><p>这样，当不具备以上要求的设备是无法从 Google Play 上安装的。当然上述的<code>android:required</code>也可以设置为<code>false</code>，这表示你的应用使用照相功能，但并不要求设备拥有这个功能，所以在运行的时候会检查设备是否有照相机，并且会在适当的时候关闭这个功能。</p>
-<hr>
-<h3 id="u5E94_u7528_u8D44_u6E90"><a href="#u5E94_u7528_u8D44_u6E90" class="headerlink" title="应用资源"></a>应用资源</h3><p>一个android应用除了代码外，还有一些其他的资源，比如图片，音频文件，以及任何与应用的视觉展示有关的东西。使用应用资源可以在不修改代码的情况下升级应用的不同功能特性，并且可以使应用适配不同的设备配置(如不同的语言和屏幕尺寸)。</p>
-<p>对每个在项目中使用到的资源，SDK 编译工具都会定义一个独一无二的整型 ID，这个可以在代码中或者 XML 中用来引用这个资源。</p>
-<p>使用应用资源可以有利于适配不同的设备配置，比如对于在 XML 中使用字符串，可以将字符串翻译成其他语言并保存在不同的文件，并且对该文件名字使用一个限定符(如<code>res/values-fr/</code>是用于法语的字符串)。</p>
-<p>Android提供了很多不同的限定符，它是一个短字符串用于放在资源文件名字中。例如，对于布局，通常需要创建不同的布局文件，因为设备的屏幕方向和尺寸。当屏幕是垂直的(<code>portrait</code>)或者是水平的(<code>landscape</code>),可以定义两个不同的布局文件来对应这两种情况，而系统会根据当前设备的方向来自动使用合适的布局。</p>
-<hr>
-<h3 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h3><p>  第一篇简单介绍了 android 的开发语言是 <code>Java</code> ，这个是最基础的，也是学习android首先需要掌握的基础语言，而且我也认为想要在android这条道路上走得更远，Java还不能只是了解，还必须要好好掌握好，毕竟到时如果要阅读源码，读的可以都是用java写的代码，所以重新好好系统学学java也是一个近期的计划。当然，最近看到有说可以使用其他语言来写android，比如<code>kotlin</code>这门语言，还有就是说<code>swift</code>要支持 Android了，不过这个目前只是 <code>NDK</code> 支持而已。</p>
-<p>其次还介绍了 android 的四大组件， 目前用得比较多的当然还是 <code>Activity</code> 了，其他三个组件用得比较少，甚至还没怎么使用过，不过这也是目前开发的经验比较少，做过的项目不多。</p>
-<p>然后就是<code>AndroidManifest</code>文件，用来注册四大组件，声明应用需要的权限和硬件必须具备的功能等，还有就是说明了 Android 中除了纯 Java 代码外，还有其他资源文件，包括图片，布局文件等，这里需要根据设备的屏幕大小，分辨率，屏幕方向等分别设置对应的资源文件。</p>
-<p>第一次写文章，主要是翻译自官方文档，因为英语水平和表达水平不是很好，所以有翻译错误和表达不好的地方都欢迎提出来。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>最近打算好好看看android的官方文档，<code>Training</code>的已经看过了，打算看下<code>Guide</code>指导文档，这个比<code>Training</code>会介绍得更加详细。</p>
-<p>谷歌的官网因为被墙，所以这里介绍一个国内]]>
     </summary>
     
       <category term="Android" scheme="http://ccc013.github.io/tags/Android/"/>

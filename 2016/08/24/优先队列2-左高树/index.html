@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hello, world!" />
+  <meta name="keywords" content="数据结构,算法," />
 
 
 
@@ -86,15 +86,20 @@
 
 
 
-<meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Cai's blog">
-<meta property="og:url" content="http://ccc013.github.io/index.html">
+<meta name="description" content="继续是《数据结构算法与应用：C++语言描述》的笔记，这是第九章优先队列的内容。本节将介绍另一种实现优先队列的数据结构–左高树
+高度与宽度优先的最大及最小左高树  上一节讲述的堆结构是一种隐式数据结构，用完全二叉树表示的堆在数组中时隐式存储的（即没有明确的指针或其他数据能够重构这种结构）。由于没有存储结构信息，这种描述方法空间利用率很高，事实上是没有空间浪费，尽管堆结构的时间和空间效率都很高，但它不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="优先队列2-左高树">
+<meta property="og:url" content="http://ccc013.github.io/2016/08/24/优先队列2-左高树/index.html">
 <meta property="og:site_name" content="Cai's blog">
-<meta property="og:description">
+<meta property="og:description" content="继续是《数据结构算法与应用：C++语言描述》的笔记，这是第九章优先队列的内容。本节将介绍另一种实现优先队列的数据结构–左高树
+高度与宽度优先的最大及最小左高树  上一节讲述的堆结构是一种隐式数据结构，用完全二叉树表示的堆在数组中时隐式存储的（即没有明确的指针或其他数据能够重构这种结构）。由于没有存储结构信息，这种描述方法空间利用率很高，事实上是没有空间浪费，尽管堆结构的时间和空间效率都很高，但它不">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E5%B7%A6%E9%AB%98%E6%A0%911.png">
+<meta property="og:updated_time" content="2016-08-24T10:53:12.434Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Cai's blog">
-<meta name="twitter:description">
+<meta name="twitter:title" content="优先队列2-左高树">
+<meta name="twitter:description" content="继续是《数据结构算法与应用：C++语言描述》的笔记，这是第九章优先队列的内容。本节将介绍另一种实现优先队列的数据结构–左高树
+高度与宽度优先的最大及最小左高树  上一节讲述的堆结构是一种隐式数据结构，用完全二叉树表示的堆在数组中时隐式存储的（即没有明确的指针或其他数据能够重构这种结构）。由于没有存储结构信息，这种描述方法空间利用率很高，事实上是没有空间浪费，尽管堆结构的时间和空间效率都很高，但它不">
 
 
 
@@ -112,7 +117,7 @@
   };
 </script>
 
-  <title> Hello, world! - Cai's blog -  </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> 优先队列2-左高树 | Cai's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -139,9 +144,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-right 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <!-- add Fork me on Github -->
@@ -243,9 +246,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -265,10 +268,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/08/24/优先队列2-左高树/" itemprop="url">
-                  优先队列2-左高树
-                </a>
+                优先队列2-左高树
               
             
           </h1>
@@ -325,513 +325,92 @@
       
 
       
-        
-          
-          继续是《数据结构算法与应用：C++语言描述》的笔记，这是第九
-          ...
+        <p>继续是《数据结构算法与应用：C++语言描述》的笔记，这是第九章优先队列的内容。本节将介绍另一种实现优先队列的数据结构–左高树</p>
+<h3 id="u9AD8_u5EA6_u4E0E_u5BBD_u5EA6_u4F18_u5148_u7684_u6700_u5927_u53CA_u6700_u5C0F_u5DE6_u9AD8_u6811"><a href="#u9AD8_u5EA6_u4E0E_u5BBD_u5EA6_u4F18_u5148_u7684_u6700_u5927_u53CA_u6700_u5C0F_u5DE6_u9AD8_u6811" class="headerlink" title="高度与宽度优先的最大及最小左高树"></a>高度与宽度优先的最大及最小左高树</h3><p>  上一节讲述的堆结构是一种<strong>隐式数据结构</strong>，用完全二叉树表示的堆在数组中时隐式存储的（即没有明确的指针或其他数据能够重构这种结构）。由于没有存储结构信息，这种描述方法空间利用率很高，事实上是没有空间浪费，尽管堆结构的时间和空间效率都很高，但它不适合所有优先队列的应用，尤其是当需要合并两个优先队列或多个长度不同的队列时，需要借助其他数据结构来实现这类应用，比如<strong>左高树(leftist tree)</strong>。</p>
+<p>  考察一棵二叉树，如下图9-6a所示，它有一类特殊的节点叫做<strong>外部节点，用来代替树中的空子树，其余节点叫做内部节点。</strong>增加了外部节点的二叉树被称为扩充二叉树，如下图9-6b所示，外部节点用阴影框表示，并且为了方便起见，这些节点用a~f标注。</p>
+<p>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%B7%A6%E9%AB%98%E6%A0%911.png" alt="此处输入图片的描述"></p>
+<p>  令$s(x)$是从节点$x$到它的子树的外部节点的所有路径横纵最短的一条，根据其定义可知，如果$x$是外部节点，则$s$=0，若$x$是内部节点，则其$s$值为$min{s(L),s(R)}+1$，其中$L,R$分别是$x$的左右子树。所以上述扩充二叉树各节点的s值如上图9-c所示。</p>
+<blockquote>
+<p>定义 [高度优先左高树] 当且仅当一棵二叉树的任何一个内部节点，<strong>其左孩子的$s$值大于等于右孩子的$s$值时</strong>，该二叉树是高度优先左高树(height-biased leftist tree,HBLT)。</p>
+<p>定义 [最大(小)HBLT] 即同时是最大(小)树的HBLT; </p>
+</blockquote>
+<p>图9-6a所示的二叉树并不是HBLT，因为外部节点a的父节点，其左孩子$s$=0，右孩子$s$=1，不满足条件，如果将这两个子树进行交换就可以满足HBLT的条件。</p>
+<blockquote>
+<p>定理9-1 若x是一个HBLT的内部节点，则<br>1) 以$x$为根的子树的节点数目至少是$2^{s(x)}-1$.<br>2) 若子树$x$有$m$个节点，$s(x)$最多为$log_2(m+1)$<br>3) 通过最右路径（即路径是从$x$开始沿右孩子移动）从$x$到达外部节点的路径长度是$s(x)$。</p>
+</blockquote>
+<p><strong>可以通过考察子树的节点数目来得到另一类左高树。</strong>定义$x$的重量$w(x)$是以$x$为根的子树的内部节点数目。如果$x$是外部节点，则其重量为0；若$x$是内部节点，则其重量是其孩子节点的重量之和加1，如上图9-6d展示了二叉树各节点的重量。</p>
+<blockquote>
+<p>定义 [重量优先左高树] 当且仅当一棵二叉树的任何一个内部节点，其左孩子的$w$值大于等于右孩子的$w$时，该二叉树为重量优先左高树(weight-biased leftist tree,WBLT);</p>
+</blockquote>
+<p>[最大(小)WBLT]即同时又是最大(小)树的WBLT。</p>
+<p>同HBLT类似，具有$m$个节点的WBLT的最右路径长度最多为$log_2(m+1)$。可以对WBLT和HBLT执行优先队列的查找、插入和删除操作，其时间复杂性与堆的相应操作相同。并且跟堆一样，WBLT和HBLT可以在线性时间内完成初始化。用WBLT或HBLT描述的两个优先队列可在对数时间内合并为一个，而堆描述的优先队列无法做到。</p>
+<p>接下来将介绍HBLT的操作，而WBLT的查找、插入、删除、合并和初始化操作与HBLT非常相似。</p>
+<h3 id="u6700_u5927HBLT_u7684_u63D2_u5165"><a href="#u6700_u5927HBLT_u7684_u63D2_u5165" class="headerlink" title="最大HBLT的插入"></a>最大HBLT的插入</h3><p>  <strong>插入操作可借助于合并操作来完成。</strong>它可以通过先建立一棵仅包含待插入元素的HBLT，然后与原来的HBLT合并即可。</p>
+<h3 id="u6700_u5927HBLT_u7684_u5220_u9664"><a href="#u6700_u5927HBLT_u7684_u5220_u9664" class="headerlink" title="最大HBLT的删除"></a>最大HBLT的删除</h3><p>  根是最大元素，如果跟被删除，将留下分别以其左右孩子为根的两棵HBLT的子树，将其合并到一起，便得到包含除删除元素外所有元素的最大HBLT。</p>
+<h3 id="u5408_u5E76_u4E24_u68F5_u6700_u5927HBLT"><a href="#u5408_u5E76_u4E24_u68F5_u6700_u5927HBLT" class="headerlink" title="合并两棵最大HBLT"></a>合并两棵最大HBLT</h3><p>  具有$n$个元素的最大HBLT，其最右路径的长度为$O(logn)$。合并操作操作仅需遍历欲合并的HBLT的最右路径，即仅需移动右孩子。</p>
+<p> 合并策略最好用递归来实现。令$A,B$是需要合并的两棵最大HBLT，假设两者均不为空，为实现合并，首先需要检查两个根元素，较大者是合并后HBLT的根。假设$A$具有较大的根，且其左子树是$L$,$C$是由$A$的右子树与$B$合并而成的HBLT。所以$A,B$合并的结果是以$A$的根为根，$L,C$为左右子树的最大HBLT。如果$L$的$s$值小于$C$的$s$值，则$C$是右子树，$L$是左子树。</p>
+<h3 id="u521D_u59CB_u5316_u6700_u5927HBLT"><a href="#u521D_u59CB_u5316_u6700_u5927HBLT" class="headerlink" title="初始化最大HBLT"></a>初始化最大HBLT</h3><p>  通过将$n$个元素插入到最初为空的最大HBLT中来进行初始化，所需时间是$O(logn)$。为得到具有线性时间的初始化算法，首先创建$n$个最大HBLT，每个树中仅包含$n$个元素中的某一个，这$n$棵树排成一个FIFO队列，然后从队列中依次删除两个HBLT，将其合并，然后再加入队列末尾，直到最后只有一棵HBLT。</p>
+<h3 id="u7C7BMaxHBLT"><a href="#u7C7BMaxHBLT" class="headerlink" title="类MaxHBLT"></a>类MaxHBLT</h3><p>  最大HBLT的每个节点均需要$data,LeftChild,RightChild和s$四个域，相应的节点类是$HBLTNode$,如下代码所示。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template&#60;class T&#62;&#10;class MaxHBLT;&#10;&#10;template&#60;class T&#62;&#10;class HBLTNode&#123;&#10;    friend MaxHBLT&#60;T&#62;;&#10;private:&#10;    int s;&#10;    T data;&#10;    HBLTNode&#60;T&#62;* LeftChild, *RightChild;&#10;public:&#10;    HBLTNode(const T&#38;e, const int sh)&#123;&#10;        data = e;&#10;        s = sh;&#10;        LeftChild = RightChild = 0;&#10;    &#125;&#10;&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>而最大HBLT可用下面代码定义的类MaxHBLT来实现。类MaxHBLT的每个对象都有一个唯一的私有成员$root$，用来指向最大HBLT的根。构造函数在初始化时将其置为0，因此初始的最大HBLT是空。析构函数通过调用私有成员函数$Free$来删除HBLT中的所有节点，该函数按后序遍历整棵HBLT，每访问一个节点就删除该节点。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template&#60;class T&#62;&#10;class MaxHBLT&#123;&#10;private:&#10;    HBLTNode&#60;T&#62; *root;&#10;    void PostOrder(void(*Visit)(HBLTNode&#60;T&#62;*u), HBLTNode&#60;T&#62;* t)&#123;&#10;        // &#21518;&#24207;&#36941;&#21382;&#10;        if (t)&#123;&#10;            PostOrder(Visit, t-&#62;LeftChild);&#10;            PostOrder(Visit, t-&#62;RightChild);&#10;            Visit(t);&#10;        &#125;&#10;    &#125;&#10;    static void free(HBLTNode&#60;T&#62;* t)&#123;&#10;        delete t;&#10;    &#125;&#10;    void Free(HBLTNode&#60;T&#62; *t)&#123;&#10;        PostOrder(free, t);&#10;        t = 0;&#10;    &#125;&#10;    void Meld(HBLTNode&#60;T&#62; * &#38;x, HBLTNode&#60;T&#62;* y);&#10;public:&#10;    MaxHBLT()&#123; root = 0 &#125;;&#10;    ~MaxHBLT()&#123; Free(root); &#125;&#10;    T Max()&#123;&#10;        if (!root)&#10;            throw OutOfBounds();&#10;        return root-&#62;data;&#10;    &#125;&#10;    MaxHBLT&#60;T&#62;&#38; Insert(const T&#38; x);&#10;    MaxHBLT&#60;T&#62;&#38; DeleteMax(T&#38; x);&#10;    MaxHBLT&#60;T&#62;&#38; Meld(MaxHBLT&#60;T&#62;&#38; x)&#123;&#10;        Meld(root, x.root);&#10;        x.root = 0;&#10;        return *this;&#10;    &#125;&#10;    void Initialize(T a[], int n);&#10;&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>接下来先给出合并操作的函数实现代码，该函数首先要处理合并的树中至少有一个为空的特殊情况。当没有空树时要确保$x$指向根值较大的树，如果$x$不是指向根值较大的树，则将$x$和$y$的指针进行交换。接下来把$x$的右子树与以$y$为根的最大HBLT进行递归合并。合并后为保证整棵树是最大HBLT，$x$的左右孩子可能需要交换，这是通过计算$x$的$s$值来确定的。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template&#60;class T&#62;&#10;void MaxHBLT&#60;T&#62;::Meld(HBLTNode&#60;T&#62;* &#38;x, HBLTNode&#60;T&#62;* y)&#123;&#10;    // &#21512;&#24182;&#20004;&#26869;&#26681;&#20998;&#21035;&#26159;*x&#21644;*y&#30340;&#24038;&#39640;&#26641;&#65292;&#36820;&#22238;&#25351;&#21521;&#26032;&#26681; x&#30340;&#25351;&#38024;&#10;    if (!y)&#10;        return;&#10;    if (!x)&#123;&#10;        x = y;&#10;        return;&#10;    &#125;&#10;    if (x-&#62;data &#60; y-&#62;data)&#123;&#10;        // &#20132;&#25442;x&#21644;y&#10;        HBLTNode&#60;T&#62; * temp = y;&#10;        y = x;&#10;        x = temp;&#10;    &#125;&#10;    Meld(x-&#62;RightChild, y);&#10;    if (!x-&#62;LeftChild)&#123;&#10;        // &#24038;&#23376;&#26641;&#20026;&#31354;,&#20132;&#25442;&#23376;&#26641;&#10;        x-&#62;LeftChild = x-&#62;RightChild;&#10;        x-&#62;RightChild = 0;&#10;        x-&#62;s = 1;&#10;    &#125;&#10;    else&#123;&#10;        if (x-&#62;LeftChild-&#62;s &#60; x-&#62;RightChild-&#62;s)&#123;&#10;            // &#20132;&#25442;&#24038;&#21491;&#23376;&#26641;&#10;            HBLTNode&#60;T&#62; * temp = x-&#62;LeftChild;&#10;            x-&#62;RightChild = x-&#62;LeftChild;&#10;            x-&#62;LeftChild = temp;&#10;        &#125;&#10;        x-&#62;s = x-&#62;RightChild-&#62;s + 1;&#10;    &#125;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>最后给出插入，删除和初始化函数的代码实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template&#60;class T&#62;&#10;MaxHBLT&#60;T&#62;&#38; MaxHBLT&#60;T&#62;::Insert(const T&#38; x)&#123;&#10;    // &#23558;x&#25554;&#20837;&#24038;&#39640;&#26641;&#10;    HBLTNode&#60;T&#62;* q = new HBLTNode&#60;T&#62;(x, 1);&#10;    // &#23558;q&#19982;&#21407;&#26641;&#21512;&#24182;&#10;    Meld(root, q);&#10;    return *this;&#10;&#125;&#10;&#10;template&#60;class T&#62;&#10;MaxHBLT&#60;T&#62;&#38; MaxHBLT&#60;T&#62;::DeleteMax(T&#38; x)&#123;&#10;    // &#21024;&#38500;&#26368;&#22823;&#20803;&#32032;&#65292;&#24182;&#23558;&#20854;&#25918;&#20837;x&#10;    if (!root)&#10;        throw OutOfBounds();&#10;&#10;    x = root-&#62;data;&#10;    HBLTNode&#60;T&#62;*L = root-&#62;LeftChild;&#10;    HBLTNode&#60;T&#62;*R = root-&#62;RightChild;&#10;    delete root;&#10;    root = L;&#10;    Meld(root, R);&#10;    return *this;&#10;&#125;&#10;&#10;template&#60;class T&#62;&#10;void MaxHBLT&#60;T&#62;::Initialize(T a[], int n)&#123;&#10;    // &#21021;&#22987;&#21270;&#26377;n&#20010;&#20803;&#32032;&#30340;HBLT&#26641;&#10;    Queue&#60;HBLTNode&#60;T&#62;*&#62;Q(n);&#10;    // &#21024;&#38500;&#32769;&#33410;&#28857;&#10;    Free(root);&#10;    for (int i = 1; i &#60;= n; i++)&#123;&#10;        HBLTNode&#60;T&#62;* q = new HBLTNode&#60;T&#62;(a[i-1], 1);&#10;        Q.Add(q);&#10;    &#125;&#10;&#10;    // &#19981;&#26029;&#21512;&#24182;&#38431;&#21015;&#20013;&#30340;&#26641;&#65307;&#10;    HBLTNode&#60;T&#62;*b, *c;&#10;    for (int i = 1; i &#60;= n - 1; i++) &#123;&#10;        Q.Delete(b).Delete(c);&#10;        Meld(b, c);&#10;        // &#23558;&#21512;&#24182;&#21518;&#24471;&#21040;&#30340;&#26641;&#25918;&#20837;&#23545;&#20102;&#10;        Q.Add(b);&#10;    &#125;&#10;&#10;    if (n)&#10;        Q.Delete(root);&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>对于上述函数的复杂性，构造函数只需要耗时$\theta(1)$,而析构函数需要$\theta(n)$，其中$n$是要删除的最大HBLT中的元素个数。<strong>Max</strong>函数的复杂性是$\theta(1)$，<strong>Insert,DeleteMax</strong>及共享成员函数<strong>Meld</strong>的复杂性与私有成员函数<strong>Meld</strong>的复杂性相同，由于私有成员函数<strong>Meld</strong>仅在以$<em>x$和$</em>y$为根的树的右子树中移动，因此其复杂性是$O(x-&gt;s+y-&gt;s)$。又由于$<em>x$和$</em>y$的最大$s$值分别为$log_2(m+1)$和$log_2(n+1)$,其中$m,n$分别是以$<em>x$和$</em>y$为根的最大HBLT中的元素个数，所以私有成员函数<strong>Meld</strong>的复杂性是$O(logmn)$。</p>
+<p>更完整的代码例子可以查看<a href="https://github.com/ccc013/DataStructe-Algorithms_Study/blob/master/PriorityQueue/MaxHBLT.h" target="_blank" rel="external">最大高度优先左高树的实现</a>。</p>
 
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/24/优先队列2-左高树/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+      
+    </div>
+
+    <div>
+      
         
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
     <footer class="post-footer">
       
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/23/优先队列1-堆/" itemprop="url">
-                  优先队列1--堆
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-23T20:27:57+08:00" content="2016-08-23">
-              2016-08-23
-            </time>
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/数据结构/" rel="tag">#数据结构</a>
           
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/23/优先队列1-堆/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/23/优先队列1-堆/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
+            <a href="/tags/算法/" rel="tag">#算法</a>
           
-
-          
-
-          
-          
-             <span id="/2016/08/23/优先队列1-堆/" class="leancloud_visitors" data-flag-title="优先队列1--堆">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-          继续是《数据结构算法与应用：C++语言描述》的笔记，这是第九
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/23/优先队列1-堆/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/23/优先队列1-堆/" rel="next" title="优先队列1--堆">
+                <i class="fa fa-chevron-left"></i> 优先队列1--堆
+              </a>
+            
           </div>
-        
-      
-    </div>
 
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+          <div class="post-nav-prev post-nav-item">
             
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/18/二叉树的基本概念和实现/" itemprop="url">
-                  二叉树的基本概念和实现
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-18T15:05:01+08:00" content="2016-08-18">
-              2016-08-18
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/18/二叉树的基本概念和实现/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/18/二叉树的基本概念和实现/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/08/18/二叉树的基本概念和实现/" class="leancloud_visitors" data-flag-title="二叉树的基本概念和实现">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-          继续是《数据结构算法与应用：C++语言描述》的笔记，这是第八
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/18/二叉树的基本概念和实现/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/07/跳表-散列2-散列/" itemprop="url">
-                  跳表&散列2-散列
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-07T18:38:48+08:00" content="2016-08-07">
-              2016-08-07
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/07/跳表-散列2-散列/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/07/跳表-散列2-散列/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/08/07/跳表-散列2-散列/" class="leancloud_visitors" data-flag-title="跳表&散列2-散列">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          继续是《数据结构算法与应用：C++语言描述》的笔记，这是第七
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/08/07/跳表-散列2-散列/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
+    <div class="post-spread">
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/27/跳表-散列1-字典-跳表/" itemprop="url">
-                  跳表&散列1-字典&跳表
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-27T22:09:02+08:00" content="2016-07-27">
-              2016-07-27
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/27/跳表-散列1-字典-跳表/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/27/跳表-散列1-字典-跳表/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-             <span id="/2016/07/27/跳表-散列1-字典-跳表/" class="leancloud_visitors" data-flag-title="跳表&散列1-字典&跳表">
-               &nbsp; | &nbsp;
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               <span class="post-meta-item-text">阅读次数 </span>
-               <span class="leancloud-visitors-count"></span>
-              </span>
-          
-
-          
-        
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          继续是《数据结构算法与应用：C++语言描述》的笔记，这是第七
-          ...
-
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/27/跳表-散列1-字典-跳表/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
+  </div>
 
 
           </div>
@@ -839,6 +418,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/24/优先队列2-左高树/"
+           data-title="优先队列2-左高树" data-url="http://ccc013.github.io/2016/08/24/优先队列2-左高树/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -858,8 +445,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/favicon.png"
@@ -1008,6 +604,17 @@
       </section>
 
       
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u9AD8_u5EA6_u4E0E_u5BBD_u5EA6_u4F18_u5148_u7684_u6700_u5927_u53CA_u6700_u5C0F_u5DE6_u9AD8_u6811"><span class="nav-number">1.</span> <span class="nav-text">高度与宽度优先的最大及最小左高树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u6700_u5927HBLT_u7684_u63D2_u5165"><span class="nav-number">2.</span> <span class="nav-text">最大HBLT的插入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u6700_u5927HBLT_u7684_u5220_u9664"><span class="nav-number">3.</span> <span class="nav-text">最大HBLT的删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5408_u5E76_u4E24_u68F5_u6700_u5927HBLT"><span class="nav-number">4.</span> <span class="nav-text">合并两棵最大HBLT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u521D_u59CB_u5316_u6700_u5927HBLT"><span class="nav-number">5.</span> <span class="nav-text">初始化最大HBLT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u7C7BMaxHBLT"><span class="nav-number">6.</span> <span class="nav-text">类MaxHBLT</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
 
     </div>
   </aside>
@@ -1122,6 +729,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
