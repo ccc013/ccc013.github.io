@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Android,阅读笔记," />
+  <meta name="keywords" content="数据结构,算法," />
 
 
 
@@ -86,22 +86,24 @@
 
 
 
-<meta name="description" content="第二篇文章：设备的兼容性(Device Compatibility)
-设备的兼容性(Device Compatibility)Android 现在可以运行在不同的设备上，不只是手机，还有平板电脑，电视。为了能让应用可以成功在这些设备上正常运行，应用应该允许一些特征功能的多样性并且可以提供一个灵活的用户界面来适应不同的屏幕配置。
-为了达成这个目标，Android 提供一个可以让开发者使用一些静态文件">
+<meta name="description" content="继续是《数据结构算法与应用：C++语言描述》的笔记，这是第11章搜索树的内容。
+本节首先介绍的是二叉搜索树的内容。
+基本概念  在跳表&amp;amp;散列1-字典&amp;amp;跳表介绍了抽象数据类型Dictionary，从中可以发现当用散列来描述一个字典时，字典操作（包括插入、删除和搜索）所需要的平均时间是$\theta(1)$。而这些操作最坏情况下的时间正比于字典中的元素个数$n$。如果扩充字典的抽象数据">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android官方文档Guide阅读系列(2)--Device Compatibility">
-<meta property="og:url" content="http://ccc013.github.io/2016/04/20/Device-Compatibility/index.html">
+<meta property="og:title" content="搜索树1-二叉搜索树">
+<meta property="og:url" content="http://ccc013.github.io/2016/08/31/搜索树1-二叉搜索树/index.html">
 <meta property="og:site_name" content="Cai's blog">
-<meta property="og:description" content="第二篇文章：设备的兼容性(Device Compatibility)
-设备的兼容性(Device Compatibility)Android 现在可以运行在不同的设备上，不只是手机，还有平板电脑，电视。为了能让应用可以成功在这些设备上正常运行，应用应该允许一些特征功能的多样性并且可以提供一个灵活的用户界面来适应不同的屏幕配置。
-为了达成这个目标，Android 提供一个可以让开发者使用一些静态文件">
-<meta property="og:updated_time" content="2016-05-19T00:34:37.911Z">
+<meta property="og:description" content="继续是《数据结构算法与应用：C++语言描述》的笔记，这是第11章搜索树的内容。
+本节首先介绍的是二叉搜索树的内容。
+基本概念  在跳表&amp;amp;散列1-字典&amp;amp;跳表介绍了抽象数据类型Dictionary，从中可以发现当用散列来描述一个字典时，字典操作（包括插入、删除和搜索）所需要的平均时间是$\theta(1)$。而这些操作最坏情况下的时间正比于字典中的元素个数$n$。如果扩充字典的抽象数据">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%911.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%912.png">
+<meta property="og:updated_time" content="2016-08-31T00:47:15.725Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android官方文档Guide阅读系列(2)--Device Compatibility">
-<meta name="twitter:description" content="第二篇文章：设备的兼容性(Device Compatibility)
-设备的兼容性(Device Compatibility)Android 现在可以运行在不同的设备上，不只是手机，还有平板电脑，电视。为了能让应用可以成功在这些设备上正常运行，应用应该允许一些特征功能的多样性并且可以提供一个灵活的用户界面来适应不同的屏幕配置。
-为了达成这个目标，Android 提供一个可以让开发者使用一些静态文件">
+<meta name="twitter:title" content="搜索树1-二叉搜索树">
+<meta name="twitter:description" content="继续是《数据结构算法与应用：C++语言描述》的笔记，这是第11章搜索树的内容。
+本节首先介绍的是二叉搜索树的内容。
+基本概念  在跳表&amp;amp;散列1-字典&amp;amp;跳表介绍了抽象数据类型Dictionary，从中可以发现当用散列来描述一个字典时，字典操作（包括插入、删除和搜索）所需要的平均时间是$\theta(1)$。而这些操作最坏情况下的时间正比于字典中的元素个数$n$。如果扩充字典的抽象数据">
 
 
 
@@ -119,7 +121,7 @@
   };
 </script>
 
-  <title> Android官方文档Guide阅读系列(2)--Device Compatibility | Cai's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> 搜索树1-二叉搜索树 | Cai's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -270,7 +272,7 @@
             
             
               
-                Android官方文档Guide阅读系列(2)--Device Compatibility
+                搜索树1-二叉搜索树
               
             
           </h1>
@@ -282,8 +284,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-20T14:13:07+08:00" content="2016-04-20">
-              2016-04-20
+            <time itemprop="dateCreated" datetime="2016-08-31T08:46:46+08:00" content="2016-08-31">
+              2016-08-31
             </time>
           </span>
 
@@ -293,8 +295,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/20/Device-Compatibility/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/20/Device-Compatibility/" itemprop="commentsCount"></span>
+                <a href="/2016/08/31/搜索树1-二叉搜索树/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/31/搜索树1-二叉搜索树/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -304,7 +306,7 @@
 
           
           
-             <span id="/2016/04/20/Device-Compatibility/" class="leancloud_visitors" data-flag-title="Android官方文档Guide阅读系列(2)--Device Compatibility">
+             <span id="/2016/08/31/搜索树1-二叉搜索树/" class="leancloud_visitors" data-flag-title="搜索树1-二叉搜索树">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -327,59 +329,31 @@
       
 
       
-        <p>第二篇文章：<a href="http://android.xsoftlab.net/guide/practices/compatibility.html" target="_blank" rel="external">设备的兼容性(Device Compatibility)</a></p>
-<h3 id="u8BBE_u5907_u7684_u517C_u5BB9_u6027_28Device_Compatibility_29"><a href="#u8BBE_u5907_u7684_u517C_u5BB9_u6027_28Device_Compatibility_29" class="headerlink" title="设备的兼容性(Device Compatibility)"></a>设备的兼容性(Device Compatibility)</h3><p>Android 现在可以运行在不同的设备上，不只是手机，还有平板电脑，电视。为了能让应用可以成功在这些设备上正常运行，应用应该允许一些特征功能的多样性并且可以提供一个灵活的用户界面来适应不同的屏幕配置。</p>
-<p>为了达成这个目标，Android 提供一个可以让开发者使用一些静态文件(如对于不同屏幕尺寸的不同<code>XML</code>布局)来使用特定的配置的应用资源的动态应用框架。Android 可以根据当前设备的配置来加载合适的资源。所以对于开发者，在将你的程序打包成<code>apk</code>文件前，考虑好使用几套资源文件，比如使用几套不同大小的图片来适应不同的屏幕尺寸，对于手机和平板电脑要分别设置不同的布局文件等，这样当发布了你的应用后，就可以给使用不同设备的用户一个最好的用户体验。</p>
-<p>最好的情况还是开发者可以指定其应用的功能要求，这样可以控制能够安装其应用的设备类型。更多有关让你的应用适应不同设备的内容，可以查看<a href="http://android.xsoftlab.net/training/basics/supporting-devices/index.html" target="_blank" rel="external">Supporting Different Devices</a>。</p>
-<hr>
-<h3 id="u517C_u5BB9_u6027_u610F_u5473_u7740_u4EC0_u4E48_uFF1F"><a href="#u517C_u5BB9_u6027_u610F_u5473_u7740_u4EC0_u4E48_uFF1F" class="headerlink" title="兼容性意味着什么？"></a>兼容性意味着什么？</h3><p>  当你阅读了越来越多有关 Android 开发的文章后，你可能在不同情况下会看到这个词语–<code>兼容性</code>。兼容性分为两种，一是设备的兼容性，二是应用的兼容性。</p>
-<p>  因为 Android 是一个开源项目，所以任何硬件制造商都可以制造一个能运行 Android 系统的设备，但是一个设备被称为是”兼容 Android”只有在该设备上可以正常运行在 <code>Android 执行环境</code>下编写的应用的前提。而有关<code>Android 执行环境</code>的细节可以查看<a href="http://source.android.com/compatibility/overview.html" target="_blank" rel="external"> Android compatibility program</a>,然后每个设备都必须通过兼容性测试套件(Compatibility Test Suite, CTS)才被认为是可兼容的。</p>
-<p>  当然，作为一名应用开发者，是根本不需要考虑设备是否是兼容 Android的，因为可以包含谷歌应用商店(Google Play Store) 的设备都是可以兼容Android的，换句话说，能够安装你的应用的用户都是使用一台兼容Android的设备。</p>
-<p>  那么，开发者需要考虑的就是你的应用的兼容性问题了。这也是因为 Android 可以运行在不同配置的设备上，有些功能不是所有的设备都具备的。比如一些设备是不具备有指南针传感器的，所以如果应该的核心功能需要有指南针传感器，那么就只有拥有这指南针传感器的设备可以使用你的应用了。</p>
-<hr>
-<h3 id="u63A7_u5236_u5E94_u7528_u5BF9_u8BBE_u5907_u7684_u53EF_u7528_u6027"><a href="#u63A7_u5236_u5E94_u7528_u5BF9_u8BBE_u5907_u7684_u53EF_u7528_u6027" class="headerlink" title="控制应用对设备的可用性"></a>控制应用对设备的可用性</h3><p>  Android 支持很多特性功能，这些功能有些是需要硬件支持的，比如上述的指南针传感器，有些是基于软件的，比如应用程序部件，还有一些是依赖于平台的版本。不是每一种设备都支持所有的功能，所以开发者需要根据应用所要求的功能来控制应用对设备的可用性。</p>
-<p>  为了让更多的用户可以使用你的应用，你应该在使用一个单独的<code>APK</code>的情况下支持尽可能多的设备配置。大多数情况下，你可以在运行的时候关闭可选的功能特性，然后根据不同配置使用不同资源文件(比如不同屏幕尺寸的布局文件，具体参考<a href="http://android.xsoftlab.net/guide/topics/resources/providing-resources.html" target="_blank" rel="external">提供应用资源</a>)。如果可能，你是可以在谷歌应用商店中根据以下几种设备的特性来限制你的应用的可用性:</p>
-<ul>
-<li>设备功能(Device features)</li>
-<li>平台版本(Platform version)</li>
-<li>屏幕配置(Screen configuration)</li>
-</ul>
-<hr>
-<h4 id="u8BBE_u5907_u529F_u80FD_28Device_features_29"><a href="#u8BBE_u5907_u529F_u80FD_28Device_features_29" class="headerlink" title="设备功能(Device features)"></a>设备功能(Device features)</h4><p>  Android 给所有的硬件或软件功能都提供了功能<code>IDs</code>，比如对于指南针传感器的功能 ID 就是<a href="http://android.xsoftlab.net/reference/android/content/pm/PackageManager.html#FEATURE_SENSOR_COMPASS" target="_blank" rel="external"><code>FEATURE_SENSOR_COMPASS</code></a>,而应用程序组件的 ID 是<a href="http://android.xsoftlab.net/reference/android/content/pm/PackageManager.html#FEATURE_APP_WIDGETS" target="_blank" rel="external"><code>FEATURE_APP_WIDGETS</code></a>.</p>
-<p>  在你的应用的<a href="http://android.xsoftlab.net/guide/topics/manifest/manifest-intro.html" target="_blank" rel="external"><code>manifest file</code></a>可以通过使用<a href="http://android.xsoftlab.net/guide/topics/manifest/uses-feature-element.html" target="_blank" rel="external"><code>&lt;uses-feature&gt;</code></a>来声明所需要的功能从而防止不具备应用所需要的功能的设备的用户安装你的应用。</p>
-<p>  一个要求必须具备指南针传感器功能的应用可以如此写明该功能要求：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;manifest ... &#62;&#10;    &#60;uses-feature android:name=&#34;android.hardware.sensor.compass&#34;&#10;                  android:required=&#34;true&#34; /&#62;&#10;    ...&#10;&#60;/manifest&#62;</span><br></pre></td></tr></table></figure>
-<p>  当然如果你的应用主要功能并不需要一个设备的功能，可以将上述代码中的<code>required</code>设置为<code>false</code>，然后在运行的时候检查设备的功能。如果应用的功能在当前设备上不可用的时候，那么可以关闭这项功能。一个检查当前设备是否具备某个功能的代码例子如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PackageManager pm = getPackageManager();&#10;if (!pm.hasSystemFeature(PackageManager.FEATURE_SENSOR_COMPASS)) &#123;&#10;    // This device does not have a compass, turn off the compass feature&#10;    disableCompassFeature();&#10;&#125;</span><br></pre></td></tr></table></figure>
-<p>这里使用到了<a href="http://android.xsoftlab.net/reference/android/content/pm/PackageManager.html#hasSystemFeature(java.lang.String" target="_blank" rel="external">`hasSystemFeature()’</a>)这个函数，主要是检查设备是否支持某个功能，如果有返回<code>true</code>，否则返回<code>false</code>。</p>
+        <p>继续是《数据结构算法与应用：C++语言描述》的笔记，这是第11章搜索树的内容。</p>
+<p>本节首先介绍的是二叉搜索树的内容。</p>
+<h3 id="u57FA_u672C_u6982_u5FF5"><a href="#u57FA_u672C_u6982_u5FF5" class="headerlink" title="基本概念"></a>基本概念</h3><p>  在<a href="http://ccc013.github.io/2016/07/27/%E8%B7%B3%E8%A1%A8-%E6%95%A3%E5%88%971-%E5%AD%97%E5%85%B8-%E8%B7%B3%E8%A1%A8/">跳表&amp;散列1-字典&amp;跳表</a>介绍了抽象数据类型<strong>Dictionary</strong>，从中可以发现当用<a href="http://ccc013.github.io/2016/08/07/%E8%B7%B3%E8%A1%A8-%E6%95%A3%E5%88%972-%E6%95%A3%E5%88%97/">散列</a>来描述一个字典时，字典操作（包括插入、删除和搜索）所需要的平均时间是$\theta(1)$。而这些操作最坏情况下的时间正比于字典中的元素个数$n$。如果扩充字典的抽象数据类型描述，增加以下操作，那么散列将不能再提供比较好的评价性能：<br>  1) 按关键值的升序输出字典元素；<br>  2）按升序找到第k个元素；<br>  3）删除第k个元素。</p>
+<p>  为了执行操作1），需要从表中取出数据，将它们排序后输出。如果使用除数是D的链表，那么能在$\theta(D+n)$的时间内取出元素，在$O(nlogn)$时间内完成排序和$\theta(n)$时间内输出，因此共需时间$O(D+nlogn)$。如果对散列使用线性开型寻址，则取出元素所需时间是$\theta(b)$,b是桶的个数，这时需要时间是$O(b+nlogn)$。<br>  如果使用链表，操作2）和3）可以在$O(D+n)$的时间内完成，如果使用线性开型寻址，它们可以在$\theta(b)$时间内完成。</p>
+<p>  如果使用平衡搜索树，那么对字典的基本操作（搜索、插入和删除）能够在$O(logn)$的时间内完成，操作1）能在$\theta(n)$的时间内完成。通过使用带索引的平衡搜索树，也能够在$O(logn)$的时间内完成操作2）和3）。</p>
+<p>  在学习平衡树之前，首先来看一种叫做二叉搜索树的简单结构。</p>
 <blockquote>
-<p>注意：有些<a href="http://android.xsoftlab.net/guide/topics/security/permissions.html" target="_blank" rel="external">系统权限</a>暗含着需要某些设备功能的支持。比如，如果你的应用需要蓝牙(<code>BLUETOOTH</code>)功能，它其实是需要有<code>FEATURE_BLUETOOTH</code>这个设备功能的。当然你也可以通过在<code>&lt;uses-feature&gt;</code>中对于的功能设置<code>required = false</code>来使得你的应用也可以运行在不具备蓝牙功能的设备上。更多的有关需要设备功能的权限的信息，可以查看<a href="http://android.xsoftlab.net/guide/topics/manifest/uses-feature-element.html#permissions" target="_blank" rel="external">Permissions that Imply Feature Requirements</a>。</p>
+<p>定义 [二叉搜索树] 二叉搜索树(binary search tree)是一棵可能为空的二叉树，一棵非空的二叉搜索树满足以下特征：<br>1）每个元素有一个关键值，并且没有任意两个元素有相同的关键值；因此，所有的关键值都是唯一的。<br>2）根节点左子树的关键值（如果有的话）小于根节点的关键值。<br>3）根节点右子树的关键值（如果有的话）大于根节点的关键值。<br>4）根节点的左右子树也都是儿茶搜索树。</p>
 </blockquote>
-<hr>
-<h4 id="u5E73_u53F0_u7248_u672C_28Platform_version_29"><a href="#u5E73_u53F0_u7248_u672C_28Platform_version_29" class="headerlink" title="平台版本(Platform version)"></a>平台版本(Platform version)</h4><p>  不同的设备可能运行不同的系统版本，比如 Android 4.0 和 Android 4.4。而每个连续的系统版本都会增加一些前一个版本不可用的新的 APIs。每个系统版本都有指定一个 <a href="http://android.xsoftlab.net/guide/topics/manifest/uses-sdk-element.html#ApiLevels" target="_blank" rel="external"><code>API level</code></a>。</p>
-<p>  使用<code>API level</code>可以指定你的应用可以兼容的最低系统版本，需要使用<code>minSdkVersion</code>(在Android Studio中这个功能是放在<code>build.gradle</code>中了);同样也可以指定你的应用最适合使用的版本，使用<code>targetSdkVersion</code>这个属性。</p>
-<p>  同样的可以在代码中动态地检查当前设备使用的系统版本是否能够支持应用的某些功能，代码例子如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if (Build.VERSION.SDK_INT &#60; Build.VERSION_CODES.HONEYCOMB) &#123;&#10;    // Running on something older than API level 11, so disable&#10;    // the drag/drop features that use ClipboardManager APIs&#10;    disableDragAndDrop();&#10;&#125;</span><br></pre></td></tr></table></figure>
-<p>上述例子是使用了<a href="http://android.xsoftlab.net/reference/android/content/ClipboardManager.html" target="_blank" rel="external">剪切板(ClipboardManager)</a>，这个API是在 API level 11中才增加的，所以低于这个系统版本的是无法实现这个功能的。</p>
-<hr>
-<h4 id="u5C4F_u5E55_u914D_u7F6E_28Screen_configuration_29"><a href="#u5C4F_u5E55_u914D_u7F6E_28Screen_configuration_29" class="headerlink" title="屏幕配置(Screen configuration)"></a>屏幕配置(Screen configuration)</h4><p>  Android 可以运行在不同的屏幕尺寸上，包括手机，平板电脑以及电视。为了更好的根据屏幕类型来分类设备，Android 对每个设备都定义了两种特性: 屏幕尺寸(屏幕的物理尺寸）,以及屏幕密度(屏幕的物理密度，如<code>dpi</code>)。而为了简化这些不同的配置，Android 分别为这两种特性生成一些变量来方便使用：</p>
-<ul>
-<li>4种屏幕尺寸: <code>small</code>,<code>normal</code>,<code>large</code>,<code>xlarge</code>;</li>
-<li>几种密度: <code>mdpi(medium)</code>,<code>hdpi(hdpi)</code>,<code>xhdpi(extra high)</code>,<code>xxhdpi(extra-extra hdpi)</code>等。</li>
-</ul>
-<hr>
-<h3 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h3><p>  这篇教程主要是说明 Android 的兼容性问题，主要是3个方面的兼容性问题，一是设备的功能，二是系统版本，三是屏幕配置。这些问题的产生原因当然是因为Android是一个开源的系统，所以很多手机制造商都可以运行 Android 的系统，但是这造成了有很多不同配置，不同屏幕大小的 Android 手机，所以这也是在开发过程必须考虑的一个问题，兼容性问题，当然个人感觉主要是最后一个问题会考虑得主要多点，就是屏幕配置问题，现在有很多尺寸的手机，不同分辨率的手机，在考虑界面的时候就需要多做几套图片，几个布局文件来适应尽可能多的不同屏幕配置的手机。</p>
-<p>  关于屏幕适配的文章，这里推荐下最近看到的几篇文章，包括几位大神的文章：</p>
-<ul>
-<li>郭霖： <a href="http://blog.csdn.net/guolin_blog/article/details/8830286" target="_blank" rel="external">Android官方提供的支持不同屏幕大小的全部方法</a></li>
-<li>Stormzhang：<a href="http://stormzhang.com/android/2014/05/16/android-screen-adaptation/" target="_blank" rel="external">Android 屏幕适配</a></li>
-<li>鸿洋：<a href="http://blog.csdn.net/lmj623565791/article/details/45460089" target="_blank" rel="external">Android 屏幕适配方案</a></li>
-<li>凯子： <a href="http://blog.csdn.net/zhaokaiqiang1992/article/details/45419023" target="_blank" rel="external">Android屏幕适配全攻略(最权威的官方适配指导)</a></li>
-<li><p>Carson_Ho: <a href="http://www.jianshu.com/p/ec5a1a30694b" target="_blank" rel="external">Android开发：最全面、最易懂的Android屏幕适配解决方案</a></p>
-<p>屏幕适配也是一个很重要的知识点，所以也是需要找时间好好看看这方面的内容。</p>
-<p>最后，如果有翻译不对，或者表达错误的地方，欢迎指正。</p>
-</li>
-</ul>
+<p>下图11-1给出3个含有不同关键值的二叉树，其中11-1a的二叉树满足了上述特征1-3，但是不满足特征4，而11-b和11-c的二叉树则是二叉搜索树。</p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%911.png" alt="此处输入图片的描述"></p>
+<p>在放弃二叉搜索树中所有元素必须拥有不同关键值的要求，然后用小于等于代替特征2）中的小于，用大于等于代替特征3）中的大于，这样就可以得到一棵<strong>有重复值的二叉搜索树</strong>。</p>
+<p><strong>带索引的二叉搜索树源于普通的二叉搜索树，它只是在每个节点中添加一个LeftSize域，这个域的值是该节点左子树的元素个数加1。</strong>下图11-2是两棵带索引的二叉搜索树。注意，LeftSize同时给出了一个元素在子树中的排名。</p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%912.png" alt="此处输入图片的描述"></p>
+<h3 id="u7C7BBSTree"><a href="#u7C7BBSTree" class="headerlink" title="类BSTree"></a>类BSTree</h3><p>  可以从<a href="http://ccc013.github.io/2016/08/18/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%92%8C%E5%AE%9E%E7%8E%B0/">二叉树的基本概念和实现</a>中介绍的类<strong>BinaryTree</strong>中派生类<strong>BSTree</strong>,这样可以大大简化类BSTree的设计，实现如下程序所示。另外，为了访问<strong>BinaryTree</strong>类的私有成员<strong>root</strong>，需要将类<strong>BSTree</strong>定义为<strong>BinaryTree</strong>的友元。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template&#60;class E,class K&#62;&#10;class BSTree : public BinaryTree&#60;E&#62;&#123;&#10;public:&#10;    bool Search(const K&#38;k, E&#38; e) const;&#10;    BSTree&#60;E, K&#62;&#38; Insert(const E&#38; e);&#10;    BSTree&#60;E, K&#62;&#38; Delete(const K&#38;k, E&#38; e);&#10;    void Ascend()&#123; InOutput(); &#125;&#10;&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>下面给出搜索元素的代码实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template&#60;class E,class K&#62;&#10;bool BSTree&#60;E, K&#62;::Search(const K&#38;k, E &#38;e) const&#123;&#10;    // &#25628;&#32034;&#19982;k&#21305;&#37197;&#30340;&#20803;&#32032;&#10;    BinaryTreeNode&#60;E&#62; *p = root;&#10;    while (p)&#123;&#10;        if (k &#60; p-&#62;data)&#10;            p = p-&#62;LeftChild;&#10;        else if (k&#62;p-&#62;data)&#10;            p = p-&#62;RightChild;&#10;        else&#123;&#10;            // &#25214;&#21040;&#20803;&#32032;&#10;            e = p-&#62;data;&#10;            return true;&#10;        &#125;&#10;    &#125;&#10;    return false;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>若在二叉搜索树中插入一个新元素e，首先要验证e的关键值与树中已有元素的关键值是否相同，这可以通过用e的关键值对二叉树进行搜索来实现。如果搜索不成功，那么新元素将被插入到搜索的中端点，下面给出插入函数的代码实现：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template&#60;class E, class K&#62;&#10;BSTree&#60;E, K&#62;&#38; BSTree&#60;E, K&#62;::Insert(const E&#38; e)&#123;&#10;    // &#22914;&#26524;&#19981;&#20986;&#29616;&#37325;&#22797;&#65292;&#21017;&#25554;&#20837;e&#10;    BinaryTreeNode&#60;E&#62; *p = root, *pp = 0;   // p&#26159;&#25628;&#32034;&#33410;&#28857;&#65292;pp&#26159;p&#30340;&#29238;&#33410;&#28857;&#10;    // &#23547;&#25214;&#25554;&#20837;&#28857;&#10;    while (p)&#123;&#10;        pp = p;&#10;        if (e &#60; p-&#62;data)&#10;            p = p-&#62;LeftChild;&#10;        else if (e&#62;p-&#62;data)&#10;            p = p-&#62;RightChild;&#10;        else&#10;            // &#20986;&#29616;&#37325;&#22797;&#10;            throw BadInput();&#10;    &#125;&#10;&#10;    BinaryTreeNode&#60;E&#62; *r = new BinaryTreeNode&#60;E&#62;(e);&#10;    if (root)&#123;&#10;        if (e &#60; pp-&#62;data)&#10;            pp-&#62;LeftChild = r;&#10;        else&#10;            pp-&#62;RightChild = r;&#10;    &#125;&#10;    else&#10;        root = r;&#10;&#10;    return *this;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>对于删除操作，对包含被删除元素的节点p有三种情况：1）p是叶节点；2）p只有一个非空子树；3）p有两个非空子树。</p>
+<p>对于第一种情况可以采用直接丢弃叶节点的方法来处理。</p>
+<p>对于第二种情形，如果p没有父节点，即p是根节点，则将p丢弃，p的唯一孩子成为新的搜索树的根节点；如果p有父节点pp，则修改pp的指针，使其指向p的唯一孩子，然后删除节点p。</p>
+<p>最后，对于第三种情形，<strong>只需要将元素替换成它的左子树中的最大元素或者右子树中的最小元素。</strong>注意，必须确保右子树中的最小元素以及左子树中的最大元素即不会在没有子树的节点中，也不会在只有一个子树的节点中。可以按下述方法来查找到左子树中的最大元素：<strong>首先移动到子树的根，然后沿着各节点的右孩子指针移动，直到右孩子指针为0为止。</strong>类似地，也可以找到右子树的最小元素：<strong>首先移动到子树的根，然后沿着各节点的左孩子指针移动，直到左孩子指针为0为止。</strong></p>
+<p>下面程序给出删除操作实现，它一般使用左子树的最大元素来进行替换。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">template&#60;class E,class K&#62;&#10;BSTree&#60;E, K&#62;&#38; BSTree&#60;E, K&#62;::Delete(const K&#38; k, E&#38; e)&#123;&#10;    // &#21024;&#38500;&#20851;&#38190;&#20540;&#26159;k&#30340;&#20803;&#32032;&#65292;&#24182;&#23558;&#20854;&#25918;&#20837;e&#10;&#10;    // &#23558;p&#25351;&#21521;&#20851;&#38190;&#20540;&#26159;k&#30340;&#33410;&#28857;&#10;    BinaryTreeNode&#60;E&#62; *p = root, *pp = 0;&#10;&#10;    while (p &#38;&#38; p-&#62;data != k)&#123;&#10;        pp = p;&#10;        if (k &#60; p-&#62;data)&#10;            p = p-&#62;LeftChild;&#10;        else&#10;            p = p-&#62;RightChild;&#10;    &#125;&#10;    if (!p)&#10;        throw BadInput();&#10;&#10;    e = p-&#62;data;&#10;    // &#23545;&#26641;&#36827;&#34892;&#37325;&#26500;&#65292;&#22788;&#29702;p&#26377;&#20004;&#20010;&#23401;&#23376;&#30340;&#24773;&#24418;&#10;    if (p-&#62;LeftChild &#38;&#38; p-&#62;RightChild)&#123;&#10;        // &#36716;&#25442;&#25104;&#26377;0&#25110;1&#20010;&#23401;&#23376;&#30340;&#24773;&#24418;&#65292;&#22312;p&#30340;&#24038;&#23376;&#26641;&#20013;&#23547;&#25214;&#26368;&#22823;&#20803;&#32032;&#10;        BinaryTreeNode&#60;E&#62; *s = p-&#62;LeftChild, *ps = p;&#10;        while (s-&#62;RightChild)&#123;&#10;            ps = s;&#10;            s = s-&#62;RightChild;&#10;        &#125;&#10;&#10;        // &#23558;&#26368;&#22823;&#20803;&#32032;&#20174;s&#31227;&#21160;&#21040;p&#10;        p-&#62;data = s-&#62;data;&#10;        p = s;&#10;        pp = ps;&#10;    &#125;&#10;&#10;    // &#23545;&#20110;p&#26368;&#22810;&#26377;&#19968;&#20010;&#23401;&#23376;&#10;    BinaryTreeNode&#60;E&#62; *c;&#10;    if (p-&#62;LeftChild)&#10;        c = p-&#62;LeftChild;&#10;    else&#10;        c = p-&#62;RightChild;&#10;&#10;    // &#21024;&#38500;p&#10;    if (p == root)&#10;        root = c;&#10;    else&#123;&#10;        if (p == pp-&#62;LeftChild)&#10;            pp-&#62;LeftChild = c;&#10;        else&#10;            pp-&#62;RightChild = c;&#10;    &#125;&#10;    delete p;&#10;&#10;    return *this;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="u7C7BDBSTree"><a href="#u7C7BDBSTree" class="headerlink" title="类DBSTree"></a>类DBSTree</h3><p>  若二叉搜索树中的不同元素可以包含相同的关键值，则称这种树是<strong>DBSTree</strong>。在实现该类的时候，只需要把<strong>BSTree::Insert</strong>的while循环改成如下所示即可：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">while (p)&#123;&#10;    pp = p;&#10;    if (e &#60; p-&#62;data)&#10;        p = p-&#62;LeftChild;&#10;    else if (e&#62;p-&#62;data)&#10;        p = p-&#62;RightChild;&#10;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>更完整的例子可以查看<a href="https://github.com/ccc013/DataStructe-Algorithms_Study/blob/master/SearchTrees/BSTree.h" target="_blank" rel="external">二叉搜索树的实现</a></p>
+<h3 id="u5C0F_u7ED3"><a href="#u5C0F_u7ED3" class="headerlink" title="小结"></a>小结</h3><p>  本节内容就简单介绍了二叉搜索树的代码实现。</p>
 
       
     </div>
@@ -401,9 +375,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Android/" rel="tag">#Android</a>
+            <a href="/tags/数据结构/" rel="tag">#数据结构</a>
           
-            <a href="/tags/阅读笔记/" rel="tag">#阅读笔记</a>
+            <a href="/tags/算法/" rel="tag">#算法</a>
           
         </div>
       
@@ -412,17 +386,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/20/Application-Fundamentals/" rel="next" title="Android官方文档Guide阅读系列(1)--Application Fundamentals">
-                <i class="fa fa-chevron-left"></i> Android官方文档Guide阅读系列(1)--Application Fundamentals
+              <a href="/2016/08/24/优先队列2-左高树/" rel="next" title="优先队列2-左高树">
+                <i class="fa fa-chevron-left"></i> 优先队列2-左高树
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/30/线性代数-Note-1-方程组的几何解释/" rel="prev" title="[线性代数]Note 1--方程组的几何解释">
-                [线性代数]Note 1--方程组的几何解释 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -448,8 +418,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/20/Device-Compatibility/"
-           data-title="Android官方文档Guide阅读系列(2)--Device Compatibility" data-url="http://ccc013.github.io/2016/04/20/Device-Compatibility/">
+      <div class="ds-thread" data-thread-key="2016/08/31/搜索树1-二叉搜索树/"
+           data-title="搜索树1-二叉搜索树" data-url="http://ccc013.github.io/2016/08/31/搜索树1-二叉搜索树/">
       </div>
     
   </div>
@@ -638,7 +608,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u8BBE_u5907_u7684_u517C_u5BB9_u6027_28Device_Compatibility_29"><span class="nav-number">1.</span> <span class="nav-text">设备的兼容性(Device Compatibility)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u517C_u5BB9_u6027_u610F_u5473_u7740_u4EC0_u4E48_uFF1F"><span class="nav-number">2.</span> <span class="nav-text">兼容性意味着什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u63A7_u5236_u5E94_u7528_u5BF9_u8BBE_u5907_u7684_u53EF_u7528_u6027"><span class="nav-number">3.</span> <span class="nav-text">控制应用对设备的可用性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u8BBE_u5907_u529F_u80FD_28Device_features_29"><span class="nav-number">3.1.</span> <span class="nav-text">设备功能(Device features)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u5E73_u53F0_u7248_u672C_28Platform_version_29"><span class="nav-number">3.2.</span> <span class="nav-text">平台版本(Platform version)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u5C4F_u5E55_u914D_u7F6E_28Screen_configuration_29"><span class="nav-number">3.3.</span> <span class="nav-text">屏幕配置(Screen configuration)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u603B_u7ED3"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u57FA_u672C_u6982_u5FF5"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u7C7BBSTree"><span class="nav-number">2.</span> <span class="nav-text">类BSTree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u7C7BDBSTree"><span class="nav-number">3.</span> <span class="nav-text">类DBSTree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5C0F_u7ED3"><span class="nav-number">4.</span> <span class="nav-text">小结</span></a></li></ol></div>
             
           </div>
         </section>
