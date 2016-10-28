@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Stay hungry, stay foolish]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://ccc013.github.io/"/>
-  <updated>2016-10-25T11:50:21.630Z</updated>
+  <updated>2016-10-28T09:31:15.149Z</updated>
   <id>http://ccc013.github.io/</id>
   
   <author>
@@ -13,6 +13,106 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[二叉树2]]></title>
+    <link href="http://ccc013.github.io/2016/10/28/%E4%BA%8C%E5%8F%89%E6%A0%912/"/>
+    <id>http://ccc013.github.io/2016/10/28/二叉树2/</id>
+    <published>2016-10-28T09:28:47.000Z</published>
+    <updated>2016-10-28T09:31:15.149Z</updated>
+    <content type="html"><![CDATA[<p>这是《大话数据结构》第六章树的内容，这里总结线索二叉树，二叉树、树和森林的转换以及赫夫曼树的知识点，其中赫夫曼树的总结是在做<a href="http://www.nowcoder.com/918856" target="_blank" rel="external">牛客网</a>上的数据结构选择题的时候，遇到有关这个知识点的时候总结的内容，主要是通过百度得到的，也有结合书本的内容。</p>
+<h4 id="u7EBF_u7D22_u4E8C_u53C9_u6811"><a href="#u7EBF_u7D22_u4E8C_u53C9_u6811" class="headerlink" title="线索二叉树"></a>线索二叉树</h4><h5 id="u7EBF_u7D22_u4E8C_u53C9_u6811_u539F_u7406"><a href="#u7EBF_u7D22_u4E8C_u53C9_u6811_u539F_u7406" class="headerlink" title="线索二叉树原理"></a>线索二叉树原理</h5><p>首先如下图所示的二叉树，其中<code>^</code>符号表示空指针域，对于一个有<code>n</code>个结点的二叉链表，每个结点都有指向左右孩子的两个指针域，所以一共有<code>2n</code>个指针域。而<code>n</code>个结点的二叉树是有<code>n-1</code>条分支线数，也就是存在$2n-(n-1)=n+1$个空指针域，这些空间是不存储任何东西，也就是浪费内存的资源。</p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E7%BA%BF%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%911.png" alt=""></p>
+<p>另一方面，在对上图的二叉树做中序遍历时，可以得到<code>HDIBJEAFCG</code>这样的字符序列，通过这样的遍历，可以知道，结点<code>I</code>的前驱是<code>D</code>，后继是<code>B</code>。即我们可以知道任意一个结点的前驱和后继分别是哪个，但这是在经过遍历之后的结果，即每次使用都需要先遍历一次，才可以知道任意结点的前驱和后继。</p>
+<p>综合上述两种情况，为了更好利用内存资源，节省时间，就有了<strong>线索二叉树</strong>了，我们将<strong>指向前驱和后继的指针称为线索，加上线索的二叉链表称为线索链表，相应的二叉树就是线索二叉树了</strong>。</p>
+<p><strong>线索化是对二叉树以某种次序遍历使其变为线索二叉树的过程。</strong></p>
+<p>我们对上图的二叉树按照中序遍历的方式进行线索化，可以得到下图，其中虚线箭头是表示后继，实线箭头是前驱。这里设置二叉树的<strong>左指针是指向前驱，右指针指向后继。</strong></p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E7%BA%BF%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%912.png" alt=""></p>
+<p>但是增加了线索后，需要解决的问题就是如何判断当前结点的左指针是指向其左孩子，还是前驱呢。这里就需要在每个结点增加两个标志域<code>ltag</code>和<code>rtag</code>，用来表示左右指针指向的是左右孩子还是前驱或者后继。</p>
+<h5 id="u7EBF_u7D22_u4E8C_u53C9_u6811_u7ED3_u6784_u5B9E_u73B0"><a href="#u7EBF_u7D22_u4E8C_u53C9_u6811_u7ED3_u6784_u5B9E_u73B0" class="headerlink" title="线索二叉树结构实现"></a>线索二叉树结构实现</h5><p>二叉树的线索存储结构定义如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// Link == 0 表示指向左右孩子指针； Thread == 1 表示指向前驱或者后继的线索</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">enum</span> &#123;Link, Thread&#125; PointerTag;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 二叉树线索存储结点结构</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> BiThrNode</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 结点数据  </span></span><br><span class="line">	TElemType data;</span><br><span class="line">    <span class="keyword">struct</span> BiThrNode *lchild, *rchild;</span><br><span class="line">    PointerTag LTag;</span><br><span class="line">    PointerTag RTag;</span><br><span class="line">&#125;  BiThrNode, *BiThrTree;</span><br></pre></td></tr></table></figure>
+<p><strong>线索化的实质就是将二叉链表中的空指针改为指向前驱或者后继的线索</strong>，因此线索化的过程就是在遍历的过程中修改空指针的过程。</p>
+<p>下面是中序遍历线索化的递归函数代码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 全局变量，始终指向刚刚访问过的结点</span></span><br><span class="line">BiThrTree pre;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InThreading</span><span class="params">(BiThrTree p)</span></span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(p)&#123;</span><br><span class="line">    InThreading(p-&gt;lchild);</span><br><span class="line">    <span class="keyword">if</span>(!p-&gt;lchild)&#123;</span><br><span class="line">      <span class="comment">// 没有左孩子</span></span><br><span class="line">      p-&gt;LTag = Thread;</span><br><span class="line">      p-&gt;lchild = pre;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(!p-&gt;rchild)&#123;</span><br><span class="line">      <span class="comment">// 没有右孩子</span></span><br><span class="line">      p-&gt;RTag = Thread;</span><br><span class="line">      <span class="comment">// 指向后继，也就是当前结点p</span></span><br><span class="line">      p-&gt;rchild = p;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 保持 pre 指向p的前驱</span></span><br><span class="line">    pre = p;</span><br><span class="line">    InThreading(p-&gt;rchild);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过上述代码可以得到线索二叉树，而对它进行遍历会发现相当于是操作一个双向链表一样。同样是在二叉线索链表上添加一个头结点，如下图所示：</p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E7%BA%BF%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%913.png" alt=""></p>
+<p>这里令二叉树的中序序列中的第一个结点<code>H</code>的左指针和最后一个结点<code>G</code>的右指针指向头结点，令头结点的左指针指向根结点，右指针指向结点<code>G</code>。这样做的好处是我们既可以从第一个结点开始顺其后继进行遍历，也可以从最后一个结点开始顺前驱进行遍历。</p>
+<p>遍历的代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">InOrderTraverse_Thr</span><span class="params">(BiThrTree T)</span></span>&#123;</span><br><span class="line">  BiThrTree p;</span><br><span class="line">  <span class="comment">// p 指向根结点</span></span><br><span class="line">  p = T-&gt;lchild;</span><br><span class="line">  <span class="keyword">while</span>(p != T)&#123;</span><br><span class="line">    <span class="comment">// 空树或者遍历结束时，p == T</span></span><br><span class="line">    <span class="keyword">while</span>(p-&gt;LTag == Link)</span><br><span class="line">      <span class="comment">// 循环到中序遍历序列的第一个结点</span></span><br><span class="line">      p = p-&gt;lchild;</span><br><span class="line">    <span class="comment">// 显示结点数据，也可以实现其他操作</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%c"</span>, p-&gt;data);</span><br><span class="line">    <span class="keyword">while</span>(p-&gt;RTag == Thread &amp;&amp; p-&gt;rchild != T)&#123;</span><br><span class="line">      <span class="comment">// 根据线索，寻找后继结点，并输出数值或者进行其他操作</span></span><br><span class="line">      p = p-&gt;rchild;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"%c"</span>, p-&gt;data);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// p 指向当前结点的右孩子，暂时结束了根据线索来寻找后继结点</span></span><br><span class="line">    p = p-&gt;rchild;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>线索二叉链表的存储结构适用于<strong>如果所用的二叉树需要经常遍历或查找结点时需要某种遍历序列中的前驱和后继。</strong></p>
+<h4 id="u6811_u3001_u68EE_u6797_u4E0E_u4E8C_u53C9_u6811_u7684_u8F6C_u6362"><a href="#u6811_u3001_u68EE_u6797_u4E0E_u4E8C_u53C9_u6811_u7684_u8F6C_u6362" class="headerlink" title="树、森林与二叉树的转换"></a>树、森林与二叉树的转换</h4><h5 id="u6811_u8F6C_u6362_u4E3A_u4E8C_u53C9_u6811"><a href="#u6811_u8F6C_u6362_u4E3A_u4E8C_u53C9_u6811" class="headerlink" title="树转换为二叉树"></a>树转换为二叉树</h5><p>树转换为二叉树的步骤如下：</p>
+<ol>
+<li><strong>加线</strong>。在所有兄弟结点之间加一条连线。</li>
+<li><strong>去线</strong>。对树中每个结点，只保留<strong>它与第一个孩子结点的连线</strong>，删除它与其他孩子结点之间的连线。</li>
+<li><strong>层次调整</strong>。以树的根结点为轴心，将整棵树顺时针旋转一定角度，使之结构层次分明。<strong>注意第一个孩子是二叉树结点的左孩子，兄弟转换过来的孩子是结点的右孩子。</strong></li>
+</ol>
+<p>上述步骤可以如下图所示一样：</p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E7%BA%BF%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%914.png" alt=""></p>
+<h5 id="u68EE_u6797_u8F6C_u6362_u4E3A_u4E8C_u53C9_u6811"><a href="#u68EE_u6797_u8F6C_u6362_u4E3A_u4E8C_u53C9_u6811" class="headerlink" title="森林转换为二叉树"></a>森林转换为二叉树</h5><p>步骤如下：</p>
+<ol>
+<li>将每棵树先转为二叉树；</li>
+<li>第一棵二叉树不动，从第二棵二叉树开始，<strong>依次把后一棵二叉树的根结点作为前一棵二叉树的根结点的右孩子，用线连接起来。</strong>当所有的二叉树连接起来后就得到了由森林转换来的二叉树。</li>
+</ol>
+<p>下图就是一个森林转为二叉树的例子。</p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E7%BA%BF%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%915.png" alt=""></p>
+<h5 id="u4E8C_u53C9_u6811_u8F6C_u6362_u4E3A_u6811"><a href="#u4E8C_u53C9_u6811_u8F6C_u6362_u4E3A_u6811" class="headerlink" title="二叉树转换为树"></a>二叉树转换为树</h5><p>二叉树转为树是树转为二叉树的逆过程，具体步骤如下：</p>
+<ol>
+<li>加线。若某结点的左孩子存在，则将其左孩子的所有右孩子结点都与当前结点连接起来。</li>
+<li>去线。删除原来二叉树中所有结点与其右孩子结点的连线。</li>
+<li>层次调整。使之结构层次分明。</li>
+</ol>
+<p>下图是一个例子。</p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E7%BA%BF%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%916.png" alt=""></p>
+<h5 id="u4E8C_u53C9_u6811_u8F6C_u4E3A_u68EE_u6797"><a href="#u4E8C_u53C9_u6811_u8F6C_u4E3A_u68EE_u6797" class="headerlink" title="二叉树转为森林"></a>二叉树转为森林</h5><p>判断一棵二叉树能够转为森林还是一棵树的方法很简单，就是<strong>看其根结点是否有右孩子，如果有就是森林，没有就是一棵树。</strong></p>
+<p>转换为森林的步骤如下：</p>
+<ol>
+<li>从根结点开始，若右孩子存在，则把与右孩子结点的连线删除，再查看分离后的二叉树，若右孩子存在，则连线删除，如此重复，直到所有右孩子连线都删除为止，得到分离后的二叉树。</li>
+<li>将所有二叉树转为树即可。</li>
+</ol>
+<p>下图是一个例子。</p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E7%BA%BF%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%917.png" alt=""></p>
+<h5 id="u6811_u4E0E_u68EE_u6797_u7684_u904D_u5386"><a href="#u6811_u4E0E_u68EE_u6797_u7684_u904D_u5386" class="headerlink" title="树与森林的遍历"></a>树与森林的遍历</h5><p>最后是介绍树和森林的遍历问题。</p>
+<h6 id="u6811_u7684_u904D_u5386"><a href="#u6811_u7684_u904D_u5386" class="headerlink" title="树的遍历"></a>树的遍历</h6><p>树的遍历分为两种方式：</p>
+<ol>
+<li>先根遍历树，即先访问树的根结点，然后依次先根遍历根的每棵子树。</li>
+<li>后根遍历，即先依次后根遍历每棵子树，然后再访问根结点。</li>
+</ol>
+<p>如对下图的树，它的先根遍历序列是<code>ABEFCDG</code>，后根遍历序列是<code>EFBCGDA</code>。</p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E7%BA%BF%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%918.png" alt=""></p>
+<h6 id="u68EE_u6797_u7684_u904D_u5386"><a href="#u68EE_u6797_u7684_u904D_u5386" class="headerlink" title="森林的遍历"></a>森林的遍历</h6><p>森林的遍历也是分两种：</p>
+<ol>
+<li><strong>前序遍历：</strong>先访问森林中第一棵树的根结点，然后再依次先根遍历根的每棵子树，再依次用同样方式遍历除去第一棵树的剩余树构成的森林。比如对于上述二叉树转为森林的例子中最后得到的三棵树的森林，前序遍历的序列是<code>ABCDEFGHJI</code>。</li>
+<li><strong>后序遍历：</strong>是先访问森林中的第一棵树，然后用后根遍历的方法遍历每一棵子树，然后再访问根结点，再依次用同样方式遍历除去第一棵树的剩余树构成的森林。同样还是刚才的例子，后根遍历的序列是<code>BCDAFEJHIG</code>。</li>
+</ol>
+<p>对照上述例子中的二叉树的前序和中序遍历结果可以发现，<strong>森林的前序遍历和二叉树的前序遍历结果相同，森林的后序遍历和二叉树的中序遍历结果相同。</strong>同时，<strong>当以二叉链表作树的存储结构时</strong>，<strong>树的先根遍历和后根遍历完全可以借用二叉树的前序遍历和中序遍历的算法来实现。</strong></p>
+<h4 id="u8D6B_u592B_u66FC_u6811"><a href="#u8D6B_u592B_u66FC_u6811" class="headerlink" title="赫夫曼树"></a>赫夫曼树</h4><blockquote>
+<p>定义：给定n个权值作为n个叶子结点，构造一棵二叉树，若带权路径长度达到最小，<strong>称这样的二叉树为最优二叉树，也称为赫夫曼树(Huffman Tree)。</strong>赫夫曼树是带权路径长度最短的树，权值较大的结点离根较近。</p>
+</blockquote>
+<p>假设有$n$个权值，则构造出的赫夫曼树有$n$个叶子结点。 n个权值分别设为 $w_1,w_2,\ldots,w_n$，则赫夫曼树的构造规则为：</p>
+<ol>
+<li>将$w_1,w_2,\ldots,w_n$看成是有$n$ 棵树的森林(每棵树仅有一个结点)；</li>
+<li>在森林中选出两个根结点的权值最小的树合并，作为一棵新树的左、右子树，且新树的根结点权值为其左、右子树根结点权值之和；</li>
+<li>从森林中删除选取的两棵树，并将新树加入森林；</li>
+<li>重复2、3步，直到森林中只剩一棵树为止，该树即为所求得的赫夫曼树。</li>
+</ol>
+<p>赫夫曼树的性质有：</p>
+<ul>
+<li>在一棵树中，从一个结点往下可以达到的孩子或孙子结点之间的通路，称为路径。通路中分支的数目称为路径长度。若规定根结点的层数为1，则从<strong>根结点到第L层结点的路径长度为L-1</strong>。</li>
+<li>若将树中结点赋给一个有着某种含义的数值，则这个数值称为该结点的权。<strong>结点的带权路径长度为：从根结点到该结点之间的路径长度与该结点的权的乘积。</strong></li>
+<li>树的带权路径长度规定为<strong>所有叶子结点的带权路径长度之和</strong>，记为WPL</li>
+<li><em>赫夫曼树的形状是不唯一的，但是它的带权路径长度WPL是唯一的。*</em></li>
+</ul>
+<h4 id="u5C0F_u7ED3"><a href="#u5C0F_u7ED3" class="headerlink" title="小结"></a>小结</h4><p>这部分内容是之前看《数据结构算法与应用：C++语言描述》时没有记录到的知识点，但是在做有关树的练习题的时候却有涉及到，比如线索二叉树和赫夫曼树，特别是后者，一般会考察如何构造赫夫曼树以及求其带权路径长度。刚好在《大话数据结构》中看到，就做下笔记，总结下。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>这是《大话数据结构》第六章树的内容，这里总结线索二叉树，二叉树、树和森林的转换以及赫夫曼树的知识点，其中赫夫曼树的总结是在做<a href="http://www.nowcoder.com/918856" target="_blank" rel="external">牛客网]]>
+    </summary>
+    
+      <category term="数据结构" scheme="http://ccc013.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+      <category term="算法" scheme="http://ccc013.github.io/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[搜索树1-二叉搜索树]]></title>
@@ -1245,45 +1345,6 @@
       <category term="数据结构" scheme="http://ccc013.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     
       <category term="算法" scheme="http://ccc013.github.io/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[[线性代数]Note 1--方程组的几何解释]]></title>
-    <link href="http://ccc013.github.io/2016/05/30/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0-Note-1-%E6%96%B9%E7%A8%8B%E7%BB%84%E7%9A%84%E5%87%A0%E4%BD%95%E8%A7%A3%E9%87%8A/"/>
-    <id>http://ccc013.github.io/2016/05/30/线性代数-Note-1-方程组的几何解释/</id>
-    <published>2016-05-30T06:06:39.000Z</published>
-    <updated>2016-05-30T11:06:52.501Z</updated>
-    <content type="html"><![CDATA[<p>这是记录麻省理工学院公开课：线性代数的笔记，网址是<a href="http://open.163.com/special/opencourse/daishu.html" target="_blank" rel="external">麻省理工公开课：线性代数</a><br>第一节课说的是有关方程组的几何解释。网址是<a href="http://open.163.com/movie/2010/11/7/3/M6V0BQC4M_M6V29E773.html" target="_blank" rel="external">方程组的几何解释</a></p>
-<hr>
-<p> 首先是介绍方程组的几何解释，提出可以用矩阵表示，然后矩阵表示有两种表达方式，分别是行图像和列图像。行图像比较常见，比如两条直线相交，而列图像则比较少见。</p>
-<h3 id="u4E24_u4E2A_u672A_u77E5_u6570_u4E24_u4E2A_u65B9_u7A0B"><a href="#u4E24_u4E2A_u672A_u77E5_u6570_u4E24_u4E2A_u65B9_u7A0B" class="headerlink" title="两个未知数两个方程"></a>两个未知数两个方程</h3><p> 然后老师举例说明，首先是两个方程组两个未知数的例子，例子如下所示：<br>$$<br> \begin{cases}<br> \ 2x-y = 0 \\<br> \ -x+3y= 3<br> \end{cases}<br>$$</p>
-<p>用行图像表示如下所示：<br>$$<br> \left[\begin{matrix}2 &amp; -1  \\ -1 &amp; 3  \end{matrix} \right] \left[\begin{matrix} x \\ y \end{matrix}\right]  = \left[\begin{matrix} 0 \\ 3 \end{matrix}\right]<br>$$</p>
-<p>这里用<strong>A</strong>=$ \left[\begin{matrix} 2 &amp; -1  \\ -1 &amp; 3  \end{matrix} \right]$,<strong>x</strong> = $\left[\begin{matrix} x\\ y \end{matrix}\right]$,<strong>b</strong>=$\left[\begin{matrix} 0 \\ 3 \end{matrix}\right] $,可以得到<code>Ax =b</code></p>
-<p>这里表示的就是两条直线，并且它们相交于点<code>(1,2)</code>。</p>
-<p>如果是用列向量，则如下所示：<br>$$<br> x\left[\begin{matrix}2 \\ -1 \end{matrix} \right] + y\left[\begin{matrix}-1\\3\end{matrix}\right] = \left[\begin{matrix} 0\\ 3 \end{matrix}\right]<br>$$</p>
-<p>对于这种写法，老师称之为列向量的线性组合，然后在二维坐标平面上表示了这两个向量，而这个列向量的线性组合的解，其实在用行图像表示的时候已经得到了，就是<code>x=1, y=2</code>。</p>
-<h3 id="u4E09_u4E2A_u672A_u77E5_u6570_u4E09_u4E2A_u65B9_u7A0B_u7EC4"><a href="#u4E09_u4E2A_u672A_u77E5_u6570_u4E09_u4E2A_u65B9_u7A0B_u7EC4" class="headerlink" title="三个未知数三个方程组"></a>三个未知数三个方程组</h3><p>  接着老师给出了三个未知数的情况，举例如下所示<br>$$<br> \begin{cases}<br> \ 2x-y = 0 \\<br> \ -x+2y-z = -1 \\<br> \    -3y+4z = 4<br> \end{cases}<br>$$<br> 使用行图像表示，<strong>A</strong> = $ \left[\begin{matrix}2 &amp; -1 &amp; 0 \\ -1 &amp; 2 &amp; -1 \\ 0 &amp; -3 &amp; 4\end{matrix}\right]$,<strong>b</strong>=$\left[\begin{matrix}0 \\ -1 \\4\end{matrix}\right]$,</p>
-<p> 使用列图像表示是如下所示：<br> $$<br>  x\left[ \begin{matrix} 2 \\ -1 \\0\end{matrix} \right]+y\left[ \begin{matrix}-1 \\ 2 \\ -3\end{matrix} \right]+z\left[ \begin{matrix}0 \\ -1 \\ 4\end{matrix} \right]=\left[ \begin{matrix} 0 \\ -1 \\ 4\end{matrix} \right]<br> $$</p>
-<p> 如果通过行图像来求解，需要通过在三维坐标轴上画出3个平面求平面的交点，这是非常困难的。(这里老师也说了下一节课会介绍消元法来求解)。</p>
-<p> 而如果看列图像，则可以轻松得到答案：<code>x=0,y=0,z=1</code>，当然这是老师特意设计的题目，所以才这么容易得到这个答案。</p>
-<p> 然后老师就问了一个问题：</p>
-<blockquote>
-<p>对任意的<strong>b</strong>，都能令<code>Ax = b</code>有解吗？<br>这个问题对于这个三个未知数的例子来说，等价于这个例子中的列向量的线性组合是否能覆盖整个三维空间？</p>
-</blockquote>
-<p>这里的答案当然是不能确定的，如果三个列向量都是在同一个平面上，那么得到的解也就只是在同一个平面的。</p>
-<h3 id="u77E9_u9635_u5411_u91CF_u76F8_u4E58_u7684_u89E3_u6CD5"><a href="#u77E9_u9635_u5411_u91CF_u76F8_u4E58_u7684_u89E3_u6CD5" class="headerlink" title="矩阵向量相乘的解法"></a>矩阵向量相乘的解法</h3><p>最后老师介绍了矩阵与向量相乘的两种解法，首先是一个例子<br>$$<br> \left[ \begin{matrix}2 &amp; 5\\1 &amp; 3\end{matrix}\right] \left[\begin{matrix}1\\2\end{matrix}\right]<br>$$<br>两种解法分别是按照行向量还是列向量来解答的。</p>
-<p>第一种，如果是按照列向量解答，则可以写成如下所示：<br>$$<br> \left[ \begin{matrix}2 &amp; 5\\1 &amp; 3\end{matrix}\right] \left[\begin{matrix}1\\2\end{matrix}\right] = 1\left[ \begin{matrix}2 \\1\end{matrix}\right]+ 2 \left[ \begin{matrix}5\\3\end{matrix}\right] = \left[ \begin{matrix}12\\7\end{matrix}\right]<br>$$</p>
-<p>第二种，就是按行来求解，如下所示：<br>$$<br>  \left[ \begin{matrix}2 &amp; 5 \\ 1 &amp; 3 \end{matrix}\right] \left[\begin{matrix}1\\ 2 \end{matrix}\right] = \left[ \begin{matrix} 2*1+5*2 \\ 1*1+3*2 \end{matrix}\right] = \left[ \begin{matrix} 12 \\ 7 \end{matrix}\right]<br>$$<br>也就是第一个矩阵的第一行乘以第二个向量的对应列，然后第二行乘以第二个向量的对应列。</p>
-<p>这种解法也是当初刚开始学习线性代数所学习的方法。</p>
-<h3 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h3><p>这节课的收获主要是了解到列向量这种求法，之前对于矩阵的求解，还是通过按行来相乘求解的。不过在这节课中的例子都是矩阵乘以向量得到一个向量，如果是矩阵之间的相乘，不知道是否还是可以如此解决。</p>
-<p>最后是手写笔记如下所示<br> <img src="http://7xrluf.com1.z0.glb.clouddn.com/%E6%89%AB%E6%8F%8F_20160529215117.jpg" alt="image"></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>这是记录麻省理工学院公开课：线性代数的笔记，网址是<a href="http://open.163.com/special/opencourse/daishu.html" target="_blank" rel="external">麻省理工公开课：线性代数</a><br>]]>
-    </summary>
-    
-      <category term="线性代数" scheme="http://ccc013.github.io/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/"/>
     
   </entry>
   
