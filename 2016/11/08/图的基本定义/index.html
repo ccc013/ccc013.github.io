@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="线性代数," />
+  <meta name="keywords" content="数据结构,算法," />
 
 
 
@@ -86,26 +86,44 @@
 
 
 
-<meta name="description" content="这是记录麻省理工学院公开课：线性代数的笔记，网址是麻省理工公开课：线性代数第一节课说的是有关方程组的几何解释。网址是方程组的几何解释
+<meta name="description" content="这是《大话数据结构》第七章图的基本知识总结，首先是总结图的基本定义和相关的术语，包括有向图，无向图，连通图等术语的定义。
 
- 首先是介绍方程组的几何解释，提出可以用矩阵表示，然后矩阵表示有两种表达方式，分别是行图像和列图像。行图像比较常见，比如两条直线相交，而列图像则比较少见。
-两个未知数两个方程 然后老师举例说明，首先是两个方程组两个未知数的例子，例子如下所示：$$ \begin{c">
+图(Graph)是由顶点的有穷非空集合和顶点之间的集合组成，通常表示为：G（V, E），其中 G 表示一个图，V 是图 G 中顶点的集合，E 是图 G 中边的集合。
+
+对于上述图的定义，需要注意的是：
+
+线性表中的数据元素被称为元素，树中将数据元素称为结点，而图中数据元素被称">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[线性代数]Note 1--方程组的几何解释">
-<meta property="og:url" content="http://ccc013.github.io/2016/05/30/线性代数-Note-1-方程组的几何解释/index.html">
+<meta property="og:title" content="图的基本定义">
+<meta property="og:url" content="http://ccc013.github.io/2016/11/08/图的基本定义/index.html">
 <meta property="og:site_name" content="Cai's blog">
-<meta property="og:description" content="这是记录麻省理工学院公开课：线性代数的笔记，网址是麻省理工公开课：线性代数第一节课说的是有关方程组的几何解释。网址是方程组的几何解释
+<meta property="og:description" content="这是《大话数据结构》第七章图的基本知识总结，首先是总结图的基本定义和相关的术语，包括有向图，无向图，连通图等术语的定义。
 
- 首先是介绍方程组的几何解释，提出可以用矩阵表示，然后矩阵表示有两种表达方式，分别是行图像和列图像。行图像比较常见，比如两条直线相交，而列图像则比较少见。
-两个未知数两个方程 然后老师举例说明，首先是两个方程组两个未知数的例子，例子如下所示：$$ \begin{c">
-<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E6%89%AB%E6%8F%8F_20160529215117.jpg">
-<meta property="og:updated_time" content="2016-05-30T11:06:52.501Z">
+图(Graph)是由顶点的有穷非空集合和顶点之间的集合组成，通常表示为：G（V, E），其中 G 表示一个图，V 是图 G 中顶点的集合，E 是图 G 中边的集合。
+
+对于上述图的定义，需要注意的是：
+
+线性表中的数据元素被称为元素，树中将数据元素称为结点，而图中数据元素被称">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE1.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE2.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE3.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE4.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE5.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE6.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE7.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE8.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE9.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE10.png">
+<meta property="og:updated_time" content="2016-11-08T09:21:46.527Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[线性代数]Note 1--方程组的几何解释">
-<meta name="twitter:description" content="这是记录麻省理工学院公开课：线性代数的笔记，网址是麻省理工公开课：线性代数第一节课说的是有关方程组的几何解释。网址是方程组的几何解释
+<meta name="twitter:title" content="图的基本定义">
+<meta name="twitter:description" content="这是《大话数据结构》第七章图的基本知识总结，首先是总结图的基本定义和相关的术语，包括有向图，无向图，连通图等术语的定义。
 
- 首先是介绍方程组的几何解释，提出可以用矩阵表示，然后矩阵表示有两种表达方式，分别是行图像和列图像。行图像比较常见，比如两条直线相交，而列图像则比较少见。
-两个未知数两个方程 然后老师举例说明，首先是两个方程组两个未知数的例子，例子如下所示：$$ \begin{c">
+图(Graph)是由顶点的有穷非空集合和顶点之间的集合组成，通常表示为：G（V, E），其中 G 表示一个图，V 是图 G 中顶点的集合，E 是图 G 中边的集合。
+
+对于上述图的定义，需要注意的是：
+
+线性表中的数据元素被称为元素，树中将数据元素称为结点，而图中数据元素被称">
 
 
 
@@ -123,7 +141,7 @@
   };
 </script>
 
-  <title> [线性代数]Note 1--方程组的几何解释 | Cai's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> 图的基本定义 | Cai's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -274,7 +292,7 @@
             
             
               
-                [线性代数]Note 1--方程组的几何解释
+                图的基本定义
               
             
           </h1>
@@ -286,8 +304,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-30T14:06:39+08:00" content="2016-05-30">
-              2016-05-30
+            <time itemprop="dateCreated" datetime="2016-11-08T17:18:08+08:00" content="2016-11-08">
+              2016-11-08
             </time>
           </span>
 
@@ -297,8 +315,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/05/30/线性代数-Note-1-方程组的几何解释/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/30/线性代数-Note-1-方程组的几何解释/" itemprop="commentsCount"></span>
+                <a href="/2016/11/08/图的基本定义/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/08/图的基本定义/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -308,7 +326,7 @@
 
           
           
-             <span id="/2016/05/30/线性代数-Note-1-方程组的几何解释/" class="leancloud_visitors" data-flag-title="[线性代数]Note 1--方程组的几何解释">
+             <span id="/2016/11/08/图的基本定义/" class="leancloud_visitors" data-flag-title="图的基本定义">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -331,30 +349,115 @@
       
 
       
-        <p>这是记录麻省理工学院公开课：线性代数的笔记，网址是<a href="http://open.163.com/special/opencourse/daishu.html" target="_blank" rel="external">麻省理工公开课：线性代数</a><br>第一节课说的是有关方程组的几何解释。网址是<a href="http://open.163.com/movie/2010/11/7/3/M6V0BQC4M_M6V29E773.html" target="_blank" rel="external">方程组的几何解释</a></p>
-<hr>
-<p> 首先是介绍方程组的几何解释，提出可以用矩阵表示，然后矩阵表示有两种表达方式，分别是行图像和列图像。行图像比较常见，比如两条直线相交，而列图像则比较少见。</p>
-<h3 id="u4E24_u4E2A_u672A_u77E5_u6570_u4E24_u4E2A_u65B9_u7A0B"><a href="#u4E24_u4E2A_u672A_u77E5_u6570_u4E24_u4E2A_u65B9_u7A0B" class="headerlink" title="两个未知数两个方程"></a>两个未知数两个方程</h3><p> 然后老师举例说明，首先是两个方程组两个未知数的例子，例子如下所示：<br>$$<br> \begin{cases}<br> \ 2x-y = 0 \\<br> \ -x+3y= 3<br> \end{cases}<br>$$</p>
-<p>用行图像表示如下所示：<br>$$<br> \left[\begin{matrix}2 &amp; -1  \\ -1 &amp; 3  \end{matrix} \right] \left[\begin{matrix} x \\ y \end{matrix}\right]  = \left[\begin{matrix} 0 \\ 3 \end{matrix}\right]<br>$$</p>
-<p>这里用<strong>A</strong>=$ \left[\begin{matrix} 2 &amp; -1  \\ -1 &amp; 3  \end{matrix} \right]$,<strong>x</strong> = $\left[\begin{matrix} x\\ y \end{matrix}\right]$,<strong>b</strong>=$\left[\begin{matrix} 0 \\ 3 \end{matrix}\right] $,可以得到<code>Ax =b</code></p>
-<p>这里表示的就是两条直线，并且它们相交于点<code>(1,2)</code>。</p>
-<p>如果是用列向量，则如下所示：<br>$$<br> x\left[\begin{matrix}2 \\ -1 \end{matrix} \right] + y\left[\begin{matrix}-1\\3\end{matrix}\right] = \left[\begin{matrix} 0\\ 3 \end{matrix}\right]<br>$$</p>
-<p>对于这种写法，老师称之为列向量的线性组合，然后在二维坐标平面上表示了这两个向量，而这个列向量的线性组合的解，其实在用行图像表示的时候已经得到了，就是<code>x=1, y=2</code>。</p>
-<h3 id="u4E09_u4E2A_u672A_u77E5_u6570_u4E09_u4E2A_u65B9_u7A0B_u7EC4"><a href="#u4E09_u4E2A_u672A_u77E5_u6570_u4E09_u4E2A_u65B9_u7A0B_u7EC4" class="headerlink" title="三个未知数三个方程组"></a>三个未知数三个方程组</h3><p>  接着老师给出了三个未知数的情况，举例如下所示<br>$$<br> \begin{cases}<br> \ 2x-y = 0 \\<br> \ -x+2y-z = -1 \\<br> \    -3y+4z = 4<br> \end{cases}<br>$$<br> 使用行图像表示，<strong>A</strong> = $ \left[\begin{matrix}2 &amp; -1 &amp; 0 \\ -1 &amp; 2 &amp; -1 \\ 0 &amp; -3 &amp; 4\end{matrix}\right]$,<strong>b</strong>=$\left[\begin{matrix}0 \\ -1 \\4\end{matrix}\right]$,</p>
-<p> 使用列图像表示是如下所示：<br> $$<br>  x\left[ \begin{matrix} 2 \\ -1 \\0\end{matrix} \right]+y\left[ \begin{matrix}-1 \\ 2 \\ -3\end{matrix} \right]+z\left[ \begin{matrix}0 \\ -1 \\ 4\end{matrix} \right]=\left[ \begin{matrix} 0 \\ -1 \\ 4\end{matrix} \right]<br> $$</p>
-<p> 如果通过行图像来求解，需要通过在三维坐标轴上画出3个平面求平面的交点，这是非常困难的。(这里老师也说了下一节课会介绍消元法来求解)。</p>
-<p> 而如果看列图像，则可以轻松得到答案：<code>x=0,y=0,z=1</code>，当然这是老师特意设计的题目，所以才这么容易得到这个答案。</p>
-<p> 然后老师就问了一个问题：</p>
+        <p>这是《大话数据结构》第七章图的基本知识总结，首先是总结图的基本定义和相关的术语，包括有向图，无向图，连通图等术语的定义。</p>
 <blockquote>
-<p>对任意的<strong>b</strong>，都能令<code>Ax = b</code>有解吗？<br>这个问题对于这个三个未知数的例子来说，等价于这个例子中的列向量的线性组合是否能覆盖整个三维空间？</p>
+<p>图(Graph)是由顶点的有穷非空集合和顶点之间的集合组成，通常表示为：<strong>G（V, E）</strong>，其中 G 表示一个图，V 是图 G 中顶点的集合，E 是图 G 中边的集合。</p>
 </blockquote>
-<p>这里的答案当然是不能确定的，如果三个列向量都是在同一个平面上，那么得到的解也就只是在同一个平面的。</p>
-<h3 id="u77E9_u9635_u5411_u91CF_u76F8_u4E58_u7684_u89E3_u6CD5"><a href="#u77E9_u9635_u5411_u91CF_u76F8_u4E58_u7684_u89E3_u6CD5" class="headerlink" title="矩阵向量相乘的解法"></a>矩阵向量相乘的解法</h3><p>最后老师介绍了矩阵与向量相乘的两种解法，首先是一个例子<br>$$<br> \left[ \begin{matrix}2 &amp; 5\\1 &amp; 3\end{matrix}\right] \left[\begin{matrix}1\\2\end{matrix}\right]<br>$$<br>两种解法分别是按照行向量还是列向量来解答的。</p>
-<p>第一种，如果是按照列向量解答，则可以写成如下所示：<br>$$<br> \left[ \begin{matrix}2 &amp; 5\\1 &amp; 3\end{matrix}\right] \left[\begin{matrix}1\\2\end{matrix}\right] = 1\left[ \begin{matrix}2 \\1\end{matrix}\right]+ 2 \left[ \begin{matrix}5\\3\end{matrix}\right] = \left[ \begin{matrix}12\\7\end{matrix}\right]<br>$$</p>
-<p>第二种，就是按行来求解，如下所示：<br>$$<br>  \left[ \begin{matrix}2 &amp; 5 \\ 1 &amp; 3 \end{matrix}\right] \left[\begin{matrix}1\\ 2 \end{matrix}\right] = \left[ \begin{matrix} 2*1+5*2 \\ 1*1+3*2 \end{matrix}\right] = \left[ \begin{matrix} 12 \\ 7 \end{matrix}\right]<br>$$<br>也就是第一个矩阵的第一行乘以第二个向量的对应列，然后第二行乘以第二个向量的对应列。</p>
-<p>这种解法也是当初刚开始学习线性代数所学习的方法。</p>
-<h3 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h3><p>这节课的收获主要是了解到列向量这种求法，之前对于矩阵的求解，还是通过按行来相乘求解的。不过在这节课中的例子都是矩阵乘以向量得到一个向量，如果是矩阵之间的相乘，不知道是否还是可以如此解决。</p>
-<p>最后是手写笔记如下所示<br> <img src="http://7xrluf.com1.z0.glb.clouddn.com/%E6%89%AB%E6%8F%8F_20160529215117.jpg" alt="image"></p>
+<p>对于上述图的定义，需要注意的是：</p>
+<ul>
+<li>线性表中的数据元素被称为元素，树中将数据元素称为结点，而图中数据元素被称为<strong>顶点</strong></li>
+<li>线性表可以没有数据元素，称为空表；树也可以没有结点，称为空树。但是图的定义中强调了顶点集合<strong>V</strong>是有穷非空的集合，所以图结构中不能没有顶点。</li>
+<li>线性表中，相邻的数据元素之间具有线性关系；树结构中，相邻两层的结点具有层次关系。而<strong>图中，任意两个顶点之间都可能有关系，顶点之间的逻辑关系用边来表示，边集可以是空的。</strong></li>
+</ul>
+<h5 id="u5404_u79CD_u56FE_u5B9A_u4E49"><a href="#u5404_u79CD_u56FE_u5B9A_u4E49" class="headerlink" title="各种图定义"></a>各种图定义</h5><p>接下来会介绍各自图的定义，包括无向图与有向图，有向完全图和无向完全图，稀疏与稠密图等。</p>
+<blockquote>
+<p>无向边： 若顶点$v_i$ 到$v_j$之间的边没有方向，则称这条边为<strong>无向边(Edge)</strong>,用无序偶对$(v_i, v_j)$来表示。</p>
+</blockquote>
+<p>如果图中任意两个顶点之间的边都是无向边，则称该图是<strong>无向图</strong>。</p>
+<p>如下图左边的图就是一个无向图$G_1$，$G_1 = （V_1,{E_1}）$，其中顶点集合 $V_1 = {A,B,C,D}$,边集合是$E_1 = {(A, B), (B, C), (C, D), (D, A), (A, C)}$。</p>
+<blockquote>
+<p>有向边： 若顶点$v_i$ 到$v_j$之间的边有方向，则称这条边为<strong>有向边，也称为弧(Arc)</strong>。用有序偶$<v_i, v_j="">$来表示，$v_i$称为弧尾，$v_j$称为弧头。</v_i,></p>
+</blockquote>
+<p>如果图中任意两个顶点之间的边都是有向边，则称该图是<strong>有向图</strong>。</p>
+<p>如下图右边的图就是一个有向图 $G_2$，$G_2 =（V_2, {E_2}） $,其中顶点集合 $V_2 = {A,B,C,D}$,边集合是$E_2 = {<a, d="">, <b, a="">, <c, a="">, <b, c="">}$。</b,></c,></b,></a,></p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE1.png" alt=""></p>
+<p>这里需要注意有向图中有向边的表示是不能随意乱写的，必须是按照定义中$<v_i, v_j="">$，弧尾在前，弧头在后的写法。</v_i,></p>
+<blockquote>
+<p>图中，若不存在顶点到其自身的边，且同一条边不重复出现，则称这样的图是简单图。</p>
+</blockquote>
+<p>如下图所示都不是简单图，而我们主要讨论的都是简单图。</p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE2.png" alt=""></p>
+<blockquote>
+<p><strong>无向完全图</strong>是指在无向图中，任意两个顶点之间都存在边。</p>
+</blockquote>
+<p>含有$n$个顶点的无向完全图有$\frac{n\times (n-1)}{2}$条边。</p>
+<blockquote>
+<p><strong>有向完全图</strong>是指在有向图中，任意两个顶点之间都存在方向互为相反的两条弧。</p>
+</blockquote>
+<p>含有$n$个顶点的有向完全图有$n\times (n-1)$条边。</p>
+<p>由此可以得到一个结论：</p>
+<p><strong>对于具有$n$个顶点和$e$条边数的图，无向图有$0 \le e \le \frac{n\times (n-1)}{2}$, 有向图有$0 \le e \le n \times (n-1)$</strong>。</p>
+<blockquote>
+<p>有很少边或弧的图称为稀疏图，反之称为稠密图。</p>
+</blockquote>
+<p>这里的稀疏与稠密都是相对而言的。</p>
+<blockquote>
+<p>与图的边或弧相关的数值称为<strong>权(Weight)</strong>，它可以表示从一个顶点到另一个顶点的距离或耗费。这种带权的图通常称为<strong>网(Network)</strong>。</p>
+</blockquote>
+<p>下图就是一个带权的图的例子。</p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE3.png" alt=""></p>
+<blockquote>
+<p>假设有两个图 $G = （V，{E}）$，和 $G^\prime = （V^\prime,  {E^\prime}） $,如果$V^\prime \subseteq V$, 且 $E^\prime \subseteq E$,则称$G^\prime$是$G$的子图。</p>
+</blockquote>
+<p>下面展示了无向图和有向图与其子图。</p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE4.png" alt=""></p>
+<h5 id="u56FE_u7684_u9876_u70B9_u4E0E_u8FB9_u7684_u5173_u7CFB"><a href="#u56FE_u7684_u9876_u70B9_u4E0E_u8FB9_u7684_u5173_u7CFB" class="headerlink" title="图的顶点与边的关系"></a>图的顶点与边的关系</h5><blockquote>
+<p>在无向图 $G=(V,{E})$，如果边 $(v, v^\prime) \in E$,则称顶点$v和v^\prime$互为<strong>邻接点(Adjacent)</strong>,即$v 和 v^\prime$相邻接。边$(v, v^\prime)$依附(incident)于顶点$v 和 v^\prime$，或者说$(v,v^\prime)$与顶点$v 和 v^\prime$相关联。<strong>顶点$v$的度(Degree)是和$v$相关联的边的数目，记为TD($v$)。</strong></p>
+</blockquote>
+<p>例如对于上图中上方的无向图，顶点A与B互为邻接点，边(A, B)依附于顶点A与B上，顶点A的度为3。通过计算，可以知道，<strong>无向图的边数是各顶点度数和的一半，即$e = \frac{1}{2} \sum_{i=1}^n TD(v_i)$。</strong></p>
+<blockquote>
+<p>有向图 $G=(V,{E})$,如果弧$<v,v^\prime> \in E$, 则称顶点$v$邻接到顶点$v^\prime$，顶点$v^\prime$邻接自顶点$v$。弧$<v,v^\prime>$和顶点$v,v^\prime$相关联。<strong>以顶点$v$为头的弧的数目称为$v$的入度(InDegree),记为$ID(v)$；以顶点$v$为尾的弧的数目称为$v$的出度(OutDegree),记为$OD(v)$,因此顶点$v$的度为$TD(v) = ID(v) + OD(v)$。</strong> </v,v^\prime></v,v^\prime></p>
+</blockquote>
+<p>例如对上图中下方的有向图，顶点A的入度是2（从B到A的弧，C到A的弧），出度是1（从A到D的弧），所以顶点A的度是3。同样通过计算，可以得到$e =\sum_{i=1}^n ID(v<em>i) = \sum</em>{i=1}^n OD(v_i) $。</p>
+<blockquote>
+<p>在无向图 $G=(V,{E})$中从顶点$v$到$v^\prime$的<strong>路径(Path)</strong>是一个顶点序列$(v=v<em>{i,0},v</em>{i,1},\cdots,v<em>{i,m}=v^\prime),其中(v</em>{i,j-1},v_{i,j}) \in E, 1 \le j \le m$。</p>
+</blockquote>
+<p>下图就展示了顶点B到顶点D的四种不同路径。</p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE5.png" alt=""></p>
+<p>如果$G$是有向图，则路径也是有向的，顶点序列应满足$<v_{i,j-1}, v_{i,j}=""> \in E, 1 \le j \le m$。如下图所示，顶点B到D右两种路径，而顶点A到B就不存在路径。</v_{i,j-1},></p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE6.png" alt=""></p>
+<blockquote>
+<p><strong>路径的长度是路径上的边或弧的数目。</strong></p>
+</blockquote>
+<p>如上图有向图中，左侧的路径长度是2，经过两条弧，而右侧的路径长度是3，经过3条弧。</p>
+<blockquote>
+<p>第一个顶点到最后一个顶点相同的路径称为<strong>回路或环(Cycle)</strong>。序列中顶点不重复出现的路径称为<strong>简单路径</strong>。除了第一个顶点和最后一个顶点之外，其余顶点不重复出现的回路，称为<strong>简单回路或简单环</strong>。</p>
+</blockquote>
+<p>下图中，两个图都是一个环，但左侧的图是一个简单环，而右侧图中顶点C重复出现，因此它不是一个简单环。</p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE7.png" alt=""></p>
+<h5 id="u8FDE_u901A_u56FE_u76F8_u5173_u672F_u8BED"><a href="#u8FDE_u901A_u56FE_u76F8_u5173_u672F_u8BED" class="headerlink" title="连通图相关术语"></a>连通图相关术语</h5><p>接下来会介绍有关连通图的定义和相关术语。</p>
+<blockquote>
+<p>无向图$G$中，如果从顶点$v$到$v^\prime$有路径，则称$v$和$v^\prime$是<strong>连通的。</strong>如果对于图中<strong>任意两个顶点$v_i、v_j \in V$，$v_i$和$v_j$都是连通的，则称$G$是连通图。</strong></p>
+</blockquote>
+<p><strong>无向图中的极大连通子图称为连通分量</strong>。这个连通分量的前提条件有：</p>
+<ul>
+<li>是子图；</li>
+<li>子图是要连通的；</li>
+<li>连通子图要有极大顶点数；</li>
+<li>具有极大顶点数的连通子图包含依附于这些顶点的所有边。</li>
+</ul>
+<blockquote>
+<p>有向图$G$中，如果对于每一对$v_i,v_j \in V, v_i \neq v_j$,从$v_i$到$v_j$和从$v_j$到$v_i$都存在路径，则称$G$是<strong>强连通图</strong>。有向图中的<strong>极大强连通子图</strong>称做有向图的<strong>强连通分量</strong>。</p>
+</blockquote>
+<p>如下图所示，图1并不是强连通图，因为顶点A到顶点D存在路径，但不存在从顶点D到顶点A的路径。图2就是强连通图，而且显然图2是图1的极大强连通子图，即是它的强连通分量。</p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE8.png" alt=""></p>
+<p>接下来是连通图的生成树定义：</p>
+<blockquote>
+<p>一个连通图的生成树是一个极小的连通子图，它含有图中全部的n个顶点，但只有足以构成一棵树的 n-1 条边。</p>
+</blockquote>
+<p>如下图所示，图1是一个普通图，但是显然它不是生成树，当去掉两条构成环的边后，如图2或图3，就满足生成树的条件了，即n个顶点和n-1条边且连通的定义，它们都是一棵生成树。由此可以得知，<strong>如果一个图有n个顶点和小于n-1条边，则是非连通图；如果它多于n-1条边，则必定构成一个环。</strong>但有n-1条边也不一定是生成树，如图4。</p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE9.png" alt=""></p>
+<p>接下来是有向树的定义：</p>
+<blockquote>
+<p>如果一个有向图中<strong>恰有一个顶点的入度为0，其余顶点的入度均为1</strong>，则是一棵有向树。</p>
+</blockquote>
+<p>这里入度为0的顶点就相当于树的根结点，而其余顶点的入度都是1，是因为树的非根结点的双亲只有1个。</p>
+<blockquote>
+<p>一个有向图的生成森林由<strong>若干棵有向树组成，含有图中全部顶点</strong>，但<strong>只有足以构成若干棵不相交的有向树的弧。</strong></p>
+</blockquote>
+<p>如下图所示，图1是一个有向图，再去掉一些弧后，得到图2和图3，也就是分解成两棵有向树，即图2和图3，而这两棵有向树也是图1有向图的生成森林。</p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE10.png" alt=""></p>
+<h5 id="u5C0F_u7ED3"><a href="#u5C0F_u7ED3" class="headerlink" title="小结"></a>小结</h5><p>图的基本定义就简单总结到这里，图的术语还是不比树的少，需要多看几遍，同时多使用，接下来会继续总结图的存储结构、遍历等知识点。</p>
 
       
     </div>
@@ -376,7 +479,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/线性代数/" rel="tag">#线性代数</a>
+            <a href="/tags/数据结构/" rel="tag">#数据结构</a>
+          
+            <a href="/tags/算法/" rel="tag">#算法</a>
           
         </div>
       
@@ -385,17 +490,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/20/Device-Compatibility/" rel="next" title="Android官方文档Guide阅读系列(2)--Device Compatibility">
-                <i class="fa fa-chevron-left"></i> Android官方文档Guide阅读系列(2)--Device Compatibility
+              <a href="/2016/10/28/二叉树2/" rel="next" title="二叉树2">
+                <i class="fa fa-chevron-left"></i> 二叉树2
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/06/04/程序性能1-空间复杂性/" rel="prev" title="程序性能1--空间复杂性">
-                程序性能1--空间复杂性 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -421,8 +522,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/05/30/线性代数-Note-1-方程组的几何解释/"
-           data-title="[线性代数]Note 1--方程组的几何解释" data-url="http://ccc013.github.io/2016/05/30/线性代数-Note-1-方程组的几何解释/">
+      <div class="ds-thread" data-thread-key="2016/11/08/图的基本定义/"
+           data-title="图的基本定义" data-url="http://ccc013.github.io/2016/11/08/图的基本定义/">
       </div>
     
   </div>
@@ -611,7 +712,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u4E24_u4E2A_u672A_u77E5_u6570_u4E24_u4E2A_u65B9_u7A0B"><span class="nav-number">1.</span> <span class="nav-text">两个未知数两个方程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u4E09_u4E2A_u672A_u77E5_u6570_u4E09_u4E2A_u65B9_u7A0B_u7EC4"><span class="nav-number">2.</span> <span class="nav-text">三个未知数三个方程组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u77E9_u9635_u5411_u91CF_u76F8_u4E58_u7684_u89E3_u6CD5"><span class="nav-number">3.</span> <span class="nav-text">矩阵向量相乘的解法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u603B_u7ED3"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#u5404_u79CD_u56FE_u5B9A_u4E49"><span class="nav-number">1.</span> <span class="nav-text">各种图定义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#u56FE_u7684_u9876_u70B9_u4E0E_u8FB9_u7684_u5173_u7CFB"><span class="nav-number">2.</span> <span class="nav-text">图的顶点与边的关系</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#u8FDE_u901A_u56FE_u76F8_u5173_u672F_u8BED"><span class="nav-number">3.</span> <span class="nav-text">连通图相关术语</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#u5C0F_u7ED3"><span class="nav-number">4.</span> <span class="nav-text">小结</span></a></li></ol></div>
             
           </div>
         </section>
