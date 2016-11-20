@@ -100,7 +100,7 @@
 <meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%952.png">
 <meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%953.png">
 <meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%954.png">
-<meta property="og:updated_time" content="2016-11-20T05:30:23.191Z">
+<meta property="og:updated_time" content="2016-11-20T05:36:28.424Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="排序算法总结">
 <meta name="twitter:description" content="这是《大话数据结构》第九章排序算法的知识点总结。
@@ -400,7 +400,7 @@
 </blockquote>
 <p>下图是一个例子，左边的是大顶堆，而右边的是小顶堆。</p>
 <p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%951.png" alt=""></p>
-<p>而根据堆的定义，可以知道根结点一定是堆中所有结点最大或者最小者。如果按照层遍历的方式给结点从1开始编号，则结点之间满足下列关系：<br>$$<br>\begin{cases}<br>k<em>i \ge k</em>{2i} \<br>k<em>i \ge k</em>{2i+1}<br>\end{cases}<br>或<br>\begin{cases}<br>k<em>i \le k</em>{2i} \<br>k<em>i \le k</em>{2i+1}<br>\end{cases}<br>1 \le i \le \lfloor \frac{n}{2} \rfloor<br>$$<br>如果将上图按照层遍历存入数组，则一定满足上述关系表达，得到的数组如下图所示。</p>
+<p>而根据堆的定义，可以知道根结点一定是堆中所有结点最大或者最小者。如果按照层遍历的方式给结点从1开始编号，则结点之间满足下列关系：<br>$$<br>\begin{cases}<br>k<em>i \ge k</em>{2i} \\<br>k<em>i \ge k</em>{2i+1}<br>\end{cases}<br>或<br>\begin{cases}<br>k<em>i \le k</em>{2i} \\<br>k<em>i \le k</em>{2i+1}<br>\end{cases}<br>1 \le i \le \lfloor \frac{n}{2} \rfloor<br>$$<br>如果将上图按照层遍历存入数组，则一定满足上述关系表达，得到的数组如下图所示。</p>
 <p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%952.png" alt=""></p>
 <blockquote>
 <p>堆排序的基本思想是，将待排序的序列构成一个最大堆。此时，整个序列的最大值就是堆顶的根结点。将它移走（其实就是将其与堆数组的末尾元素进行交换，此时末尾元素就是最大值），然后将剩余的$n-1$个序列重新构成一个堆，这样就会得到$n$个元素中的次最大值。如此反复执行，便能得到一个有序序列。</p>
