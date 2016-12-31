@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Stay hungry, stay foolish]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://ccc013.github.io/"/>
-  <updated>2016-12-08T03:18:55.965Z</updated>
+  <updated>2016-12-31T08:31:23.294Z</updated>
   <id>http://ccc013.github.io/</id>
   
   <author>
@@ -13,6 +13,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[2016总结 & 2017展望]]></title>
+    <link href="http://ccc013.github.io/2016/12/31/2016%E6%80%BB%E7%BB%93-2017%E5%B1%95%E6%9C%9B/"/>
+    <id>http://ccc013.github.io/2016/12/31/2016总结-2017展望/</id>
+    <published>2016-12-31T08:30:39.000Z</published>
+    <updated>2016-12-31T08:31:23.294Z</updated>
+    <content type="html"><![CDATA[<h4 id="2016__u603B_u7ED3"><a href="#2016__u603B_u7ED3" class="headerlink" title="2016 总结"></a>2016 总结</h4><p>对于2016年，最大的感觉还是自己还总是处于变化的过程吧，主要是对求职方向的变化，上半年主要是处于学习Android的过程，但是后来听了师兄的话后，大概就是6月底，就开始转变，想要往机器学习算法岗位准备，然后到了10月份左右，随着时间和自己准备两方面考虑，又决定应该往C++开发，但是跟师兄交流后，发现似乎这个方向需要准备的东西要更多，还是好好准备机器学习算法岗位吧。这么来来回回变化，也是自己性格上的缺点吧，缺乏恒心，不能坚持太久，或者其实是自己太过浮躁了，每次都有点过于冲动地考虑，又特别容易后悔自己做过的决定，这真的是需要在未来的一年里面去改进的，需要有恒心，专心和坚持完成一件事情。</p>
+<p>科研进展方向，自己是写了一篇中文的论文，第一次投稿是被拒绝了，现在第二次投稿，尚处于审稿中，希望可以顺利收录；然后就是看了多篇论文啦，还看完一本介绍Caffe的，也尝试修改了一些代码，但是基本是根据网上别人的代码来修改的，复现的方法也能找到代码，现在毕设题目也是确定了，需要做的就是设计自己的算法，能够有足够的创新性吧。</p>
+<p>编程方面，上半年也是看了一两本Android方面的书，然后C++方面，看完《C++ primer plus》，看完《大话数据结构》和《数据结构算法与应用：C++描述》，算法方面则看了《剑指offer》，看完《机器学习》（年终最后一天完成），《现代操作系统》则根据师兄的建议，看完前面比较重要的六章，而Linux方面，正在看鸟哥的《Linux私房菜–基础学习篇》，看完前面十一章内容，打算是看到第三部分的，目前就剩下两章内容，估计需要多两到三天的时间。这是书籍方面的阅读，此外，还有到LeetCode上刷题，目前做了20多道题目，然后在牛客网上也做了不少编程题目，数据结构和操作系统练习，都需要继续坚持。</p>
+<p>此外，还是有坚持做了一些笔记，主要是数据结构和算法学习的笔记，需要继续保持。</p>
+<p>其他，锻炼方面也是断断续续做着，还不能很好地坚持，所以基本上体重没有比去年减少多少；旅游方面，上半年去了武汉参加一次会议，然后都是省内游了。</p>
+<h4 id="2017__u5C55_u671B"><a href="#2017__u5C55_u671B" class="headerlink" title="2017 展望"></a>2017 展望</h4><p>首先是希望在上半年找到一份比较好的实习，目前求职岗位是机器学习算法，所以希望找到机器学习算法相关的岗位，所以这需要前面两个多月继续好好看书，刷题准备；</p>
+<p>其次是希望投稿的论文可以顺利被收录，这样也可以达成毕业条件了。</p>
+<p>接着就是下半年秋招可以找到一份好的工作，实习的时候也要争取能收到留下的offer。</p>
+<p>最后就是搞定毕设，写好毕设论文了。</p>
+<p>上述算是明年比较重要的四件事情了。在这其中，对于找实习还是工作，首先还是需要继续学习，书籍阅读方面，《统计学习方法》是需要好好看透，理解好的，然后《TCP/IP 协议》也要看，掌握网络知识；python方面的知识也要复习一下；然后就是看看《大话设计模式》和《STL源码剖析》，继续加强C++编程能力。</p>
+<p>然后需要继续坚持做笔记，写博客，上传代码到Github。</p>
+<p>最后就是坚持锻炼身体，继续减脂训练，跑步和力量训练都要有序进行。</p>
+<p>总而言之，希望能够更加专注，更加坚持，脚踏实地做好每件计划好的事情。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h4 id="2016__u603B_u7ED3"><a href="#2016__u603B_u7ED3" class="headerlink" title="2016 总结"></a>2016 总结</h4><p>对于2016年，最大的感觉还是自己还总是处于变化的过程吧，主]]>
+    </summary>
+    
+      <category term="总结" scheme="http://ccc013.github.io/tags/%E6%80%BB%E7%BB%93/"/>
+    
+      <category term="随笔" scheme="http://ccc013.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[排序算法总结]]></title>
@@ -1300,146 +1330,6 @@
     <summary type="html">
     <![CDATA[<p>《数据结构算法与应用：C++语言描述》第3章数据描述的笔记。</p>
 <p>本章的重点是介绍线性表，但一个主要目标是让大家明白–<strong>数据可以用不同的形式进行描述或存储在计算机存储器中。</strong>最常见的数据描述方法有：<strong>公式化描述、链接描述]]>
-    </summary>
-    
-      <category term="数据结构" scheme="http://ccc013.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    
-      <category term="算法" scheme="http://ccc013.github.io/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[程序性能3--渐进符号]]></title>
-    <link href="http://ccc013.github.io/2016/06/07/%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD3-%E6%B8%90%E8%BF%9B%E7%AC%A6%E5%8F%B7/"/>
-    <id>http://ccc013.github.io/2016/06/07/程序性能3-渐进符号/</id>
-    <published>2016-06-07T01:25:59.000Z</published>
-    <updated>2016-10-17T08:49:40.731Z</updated>
-    <content type="html"><![CDATA[<p>继续上一节的笔记。前2节的笔记如下：</p>
-<ol>
-<li><a href="http://ccc013.github.io/2016/06/04/%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD1-%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E6%80%A7/">程序性能1–空间复杂性</a></li>
-<li><a href="http://ccc013.github.io/2016/06/04/%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD2-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E6%80%A7/">程序性能2–时间复杂性</a></li>
-<li><a href="http://ccc013.github.io/2016/06/07/%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD3-%E6%B8%90%E8%BF%9B%E7%AC%A6%E5%8F%B7/">程序性能3–渐进符号</a></li>
-</ol>
-<h3 id="u6E10_u8FDB_u7B26_u53F7_28O_2C_24_5Ctheta_2Co_2C_5COmega_24_29"><a href="#u6E10_u8FDB_u7B26_u53F7_28O_2C_24_5Ctheta_2Co_2C_5COmega_24_29" class="headerlink" title="渐进符号(O,$\theta,o,\Omega$)"></a>渐进符号(O,$\theta,o,\Omega$)</h3><p>  确定程序的操作计数和执行步数的两个重要原因如下：</p>
-<ol>
-<li>为了比较两个完成同一功能的程序的时间复杂性；</li>
-<li><p>为了预测随着实例特征的变化，程序运行时间的变化量。</p>
-<p>但上述两个方法都各有其缺点，使用操作计数会集中在某些”关键”的操作，而忽略了所有其他操作。使用执行步数则试图通过关注所有的操作以便克服操作技术方法的不足，但是，”执行步”的概念本身就不精确，如指令<code>x = y</code>和<code>x = y+z+(x/y)</code>都可以被称为一步。因此由于执行步数的不精确性，所以不便用来进行比较。</p>
-<p>因此，这里引入新的符号(或记号)，利用新符号可以写出关于程序时间和空间复杂性的具体公式(尽管不够精确)。这种符号称为<strong>渐进符号</strong>，它可以描述大型实例特征下时间或空间复杂性的具体表现。</p>
-<p>在接下来的讨论中，$f(n)$表示一个程序的时间或空间复杂性，它是实例特征n的函数，由于一个程序的时间和空间需求是一个非负值，所以可以假定对于n的所有取值，函数$f$的值非负。由于n表示一个实例特征，所以可以进一步假定$n\ge 0$。即将讨论的渐进符号允许我们对于足够大的n值，给出$f$的上限值和/或下限值。</p>
-</li>
-</ol>
-<h4 id="u5927_u5199O_u7B26_u53F7"><a href="#u5927_u5199O_u7B26_u53F7" class="headerlink" title="大写O符号"></a>大写O符号</h4><p>  大写O符号给出了函数$f$的一个上限。</p>
-<blockquote>
-<p>$f(n) = O(g(n))$ 当且仅当存在正的常数$c$和$n_0$，使得对于所有的$n\ge n_0$,有$f(n)\le cg(n)$。</p>
-</blockquote>
-<p>上述定义表明，函数f多是函数g的c倍，除非n小于$n_0$。因此对于足够大的n(如$n\ge n_0$)，g是f的一个上限。在为函数f提供一个上限函数g时，通常使用比较简单的函数形式，比较典型的形式是含有n的单个项(带一个常数系数)。下图列出了一些常用的g函数及其名称。下图中的对数函数$log n$，没有给出对数基，原因是对于任何大于1的常数a和b都有$log_a n = {log_b n / log_b a}$,所以$log_an$和$log_bn$都有一个相对的乘法系数$1 / log_b a$,其中a是一个常量。<br><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%B8%B8%E7%94%A8%E7%9A%84%E6%B8%90%E8%BF%9B%E5%87%BD%E6%95%B0.png" alt="此处输入图片的描述"></p>
-<h5 id="u4E3E_u4F8B_u8BF4_u660E"><a href="#u4E3E_u4F8B_u8BF4_u660E" class="headerlink" title="举例说明"></a>举例说明</h5><blockquote>
-<p>[线性函数]考察函数$f(n) = 3n + 2$</p>
-</blockquote>
-<p>  当$n\ge 2$时，有$3n+2\ge 3n+n=4n$，所以有$f(n) = O(n)$,$f(n)$是一个线性变换的函数。当采用其他方式也可以得到同样的结论，例如,对于$n\gt 0$,有$3n+2\le 10n$,可以通过选择c=10以及$n_0\gt 0$来满足大O定义。</p>
-<p>  对于其他线性的函数，如3n+3,100n+6，都满足n的大O定义。</p>
-<blockquote>
-<p>[平方函数]考察函数$f(n) = 10n^2 + 4n + 2$</p>
-</blockquote>
-<p>  对于$n\ge 2$,有$f(n)\le 10n^2+5n$,而又当$n\ge 5$,有$5n\le n^2$,因此对于$n\ge n_0 = 5,f(n) \le 10n^2+n^2 = 11n^2,所以f(n) = O(n^2)$。</p>
-<blockquote>
-<p>[指数函数] 考察函数$f(n) = 6*2^n+n^2$</p>
-</blockquote>
-<p>  对于$n\ge 4,有n^2 \le 2^n，所以对于n \ge 4,有f(n) \le 6<em>2^n + 2^n = 7</em>2^n,因此6*2^n + n^2 = O(2^n)$。</p>
-<h5 id="u677E_u6563_u754C_u9650"><a href="#u677E_u6563_u754C_u9650" class="headerlink" title="松散界限"></a>松散界限</h5><p>  在上述例子中，如$n\ge 2,有3n+3\le 3n^2,所以3n+3=O(n^2),虽然n^2是3n+3$的一个上限，但不是最小上限，因为可以找到一个更小的函数来满足大O定义。</p>
-<p>  同样地，对于其他例子也是可以有找到其他g(n)函数来满足大O定义，但是我们需要寻找的是<strong>最小上限</strong>，这也是为了让语句$f(n) = O(g(n))$有实际意义。</p>
-<p>  对于一些错误界限，如$3n+2 \neq O(1)$,可以使用反证法来证明。</p>
-<p>下面一个定理给出了一个非常有用的结论，利用该结论可以获取f(n)的序(即$f(n) = O(g(n))$中的g(n))，这里，f(n)是一个关于n的多项式。</p>
-<blockquote>
-<p>如果$f(n) = a_m n^m + … + a_1n+a_0,且a_m\gt 0,则f(n) = O(n^m)。$</p>
-<p>证明： 对于所有的$n\ge 1$,有：<br>$$<br>f(n)  \le \sum_{i=0}^m | a_i| n^i \<br>     \hspace{45pt} \le n^m\sum_0^m |a_i| n^{i-m}\<br>     \hspace{30pt} \le n^m\sum_0^m |a_i|<br>$$</p>
-</blockquote>
-<p>这里可以使用该定理来应用到前面的例子中，可以得到同样的结果。</p>
-<blockquote>
-<p>[大O比率定理]对于函数$f(n)和g(n),若\lim<em>{n\to \infty}f(n)/g(n)存在$，则$f(n)=O(g(n))$当且仅当存在确定的常数c，有 $\lim</em>{n\to \infty}f(n)/g(n)\le c$。</p>
-</blockquote>
-<h4 id="24_5COmega_24_u7B26_u53F7"><a href="#24_5COmega_24_u7B26_u53F7" class="headerlink" title="$\Omega$符号"></a>$\Omega$符号</h4><p>  $\Omega$符号与大O符号类型，它用来估算函数f的下限。</p>
-<blockquote>
-<p>$f(n) = \Omega (g(n))$当且仅当存在正的常数$c和n_0$,使得对于所有的$n\ge n_0,有f(n) \ge cg(n)$。</p>
-</blockquote>
-<p>上述定义表明了在$n\ge n_0$的前提下，函数f至少是函数g的c倍。与大O定义的应用一样，<strong>通常仅使用单项形式的g函数。</strong>同时，它也具有以下定理来求g函数。</p>
-<blockquote>
-<p>如果$f(n) = a_m n^m + … + a_1n+a_0,且a_m\gt 0,则f(n) = \Omega (n^m)。$</p>
-</blockquote>
-<p>  根据这个定理可知，$3n+2 = \Omega(n)$,$10n^2+4n+2 = \Omega(n^2)$,$100n^4+3500n^2+82n+8=\Omega(n^4)$。</p>
-<blockquote>
-<p>[$\Omega$比率定理]对于函数$f(n)和g(n),若\lim<em>{n\to \infty}f(n)/g(n)存在$，则$f(n)=\Omega(g(n))$当且仅当存在确定的常数c，有 $\lim</em>{n\to \infty}f(n)/g(n)\le c$。   </p>
-</blockquote>
-<h4 id="24_5Ctheta_24__u7B26_u53F7"><a href="#24_5Ctheta_24__u7B26_u53F7" class="headerlink" title="$\theta$ 符号"></a>$\theta$ 符号</h4><p>  $\theta$ 符号适用于同一个函数g既可以作为f的上限也可以作为f的下限的情形。</p>
-<blockquote>
-<p>定义：$f(n) = \theta (g(n))$当且仅当存在正常数$c_1,c_2和某个n_0$,使得对于所有的$n\ge n_0$,有$c_1g(n)\le f(n) \le c_2g(n)$。</p>
-</blockquote>
-<p>  上述定义表明了在$n\ge n_0$的情况下，函数f介于函数g的$c_1倍和c_2倍$之间。它通常仅使用单项形式的g函数。</p>
-<p>同样地，也具有下面两个定理</p>
-<blockquote>
-<p>如果$f(n) = a_m n^m + … + a_1n+a_0,且a_m\gt 0,则f(n) = \theta (n^m)。$</p>
-</blockquote>
-<p>  根据这个定理，可知$3n+2 = \theta(n)$,$10n^2+4n+2 = \theta(n^2)$,$100n^4+3500n^2+82n+8=\theta(n^4)$。</p>
-<blockquote>
-<p>[$\theta$比率定理]对于函数$f(n)和g(n),若\lim<em>{n\to \infty}f(n)/g(n)存在$，则$f(n)=\theta(g(n))$当且仅当存在确定的常数c，有 $\lim</em>{n\to \infty}f(n)/g(n)\le c$及$\lim_{n\to \infty}g(n)/f(n)\le c$。</p>
-</blockquote>
-<h4 id="u5C0F_u5199o_u7B26_u53F7"><a href="#u5C0F_u5199o_u7B26_u53F7" class="headerlink" title="小写o符号"></a>小写o符号</h4><blockquote>
-<p>定义：$f(n) = o(g(n))$当且仅当$f(n) = O(g(n)),且f(n) \neq \Omega (g(n))$。</p>
-</blockquote>
-<p>例如，因为$3n+2 = O(n^2)$,且$3n+2\neq \Omega(n^2)$,所有$3n+2 = o(n^2)$,但$3n+2\neq o(n)$。</p>
-<p>（那么其实就是可以理解为：如果$f(n) = \theta (g(n))$,则有$f(n) \neq o(g(n))$。）</p>
-<h4 id="u7279_u6027"><a href="#u7279_u6027" class="headerlink" title="特性"></a>特性</h4><blockquote>
-<p>定理：对于任一个实数$x \gt 0$和任一个实数$\epsilon \gt 0$,下面的结论都是正确的：<br>1) 存在某个$n_0$使得对于任何$n\gt n_0$,有$(logn)^x\lt(logn)^{x+\epsilon}$.<br>2)存在某个$n_0$使得对于任何$n\gt n_0$,有$(logn)^x\lt n$.<br>3)存在某个$n_0$使得对于任何$n\gt n_0$,有$n^x \lt n^{x+\epsilon}$.<br>4)对于任意实数y，存在某个$n_0$使得对于任何$n\gt n_0$,有$n^x(logn)^y \lt n^{x+\epsilon}$.<br>5)存在某个$n_0$使得对于任何$n\gt n_0$,有$n^x \lt 2^n$。</p>
-</blockquote>
-<p>根据上述定理，可以有如下结论：$n^3 + n^2 logn = \theta(n^3)$(因为$n^3 \le n^3 + n^2 logn \le 2n^3$);</p>
-<p>下面两张图，第一张图中列出了一些常用的有关$O,\Omega,\theta$的标记，在该表中除n以外所有符号均为正常数。第二张图给出了一些关于和与积的有用的引用规则，其中$\oplus 可以是O,\Omega,\theta$之一。<br><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E6%B8%90%E8%BF%9B%E6%A0%87%E8%AE%B0.png" alt="此处输入图片的描述"><br><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%BC%95%E7%94%A8%E8%A7%84%E5%88%99.png" alt="此处输入图片的描述"></p>
-<h4 id="u590D_u6742_u6027_u5206_u6790_u4E3E_u4F8B"><a href="#u590D_u6742_u6027_u5206_u6790_u4E3E_u4F8B" class="headerlink" title="复杂性分析举例"></a>复杂性分析举例</h4><p>  根据渐进符号，这里重新检查下上一节分析的时间复杂性，对于函数<code>Sum</code>,分析如下图所示：<br><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E6%B8%90%E8%BF%9B%E5%A4%8D%E6%9D%82%E6%80%A71.png" alt="此处输入图片的描述"><br>同理对于其他函数也有这样的分析，如下图所示：<br><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E6%B8%90%E8%BF%9B%E5%A4%8D%E6%9D%82%E6%80%A72.png" alt="此处输入图片的描述"><br><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E6%B8%90%E8%BF%9B%E5%A4%8D%E6%9D%82%E6%80%A73.png" alt="此处输入图片的描述"><br><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E6%B8%90%E8%BF%9B%E5%A4%8D%E6%9D%82%E6%80%A74.png" alt="此处输入图片的描述"><br><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E6%B8%90%E8%BF%9B%E5%A4%8D%E6%9D%82%E6%80%A75.png" alt="此处输入图片的描述"><br><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E6%B8%90%E8%BF%9B%E5%A4%8D%E6%9D%82%E6%80%A76.png" alt="此处输入图片的描述"><br>当按照执行步数来分析上述函数的时候，可以把$t_p(n) = \theta (g(n))$,$t_p(n) = O(g(n))或t_p(n) = \Omega (g(n))$看成一条程序P的语句(用于计算时间),因为每一步仅需要$\theta(1)$的执行时间。<br>接下来就是从全局角度来考察程序的渐进复杂性的需要，下面会举例来阐述这种方法。</p>
-<blockquote>
-<p>[折半搜索]下列程序是一个用在有序数组a[0:n-1]中查找元素x的函数。变量left和right是用来记录查找的起始点和结束点。开始时，将在0到n-1之间进行查找，所以left和right的初值分别是0和n-1。遵循的规律是当前仅当x是a[left:right]中的元素时，x是a[0:n-1]中的元素。</p>
-</blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*折半搜索*/</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BinarySearch</span><span class="params">(T a[], <span class="keyword">const</span> T&amp; x, <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">0</span>, right = n - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (left &lt;= right)&#123;</span><br><span class="line">        <span class="keyword">int</span> middle = (left + right) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (x == a[middle])</span><br><span class="line">            <span class="keyword">return</span> middle;</span><br><span class="line">        <span class="keyword">if</span> (x &gt; a[middle])</span><br><span class="line">            left = middle + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            right = middle - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 未找到x</span></span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>在折半搜索中，While的循环(最后一次除外)都将以减半的比例缩小搜索的范围，所以该循环在最坏情况下虚执行$\theta(logn)$次，由于每次循环需要耗时$\theta(1)$，因此在最坏的情况下，总的时间复杂性是$\theta(logn)$。</p>
-<p>第二个例子是<a href="http://ccc013.github.io/2016/06/04/%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD%282%29-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E6%80%A7/">上一节</a>中的插入排序例子中，对于每个i值，最内部的循环在最坏情况下时间复杂性是$\theta(1)$,因此在最坏情况下，该例子的时间复杂性是$\theta(n^2)$,而最好的情况是$\theta(n)$。程序的渐进复杂性可由$\Omega(n) 和O(n^2)$给出。</p>
-<p>小写o符号通常用于执行步数的分析。执行步数$3n+O(n)$表示3n加上上限是n的项。在进行这种分析时，可以忽略步数少于$\theta(n)$的程序部分。<br>还可以扩充渐进符号的定义，采用具有多个变量的函数。例如，$f(n,m)=O(g(n,m))$当且仅当存在正常量$c,n_0,m_0$,使得对于所有的$n\ge n_0和所有的m\ge m_0$，有$f(n,m)\le cg(n,m)$。</p>
-<h3 id="u5B9E_u9645_u590D_u6742_u6027"><a href="#u5B9E_u9645_u590D_u6742_u6027" class="headerlink" title="实际复杂性"></a>实际复杂性</h3><p>  根据前面几节内容，我们知道一个程序的时间复杂性通常是其实例特征的函数，在确定程序的时间需求是如何随着实例特征的变化而变化时，这种函数将非常有用。<br>  下面两张图给出各种函数是如何随着n的增长而变化的。<br>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%AE%9E%E9%99%85%E5%A4%8D%E6%9D%82%E6%80%A71.png" alt="此处输入图片的描述"><br>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%AE%9E%E9%99%85%E5%A4%8D%E6%9D%82%E6%80%A72.png" alt="此处输入图片的描述"><br>由图中可以看出随着n的增长，$2^n$的增长极快，如果需要执行$2^n$执行步，那么n=40时，执行步数将大约$1.1<em>10^{12}$，在一台每秒执行$10^9$步的计算机中，该程序大约需要执行18.3分钟；而如果n=50，则需要执行13天，n=60时，需要执行310.56年。因此，*</em>具有指数复杂性的程序仅适合于小的n(典型地取$n\le 40$)。<br>  此外，具有高次多项式复杂性的函数也必须限制使用，比如对于需要执行$n^{10}$执行步的程序，当n=10时，同样是每秒执行$10^9$步的计算机中，需要10秒，但是n=100，这个时间就是3171年了。<br>  下面一张图很好地给出了在每秒执行$10^9$条指令的计算机上执行复杂性是$f(n)$所需要的时间。<br>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%AE%9E%E9%99%85%E5%A4%8D%E6%9D%82%E6%80%A73.png" alt="此处输入图片的描述"></p>
-<h3 id="u6027_u80FD_u6D4B_u91CF"><a href="#u6027_u80FD_u6D4B_u91CF" class="headerlink" title="性能测量"></a>性能测量</h3><blockquote>
-<p>性能测量主要关注于得到一个程序实际需要的空间和时间。</p>
-</blockquote>
-<p>我们忽略编译所需要的时间和空间是因为每个程序仅需要编译一次(当然是在调试完成之后)，而可以运行无数次。不过，如果测试的次数要比运行最终代码的次数多，则在程序测试期间，编译所需要的时间和空间也是很重要的。<br>而基于以下原因，我们不能精确地测量一个程序运行时所需要的时间和空间:</p>
-<ul>
-<li>指令空间和数据空间的大小是由编译器在编译时确定的，所以不必要测量这些数据。</li>
-<li>根据前几节介绍的方法，可以很准确地估算递归栈空间和变量动态分配所需要的空间。</li>
-</ul>
-<p>而为了得到程序的执行时间，需要一个定时机制。在C++中包含一个头文件是<code>time.h</code>，定义了一个<code>clock()</code>的函数，它可以返回自程序启动以来所流逝的“滴答”数，然后再将流逝的“滴答”数除以常量<code>CLK_TCK</code>,就可以得到流逝的秒数。</p>
-<p>接下来，我们选择作为实验的程序是<a href="http://ccc013.github.io/2016/06/04/%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD%282%29-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E6%80%A7/">上一节</a>中的插入排序<code>InsertionSort</code>函数。而要测量该函数在最坏情况下所需要的时间，首先需要：</p>
-<ol>
-<li>确定需要测定执行时间的n值；</li>
-<li>对于上面的每个n，给出能导致最坏复杂性的测试数据。</li>
-</ol>
-<h4 id="u9009_u62E9_u5B9E_u4F8B_u7684_u5927_u5C0F"><a href="#u9009_u62E9_u5B9E_u4F8B_u7684_u5927_u5C0F" class="headerlink" title="选择实例的大小"></a>选择实例的大小</h4><p>  可以根据以下两个因素来确定使用哪些n值：</p>
-<ul>
-<li>程序执行的时间</li>
-<li>程序执行的次数</li>
-</ul>
-<p>在之前的分析中可以知道在最坏的情况下，插入排序的复杂性是$\theta(n^2)$。实践过程中，通常需要3个以上的n值，其原因如下：</p>
-<ol>
-<li>渐进分析仅给出了对于足够大的n值时程序的复杂性。对于小的n值，程序的运行时间可能并满足渐近曲线。为了确定渐近曲线以外的点，需要使用多个n值。</li>
-<li>即使在满足渐近曲线的区间内，程序实际运行时间也可能不满足预定的渐近曲线，原因是在进行渐进分析时，忽略了许多低层次的时间需求。例如，一个程序的渐进复杂性是$\theta(n^2)$，而它的实际复杂性可以是$c_1n^2+c_2nlogn+c_3n+c_4$,或其他任何最高项是$c_1n^2$的函数，其中$c_1$是常数且大于0。</li>
-</ol>
-<p>而在我们用来实验的插入排序程序，我们期望获得$n\lt 100$的渐进复杂性，所以对于$n\gt 100$的情况，可能只需奥很少量的估算值，一个合理的选择是$n=200,300,400,\ldots,1000$。</p>
-<h4 id="u8BBE_u8BA1_u6D4B_u91CF_u6570_u636E"><a href="#u8BBE_u8BA1_u6D4B_u91CF_u6570_u636E" class="headerlink" title="设计测量数据"></a>设计测量数据</h4><p>  对于许多程序，可以手工或者用计算机来产生能导致最好和最后复杂性的测试数据。然而，对于平均的复杂性，通常很难设计相应的数据。如对于我们要用来实验的<code>InsertionSort</code>函数来说，对任何n来说，能导致最坏复杂性的测试数据应是一个递减的序列，如$n,n-1,n-2,\ldots,1$;导致最好复杂性的测试数据应是一个递增的序列，如$0,1,2,\ldots,n-1$。我们很难提供一组测试数据使得<code>InsertionSort</code>函数表现出平均的复杂性。</p>
-<h4 id="u8FDB_u884C_u5B9E_u9A8C"><a href="#u8FDB_u884C_u5B9E_u9A8C" class="headerlink" title="进行实验"></a>进行实验</h4><p>  当确定了实例大小，并给出了测试数据，就可以开始进行实验了。<br>  实验运行的代码如下所示:</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*向一个有序数组中插入元素,假定a的大小超过n*/</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Insert</span><span class="params">(T a[], <span class="keyword">int</span>&amp; n, <span class="keyword">const</span> T&amp; x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">for</span> (i = n - <span class="number">1</span>; i &gt;= <span class="number">0</span> &amp;&amp; x &lt; a[i]; i--)</span><br><span class="line">        a[i + <span class="number">1</span>] = a[i];</span><br><span class="line">    a[i + <span class="number">1</span>] = x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InsertionSort</span><span class="params">(T a[], <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++)&#123;</span><br><span class="line">        T t = a[i];</span><br><span class="line">        Insert(a, i, t);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line">    <span class="keyword">using</span> <span class="built_in">std</span>::endl;</span><br><span class="line">    <span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> a[<span class="number">1000</span>], step = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">clock_t</span> start, finish;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> n = <span class="number">0</span>; n &lt;= <span class="number">1000</span>; n += step) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">            a[i] = n - i; <span class="comment">// 初始化</span></span><br><span class="line">        start = clock();</span><br><span class="line">        InsertionSort(a, n);</span><br><span class="line">        finish = clock();</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; n &lt;&lt; <span class="string">' '</span> &lt;&lt;(<span class="keyword">float</span>)(finish - start) / CLK_TCK &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">100</span>) </span><br><span class="line">            step = <span class="number">100</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    system(<span class="string">"pause"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>实验结果如下图所示<br><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E7%AB%A02%E5%AE%9E%E9%AA%8C%E5%9B%BE1.png" alt="此处输入图片的描述"><br>由上图可以得出这样的结论，排序300个元素以内的数组不需要时间，而排序400-800个元素的数组所花费的时间是一样的。但这个结论并不正确，主要是因为对于计时函数<code>clock()</code>来说，所需要的运行时间太小了。而且，所有测量的精确度均为一个时钟“滴答”。书本中使用的计算机的<code>CLK_TCK=18.2</code>,不过我使用的是<code>Visual Studio</code>中<code>CLK_TCK=1000</code>,即这里测量的误差范围是一个“滴答”时间<code>1/1000 = 0.001</code>秒。<br>而为了提高测量的精确度，对于每个n值，可以重复排序若干次。这里限定的条件是10个时钟“滴答”时间。代码及实验结果如下所示：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*向一个有序数组中插入元素,假定a的大小超过n*/</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Insert</span><span class="params">(T a[], <span class="keyword">int</span>&amp; n, <span class="keyword">const</span> T&amp; x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">for</span> (i = n - <span class="number">1</span>; i &gt;= <span class="number">0</span> &amp;&amp; x &lt; a[i]; i--)</span><br><span class="line">        a[i + <span class="number">1</span>] = a[i];</span><br><span class="line">    a[i + <span class="number">1</span>] = x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InsertionSort</span><span class="params">(T a[], <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++)&#123;</span><br><span class="line">        T t = a[i];</span><br><span class="line">        Insert(a, i, t);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line">    <span class="keyword">using</span> <span class="built_in">std</span>::endl;</span><br><span class="line">    <span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> a[<span class="number">1000</span>],n,i, step = <span class="number">10</span>;</span><br><span class="line">    <span class="keyword">long</span> counter;</span><br><span class="line">    <span class="keyword">float</span> seconds;</span><br><span class="line">    <span class="keyword">clock_t</span> start, finish;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> n = <span class="number">0</span>; n &lt;= <span class="number">1000</span>; n += step)&#123;</span><br><span class="line">        <span class="comment">// 获得对应于n值的时间</span></span><br><span class="line">        start = clock();</span><br><span class="line">        counter = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (clock() - start &lt; <span class="number">10</span>)&#123;</span><br><span class="line">            counter++;</span><br><span class="line">            <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">                a[i] = n - i;</span><br><span class="line">            InsertionSort(a, n);</span><br><span class="line">        &#125;</span><br><span class="line">        finish = clock();</span><br><span class="line">        seconds = (<span class="keyword">float</span>)(finish - start) / CLK_TCK;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; n &lt;&lt; <span class="string">' '</span> &lt;&lt; counter&lt;&lt;<span class="string">' '</span> &lt;&lt; seconds&lt;&lt;<span class="string">' '</span>&lt;&lt; seconds/counter&lt;&lt; endl;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">100</span>)</span><br><span class="line">            step = <span class="number">100</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    system(<span class="string">"pause"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> <img src="http://7xrluf.com1.z0.glb.clouddn.com/%E7%AB%A02%E5%AE%9E%E9%AA%8C%E5%9B%BE2.png" alt="此处输入图片的描述"><br>上图中每行数据分别是n值，重复次数，总时间以及每次排序时间。</p>
-<h3 id="u5C0F_u7ED3"><a href="#u5C0F_u7ED3" class="headerlink" title="小结"></a>小结</h3><p>  第二章有关程序性能的笔记就记录到这里了。本章主要是介绍了算法的基础，对于程序的空间和时间复杂性的介绍，还介绍了4种渐进符号，然后就是给出了一个例子来测量运行时间。<br>  本章是一个学习数据结构和算法的基础，因为我还是初学者，所以笔记主要是记录书中的要点，比较少有写上自己的理解，不过，相信随着练习，会慢慢掌握数据结构和算法的知识点的。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>继续上一节的笔记。前2节的笔记如下：</p>
-<ol>
-<li><a href="http://ccc013.github.io/2016/06/04/%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD1-%E7%A9%BA%E9%97%B4%E5%A]]>
     </summary>
     
       <category term="数据结构" scheme="http://ccc013.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
