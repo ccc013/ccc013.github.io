@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Stay hungry, stay foolish]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://ccc013.github.io/"/>
-  <updated>2017-01-01T04:14:36.010Z</updated>
+  <updated>2018-05-08T03:06:37.311Z</updated>
   <id>http://ccc013.github.io/</id>
   
   <author>
@@ -13,6 +13,163 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[卷积神经网络学习笔记]]></title>
+    <link href="http://ccc013.github.io/2018/05/08/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>http://ccc013.github.io/2018/05/08/卷积神经网络学习笔记/</id>
+    <published>2018-05-08T03:04:39.000Z</published>
+    <updated>2018-05-08T03:06:37.311Z</updated>
+    <content type="html"><![CDATA[<p>记录在学习CNN过程中的一些知识点，包括参考的文章，论文或者博客等。</p>
+<p>参考文章/书籍：</p>
+<ol>
+<li><a href="https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/" target="_blank" rel="external">An Intuitive Explanation of Convolutional Neural Networks</a></li>
+<li><a href="http://blog.csdn.net/jiejinquanil/article/details/50042791" target="_blank" rel="external">对CNN中pooling的理解</a></li>
+<li>《深度学习轻松学：核心算法与视觉实践》</li>
+</ol>
+<p>CNN可以应用在场景分类，图像分类，现在还可以应用到自然语言处理(NLP)方面的很多问题，比如句子分类等。</p>
+<p><strong>LeNet</strong>是最早的CNN结构之一，它是由大神<strong>Yann LeCun</strong>所创造的，主要是用在字符分类问题。</p>
+<p>下面是一个简单的CNN结构，图来自参考文章<a href="https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/" target="_blank" rel="external">1</a>。这个网络结构是用于一个四类分类的问题，分别是狗、猫、船和鸟，图中的输入图片是属于船一类。</p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/CNN1.png" alt="此处输入图片的描述"></p>
+<p>该结构展示了四种运算，也可以说是由四种不同的层，分别是卷积层，非线性层(也就是使用了ReLU函数)，Pooling层，全连接层，下面将一一介绍这几种网络层。</p>
+<hr>
+<h3 id="u5377_u79EF_u5C42"><a href="#u5377_u79EF_u5C42" class="headerlink" title="卷积层"></a>卷积层</h3><h4 id="u5377_u79EF_u7B80_u4ECB"><a href="#u5377_u79EF_u7B80_u4ECB" class="headerlink" title="卷积简介"></a>卷积简介</h4><p>  CNN的名字由来就是因为其使用了卷积运算的缘故。卷积的目的主要是为了提取图片的特征。卷积运算可以保持像素之间的空间关系。</p>
+<p>  每张图片可以当做是一个包含每个像素值的矩阵，像素值的范围是0~255,0表示黑色，255是白色。下面是一个$5 \times 5$大小的矩阵例子，它的值是0或者1。</p>
+<p>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/CNN2.png" alt="此处输入图片的描述"></p>
+<p>  接下来是另一个$3\times 3$矩阵：</p>
+<p>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/CNN3.png" alt="此处输入图片的描述"></p>
+<p>  上述两个矩阵通过卷积，可以得到如下图右侧粉色的矩阵结果。</p>
+<p>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/CNN4.png" alt="此处输入图片的描述"></p>
+<p>  黄色的矩阵在绿色的矩阵上从左到右，从上到下，每次滑动的步进值是1个像素，所以得到一个$3\times 3$的矩阵。</p>
+<p>  在CNN中，黄色的矩阵被叫做<strong>滤波器(filter)或者核(kernel)或者是特征提取器</strong>，而通过卷积得到的矩阵则是称为<strong>“特征图(Feature Map)”或者“Activation Map”</strong>。</p>
+<p>  另外，<strong>使用不同的滤波器矩阵是可以得到不同的 Feature Map</strong> ，例子如下图所示：</p>
+<p>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/CNN5.png" alt="此处输入图片的描述"></p>
+<p>  上图通过滤波器矩阵，实现了不同的操作，比如边缘检测，锐化以及模糊操作等。</p>
+<p>  在实际应用中，CNN是可以在其训练过程中学习到这些滤波器的值，不过我们需要首先指定好滤波器的大小，数量以及网络的结构。使用越多的滤波器，可以提取到更多的图像特征，网络也就能够有更好的性能。</p>
+<p>  Feature Map的尺寸是由以下三个参数来决定的：</p>
+<ul>
+<li><strong>深度(Depth)</strong>： <strong>深度等于滤波器的数量</strong>。</li>
+<li><strong>步进(Stride)</strong>: 步进值是在使用滤波器在输入矩阵上滑动的时候，每次滑动的距离。步进值越大，得到的Feature Map的尺寸越小。</li>
+<li><strong>Zero-padding</strong>: 有时候可以在输入矩阵的边界填补0，这样就可以将滤波器应用到边缘的像素点上，一个好的Zero-padding是能让我们可以控制好特征图的尺寸的。使用该方法的卷积称为<strong>wide convolution</strong>，没有使用的则是<strong>narrow convolution</strong>。</li>
+</ul>
+<h4 id="u5377_u79EF_u516C_u5F0F_u548C_u53C2_u6570_u91CF"><a href="#u5377_u79EF_u516C_u5F0F_u548C_u53C2_u6570_u91CF" class="headerlink" title="卷积公式和参数量"></a>卷积公式和参数量</h4><p> 上一小节简单介绍了卷积的操作和其实现的效果，接下来将介绍卷积运算的公式，以及CNN中卷积层的参数数量。</p>
+<p> 卷积是大自然中最常见的运算，一切信号观测、采集、传输和处理都可以用卷积过程实现，其用公式表达如下：<br>$$<br>\begin{align}<br>Y(m,n) &amp; =X(m,n)*H(m,n) \<br>&amp;= \sum<em>{i=-\infty}^{+\infty}\sum</em>{j=-\infty}^{+\infty}X(i,j)H(m-i,n-j) \ &amp;=\sum<em>{i=-\infty}^{+\infty}\sum</em>{j=-\infty}^{+\infty}X(m-i,n-j)H(i,j)<br>\end{align}<br>$$<br>上述公式中$H(m,n)$表示卷积核。</p>
+<p>在CNN中的卷积层的计算步骤与上述公式定义的二维卷积有点差异，首先是维度升至三维、四维卷积，跟二维卷积相比多了一个<strong>“通道”(channel)</strong>，每个通道还是按照二维卷积方式计算，而多个通道与多个卷积核分别进行二维卷积，得到多通道输出，需要“合并”为一个通道；<strong>其次是卷积核在卷积计算时没有“翻转”，而是与输入图片做滑动窗口“相关”计算</strong>。用公式重新表达如下：<br>$$<br>Y^l(m,n) =X^k(m,n)<em>H^{kl}(m,n) = \sum<em>{k=0}^{K-1}\sum</em>{i=0}^{I-1}\sum_{j=0}^{J-1}X^k(m+i,n+j)H^{kl}(i,j)<br>$$<br>这里假定卷积层有$L$个输出通道和$K$个输入通道，于是需要有$KL$个卷积核实现通道数目的转换。其中$X^k$表示第$k$个输入通道的二维特征图，$Y^l$表示第$l$个输出通道的二维特征图，$H^{kl}$表示第$k$行、第$l$列二维卷积核。假定卷积核大小是$I</em>J$,每个输出通道的特征图大小是$M<em>N$，则该层每个样本做一次前向传播时卷积层的计算量是$Calculations(MAC)=I</em>J<em>M</em>N<em>K</em>L$。</p>
+<p>卷积层的学习参数，也就是<strong>卷积核数目乘以卷积核的尺寸–$Params = I<em>J</em>K*L$。</strong></p>
+<p>这里定义计算量-参数量之比是<strong>CPR</strong>=$Calculations/Params=M*N$。</p>
+<p>因此可以得出结论：<strong>卷积层的输出特征图尺寸越大，CPR越大，参数重复利用率越高。若输入一批大小为B的样本，则CPR值可提高B倍。</strong></p>
+<h4 id="u4F18_u70B9"><a href="#u4F18_u70B9" class="headerlink" title="优点"></a>优点</h4><p>卷积神经网络通过<strong>『参数减少』与『权值共享』</strong>大大减少了连接的个数，也即需要训练的参数的个数。</p>
+<p>假设我们的图像是<code>1000*1000</code>的，则有10^6个隐层神经元，那么它们全连接的话，也就是每个隐层神经元都连接图像的每个像素点，就有10^12个连接，也即10^12个权值参数需要训练，这显然是不值得的。但是对于一个只识别特定feature的卷积核，需要大到覆盖整个图像的所有像素点吗？通常是不需要的，<strong>一个特定feature，尤其是第一层需要提取的feature，通常都相当基础，只占图像很小的一部分。所以我们设置一个较小的局部感受区域，比如<code>10*10</code>，也即每个神经元只需要和这<code>10*10</code>的局部图像相连接，所以10^6个神经元也就有10^8个连接。这就叫参数减少。</strong></p>
+<p>那什么叫权值共享呢？在上面的局部连接中，10^6个神经元，每个神经元都对应100个参数，所以是10^8个参数，<strong>那如果每个神经元所对应的参数都是相同的，那需要训练的参数就只有100个了。</strong></p>
+<p>这后面隐含的道理在于，<strong>这100个参数就是一个卷积核，而卷积核是提取feature的方式，与其在图像上的位置无关，图像一个局部的统计特征与其他局部的统计特征是一样的，我们用在这个局部抽取feature的卷积核也可以用在图像上的其它任何地方。</strong></p>
+<p>而且这100个参数只是一种卷积核，只能提取一种feature，我们完全可以采用100个卷积核，提取100种feature，而所需要训练的参数也不过10^4，最开始我们训练10^12个参数，还只能提取一种特征。选取100个卷积核，我们就能得到100张FM，每张FM可以看做是一张图像的不同通道。</p>
+<p>CNN主要用来识别位移、缩放及其他形式扭曲不变性的二维图形。由于CNN特征检测层通过训练数据进行学习，在使用CNN时，避免了显式的特征抽取，而隐式地从训练数据中进行学习；再者，由于同一FM上的神经元权值相同，所以网络可以并行学习，这也是卷积网络相对于神经元彼此相连网络的一大优势。卷积神经网络以其局部权值共享的特殊结构在语音识别和图像处理方面有着独特的优越性，其布局更接近于实际的生物神经网络，权值共享降低了网络的复杂性，避免了特征提取和分类过程中数据重建的复杂度。</p>
+<hr>
+<h3 id="u975E_u7EBF_u6027_u5C42_28ReLU_29"><a href="#u975E_u7EBF_u6027_u5C42_28ReLU_29" class="headerlink" title="非线性层(ReLU)"></a>非线性层(ReLU)</h3><p>  非线性修正函数<strong>ReLU(Rectified Linear Unit)</strong>如下图所示：</p>
+<p>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/CNN6.png" alt="此处输入图片的描述"></p>
+<p>这是一个对每个像素点实现点乘运算，并用0来替换负值像素点。其目的是在CNN中加入非线性，<strong>因为使用CNN来解决的现实世界的问题都是非线性的，而卷积运算是线性运算，所以必须使用一个如ReLU的非线性函数来加入非线性的性质。</strong></p>
+<p>其他非线性函数还包括<strong>tanh</strong>和<strong>Sigmoid</strong>,但是<strong>ReLU</strong>函数已经被证明在大部分情况下性能最好。</p>
+<h3 id="Pooling_u5C42"><a href="#Pooling_u5C42" class="headerlink" title="Pooling层"></a>Pooling层</h3><p>  <strong>空间合并（Spatial Pooling)</strong>也可以叫做子采样或者下采样，可以在保持最重要的信息的同时降低特征图的维度。它有不同的类型，如最大化，平均，求和等等。</p>
+<p>  对于<strong>Max Pooling</strong>操作，首先定义一个空间上的邻居，比如一个$2\times 2$的窗口，对该窗口内的经过ReLU的特征图提取最大的元素。除了提取最大的元素，还可以使用窗口内元素的平均值或者是求和的值。不过，<strong>Max Pooling</strong>的性能是最好的。例子可以如下图所示：</p>
+<p>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/CNN7.png" alt="此处输入图片的描述"></p>
+<p>  上图中使用的步进值是2。</p>
+<p>根据相关理论，特征提取的误差主要来自两个方面：</p>
+<ol>
+<li>邻域大小受限造成的估计值方差增大；</li>
+<li>卷积层参数误差造成估计均值的偏移。</li>
+</ol>
+<p><strong>一般来说，mean-pooling能减小第一种误差，更多的保留图像的背景信息，max-pooling能减小第二种误差，更多的保留纹理信息。</strong></p>
+<p>  使用Pooling的原因有如下几点：</p>
+<ul>
+<li>不变性，更关注是否存在某些特征而不是特征具体的位置。可以看作加了一个很强的先验，让学到的特征要能容忍一些的变化。</li>
+<li>减小下一层输入大小，减小计算量和参数个数。</li>
+<li>获得定长输出。（文本分类的时候输入是不定长的，可以通过池化获得定长输出）</li>
+<li>防止过拟合或有可能会带来欠拟合</li>
+</ul>
+<hr>
+<h3 id="u5168_u8FDE_u63A5_u5C42"><a href="#u5168_u8FDE_u63A5_u5C42" class="headerlink" title="全连接层"></a>全连接层</h3><p>  全连接层就是一个传统的多层感知器，它在输出层使用一个<strong>softmax</strong>激活函数。其主要作用就是将前面卷积层提取到的特征结合在一起然后进行分类。<strong>Softmax</strong>函数可以将输入是一个任意实数分数的向量变成一个值的范围是0~1的向量，但所有值的总和是1。</p>
+<p>  在CNN出现之前，最早的深度学习网络计算类型都是全连接形式的。</p>
+<p>  全连接层的主要计算类型是<strong>矩阵-向量乘（GEMV)。</strong>假设输入节点组成的向量是$x$，维度是$D$,输出节点组成的向量是$y$,维度是$V$,则全连接层计算可以表示为$y=Wx$。</p>
+<p>  其中$W$是$V*D$的权值矩阵。</p>
+<p>  全连接层的参数量为$Params=V<em>D$,其单个样本前向传播的计算量也是$Calculations(MAC)=V</em>D$，也就是$CPR=Calculations/Params=1$。也就是其权值利用率很低。</p>
+<p>  可以将一批大小为$B$的样本$x_i$逐列拼接成矩阵$X$，一次性通过全连接层，得到一批输出向量构成的矩阵$Y$，相应地前面的矩阵-向量乘运算升为<strong>矩阵-矩阵乘计算（GEMM)：$Y=WX$</strong>。</p>
+<p>  这样全连接层前向计算量提高了$B$倍，CPR相应提高了$B$倍，权重矩阵在多个样本之间实现了共享，可提高计算速度。</p>
+<p>  比较卷积层和全连接层，卷积层在输出特征图维度实现了<strong>权值共享</strong>，这是降低参数量的重要举措，同时，卷积层<strong>局部连接</strong>特性（相比全连接）也大幅减少了参数量。<strong>因此卷积层参数量占比小，但计算量占比大，而全连接层是参数量占比大，计算量占比小。所以在进行计算加速优化时，重点放在卷积层；在进行参数优化、权值剪裁时，重点放在全连接层。</strong></p>
+<h3 id="u6FC0_u6D3B_u51FD_u6570"><a href="#u6FC0_u6D3B_u51FD_u6570" class="headerlink" title="激活函数"></a>激活函数</h3><p>激活函数是给网络提供非线性的特性，在每个网络层中对输入数据进行非线性变换的作用，这有两个好处。</p>
+<ol>
+<li><strong>对数据实现归一化操作</strong></li>
+</ol>
+<p>激活函数都有各自的取值范围，比如Sigmoid函数取值范围是[0,1]，Tanh函数取值范围是[-1,1]，这种好处对网络的正反向训练都有好处：</p>
+<p>（1）正向计算网络的时候，由于输入数值的大小没有限制，其数值差距会非常大，第一个坏处是大数值会更被重视，而小数值的重要性会被忽视，其次，随着层数加深，这种大数值会不断累积到后面的网络层，最终可能导致数值爆炸溢出的情况；</p>
+<p>（2）反向计算网络的时候，每层数值大小范围不同，有的在[0,1]，有的在[0,10000]，这在模型优化时会对设定反向求导的优化步长增加难度，设置过大会让梯度较大的维度因为过量更新而造成无法预期的结果；设置过小，梯度较小的维度会得不到充分的更新，就无法有所提升。</p>
+<ol>
+<li><strong>打破之前的线性映射关系。</strong></li>
+</ol>
+<p>如果网络只有线性部分，那么叠加多个网络层是没有意义的，因为多层神经网络可以退化为一层神经网络。</p>
+<hr>
+<h3 id="u53CD_u5411_u4F20_u64ADBackpropagation"><a href="#u53CD_u5411_u4F20_u64ADBackpropagation" class="headerlink" title="反向传播Backpropagation"></a>反向传播Backpropagation</h3><p>  CNN的整个训练过程如下所示：</p>
+<ol>
+<li>首先是随机初始化所有滤波器以及其他参数和权重值；</li>
+<li>输入图片，进行前向传播，也就是经过卷积层，ReLU和pooling运算，最后到达全连接层进行分类，得到一个分类的结果，也就是输出一个包含每个类预测的概率值的向量；</li>
+<li>计算误差，也就是代价函数，这里代价函数可以有多种计算方法，比较常用的有平方和函数，即$实际值预测值Error = \frac{1}{2}\sum(实际值-预测值)^2$；</li>
+<li>使用反向传播来计算网络中对应各个权重的误差的梯度，一般是使用梯度下降法来更新各个滤波器的权重值，目的是为了让输出的误差，也就是代价函数的值尽可能小。</li>
+<li>重复上述第二到第四步，直到训练次数达到设定好的值。</li>
+</ol>
+<hr>
+<h3 id="u7F51_u7EDC_u7ED3_u6784"><a href="#u7F51_u7EDC_u7ED3_u6784" class="headerlink" title="网络结构"></a>网络结构</h3><p>  这里介绍比较有名的网络结构。</p>
+<ol>
+<li><p><strong>LeNet（1990s）</strong>：在开头介绍了，这是最早使用的CNN网络结构之一，主要是用于字符分类；</p>
+<p>特点如下：</p>
+<ul>
+<li>卷积神经网络使用3层架构：卷积、下采样、非线性激活函数</li>
+<li>使用卷积提取图像空间特征</li>
+<li>下采样使用了图像平均稀疏性</li>
+<li>激活函数采用了tanh或者sigmoid函数</li>
+<li>多层神经网络（MLP）作为最后的分类器</li>
+<li>层之间使用稀疏连接矩阵，以避免大的计算成本</li>
+</ul>
+</li>
+<li><p><strong>AlexNet（2012）</strong>：这是在2012年的ImageNet视觉挑战比赛上获得第一名所使用的网络结构，这也是使得许多视觉问题取得重大突破，让CNN变得非常热门的原因。</p>
+<p>总结下其改进地方：</p>
+</li>
+</ol>
+<ul>
+<li>使用ReLU函数作为激活函数，降低了Sigmoid类函数的计算量</li>
+<li>利用dropout技术在训练期间选择性地剪掉某些神经元，避免模型过度拟合<ul>
+<li>引入max-pooling技术</li>
+<li>利用双GPU NVIDIA GTX 580显著减少训练时间</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li><p><strong>ZF Net（2013）</strong>：这是2013年ImageNet比赛的胜者，对AlexNet的结构超参数做出了调整。</p>
+</li>
+<li><p><strong>GoogleNet（2014）</strong>:2014年ImageNet比赛的胜者，其主要贡献是使用了一个<strong>Inception Module</strong>，可以大幅度减少网络的参数数量，其参数数量是4M，而AlexNet的则有60M。</p>
+</li>
+<li><p><strong>VGGNet（2014）</strong>：是一个更深的网络，使用了16层的结构。<strong>它是对原始图像进行3×3卷积，然后再进行3×3卷积，连续使用小的卷积核对图像进行多次卷积。</strong>VGG一开始提出的时候刚好与LeNet的设计原则相违背，<strong>因为LeNet相信大的卷积核能够捕获图像当中相似的特征（权值共享）。</strong>AlexNet在浅层网络开始的时候也是使用9×9、11×11卷积核，并且尽量在浅层网络的时候避免使用1×1的卷积核。但是VGG的神奇之处就是在于使用多个3×3卷积核可以模仿较大卷积核那样对图像进行局部感知。后来多个小的卷积核串联这一思想被GoogleNet和ResNet等吸收。</p>
+<p><strong>VGG相信如果使用大的卷积核将会造成很大的时间浪费，减少的卷积核能够减少参数，节省运算开销。虽然训练的时间变长了，但是总体来说预测的时间和参数都是减少的了。</strong></p>
+<p>​</p>
+<p>​</p>
+</li>
+<li><p><strong>ResNets（2015）</strong>：目前CNN中最好性能的结构，使用了152层。</p>
+</li>
+</ol>
+<p>​    </p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>记录在学习CNN过程中的一些知识点，包括参考的文章，论文或者博客等。</p>
+<p>参考文章/书籍：</p>
+<ol>
+<li><a href="https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/]]>
+    </summary>
+    
+      <category term="卷积神经网络" scheme="http://ccc013.github.io/tags/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"/>
+    
+      <category term="机器学习" scheme="http://ccc013.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="深度学习" scheme="http://ccc013.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[2016总结 & 2017展望]]></title>
@@ -1251,86 +1408,6 @@
     <summary type="html">
     <![CDATA[<p>继续是《数据结构算法与应用：C++语言描述》第3章数据描述的笔记。本小节主要介绍链表，以及单向链表和单向循环链表，双向链表的介绍。</p>
 <h3 id="u94FE_u8868_u63CF_u8FF0"><a href="#u94FE_u8868_u63CF_u8FF0"]]>
-    </summary>
-    
-      <category term="数据结构" scheme="http://ccc013.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    
-      <category term="算法" scheme="http://ccc013.github.io/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[数据描述1--线性表]]></title>
-    <link href="http://ccc013.github.io/2016/06/08/%E6%95%B0%E6%8D%AE%E6%8F%8F%E8%BF%B01-%E7%BA%BF%E6%80%A7%E8%A1%A8/"/>
-    <id>http://ccc013.github.io/2016/06/08/数据描述1-线性表/</id>
-    <published>2016-06-08T04:49:32.000Z</published>
-    <updated>2016-10-31T14:03:07.994Z</updated>
-    <content type="html"><![CDATA[<p>《数据结构算法与应用：C++语言描述》第3章数据描述的笔记。</p>
-<p>本章的重点是介绍线性表，但一个主要目标是让大家明白–<strong>数据可以用不同的形式进行描述或存储在计算机存储器中。</strong>最常见的数据描述方法有：<strong>公式化描述、链接描述、间接寻址和模拟指针。</strong></p>
-<p><strong>公式化描述</strong></p>
-<blockquote>
-<p>公式化描述借助数学公式来确定元素表中的每个元素分别存储在何处(如存储器地址)。最简单的情形就是把所有元素依次连续存储在一片连续的存储空间中，这就是通常 所说的连续线性表。</p>
-</blockquote>
-<p><strong>链接描述</strong></p>
-<blockquote>
-<p>链接描述中，元素表中的每个元素可以存储在存储器的不同区域汇总，每个元素都包含指向下一个元素的指针。</p>
-</blockquote>
-<p><strong>间接寻址</strong></p>
-<blockquote>
-<p>间接寻址中，元素表的每个元素也是可以存储在存储器的不同区域中，但与链接描述不同的是，此时必须保存一张表，该表的第i项指向元素表中的第i个元素，所以这张表是一个用来保存元素地址的表。</p>
-</blockquote>
-<p><strong>模拟指针</strong></p>
-<blockquote>
-<p>模拟指针非常类似于链接描述，区别在于它用整数代替了C++指针，整数所扮演的角色与指针所扮演的角色完全相同。</p>
-</blockquote>
-<p><strong>数据对象</strong>是一组实例或值，比如布尔值，整数，浮点数，字符串等。数据结构包括数据对象和实例以及构成实例的每个元素之间所存在的各种关系，这些关系可由相关的函数来实现。</p>
-<h3 id="u7EBF_u6027_u8868_u7B80_u4ECB"><a href="#u7EBF_u6027_u8868_u7B80_u4ECB" class="headerlink" title="线性表简介"></a>线性表简介</h3><blockquote>
-<p>定义：线性表示这样的数据对象，其实例形式为：$(e_1,e_2,\ldots,e_n)$,其中n是有穷自然数。</p>
-</blockquote>
-<p>当n=0时，表为空；当$n\gt 0$,$e_1$是第一个元素，$e_n$是最后一个元素，可以认为$e_1$优先于$e_2$,$e_2$优先于$e_3$,如此等等。除了这种优先关系外，在线性表中不再有其他的结构。我们可用<strong>s</strong>来表示每个元素$e_i$所需要的字节数，即<strong>s</strong>是一个元素的大小。</p>
-<p>以下是一些线性表的例子：</p>
-<ul>
-<li>一个班级学生姓名按字母顺序排列的列表；</li>
-<li>按递增次序排列的考试分数表；</li>
-<li>按字母依次排列的会议列表。</li>
-</ul>
-<p>根据这些例子可以知道对于线性表有必要执行下列操作：</p>
-<ul>
-<li>创建一个线性表；</li>
-<li>确定线性表是否为空；</li>
-<li>确定线性表的长度；</li>
-<li>查找第k个元素；</li>
-<li>查找指定的元素；</li>
-<li>删除第k个元素；</li>
-<li>在第k个元素之后插入一个新的元素。</li>
-</ul>
-<p>下面用一个抽象数据类型(abstract data type, ADT)来说明线性表，它给出了实例以及相关操作的描述。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">抽象数据类型 LinearList &#123;</span><br><span class="line">实例</span><br><span class="line">	<span class="number">0</span>或多个元素的有序集合</span><br><span class="line">操作</span><br><span class="line">	Create(): 创建一个空线性表</span><br><span class="line">	Destroy(): 删除表</span><br><span class="line">	IsEmpty(): 如果表为空则返回true，否则返回false</span><br><span class="line">	Length(): 返回表的大小 (即表中元素个数)</span><br><span class="line">	Find(k,x): 寻找表中第k 个元素，并把它保存到 x 中；如果不存在，则返回false</span><br><span class="line">	Search(x): 返回元素x在表中的位置；如果x 不在表中，则返回<span class="number">0</span></span><br><span class="line">	Delete(k,x): 删除表中第k个元素，并把它保存到 x 中；函数返回修改后的线性表</span><br><span class="line">	Insert(k,x): 在第k个元素之后插入x；函数返回修改后的线性表</span><br><span class="line">	Output(out): 把线性表放入输出流 out 之中</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="u516C_u5F0F_u5316_u63CF_u8FF0"><a href="#u516C_u5F0F_u5316_u63CF_u8FF0" class="headerlink" title="公式化描述"></a>公式化描述</h3><h4 id="u57FA_u672C_u63CF_u8FF0"><a href="#u57FA_u672C_u63CF_u8FF0" class="headerlink" title="基本描述"></a>基本描述</h4><blockquote>
-<p>公式化描述采用<strong>数组</strong>来表示一个对象的实例，数组中的每个位置被称之为单元(cell)或节点(node)，每个数组单元应该足够大，以便能够容纳数据对象实例中的任意一个元素。</p>
-</blockquote>
-<p>实例中每个元素在数组中的位置可以用一个数学公式来指明，一个简单的映射公式如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">location(i) = i - <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>上述公式指明表中第<code>i</code>个元素(如果存在)位于数组中<code>i-1</code>位置处。</p>
-<p>下面的程序给出了相应的C++类定义。由于表元素的数据类型随着应用的变化而变化，所以定义了一个模板类，在该模板类中，用户指定元素的数据类型是T。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">ifndef</span> LINEARLIST_H_</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> LINEARLIST_H_</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span><br><span class="line"><span class="keyword">class</span> LinearList</span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> MaxSize;</span><br><span class="line">    T *element;</span><br><span class="line">    <span class="keyword">int</span> length;     <span class="comment">// 当前线性表的长度</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    LinearList(<span class="keyword">int</span> MaxListSize = <span class="number">10</span>);</span><br><span class="line">    ~LinearList()&#123; <span class="keyword">delete</span>[] element; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isEmpty</span><span class="params">()</span> <span class="keyword">const</span></span>&#123; <span class="keyword">return</span> length == <span class="number">0</span>; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">Length</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> length; &#125;</span><br><span class="line">    <span class="comment">// 返回第k个元素至x中</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">Find</span><span class="params">(<span class="keyword">int</span> k, T&amp;x)</span><span class="keyword">const</span></span>;</span><br><span class="line">    <span class="comment">// 返回x所在的位置</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">Search</span><span class="params">(<span class="keyword">const</span> T&amp; x)</span> <span class="keyword">const</span></span>;</span><br><span class="line">    <span class="comment">// 删除第k个元素并将它返回至x中</span></span><br><span class="line">    LinearList&lt;T&gt;&amp; Delete(<span class="keyword">int</span> k, T&amp;x);</span><br><span class="line">    <span class="comment">// 在第k个元素之后插入x</span></span><br><span class="line">    LinearList&lt;T&gt;&amp; Insert(<span class="keyword">int</span> k, <span class="keyword">const</span> T&amp; x);</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Output</span><span class="params">(<span class="built_in">std</span>::ostream &amp;out)</span> <span class="keyword">const</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure></p>
-<h4 id="u5F02_u5E38_u7C7BNoMem"><a href="#u5F02_u5E38_u7C7BNoMem" class="headerlink" title="异常类NoMem"></a>异常类NoMem</h4><p>  如果分配内存失败，那么我们希望可以引发一个异常，有时，异常可能由<code>new</code>引起，有时则需要我们自己来引发。而我们希望在所有情形下都能引发同一个异常，因此，定义了一个异常类NoMem,如下面程序所示。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 内存不足</span></span><br><span class="line"><span class="keyword">class</span> NoMem&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    NoMem()&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使new引发NoMem异常而不是xalloc异常</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">my_new_handler</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">throw</span> NoMem();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">new_handler Old_Handler_ = <span class="built_in">std</span>::set_new_handler(my_new_handler);</span><br></pre></td></tr></table></figure></p>
-<p>在上述程序中，函数<code>my_new_handler</code>简单地引发了一个类型为<code>NoMem</code>的异常，然后在程序最后一行调用了C++函数<code>set_new_handler</code>，每当分配内存失败时，该函数就让操作符<code>new</code>调用函数<code>my_new_handler</code>，所以<code>new</code>引发的异常是<code>NoMem</code>而不是<code>xalloc</code>。每当分配内存失败时，<code>set_new_handler</code>将返回一个指针，指向由<code>new</code>此前所调用的那个函数，该指针保存在变量<code>Old_Handler_</code>中。为了恢复<code>new</code>的元素行为，可以如此调用:<code>set_new_handler(Old_Handler_)</code>;</p>
-<h4 id="u64CD_u4F5C"><a href="#u64CD_u4F5C" class="headerlink" title="操作"></a>操作</h4><p>  在抽象数据类型中的操作<code>Create</code>和<code>Destroy</code>分别被作为类的构造函数和析构函数加以实现。基本操作实现的程序如下所示：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">"LinearList.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span><br><span class="line">LinearList&lt;T&gt;::LinearList(<span class="keyword">int</span> MaxListSize)&#123;</span><br><span class="line">    MaxSize = MaxListSize;</span><br><span class="line">    element = <span class="keyword">new</span> T[MaxSize];</span><br><span class="line">    length = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回第k个元素至x中</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span><br><span class="line"><span class="keyword">bool</span> LinearList&lt;T&gt;::Find(<span class="keyword">int</span> k, T&amp;x)<span class="keyword">const</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (k &lt;<span class="number">1</span> || k&gt;length)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    x = element[k - <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 返回x所在的位置</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span><br><span class="line"><span class="keyword">int</span> LinearList&lt;T&gt;::Search(<span class="keyword">const</span> T&amp; x)<span class="keyword">const</span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span> (element[i] == x)</span><br><span class="line">            <span class="keyword">return</span> ++i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>由上述程序可知，函数<code>IsEmpty,Length,Find</code>三个函数的复杂性是$\theta(1)$,而<code>Search</code>的复杂性是$O(length)$。</p>
-<h5 id="u5220_u9664_u5143_u7D20"><a href="#u5220_u9664_u5143_u7D20" class="headerlink" title="删除元素"></a>删除元素</h5><p>程序如下所示<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 删除第k个元素并将它返回至x中</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span><br><span class="line">LinearList&lt;T&gt;&amp; LinearList&lt;T&gt;::Delete(<span class="keyword">int</span> k, T&amp;x)&#123;</span><br><span class="line">    <span class="comment">// 如果不存在第k个元素，则引发异常OutOfBounds</span></span><br><span class="line">    <span class="keyword">if</span> (Find(k, x))&#123;</span><br><span class="line">        <span class="comment">// 将第k个元素后的元素向前移动一个位置</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = k; i &lt; length; i++)</span><br><span class="line">            element[i - <span class="number">1</span>] = element[i];</span><br><span class="line">        length--;</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">throw</span> OutOfBounds();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>该函数首先要判断表中是否存在第<code>k</code>个元素，然后再删除元素。如果不存在，则出现一个异常，这里是引发一个类型为<code>OutOfBounds</code>的异常。每当正在执行的函数中任一参数超出所期望的范围时，就引发这种类型的异常。<br>如果存在第<code>k</code>个元素，则可以将元素$k+1，k+2，…,length$依次向前移动一个位置，并将<code>length</code>减一，从而删除第<code>k</code>个元素。<br><code>Delete</code>函数在不存在第<code>k</code>个元素时，所需要的时间是$\theta(1)$;如果存在，则需要移动<code>length-k</code>个元素，需要耗时$\theta((length-k)s)$,其中<strong>s</strong>是每个元素的大小。此外，被删除的元素被移动至<code>x</code>，因此，总的时间复杂性是$O((length-k)s)$。</p>
-<h5 id="u63D2_u5165_u64CD_u4F5C"><a href="#u63D2_u5165_u64CD_u4F5C" class="headerlink" title="插入操作"></a>插入操作</h5><p> 程序如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// 在第k个元素之后插入x</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span><br><span class="line">LinearList&lt;T&gt;&amp; LinearList&lt;T&gt;::Insert(<span class="keyword">int</span> k, <span class="keyword">const</span> T&amp;x)&#123;</span><br><span class="line">    <span class="comment">// 如果不存在第k个元素，则引发异常OutOfBounds</span></span><br><span class="line">    <span class="keyword">if</span> (k&lt;<span class="number">0</span> || k&gt;lenth)</span><br><span class="line">        <span class="keyword">throw</span> OutOfBounds();</span><br><span class="line">    <span class="comment">// 如果表已满，则引发异常NoMem</span></span><br><span class="line">    <span class="keyword">if</span> (length == MaxSize)</span><br><span class="line">        <span class="keyword">throw</span> NoMem();</span><br><span class="line">    <span class="comment">// 向后移动一个位置</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = length - <span class="number">1</span>; i &gt;= k; i--)</span><br><span class="line">        element[i + <span class="number">1</span>] = element[i];</span><br><span class="line">    element[k] = x;</span><br><span class="line">    length++;</span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>为了在第<code>k</code>个元素之后插入一个元素，首先需要把第<code>k+1</code>至<code>length</code>元素向后移动一个位置，然后将新元素插入到<code>k+1</code>位置处。</p>
-<p><code>Insert</code>函数的时间复杂性是$O((length-k)s)$。</p>
-<h5 id="u6D4B_u8BD5"><a href="#u6D4B_u8BD5" class="headerlink" title="测试"></a>测试</h5><p>  下面程序是用来测试类<code>LinearList</code>的例子，其中头文件<code>llist.h</code>包含了类声明以及定义，<code>xcept.h</code>则是异常类的定义。<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">"llist.h"</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span><span class="string">"xcept.h"</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cout</span>;</span><br><span class="line">    <span class="keyword">using</span> <span class="built_in">std</span>::endl;</span><br><span class="line">    <span class="keyword">using</span> <span class="built_in">std</span>::<span class="built_in">cin</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>&#123;</span><br><span class="line">        LinearList&lt;<span class="keyword">int</span>&gt; L(<span class="number">5</span>);</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Length = "</span> &lt;&lt; L.Length() &lt;&lt; endl;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"IsEmpty = "</span> &lt;&lt; L.isEmpty() &lt;&lt; endl;</span><br><span class="line">        L.Insert(<span class="number">0</span>, <span class="number">2</span>).Insert(<span class="number">1</span>, <span class="number">6</span>);</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"List is "</span> &lt;&lt; L &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">int</span> z;</span><br><span class="line">        L.Find(<span class="number">1</span>, z);</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"First element is "</span> &lt;&lt; z &lt;&lt; endl;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Length = "</span> &lt;&lt; L.Length() &lt;&lt; endl;</span><br><span class="line">        L.Delete(<span class="number">1</span>, z);</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Deleted element is "</span> &lt;&lt; z &lt;&lt; endl;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"List is "</span> &lt;&lt; L &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span> (...)&#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cerr</span> &lt;&lt; <span class="string">"An exception has occured"</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    system(<span class="string">"pause"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>输出结果如下所示：<br><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E6%B5%8B%E8%AF%951.png" alt="此处输入图片的描述"></p>
-<p>完整的例子放在了我的Github中–<a href="https://github.com/ccc013/DataStructe-Algorithms_Study/tree/master/LinearList" target="_blank" rel="external">LinearList</a></p>
-<h4 id="u5C0F_u7ED3"><a href="#u5C0F_u7ED3" class="headerlink" title="小结"></a>小结</h4><p>​    对这种公式化描述方法，首先是分析这种方法的优缺点，首先这种方法的确是可以用非常简单的C++函数来实现各种操作，执行查找、删除和插入的函数都有一个最差的、与表大小呈线性关系的时间复杂性。但一个缺点是空间的低效利用。</p>
-<p>​    因此其实可以对原来的类<code>LinearList</code>做出一点修改，增加一个可以调整数组大小的函数<code>Resize</code>，在初始创建线性表时，置<code>MaxSize =1</code>;然后，执行插入操作期间，当线性表的元素个数等于<code>MaxSize</code>,就调用<code>Resize</code>函数，增加两倍的容量；在删除操作期间，当元素个数减少到容量的<strong>1/4</strong>时，就调用<code>Resize</code>函数，将容量减少到当前的<strong>1/2</strong>。<br>具体实现的操作如下所示:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span><br><span class="line"><span class="keyword">bool</span> ResizeLinearList&lt;T&gt;::Resize(<span class="keyword">int</span> resizeCount)&#123;</span><br><span class="line">    <span class="comment">// 新数组的大小必须大于现有的数组元素个数</span></span><br><span class="line">    <span class="keyword">if</span> (resizeCount &lt;= length)&#123;</span><br><span class="line">        <span class="built_in">std</span>::<span class="built_in">cerr</span> &lt;&lt; <span class="string">"should give a larger numbers than current array numbers\n"</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 更新数组的容量</span></span><br><span class="line">    MaxSize = resizeCount;</span><br><span class="line">    T * newElement = <span class="keyword">new</span> T[resizeCount];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; length; i++)</span><br><span class="line">        newElement[i] = element[i];</span><br><span class="line">    <span class="keyword">delete</span>[] element;</span><br><span class="line">    element = newElement;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 删除第k个元素并将它返回至x中</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span><br><span class="line">ResizeLinearList&lt;T&gt;&amp; ResizeLinearList&lt;T&gt;::Delete(<span class="keyword">int</span> k, T&amp;x)&#123;</span><br><span class="line">    <span class="comment">// 如果不存在第k个元素，则引发异常OutOfBounds</span></span><br><span class="line">    <span class="keyword">if</span> (Find(k, x))&#123;</span><br><span class="line">        <span class="comment">// 将第k个元素后的元素向前移动一个位置</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = k; i &lt; length; i++)</span><br><span class="line">            element[i - <span class="number">1</span>] = element[i];</span><br><span class="line">        length--;</span><br><span class="line">        <span class="comment">// 如果当前元素数量等于1/4的容量，则将最大容量缩小一半</span></span><br><span class="line">        <span class="keyword">if</span> (length == (<span class="keyword">int</span>)MaxSize * <span class="number">0.25</span>)</span><br><span class="line">            Resize((<span class="keyword">int</span>)<span class="number">0.5</span> * MaxSize);</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">throw</span> OutOfBounds();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在第k个元素之后插入x</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span><br><span class="line">ResizeLinearList&lt;T&gt;&amp; ResizeLinearList&lt;T&gt;::Insert(<span class="keyword">int</span> k, <span class="keyword">const</span> T&amp;x)&#123;</span><br><span class="line">    <span class="comment">// 如果不存在第k个元素，则引发异常OutOfBounds</span></span><br><span class="line">    <span class="keyword">if</span> (k&lt;<span class="number">0</span> || k&gt;length)</span><br><span class="line">        <span class="keyword">throw</span> OutOfBounds();</span><br><span class="line">    <span class="comment">// 如果表已满，则增加2倍容量</span></span><br><span class="line">    <span class="keyword">if</span> (length == MaxSize)</span><br><span class="line">        Resize(<span class="number">2</span>*MaxSize);</span><br><span class="line">    <span class="comment">// 向后移动一个位置</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = length - <span class="number">1</span>; i &gt;= k; i--)</span><br><span class="line">        element[i + <span class="number">1</span>] = element[i];</span><br><span class="line">    element[k] = x;</span><br><span class="line">    length++;</span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>完整的例子在<a href="https://github.com/ccc013/DataStructe-Algorithms_Study/blob/master/LinearList/ResizeLinearList.h" target="_blank" rel="external">ResizeLinearList</a></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>《数据结构算法与应用：C++语言描述》第3章数据描述的笔记。</p>
-<p>本章的重点是介绍线性表，但一个主要目标是让大家明白–<strong>数据可以用不同的形式进行描述或存储在计算机存储器中。</strong>最常见的数据描述方法有：<strong>公式化描述、链接描述]]>
     </summary>
     
       <category term="数据结构" scheme="http://ccc013.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>

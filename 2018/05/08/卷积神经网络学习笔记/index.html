@@ -1,0 +1,1033 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="卷积神经网络,机器学习,深度学习," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Cai's blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon/favicon.png?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="记录在学习CNN过程中的一些知识点，包括参考的文章，论文或者博客等。
+参考文章/书籍：
+
+An Intuitive Explanation of Convolutional Neural Networks
+对CNN中pooling的理解
+《深度学习轻松学：核心算法与视觉实践》
+
+CNN可以应用在场景分类，图像分类，现在还可以应用到自然语言处理(NLP)方面的很多问题，比如句子分类等。
+LeNet是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="卷积神经网络学习笔记">
+<meta property="og:url" content="http://ccc013.github.io/2018/05/08/卷积神经网络学习笔记/index.html">
+<meta property="og:site_name" content="Cai's blog">
+<meta property="og:description" content="记录在学习CNN过程中的一些知识点，包括参考的文章，论文或者博客等。
+参考文章/书籍：
+
+An Intuitive Explanation of Convolutional Neural Networks
+对CNN中pooling的理解
+《深度学习轻松学：核心算法与视觉实践》
+
+CNN可以应用在场景分类，图像分类，现在还可以应用到自然语言处理(NLP)方面的很多问题，比如句子分类等。
+LeNet是">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/CNN1.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/CNN2.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/CNN3.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/CNN4.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/CNN5.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/CNN6.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/CNN7.png">
+<meta property="og:updated_time" content="2018-05-08T03:06:37.311Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="卷积神经网络学习笔记">
+<meta name="twitter:description" content="记录在学习CNN过程中的一些知识点，包括参考的文章，论文或者博客等。
+参考文章/书籍：
+
+An Intuitive Explanation of Convolutional Neural Networks
+对CNN中pooling的理解
+《深度学习轻松学：核心算法与视觉实践》
+
+CNN可以应用在场景分类，图像分类，现在还可以应用到自然语言处理(NLP)方面的很多问题，比如句子分类等。
+LeNet是">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 5881344,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 卷积神经网络学习笔记 | Cai's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1257376919&web_id=1257376919" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <!-- add Fork me on Github -->
+    <a href="https://github.com/ccc013"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
+
+    <!--add Fork me on Github  -->
+    
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Cai's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Stay hungry, stay foolish</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/abou" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                卷积神经网络学习笔记
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-05-08T11:04:39+08:00" content="2018-05-08">
+              2018-05-08
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2018/05/08/卷积神经网络学习笔记/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/05/08/卷积神经网络学习笔记/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2018/05/08/卷积神经网络学习笔记/" class="leancloud_visitors" data-flag-title="卷积神经网络学习笔记">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>记录在学习CNN过程中的一些知识点，包括参考的文章，论文或者博客等。</p>
+<p>参考文章/书籍：</p>
+<ol>
+<li><a href="https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/" target="_blank" rel="external">An Intuitive Explanation of Convolutional Neural Networks</a></li>
+<li><a href="http://blog.csdn.net/jiejinquanil/article/details/50042791" target="_blank" rel="external">对CNN中pooling的理解</a></li>
+<li>《深度学习轻松学：核心算法与视觉实践》</li>
+</ol>
+<p>CNN可以应用在场景分类，图像分类，现在还可以应用到自然语言处理(NLP)方面的很多问题，比如句子分类等。</p>
+<p><strong>LeNet</strong>是最早的CNN结构之一，它是由大神<strong>Yann LeCun</strong>所创造的，主要是用在字符分类问题。</p>
+<p>下面是一个简单的CNN结构，图来自参考文章<a href="https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/" target="_blank" rel="external">1</a>。这个网络结构是用于一个四类分类的问题，分别是狗、猫、船和鸟，图中的输入图片是属于船一类。</p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/CNN1.png" alt="此处输入图片的描述"></p>
+<p>该结构展示了四种运算，也可以说是由四种不同的层，分别是卷积层，非线性层(也就是使用了ReLU函数)，Pooling层，全连接层，下面将一一介绍这几种网络层。</p>
+<hr>
+<h3 id="u5377_u79EF_u5C42"><a href="#u5377_u79EF_u5C42" class="headerlink" title="卷积层"></a>卷积层</h3><h4 id="u5377_u79EF_u7B80_u4ECB"><a href="#u5377_u79EF_u7B80_u4ECB" class="headerlink" title="卷积简介"></a>卷积简介</h4><p>  CNN的名字由来就是因为其使用了卷积运算的缘故。卷积的目的主要是为了提取图片的特征。卷积运算可以保持像素之间的空间关系。</p>
+<p>  每张图片可以当做是一个包含每个像素值的矩阵，像素值的范围是0~255,0表示黑色，255是白色。下面是一个$5 \times 5$大小的矩阵例子，它的值是0或者1。</p>
+<p>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/CNN2.png" alt="此处输入图片的描述"></p>
+<p>  接下来是另一个$3\times 3$矩阵：</p>
+<p>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/CNN3.png" alt="此处输入图片的描述"></p>
+<p>  上述两个矩阵通过卷积，可以得到如下图右侧粉色的矩阵结果。</p>
+<p>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/CNN4.png" alt="此处输入图片的描述"></p>
+<p>  黄色的矩阵在绿色的矩阵上从左到右，从上到下，每次滑动的步进值是1个像素，所以得到一个$3\times 3$的矩阵。</p>
+<p>  在CNN中，黄色的矩阵被叫做<strong>滤波器(filter)或者核(kernel)或者是特征提取器</strong>，而通过卷积得到的矩阵则是称为<strong>“特征图(Feature Map)”或者“Activation Map”</strong>。</p>
+<p>  另外，<strong>使用不同的滤波器矩阵是可以得到不同的 Feature Map</strong> ，例子如下图所示：</p>
+<p>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/CNN5.png" alt="此处输入图片的描述"></p>
+<p>  上图通过滤波器矩阵，实现了不同的操作，比如边缘检测，锐化以及模糊操作等。</p>
+<p>  在实际应用中，CNN是可以在其训练过程中学习到这些滤波器的值，不过我们需要首先指定好滤波器的大小，数量以及网络的结构。使用越多的滤波器，可以提取到更多的图像特征，网络也就能够有更好的性能。</p>
+<p>  Feature Map的尺寸是由以下三个参数来决定的：</p>
+<ul>
+<li><strong>深度(Depth)</strong>： <strong>深度等于滤波器的数量</strong>。</li>
+<li><strong>步进(Stride)</strong>: 步进值是在使用滤波器在输入矩阵上滑动的时候，每次滑动的距离。步进值越大，得到的Feature Map的尺寸越小。</li>
+<li><strong>Zero-padding</strong>: 有时候可以在输入矩阵的边界填补0，这样就可以将滤波器应用到边缘的像素点上，一个好的Zero-padding是能让我们可以控制好特征图的尺寸的。使用该方法的卷积称为<strong>wide convolution</strong>，没有使用的则是<strong>narrow convolution</strong>。</li>
+</ul>
+<h4 id="u5377_u79EF_u516C_u5F0F_u548C_u53C2_u6570_u91CF"><a href="#u5377_u79EF_u516C_u5F0F_u548C_u53C2_u6570_u91CF" class="headerlink" title="卷积公式和参数量"></a>卷积公式和参数量</h4><p> 上一小节简单介绍了卷积的操作和其实现的效果，接下来将介绍卷积运算的公式，以及CNN中卷积层的参数数量。</p>
+<p> 卷积是大自然中最常见的运算，一切信号观测、采集、传输和处理都可以用卷积过程实现，其用公式表达如下：<br>$$<br>\begin{align}<br>Y(m,n) &amp; =X(m,n)*H(m,n) \<br>&amp;= \sum<em>{i=-\infty}^{+\infty}\sum</em>{j=-\infty}^{+\infty}X(i,j)H(m-i,n-j) \ &amp;=\sum<em>{i=-\infty}^{+\infty}\sum</em>{j=-\infty}^{+\infty}X(m-i,n-j)H(i,j)<br>\end{align}<br>$$<br>上述公式中$H(m,n)$表示卷积核。</p>
+<p>在CNN中的卷积层的计算步骤与上述公式定义的二维卷积有点差异，首先是维度升至三维、四维卷积，跟二维卷积相比多了一个<strong>“通道”(channel)</strong>，每个通道还是按照二维卷积方式计算，而多个通道与多个卷积核分别进行二维卷积，得到多通道输出，需要“合并”为一个通道；<strong>其次是卷积核在卷积计算时没有“翻转”，而是与输入图片做滑动窗口“相关”计算</strong>。用公式重新表达如下：<br>$$<br>Y^l(m,n) =X^k(m,n)<em>H^{kl}(m,n) = \sum<em>{k=0}^{K-1}\sum</em>{i=0}^{I-1}\sum_{j=0}^{J-1}X^k(m+i,n+j)H^{kl}(i,j)<br>$$<br>这里假定卷积层有$L$个输出通道和$K$个输入通道，于是需要有$KL$个卷积核实现通道数目的转换。其中$X^k$表示第$k$个输入通道的二维特征图，$Y^l$表示第$l$个输出通道的二维特征图，$H^{kl}$表示第$k$行、第$l$列二维卷积核。假定卷积核大小是$I</em>J$,每个输出通道的特征图大小是$M<em>N$，则该层每个样本做一次前向传播时卷积层的计算量是$Calculations(MAC)=I</em>J<em>M</em>N<em>K</em>L$。</p>
+<p>卷积层的学习参数，也就是<strong>卷积核数目乘以卷积核的尺寸–$Params = I<em>J</em>K*L$。</strong></p>
+<p>这里定义计算量-参数量之比是<strong>CPR</strong>=$Calculations/Params=M*N$。</p>
+<p>因此可以得出结论：<strong>卷积层的输出特征图尺寸越大，CPR越大，参数重复利用率越高。若输入一批大小为B的样本，则CPR值可提高B倍。</strong></p>
+<h4 id="u4F18_u70B9"><a href="#u4F18_u70B9" class="headerlink" title="优点"></a>优点</h4><p>卷积神经网络通过<strong>『参数减少』与『权值共享』</strong>大大减少了连接的个数，也即需要训练的参数的个数。</p>
+<p>假设我们的图像是<code>1000*1000</code>的，则有10^6个隐层神经元，那么它们全连接的话，也就是每个隐层神经元都连接图像的每个像素点，就有10^12个连接，也即10^12个权值参数需要训练，这显然是不值得的。但是对于一个只识别特定feature的卷积核，需要大到覆盖整个图像的所有像素点吗？通常是不需要的，<strong>一个特定feature，尤其是第一层需要提取的feature，通常都相当基础，只占图像很小的一部分。所以我们设置一个较小的局部感受区域，比如<code>10*10</code>，也即每个神经元只需要和这<code>10*10</code>的局部图像相连接，所以10^6个神经元也就有10^8个连接。这就叫参数减少。</strong></p>
+<p>那什么叫权值共享呢？在上面的局部连接中，10^6个神经元，每个神经元都对应100个参数，所以是10^8个参数，<strong>那如果每个神经元所对应的参数都是相同的，那需要训练的参数就只有100个了。</strong></p>
+<p>这后面隐含的道理在于，<strong>这100个参数就是一个卷积核，而卷积核是提取feature的方式，与其在图像上的位置无关，图像一个局部的统计特征与其他局部的统计特征是一样的，我们用在这个局部抽取feature的卷积核也可以用在图像上的其它任何地方。</strong></p>
+<p>而且这100个参数只是一种卷积核，只能提取一种feature，我们完全可以采用100个卷积核，提取100种feature，而所需要训练的参数也不过10^4，最开始我们训练10^12个参数，还只能提取一种特征。选取100个卷积核，我们就能得到100张FM，每张FM可以看做是一张图像的不同通道。</p>
+<p>CNN主要用来识别位移、缩放及其他形式扭曲不变性的二维图形。由于CNN特征检测层通过训练数据进行学习，在使用CNN时，避免了显式的特征抽取，而隐式地从训练数据中进行学习；再者，由于同一FM上的神经元权值相同，所以网络可以并行学习，这也是卷积网络相对于神经元彼此相连网络的一大优势。卷积神经网络以其局部权值共享的特殊结构在语音识别和图像处理方面有着独特的优越性，其布局更接近于实际的生物神经网络，权值共享降低了网络的复杂性，避免了特征提取和分类过程中数据重建的复杂度。</p>
+<hr>
+<h3 id="u975E_u7EBF_u6027_u5C42_28ReLU_29"><a href="#u975E_u7EBF_u6027_u5C42_28ReLU_29" class="headerlink" title="非线性层(ReLU)"></a>非线性层(ReLU)</h3><p>  非线性修正函数<strong>ReLU(Rectified Linear Unit)</strong>如下图所示：</p>
+<p>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/CNN6.png" alt="此处输入图片的描述"></p>
+<p>这是一个对每个像素点实现点乘运算，并用0来替换负值像素点。其目的是在CNN中加入非线性，<strong>因为使用CNN来解决的现实世界的问题都是非线性的，而卷积运算是线性运算，所以必须使用一个如ReLU的非线性函数来加入非线性的性质。</strong></p>
+<p>其他非线性函数还包括<strong>tanh</strong>和<strong>Sigmoid</strong>,但是<strong>ReLU</strong>函数已经被证明在大部分情况下性能最好。</p>
+<h3 id="Pooling_u5C42"><a href="#Pooling_u5C42" class="headerlink" title="Pooling层"></a>Pooling层</h3><p>  <strong>空间合并（Spatial Pooling)</strong>也可以叫做子采样或者下采样，可以在保持最重要的信息的同时降低特征图的维度。它有不同的类型，如最大化，平均，求和等等。</p>
+<p>  对于<strong>Max Pooling</strong>操作，首先定义一个空间上的邻居，比如一个$2\times 2$的窗口，对该窗口内的经过ReLU的特征图提取最大的元素。除了提取最大的元素，还可以使用窗口内元素的平均值或者是求和的值。不过，<strong>Max Pooling</strong>的性能是最好的。例子可以如下图所示：</p>
+<p>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/CNN7.png" alt="此处输入图片的描述"></p>
+<p>  上图中使用的步进值是2。</p>
+<p>根据相关理论，特征提取的误差主要来自两个方面：</p>
+<ol>
+<li>邻域大小受限造成的估计值方差增大；</li>
+<li>卷积层参数误差造成估计均值的偏移。</li>
+</ol>
+<p><strong>一般来说，mean-pooling能减小第一种误差，更多的保留图像的背景信息，max-pooling能减小第二种误差，更多的保留纹理信息。</strong></p>
+<p>  使用Pooling的原因有如下几点：</p>
+<ul>
+<li>不变性，更关注是否存在某些特征而不是特征具体的位置。可以看作加了一个很强的先验，让学到的特征要能容忍一些的变化。</li>
+<li>减小下一层输入大小，减小计算量和参数个数。</li>
+<li>获得定长输出。（文本分类的时候输入是不定长的，可以通过池化获得定长输出）</li>
+<li>防止过拟合或有可能会带来欠拟合</li>
+</ul>
+<hr>
+<h3 id="u5168_u8FDE_u63A5_u5C42"><a href="#u5168_u8FDE_u63A5_u5C42" class="headerlink" title="全连接层"></a>全连接层</h3><p>  全连接层就是一个传统的多层感知器，它在输出层使用一个<strong>softmax</strong>激活函数。其主要作用就是将前面卷积层提取到的特征结合在一起然后进行分类。<strong>Softmax</strong>函数可以将输入是一个任意实数分数的向量变成一个值的范围是0~1的向量，但所有值的总和是1。</p>
+<p>  在CNN出现之前，最早的深度学习网络计算类型都是全连接形式的。</p>
+<p>  全连接层的主要计算类型是<strong>矩阵-向量乘（GEMV)。</strong>假设输入节点组成的向量是$x$，维度是$D$,输出节点组成的向量是$y$,维度是$V$,则全连接层计算可以表示为$y=Wx$。</p>
+<p>  其中$W$是$V*D$的权值矩阵。</p>
+<p>  全连接层的参数量为$Params=V<em>D$,其单个样本前向传播的计算量也是$Calculations(MAC)=V</em>D$，也就是$CPR=Calculations/Params=1$。也就是其权值利用率很低。</p>
+<p>  可以将一批大小为$B$的样本$x_i$逐列拼接成矩阵$X$，一次性通过全连接层，得到一批输出向量构成的矩阵$Y$，相应地前面的矩阵-向量乘运算升为<strong>矩阵-矩阵乘计算（GEMM)：$Y=WX$</strong>。</p>
+<p>  这样全连接层前向计算量提高了$B$倍，CPR相应提高了$B$倍，权重矩阵在多个样本之间实现了共享，可提高计算速度。</p>
+<p>  比较卷积层和全连接层，卷积层在输出特征图维度实现了<strong>权值共享</strong>，这是降低参数量的重要举措，同时，卷积层<strong>局部连接</strong>特性（相比全连接）也大幅减少了参数量。<strong>因此卷积层参数量占比小，但计算量占比大，而全连接层是参数量占比大，计算量占比小。所以在进行计算加速优化时，重点放在卷积层；在进行参数优化、权值剪裁时，重点放在全连接层。</strong></p>
+<h3 id="u6FC0_u6D3B_u51FD_u6570"><a href="#u6FC0_u6D3B_u51FD_u6570" class="headerlink" title="激活函数"></a>激活函数</h3><p>激活函数是给网络提供非线性的特性，在每个网络层中对输入数据进行非线性变换的作用，这有两个好处。</p>
+<ol>
+<li><strong>对数据实现归一化操作</strong></li>
+</ol>
+<p>激活函数都有各自的取值范围，比如Sigmoid函数取值范围是[0,1]，Tanh函数取值范围是[-1,1]，这种好处对网络的正反向训练都有好处：</p>
+<p>（1）正向计算网络的时候，由于输入数值的大小没有限制，其数值差距会非常大，第一个坏处是大数值会更被重视，而小数值的重要性会被忽视，其次，随着层数加深，这种大数值会不断累积到后面的网络层，最终可能导致数值爆炸溢出的情况；</p>
+<p>（2）反向计算网络的时候，每层数值大小范围不同，有的在[0,1]，有的在[0,10000]，这在模型优化时会对设定反向求导的优化步长增加难度，设置过大会让梯度较大的维度因为过量更新而造成无法预期的结果；设置过小，梯度较小的维度会得不到充分的更新，就无法有所提升。</p>
+<ol>
+<li><strong>打破之前的线性映射关系。</strong></li>
+</ol>
+<p>如果网络只有线性部分，那么叠加多个网络层是没有意义的，因为多层神经网络可以退化为一层神经网络。</p>
+<hr>
+<h3 id="u53CD_u5411_u4F20_u64ADBackpropagation"><a href="#u53CD_u5411_u4F20_u64ADBackpropagation" class="headerlink" title="反向传播Backpropagation"></a>反向传播Backpropagation</h3><p>  CNN的整个训练过程如下所示：</p>
+<ol>
+<li>首先是随机初始化所有滤波器以及其他参数和权重值；</li>
+<li>输入图片，进行前向传播，也就是经过卷积层，ReLU和pooling运算，最后到达全连接层进行分类，得到一个分类的结果，也就是输出一个包含每个类预测的概率值的向量；</li>
+<li>计算误差，也就是代价函数，这里代价函数可以有多种计算方法，比较常用的有平方和函数，即$实际值预测值Error = \frac{1}{2}\sum(实际值-预测值)^2$；</li>
+<li>使用反向传播来计算网络中对应各个权重的误差的梯度，一般是使用梯度下降法来更新各个滤波器的权重值，目的是为了让输出的误差，也就是代价函数的值尽可能小。</li>
+<li>重复上述第二到第四步，直到训练次数达到设定好的值。</li>
+</ol>
+<hr>
+<h3 id="u7F51_u7EDC_u7ED3_u6784"><a href="#u7F51_u7EDC_u7ED3_u6784" class="headerlink" title="网络结构"></a>网络结构</h3><p>  这里介绍比较有名的网络结构。</p>
+<ol>
+<li><p><strong>LeNet（1990s）</strong>：在开头介绍了，这是最早使用的CNN网络结构之一，主要是用于字符分类；</p>
+<p>特点如下：</p>
+<ul>
+<li>卷积神经网络使用3层架构：卷积、下采样、非线性激活函数</li>
+<li>使用卷积提取图像空间特征</li>
+<li>下采样使用了图像平均稀疏性</li>
+<li>激活函数采用了tanh或者sigmoid函数</li>
+<li>多层神经网络（MLP）作为最后的分类器</li>
+<li>层之间使用稀疏连接矩阵，以避免大的计算成本</li>
+</ul>
+</li>
+<li><p><strong>AlexNet（2012）</strong>：这是在2012年的ImageNet视觉挑战比赛上获得第一名所使用的网络结构，这也是使得许多视觉问题取得重大突破，让CNN变得非常热门的原因。</p>
+<p>总结下其改进地方：</p>
+</li>
+</ol>
+<ul>
+<li>使用ReLU函数作为激活函数，降低了Sigmoid类函数的计算量</li>
+<li>利用dropout技术在训练期间选择性地剪掉某些神经元，避免模型过度拟合<ul>
+<li>引入max-pooling技术</li>
+<li>利用双GPU NVIDIA GTX 580显著减少训练时间</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li><p><strong>ZF Net（2013）</strong>：这是2013年ImageNet比赛的胜者，对AlexNet的结构超参数做出了调整。</p>
+</li>
+<li><p><strong>GoogleNet（2014）</strong>:2014年ImageNet比赛的胜者，其主要贡献是使用了一个<strong>Inception Module</strong>，可以大幅度减少网络的参数数量，其参数数量是4M，而AlexNet的则有60M。</p>
+</li>
+<li><p><strong>VGGNet（2014）</strong>：是一个更深的网络，使用了16层的结构。<strong>它是对原始图像进行3×3卷积，然后再进行3×3卷积，连续使用小的卷积核对图像进行多次卷积。</strong>VGG一开始提出的时候刚好与LeNet的设计原则相违背，<strong>因为LeNet相信大的卷积核能够捕获图像当中相似的特征（权值共享）。</strong>AlexNet在浅层网络开始的时候也是使用9×9、11×11卷积核，并且尽量在浅层网络的时候避免使用1×1的卷积核。但是VGG的神奇之处就是在于使用多个3×3卷积核可以模仿较大卷积核那样对图像进行局部感知。后来多个小的卷积核串联这一思想被GoogleNet和ResNet等吸收。</p>
+<p><strong>VGG相信如果使用大的卷积核将会造成很大的时间浪费，减少的卷积核能够减少参数，节省运算开销。虽然训练的时间变长了，但是总体来说预测的时间和参数都是减少的了。</strong></p>
+<p>​</p>
+<p>​</p>
+</li>
+<li><p><strong>ResNets（2015）</strong>：目前CNN中最好性能的结构，使用了152层。</p>
+</li>
+</ol>
+<p>​    </p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/卷积神经网络/" rel="tag">#卷积神经网络</a>
+          
+            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
+          
+            <a href="/tags/深度学习/" rel="tag">#深度学习</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/31/2016总结-2017展望/" rel="next" title="2016总结 & 2017展望">
+                <i class="fa fa-chevron-left"></i> 2016总结 & 2017展望
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/05/08/卷积神经网络学习笔记/"
+           data-title="卷积神经网络学习笔记" data-url="http://ccc013.github.io/2018/05/08/卷积神经网络学习笔记/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/favicon.png"
+               alt="cai" />
+          <p class="site-author-name" itemprop="name">cai</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">31</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">16</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ccc013" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2181051220?is_all=1" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/luo-cai" target="_blank" title="Zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Zhihu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net/lc013?viewmode=contents" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  CSDN
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/lmj623565791" title="张鸿洋的博客" target="_blank">张鸿洋的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/guolin_blog" title="郭霖的博客" target="_blank">郭霖的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/singwhatiwanna/article/category/1405419" title="任玉刚" target="_blank">任玉刚</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/Luoshengyang/" title="罗升阳" target="_blank">罗升阳</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://hukai.me/" title="胡凯" target="_blank">胡凯</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.daimajia.com/" title="代码家" target="_blank">代码家</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://hujiaweibujidao.github.io/" title="HujiaweiBujidao" target="_blank">HujiaweiBujidao</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.liaoxuefeng.com/" title="廖雪峰的博客" target="_blank">廖雪峰的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://drakeet.me/" title="Drakeet的个人博客" target="_blank">Drakeet的个人博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.kymjs.com/" title="张涛-开源实验室" target="_blank">张涛-开源实验室</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://gudong.name/" title="咕咚" target="_blank">咕咚</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u5377_u79EF_u5C42"><span class="nav-number">1.</span> <span class="nav-text">卷积层</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u5377_u79EF_u7B80_u4ECB"><span class="nav-number">1.1.</span> <span class="nav-text">卷积简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u5377_u79EF_u516C_u5F0F_u548C_u53C2_u6570_u91CF"><span class="nav-number">1.2.</span> <span class="nav-text">卷积公式和参数量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u4F18_u70B9"><span class="nav-number">1.3.</span> <span class="nav-text">优点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u975E_u7EBF_u6027_u5C42_28ReLU_29"><span class="nav-number">2.</span> <span class="nav-text">非线性层(ReLU)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Pooling_u5C42"><span class="nav-number">3.</span> <span class="nav-text">Pooling层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u5168_u8FDE_u63A5_u5C42"><span class="nav-number">4.</span> <span class="nav-text">全连接层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u6FC0_u6D3B_u51FD_u6570"><span class="nav-number">5.</span> <span class="nav-text">激活函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u53CD_u5411_u4F20_u64ADBackpropagation"><span class="nav-number">6.</span> <span class="nav-text">反向传播Backpropagation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u7F51_u7EDC_u7ED3_u6784"><span class="nav-number">7.</span> <span class="nav-text">网络结构</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cai</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  
+</div>
+
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"cai"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("gmEY36PtfOmueA7roORTu2He-gzGzoHsz", "mzEkjGKehJYxfp1PrU0TYsW3");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+</body>
+</html>
