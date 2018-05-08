@@ -359,7 +359,7 @@
 <li>线性表可以没有数据元素，称为空表；树也可以没有结点，称为空树。但是图的定义中强调了顶点集合<strong>V</strong>是有穷非空的集合，所以图结构中不能没有顶点。</li>
 <li>线性表中，相邻的数据元素之间具有线性关系；树结构中，相邻两层的结点具有层次关系。而<strong>图中，任意两个顶点之间都可能有关系，顶点之间的逻辑关系用边来表示，边集可以是空的。</strong></li>
 </ul>
-<h5 id="u5404_u79CD_u56FE_u5B9A_u4E49"><a href="#u5404_u79CD_u56FE_u5B9A_u4E49" class="headerlink" title="各种图定义"></a>各种图定义</h5><p>接下来会介绍各自图的定义，包括无向图与有向图，有向完全图和无向完全图，稀疏与稠密图等。</p>
+<h5 id="各种图定义"><a href="#各种图定义" class="headerlink" title="各种图定义"></a>各种图定义</h5><p>接下来会介绍各自图的定义，包括无向图与有向图，有向完全图和无向完全图，稀疏与稠密图等。</p>
 <blockquote>
 <p>无向边： 若顶点$v_i$ 到$v_j$之间的边没有方向，则称这条边为<strong>无向边(Edge)</strong>,用无序偶对$(v_i, v_j)$来表示。</p>
 </blockquote>
@@ -401,16 +401,16 @@
 </blockquote>
 <p>下面展示了无向图和有向图与其子图。</p>
 <p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE4.png" alt=""></p>
-<h5 id="u56FE_u7684_u9876_u70B9_u4E0E_u8FB9_u7684_u5173_u7CFB"><a href="#u56FE_u7684_u9876_u70B9_u4E0E_u8FB9_u7684_u5173_u7CFB" class="headerlink" title="图的顶点与边的关系"></a>图的顶点与边的关系</h5><blockquote>
+<h5 id="图的顶点与边的关系"><a href="#图的顶点与边的关系" class="headerlink" title="图的顶点与边的关系"></a>图的顶点与边的关系</h5><blockquote>
 <p>在无向图 $G=(V,{E})$，如果边 $(v, v^\prime) \in E$,则称顶点$v和v^\prime$互为<strong>邻接点(Adjacent)</strong>,即$v 和 v^\prime$相邻接。边$(v, v^\prime)$依附(incident)于顶点$v 和 v^\prime$，或者说$(v,v^\prime)$与顶点$v 和 v^\prime$相关联。<strong>顶点$v$的度(Degree)是和$v$相关联的边的数目，记为TD($v$)。</strong></p>
 </blockquote>
 <p>例如对于上图中上方的无向图，顶点A与B互为邻接点，边(A, B)依附于顶点A与B上，顶点A的度为3。通过计算，可以知道，<strong>无向图的边数是各顶点度数和的一半，即$e = \frac{1}{2} \sum_{i=1}^n TD(v_i)$。</strong></p>
 <blockquote>
 <p>有向图 $G=(V,{E})$,如果弧$<v,v^\prime> \in E$, 则称顶点$v$邻接到顶点$v^\prime$，顶点$v^\prime$邻接自顶点$v$。弧$<v,v^\prime>$和顶点$v,v^\prime$相关联。<strong>以顶点$v$为头的弧的数目称为$v$的入度(InDegree),记为$ID(v)$；以顶点$v$为尾的弧的数目称为$v$的出度(OutDegree),记为$OD(v)$,因此顶点$v$的度为$TD(v) = ID(v) + OD(v)$。</strong> </v,v^\prime></v,v^\prime></p>
 </blockquote>
-<p>例如对上图中下方的有向图，顶点A的入度是2（从B到A的弧，C到A的弧），出度是1（从A到D的弧），所以顶点A的度是3。同样通过计算，可以得到$e =\sum_{i=1}^n ID(v<em>i) = \sum</em>{i=1}^n OD(v_i) $。</p>
+<p>例如对上图中下方的有向图，顶点A的入度是2（从B到A的弧，C到A的弧），出度是1（从A到D的弧），所以顶点A的度是3。同样通过计算，可以得到$e =\sum_{i=1}^n ID(v_i) = \sum_{i=1}^n OD(v_i) $。</p>
 <blockquote>
-<p>在无向图 $G=(V,{E})$中从顶点$v$到$v^\prime$的<strong>路径(Path)</strong>是一个顶点序列$(v=v<em>{i,0},v</em>{i,1},\cdots,v<em>{i,m}=v^\prime),其中(v</em>{i,j-1},v_{i,j}) \in E, 1 \le j \le m$。</p>
+<p>在无向图 $G=(V,{E})$中从顶点$v$到$v^\prime$的<strong>路径(Path)</strong>是一个顶点序列$(v=v_{i,0},v_{i,1},\cdots,v_{i,m}=v^\prime),其中(v_{i,j-1},v_{i,j}) \in E, 1 \le j \le m$。</p>
 </blockquote>
 <p>下图就展示了顶点B到顶点D的四种不同路径。</p>
 <p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE5.png" alt=""></p>
@@ -425,7 +425,7 @@
 </blockquote>
 <p>下图中，两个图都是一个环，但左侧的图是一个简单环，而右侧图中顶点C重复出现，因此它不是一个简单环。</p>
 <p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE7.png" alt=""></p>
-<h5 id="u8FDE_u901A_u56FE_u76F8_u5173_u672F_u8BED"><a href="#u8FDE_u901A_u56FE_u76F8_u5173_u672F_u8BED" class="headerlink" title="连通图相关术语"></a>连通图相关术语</h5><p>接下来会介绍有关连通图的定义和相关术语。</p>
+<h5 id="连通图相关术语"><a href="#连通图相关术语" class="headerlink" title="连通图相关术语"></a>连通图相关术语</h5><p>接下来会介绍有关连通图的定义和相关术语。</p>
 <blockquote>
 <p>无向图$G$中，如果从顶点$v$到$v^\prime$有路径，则称$v$和$v^\prime$是<strong>连通的。</strong>如果对于图中<strong>任意两个顶点$v_i、v_j \in V$，$v_i$和$v_j$都是连通的，则称$G$是连通图。</strong></p>
 </blockquote>
@@ -457,7 +457,7 @@
 </blockquote>
 <p>如下图所示，图1是一个有向图，再去掉一些弧后，得到图2和图3，也就是分解成两棵有向树，即图2和图3，而这两棵有向树也是图1有向图的生成森林。</p>
 <p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE10.png" alt=""></p>
-<h5 id="u5C0F_u7ED3"><a href="#u5C0F_u7ED3" class="headerlink" title="小结"></a>小结</h5><p>图的基本定义就简单总结到这里，图的术语还是不比树的少，需要多看几遍，同时多使用，接下来会继续总结图的存储结构、遍历等知识点。</p>
+<h5 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h5><p>图的基本定义就简单总结到这里，图的术语还是不比树的少，需要多看几遍，同时多使用，接下来会继续总结图的存储结构、遍历等知识点。</p>
 
       
     </div>
@@ -716,7 +716,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#u5404_u79CD_u56FE_u5B9A_u4E49"><span class="nav-number">1.</span> <span class="nav-text">各种图定义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#u56FE_u7684_u9876_u70B9_u4E0E_u8FB9_u7684_u5173_u7CFB"><span class="nav-number">2.</span> <span class="nav-text">图的顶点与边的关系</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#u8FDE_u901A_u56FE_u76F8_u5173_u672F_u8BED"><span class="nav-number">3.</span> <span class="nav-text">连通图相关术语</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#u5C0F_u7ED3"><span class="nav-number">4.</span> <span class="nav-text">小结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#各种图定义"><span class="nav-number">1.</span> <span class="nav-text">各种图定义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#图的顶点与边的关系"><span class="nav-number">2.</span> <span class="nav-text">图的顶点与边的关系</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#连通图相关术语"><span class="nav-number">3.</span> <span class="nav-text">连通图相关术语</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#小结"><span class="nav-number">4.</span> <span class="nav-text">小结</span></a></li></ol></div>
             
           </div>
         </section>
@@ -881,6 +881,26 @@
   
   
   
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
 
   
 
@@ -993,7 +1013,7 @@
   });
 </script>
 
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->

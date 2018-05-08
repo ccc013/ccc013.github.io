@@ -363,7 +363,7 @@ CNZZ|站长统计
       
 
       
-        <h1 id="u6DFB_u52A0_u7EDF_u8BA1_u4EE3_u7801"><a href="#u6DFB_u52A0_u7EDF_u8BA1_u4EE3_u7801" class="headerlink" title="添加统计代码"></a>添加统计代码</h1><p>上周成功用Hexo+Github Pages搭建好博客，但是还有很多功能等待添加的,今天就继续进行优化，首先是添加统计代码，数据统计方面有以下几个:</p>
+        <h1 id="添加统计代码"><a href="#添加统计代码" class="headerlink" title="添加统计代码"></a>添加统计代码</h1><p>上周成功用Hexo+Github Pages搭建好博客，但是还有很多功能等待添加的,今天就继续进行优化，首先是添加统计代码，数据统计方面有以下几个:</p>
 <ol>
 <li><a href="http://www.google.com/analytics/web/?hl=zh-CN" target="_blank" rel="external">Google Analytics</a></li>
 <li><a href="http://tongji.baidu.com/web/welcome/login" target="_blank" rel="external">百度统计</a></li>
@@ -386,12 +386,12 @@ cnzz: true
 <pre><code>&lt;% if (theme.cnzz){ %&gt; 
 &lt;script type=&quot;text/javascript&quot;&gt;
     var cnzz_protocol = ((&quot;https:&quot; == document.location.protocol) ? &quot; https://&quot; : &quot; http://&quot;);
-    document.write(unescape(&quot;%3Cspan id=&apos;cnzz_stat_icon_1257376919&apos;%3E%3C/span%3E%3Cscript src=&apos;&quot; + cnzz_protocol + &quot;s11.cnzz.com/z_stat.php%3Fid%3D1257376919&apos; type=&apos;text/javascript&apos;%3E%3C/script%3E&quot;));
+    document.write(unescape(&quot;%3Cspan id=&#39;cnzz_stat_icon_1257376919&#39;%3E%3C/span%3E%3Cscript src=&#39;&quot; + cnzz_protocol + &quot;s11.cnzz.com/z_stat.php%3Fid%3D1257376919&#39; type=&#39;text/javascript&#39;%3E%3C/script%3E&quot;));
 &lt;/script&gt; 
 &lt;% } %&gt;
-</code></pre><p>主要是替代这段代码中第二行<strong>&lt;script </strong>开始到倒数第二行的<strong></strong>。</p>
+</code></pre><p>主要是替代这段代码中第二行<strong>&lt;script </strong>开始到倒数第二行的<strong>&lt;/script&gt;</strong>。</p>
 <p>最后在after_footer.ejs（或者footer，或head，可以自己选择需要出现站长统计的位置）的后面添加一行代码即可:</p>
-<pre><code>&lt;%- partial(&apos;cnzz&apos;) %&gt; 
+<pre><code>&lt;%- partial(&#39;cnzz&#39;) %&gt; 
 </code></pre><p>这样就可以了，然后就执行<code>hexo generate</code>,<code>hexo deploy</code>发布网站即可。</p>
 
       
@@ -651,7 +651,7 @@ cnzz: true
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#u6DFB_u52A0_u7EDF_u8BA1_u4EE3_u7801"><span class="nav-number">1.</span> <span class="nav-text">添加统计代码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#添加统计代码"><span class="nav-number">1.</span> <span class="nav-text">添加统计代码</span></a></li></ol></div>
             
           </div>
         </section>
@@ -816,6 +816,26 @@ cnzz: true
   
   
   
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
 
   
 
@@ -928,7 +948,7 @@ cnzz: true
   });
 </script>
 
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->

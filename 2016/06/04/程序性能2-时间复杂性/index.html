@@ -89,9 +89,9 @@
 <meta name="description" content="阅读《数据结构算法与应用：C++描述》第二章程序性能所做的笔记。
 第2章程序性能的所有笔记如下：
 
-程序性能1–空间复杂性
-程序性能2–时间复杂性
-程序性能3–渐进符号
+程序性能1—空间复杂性
+程序性能2—时间复杂性
+程序性能3—渐进符号
 
 时间复杂性时间复杂性的组成
 影响一个程序空间复杂性的因素也能影响程序的时间复杂性。
@@ -103,9 +103,9 @@
 <meta property="og:description" content="阅读《数据结构算法与应用：C++描述》第二章程序性能所做的笔记。
 第2章程序性能的所有笔记如下：
 
-程序性能1–空间复杂性
-程序性能2–时间复杂性
-程序性能3–渐进符号
+程序性能1—空间复杂性
+程序性能2—时间复杂性
+程序性能3—渐进符号
 
 时间复杂性时间复杂性的组成
 影响一个程序空间复杂性的因素也能影响程序的时间复杂性。
@@ -116,9 +116,9 @@
 <meta name="twitter:description" content="阅读《数据结构算法与应用：C++描述》第二章程序性能所做的笔记。
 第2章程序性能的所有笔记如下：
 
-程序性能1–空间复杂性
-程序性能2–时间复杂性
-程序性能3–渐进符号
+程序性能1—空间复杂性
+程序性能2—时间复杂性
+程序性能3—渐进符号
 
 时间复杂性时间复杂性的组成
 影响一个程序空间复杂性的因素也能影响程序的时间复杂性。
@@ -351,11 +351,11 @@
         <p>阅读《数据结构算法与应用：C++描述》第二章程序性能所做的笔记。</p>
 <p>第2章程序性能的所有笔记如下：</p>
 <ol>
-<li><a href="http://ccc013.github.io/2016/06/04/%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD1-%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E6%80%A7/">程序性能1–空间复杂性</a></li>
-<li><a href="http://ccc013.github.io/2016/06/04/%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD2-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E6%80%A7/">程序性能2–时间复杂性</a></li>
-<li><a href="http://ccc013.github.io/2016/06/07/%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD3-%E6%B8%90%E8%BF%9B%E7%AC%A6%E5%8F%B7/">程序性能3–渐进符号</a></li>
+<li><a href="http://ccc013.github.io/2016/06/04/%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD1-%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E6%80%A7/">程序性能1—空间复杂性</a></li>
+<li><a href="http://ccc013.github.io/2016/06/04/%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD2-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E6%80%A7/">程序性能2—时间复杂性</a></li>
+<li><a href="http://ccc013.github.io/2016/06/07/%E7%A8%8B%E5%BA%8F%E6%80%A7%E8%83%BD3-%E6%B8%90%E8%BF%9B%E7%AC%A6%E5%8F%B7/">程序性能3—渐进符号</a></li>
 </ol>
-<h3 id="u65F6_u95F4_u590D_u6742_u6027"><a href="#u65F6_u95F4_u590D_u6742_u6027" class="headerlink" title="时间复杂性"></a>时间复杂性</h3><h4 id="u65F6_u95F4_u590D_u6742_u6027_u7684_u7EC4_u6210"><a href="#u65F6_u95F4_u590D_u6742_u6027_u7684_u7EC4_u6210" class="headerlink" title="时间复杂性的组成"></a>时间复杂性的组成</h4><blockquote>
+<h3 id="时间复杂性"><a href="#时间复杂性" class="headerlink" title="时间复杂性"></a>时间复杂性</h3><h4 id="时间复杂性的组成"><a href="#时间复杂性的组成" class="headerlink" title="时间复杂性的组成"></a>时间复杂性的组成</h4><blockquote>
 <p>影响一个程序空间复杂性的因素也能影响程序的时间复杂性。</p>
 <p>一个程序P所占用的时间T(P) = 编译时间 + 运行时间。编译时间与实例的特征无关。另外，可以假定一个编译过的程序可以运行若干次而不需要重新编译。因此我们将主要关注程序的运行时间，运行时间通常用”$t_p$(实例特征)”来表示。</p>
 </blockquote>
@@ -365,18 +365,20 @@
 <li>找出一个或更多的操作，确定这些关键操作所需要的执行时间；</li>
 <li>确定程序总的执行步数。</li>
 </ol>
-<h4 id="u64CD_u4F5C_u8BA1_u6570"><a href="#u64CD_u4F5C_u8BA1_u6570" class="headerlink" title="操作计数"></a>操作计数</h4><p>估算一个程序或函数的时间复杂性的一种方式就是首先选择一种或多种操作(如加、乘和比较等),然后确定这种(些)操作分别执行了多少次。这种方法是否成功取决于识别关键操作的能力，这些关键操作对时间复杂性的影响最大。下面的几个例子都采用了这种方法。</p>
-<h5 id="u4F8B1__u591A_u9879_u5F0F_u6C42_u503C"><a href="#u4F8B1__u591A_u9879_u5F0F_u6C42_u503C" class="headerlink" title="例1 多项式求值"></a>例1 多项式求值</h5><blockquote>
+<h4 id="操作计数"><a href="#操作计数" class="headerlink" title="操作计数"></a>操作计数</h4><p>估算一个程序或函数的时间复杂性的一种方式就是首先选择一种或多种操作(如加、乘和比较等),然后确定这种(些)操作分别执行了多少次。这种方法是否成功取决于识别关键操作的能力，这些关键操作对时间复杂性的影响最大。下面的几个例子都采用了这种方法。</p>
+<h5 id="例1-多项式求值"><a href="#例1-多项式求值" class="headerlink" title="例1 多项式求值"></a>例1 多项式求值</h5><blockquote>
 <p> 考察多项式$P(x) = \sum_{i=0}^n c_i x^n$。如果$c_n \neq 0$,则P是一个n维多项式。</p>
 </blockquote>
 <p>下列程序实现了多项式求值。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*多项式求值*/</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span><br><span class="line"><span class="function">T <span class="title">PolyEval</span><span class="params">(T coeff[], <span class="keyword">int</span> n, <span class="keyword">const</span> T&amp;x)</span></span>&#123;</span><br><span class="line">    <span class="comment">// 计算n次多项式的值，coeff[0:n]为多项式的系数</span></span><br><span class="line">    T y = <span class="number">1</span>, value = coeff[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++)&#123;</span><br><span class="line">        y *= x;</span><br><span class="line">        value += y*coeff[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这里的for循环中的循环条件，书中代码是有点错误的，应该是<code>i&lt;n</code>,不能带上等于。</p>
 <p>在这个例子中，假定根据for循环内部所执行的加和乘的次数来估算时间复杂性。可以使用维数n作为实例特征。进入for循环的总次数为n，每次循环执行1次加法和乘法(这种操作计数不包含循环控制变量i每次递增所执行的加法)。加法的次数为n，乘法的次数为2n。</p>
-<p>第二种求解多项式的方法是使用<strong>Horner</strong>法则，它是采用如下的分解式计算一个多项式：<br>$$<br>  P(x) = (\ldots(c<em>n*x+c</em>{n-1})<em>x+c_{n-2})</em>x+c_{n-3})<em>x+\ldots)</em>x+c_0<br>$$<br>代码实现如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*使用Horner法则求解多项式*/</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span><br><span class="line"><span class="function">T <span class="title">Horner</span><span class="params">(T coeff[], <span class="keyword">int</span> n, <span class="keyword">const</span> T&amp;x)</span></span>&#123;</span><br><span class="line">    T value = coeff[n-<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        value = value*x + coeff[n - i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>第二种求解多项式的方法是使用<strong>Horner</strong>法则，它是采用如下的分解式计算一个多项式：</p>
+<script type="math/tex; mode=display">
+  P(x) = (\ldots(c_n*x+c_{n-1})*x+c_{n-2})*x+c_{n-3})*x+\ldots)*x+c_0</script><p>代码实现如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*使用Horner法则求解多项式*/</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span><br><span class="line"><span class="function">T <span class="title">Horner</span><span class="params">(T coeff[], <span class="keyword">int</span> n, <span class="keyword">const</span> T&amp;x)</span></span>&#123;</span><br><span class="line">    T value = coeff[n-<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        value = value*x + coeff[n - i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>书中的代码也是有些问题，n应该代表的是<code>coeff</code>这个数组的大小，所以首先是<code>T value = coeff[n-1];</code>这句代码，书中是直接等于<code>coeff[n]</code>，这里应该是<code>coeff[n-1]</code>,然后就是for循环的初始条件，是<code>i=2</code>，而不是<code>i=1</code>。</p>
 <p>使用<strong>Horner</strong>后，加法还是需要n次，但是乘法也只需要n次即可。因此，使用这个函数会比<code>PolyEval</code>函数更快。</p>
-<h5 id="u4F8B2__u8BA1_u6570_u6392_u5E8F"><a href="#u4F8B2__u8BA1_u6570_u6392_u5E8F" class="headerlink" title="例2 计数排序"></a>例2 计数排序</h5><p>这里通过两段代码实现计数排序的方法。</p>
+<h5 id="例2-计数排序"><a href="#例2-计数排序" class="headerlink" title="例2 计数排序"></a>例2 计数排序</h5><p>这里通过两段代码实现计数排序的方法。</p>
 <blockquote>
 <p>元素在队列中的名次（ r a n k）可定义为队列中所有比它小的元素数目加上在它左边出现的与它相同的元素数目。<br>例如，给定一个数组 a=[4, 3, 9, 3, 7]作为队列，则各元素<br>的名次为r =[2, 0, 4, 1, 3]</p>
 </blockquote>
@@ -389,7 +391,7 @@
 <p>这是书中给出的实现方法，这个方法需要移动元素<code>2n</code>次，因此，加上例2中的实现，整个排序需要执行，$(n-1)n\over 2$次比较操作和<code>2n</code>次移动操作，这种排序方法被称为<strong>计数排序</strong>。</p>
 <p>另一种方法是原地重排数组元素，不需要一个附加数组，实现代码如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Rearrange2</span><span class="params">(T a[], <span class="keyword">int</span> n, <span class="keyword">int</span> r[])</span></span><br><span class="line"></span>&#123;<span class="comment">// 原地重排数组元素</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">        <span class="comment">// 获取应该排在 a [ i ]处的元素</span></span><br><span class="line">    <span class="keyword">while</span> (r[i] != i) &#123;</span><br><span class="line">        <span class="keyword">int</span> t = r[i];</span><br><span class="line">        Swap(a[i], a[t]);</span><br><span class="line">        Swap(r[i], r[t]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*交换两个数组元素*/</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Swap</span><span class="params">(T&amp; a, T&amp;  b)</span></span>&#123;</span><br><span class="line">    T temp = a;</span><br><span class="line">    a = b;</span><br><span class="line">    b = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>新的程序需要执行的最少交换次数是0(初始数组已经是按序排列)，最大的交换次数是2(n-1)。注意每次交换操作至少把一个元素移动到正确位置(如a[i])，所以在n-1次交换之后，所有的n个元素已全部按序排列。</p>
-<h5 id="u4F8B3__u9009_u62E9_u6392_u5E8F"><a href="#u4F8B3__u9009_u62E9_u6392_u5E8F" class="headerlink" title="例3 选择排序"></a>例3 选择排序</h5><blockquote>
+<h5 id="例3-选择排序"><a href="#例3-选择排序" class="headerlink" title="例3 选择排序"></a>例3 选择排序</h5><blockquote>
 <p>选择排序：首先找出最大的元素，把它移动到 a [ n-1 ]，然后在余下的 n-1个元素中寻找最大的元素并把它移动到a [ n-2 ]，如此进行下去，</p>
 </blockquote>
 <p>这是按照递增次序重排数组，也可以按照递减次序排序，就是每次找最小的元素，然后依次与数组的第一个元素交换。</p>
@@ -398,7 +400,7 @@
 <p>这种实现方式的选择排序的一个缺点是：<strong>即使元素已经按序排列，程序仍然继续运行</strong>。</p>
 <p>因此为了终止不必要的循环，可以在查找最大元素期间检查数组是否已经按序排列，实现方式如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*及时终止的选择排序*/</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">selectionSort2</span><span class="params">(T a[], <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">bool</span> isSorted = <span class="literal">false</span>;      <span class="comment">// 加入终止循环的条件</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> size = n; !isSorted &amp;&amp; (size &gt; <span class="number">1</span>); size--)&#123;</span><br><span class="line">        <span class="keyword">int</span> pos = <span class="number">0</span>;</span><br><span class="line">        isSorted = <span class="literal">true</span>;</span><br><span class="line">        <span class="comment">// 找最大元素</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; size; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span> (a[pos] &lt;= a[i])</span><br><span class="line">                pos = i;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                <span class="comment">// 没有按序排列</span></span><br><span class="line">                isSorted = <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        Swap(a[pos], a[size - <span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>这种新的实现方法，最好的情况是数组已经是有序数组的情况，那么外部for循环仅需要执行一次，内部寻找最大元素的比较次数是n-1次。而最坏的情况则是外部for循环执行n-1次，执行的比较次数是$(n-1)n\over 2$次。</p>
-<h5 id="u4F8B4__u5192_u6CE1_u6392_u5E8F"><a href="#u4F8B4__u5192_u6CE1_u6392_u5E8F" class="headerlink" title="例4 冒泡排序"></a>例4 冒泡排序</h5><blockquote>
+<h5 id="例4-冒泡排序"><a href="#例4-冒泡排序" class="headerlink" title="例4 冒泡排序"></a>例4 冒泡排序</h5><blockquote>
 <p>冒泡排序是采用一种“冒泡策略”把最大元素移到右部。在冒泡过程中，对相邻的元素进行比较，如果左边的元素大于右边的元素，则交换这两个元素。</p>
 </blockquote>
 <p>下面是冒泡排序的一种实现方法<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*一次冒泡*/</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Bubble</span><span class="params">(T a[], <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n-<span class="number">1</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span> (a[i]&gt;a[i + <span class="number">1</span>])</span><br><span class="line">            Swap(a[i], a[i + <span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*对数组a[0:n - 1]中的n个元素进行冒泡排序*/</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">BubbleSort</span><span class="params">(T a[], <span class="keyword">int</span> n)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = n; i&gt;<span class="number">1</span>; i--)</span><br><span class="line">            Bubble(a, i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
@@ -406,23 +408,23 @@
 <p>冒泡排序跟选择排序一样，也是需要设计一个可以及时终止的冒泡排序函数。如果在一次冒泡过程中没有发生元素互换，这说明数组已经按序排列，没有必要再继续进行冒泡过程。</p>
 <p>实现如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*一次冒泡*/</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Bubble</span><span class="params">(T a[], <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="comment">// 没有发生交换</span></span><br><span class="line">    <span class="keyword">bool</span> isSwaped = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n - <span class="number">1</span>; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span> (a[i]&gt;a[i + <span class="number">1</span>])&#123;</span><br><span class="line">            Swap(a[i], a[i + <span class="number">1</span>]);</span><br><span class="line">            <span class="comment">// 发生了交换</span></span><br><span class="line">            isSwaped = <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> isSwaped;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*对数组a[0:n - 1]中的n个元素进行冒泡排序*/</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">BubbleSort</span><span class="params">(T a[], <span class="keyword">int</span> n)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = n; i &gt; <span class="number">1</span> &amp;&amp; Bubble(a, i); i--)&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>在最好的情况下比较次数只需要n-1次，而最坏情况则和第一种实现方法相同。</p>
-<h5 id="u4F8B5__u63D2_u5165_u6392_u5E8F"><a href="#u4F8B5__u63D2_u5165_u6392_u5E8F" class="headerlink" title="例5 插入排序"></a>例5 插入排序</h5><blockquote>
+<h5 id="例5-插入排序"><a href="#例5-插入排序" class="headerlink" title="例5 插入排序"></a>例5 插入排序</h5><blockquote>
 <p>因为只有一个元素的数组是一个有序数组，所以可以从仅包含欲排序的n个元素的第一个元素的数组开始。通过把第二个元素插入到这个单元数组中，可以得到大小为2的有序数组，并按照这个方法继续进行下去，最终将得到一个大小为n的有序数组。而这种排序方式就是插入排序。</p>
 </blockquote>
 <p>实现代码如下所示：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*向一个有序数组中插入元素,假定a的大小超过n*/</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Insert</span><span class="params">(T a[], <span class="keyword">int</span>&amp; n, <span class="keyword">const</span> T&amp; x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">for</span> (i = n - <span class="number">1</span>; i &gt;= <span class="number">0</span> &amp;&amp; x &lt; a[i]; i--)</span><br><span class="line">        a[i + <span class="number">1</span>] = a[i];</span><br><span class="line">    a[i + <span class="number">1</span>] = x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">InsertionSort</span><span class="params">(T a[], <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++)&#123;</span><br><span class="line">        T t = a[i];</span><br><span class="line">        Insert(a, i, t);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>这种排序方法，最好的情况下比较次数是n-1，最坏的情况是$(n-1)n\over 2$。</p>
-<h4 id="u6267_u884C_u6B65_u6570"><a href="#u6267_u884C_u6B65_u6570" class="headerlink" title="执行步数"></a>执行步数</h4><p>  上述例子都是利用操作计数方法来估算程序的时间复杂性，但会忽略了所选择操作之外其他操作的开销。</p>
+<h4 id="执行步数"><a href="#执行步数" class="headerlink" title="执行步数"></a>执行步数</h4><p>  上述例子都是利用操作计数方法来估算程序的时间复杂性，但会忽略了所选择操作之外其他操作的开销。</p>
 <blockquote>
 <p>在统计步数的方法中，要统计程序/函数中所有部分的时间开销。与操作计数一样，执行步数也是实例特征的函数。尽管任一个特定的程序可能会有若干个特征(如输入个数，输出个数，输入和输出的大小)，但可以把执行步数看成是其中一部分特征的函数。通常是选择一些感兴趣的特征，例如，如要了解程序的运行时间(即时间复杂性)是如何随着输入个数的增加而增加的，这种情况下，可以把执行步数看成是输入个数的函数。因此在确定一个程序的执行步数之前，必须确切地知道将要采用的实力特征，这些特征不仅定义了执行步数表达式中的变量，而且定义了以多少次计算作为一步。</p>
 </blockquote>
-<h5 id="u64CD_u4F5C_u6B65"><a href="#u64CD_u4F5C_u6B65" class="headerlink" title="操作步"></a>操作步</h5><p><strong>操作步是独立于所选特征的任意计算单位</strong>，如10次加法可以视为一步，100次乘法也可以视为一步，但n次加法不能视为一步，其中n是实例特征。</p>
-<h5 id="u7A0B_u5E8F_u6B65"><a href="#u7A0B_u5E8F_u6B65" class="headerlink" title="程序步"></a>程序步</h5><blockquote>
+<h5 id="操作步"><a href="#操作步" class="headerlink" title="操作步"></a>操作步</h5><p><strong>操作步是独立于所选特征的任意计算单位</strong>，如10次加法可以视为一步，100次乘法也可以视为一步，但n次加法不能视为一步，其中n是实例特征。</p>
+<h5 id="程序步"><a href="#程序步" class="headerlink" title="程序步"></a>程序步</h5><blockquote>
 <p>程序步可以定义为一个语法或语义意义上的程序片段，该片段的执行时间独立于实例特征。</p>
 </blockquote>
 <p>可以通过设置一个全局变量<code>count</code>(其初始值为0)来确定一个程序或函数为完成其预定任务所需要的执行步数。可以把count引入到程序语句之中，每当原始程序或函数中的一条语句被执行时，就为count累加上该语句所需要的执行步数。</p>
 <p>一个例子如下所示：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span><br><span class="line"><span class="function">T <span class="title">Sum</span><span class="params">(T a[], <span class="keyword">int</span> n)</span></span><br><span class="line"></span>&#123;<span class="comment">// 计算 a[0:n - 1]中元素之和</span></span><br><span class="line">    T tsum = <span class="number">0</span>;</span><br><span class="line">    count++; <span class="comment">// 对应于tsum = 0</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        count++; <span class="comment">// 对应于f o r语句</span></span><br><span class="line">        tsum += a[i];</span><br><span class="line">        count++; <span class="comment">// 对应于赋值语句</span></span><br><span class="line">    &#125;</span><br><span class="line">    count++; <span class="comment">// 对应于最后一个f o r语句</span></span><br><span class="line">    count++; <span class="comment">//对应于r e t u r n语句</span></span><br><span class="line">    <span class="keyword">return</span> tsum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>上述函数<code>Sum</code>是用来计算一个数组元素之和，通过添加一个全局变量<code>count</code>来计算函数的执行步数。可以得知每次调用该函数需要执行<code>2n+3</code>步。</p>
-<h4 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h4><p>时间复杂性的介绍就到这里为止，时间复杂性是由编译时间和运行时间决定，但书中说明了编译时间是与实例特征关，同时也假定了一次编译后就可以不用编译就能进行若干次运行。而在估算运行时间的时候介绍了两种方法，分别是估算操作计数和执行步数，书中分别给出了不少例子，这里记录的例子主要是操作计数中的例子，包括了选择排序，计数排序，插入排序，冒泡排序等。</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>时间复杂性的介绍就到这里为止，时间复杂性是由编译时间和运行时间决定，但书中说明了编译时间是与实例特征关，同时也假定了一次编译后就可以不用编译就能进行若干次运行。而在估算运行时间的时候介绍了两种方法，分别是估算操作计数和执行步数，书中分别给出了不少例子，这里记录的例子主要是操作计数中的例子，包括了选择排序，计数排序，插入排序，冒泡排序等。</p>
 <p>还是需要在不断编程中不断实践本小节所介绍的方法。</p>
 
       
@@ -682,7 +684,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#u65F6_u95F4_u590D_u6742_u6027"><span class="nav-number">1.</span> <span class="nav-text">时间复杂性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u65F6_u95F4_u590D_u6742_u6027_u7684_u7EC4_u6210"><span class="nav-number">1.1.</span> <span class="nav-text">时间复杂性的组成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u64CD_u4F5C_u8BA1_u6570"><span class="nav-number">1.2.</span> <span class="nav-text">操作计数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#u4F8B1__u591A_u9879_u5F0F_u6C42_u503C"><span class="nav-number">1.2.1.</span> <span class="nav-text">例1 多项式求值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#u4F8B2__u8BA1_u6570_u6392_u5E8F"><span class="nav-number">1.2.2.</span> <span class="nav-text">例2 计数排序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#u4F8B3__u9009_u62E9_u6392_u5E8F"><span class="nav-number">1.2.3.</span> <span class="nav-text">例3 选择排序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#u4F8B4__u5192_u6CE1_u6392_u5E8F"><span class="nav-number">1.2.4.</span> <span class="nav-text">例4 冒泡排序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#u4F8B5__u63D2_u5165_u6392_u5E8F"><span class="nav-number">1.2.5.</span> <span class="nav-text">例5 插入排序</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u6267_u884C_u6B65_u6570"><span class="nav-number">1.3.</span> <span class="nav-text">执行步数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#u64CD_u4F5C_u6B65"><span class="nav-number">1.3.1.</span> <span class="nav-text">操作步</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#u7A0B_u5E8F_u6B65"><span class="nav-number">1.3.2.</span> <span class="nav-text">程序步</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#u603B_u7ED3"><span class="nav-number">1.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#时间复杂性"><span class="nav-number">1.</span> <span class="nav-text">时间复杂性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#时间复杂性的组成"><span class="nav-number">1.1.</span> <span class="nav-text">时间复杂性的组成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#操作计数"><span class="nav-number">1.2.</span> <span class="nav-text">操作计数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#例1-多项式求值"><span class="nav-number">1.2.1.</span> <span class="nav-text">例1 多项式求值</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#例2-计数排序"><span class="nav-number">1.2.2.</span> <span class="nav-text">例2 计数排序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#例3-选择排序"><span class="nav-number">1.2.3.</span> <span class="nav-text">例3 选择排序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#例4-冒泡排序"><span class="nav-number">1.2.4.</span> <span class="nav-text">例4 冒泡排序</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#例5-插入排序"><span class="nav-number">1.2.5.</span> <span class="nav-text">例5 插入排序</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行步数"><span class="nav-number">1.3.</span> <span class="nav-text">执行步数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#操作步"><span class="nav-number">1.3.1.</span> <span class="nav-text">操作步</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#程序步"><span class="nav-number">1.3.2.</span> <span class="nav-text">程序步</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">1.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
@@ -847,6 +849,26 @@
   
   
   
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
 
   
 
@@ -959,7 +981,7 @@
   });
 </script>
 
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
