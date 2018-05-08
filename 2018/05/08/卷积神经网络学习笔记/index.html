@@ -115,7 +115,7 @@ LeNet是">
 <meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/CNN5.png">
 <meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/CNN6.png">
 <meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/CNN7.png">
-<meta property="og:updated_time" content="2018-05-08T04:06:09.937Z">
+<meta property="og:updated_time" content="2018-05-08T05:14:07.150Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="卷积神经网络学习笔记">
 <meta name="twitter:description" content="记录在学习CNN过程中的一些知识点，包括参考的文章，论文或者博客等。
@@ -393,8 +393,8 @@ Y(m,n) & =X(m,n)*H(m,n) \\
 \end{align}</script><p>上述公式中$H(m,n)$表示卷积核。</p>
 <p>在CNN中的卷积层的计算步骤与上述公式定义的二维卷积有点差异，首先是维度升至三维、四维卷积，跟二维卷积相比多了一个<strong>“通道”(channel)</strong>，每个通道还是按照二维卷积方式计算，而多个通道与多个卷积核分别进行二维卷积，得到多通道输出，需要“合并”为一个通道；<strong>其次是卷积核在卷积计算时没有“翻转”，而是与输入图片做滑动窗口“相关”计算</strong>。用公式重新表达如下：</p>
 <script type="math/tex; mode=display">
-Y^l(m,n) =X^k(m,n)*H^{kl}(m,n) = \sum_{k=0}^{K-1}\sum_{i=0}^{I-1}\sum_{j=0}^{J-1}X^k(m+i,n+j)H^{kl}(i,j)</script><p>这里假定卷积层有$L$个输出通道和$K$个输入通道，于是需要有$KL$个卷积核实现通道数目的转换。其中$X^k$表示第$k$个输入通道的二维特征图，$Y^l$表示第$l$个输出通道的二维特征图，$H^{kl}$表示第$k$行、第$l$列二维卷积核。假定卷积核大小是$I<em>J$,每个输出通道的特征图大小是$M</em>N$，则该层每个样本做一次前向传播时卷积层的计算量是$Calculations(MAC)=I<em>J</em>M<em>N</em>K*L$。</p>
-<p>卷积层的学习参数，也就是<strong>卷积核数目乘以卷积核的尺寸—$Params = I<em>J</em>K*L$。</strong></p>
+Y^l(m,n) =X^k(m,n)*H^{kl}(m,n) = \sum_{k=0}^{K-1}\sum_{i=0}^{I-1}\sum_{j=0}^{J-1}X^k(m+i,n+j)H^{kl}(i,j)</script><p>这里假定卷积层有$L$个输出通道和$K$个输入通道，于是需要有$KL$个卷积核实现通道数目的转换。其中$X^k$表示第$k$个输入通道的二维特征图，$Y^l$表示第$l$个输出通道的二维特征图，$H^{kl}$表示第$k$行、第$l$列二维卷积核。假定卷积核大小是$I*J$,每个输出通道的特征图大小是$M×N$，则该层每个样本做一次前向传播时卷积层的计算量是$Calculations(MAC)=I×J×M×N×K×L$。</p>
+<p>卷积层的学习参数，也就是<strong>卷积核数目乘以卷积核的尺寸—$Params = I<em>J</em>K*L​$。</strong></p>
 <p>这里定义计算量-参数量之比是<strong>CPR</strong>=$Calculations/Params=M*N$。</p>
 <p>因此可以得出结论：<strong>卷积层的输出特征图尺寸越大，CPR越大，参数重复利用率越高。若输入一批大小为B的样本，则CPR值可提高B倍。</strong></p>
 <h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><p>卷积神经网络通过<strong>『参数减少』与『权值共享』</strong>大大减少了连接的个数，也即需要训练的参数的个数。</p>
@@ -486,9 +486,7 @@ Y^l(m,n) =X^k(m,n)*H^{kl}(m,n) = \sum_{k=0}^{K-1}\sum_{i=0}^{I-1}\sum_{j=0}^{J-1
 <li><p><strong>GoogleNet（2014）</strong>:2014年ImageNet比赛的胜者，其主要贡献是使用了一个<strong>Inception Module</strong>，可以大幅度减少网络的参数数量，其参数数量是4M，而AlexNet的则有60M。</p>
 </li>
 <li><p><strong>VGGNet（2014）</strong>：是一个更深的网络，使用了16层的结构。<strong>它是对原始图像进行3×3卷积，然后再进行3×3卷积，连续使用小的卷积核对图像进行多次卷积。</strong>VGG一开始提出的时候刚好与LeNet的设计原则相违背，<strong>因为LeNet相信大的卷积核能够捕获图像当中相似的特征（权值共享）。</strong>AlexNet在浅层网络开始的时候也是使用9×9、11×11卷积核，并且尽量在浅层网络的时候避免使用1×1的卷积核。但是VGG的神奇之处就是在于使用多个3×3卷积核可以模仿较大卷积核那样对图像进行局部感知。后来多个小的卷积核串联这一思想被GoogleNet和ResNet等吸收。</p>
-<p><strong>VGG相信如果使用大的卷积核将会造成很大的时间浪费，减少的卷积核能够减少参数，节省运算开销。虽然训练的时间变长了，但是总体来说预测的时间和参数都是减少的了。</strong></p>
-<p>​</p>
-<p>​</p>
+<p><strong>VGG相信如果使用大的卷积核将会造成很大的时间浪费，减少的卷积核能够减少参数，节省运算开销。虽然训练的时间变长了，但是总体来说预测的时间和参数都是减少的了。</strong>​​</p>
 </li>
 <li><p><strong>ResNets（2015）</strong>：目前CNN中最好性能的结构，使用了152层。</p>
 </li>
