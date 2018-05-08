@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Stay hungry, stay foolish]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://ccc013.github.io/"/>
-  <updated>2018-05-08T03:39:09.051Z</updated>
+  <updated>2018-05-08T04:06:09.937Z</updated>
   <id>http://ccc013.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://ccc013.github.io/2018/05/08/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     <id>http://ccc013.github.io/2018/05/08/卷积神经网络学习笔记/</id>
     <published>2018-05-08T03:04:39.000Z</published>
-    <updated>2018-05-08T03:39:09.051Z</updated>
+    <updated>2018-05-08T04:06:09.937Z</updated>
     <content type="html"><![CDATA[<p>记录在学习CNN过程中的一些知识点，包括参考的文章，论文或者博客等。</p>
 <p>参考文章/书籍：</p>
 <ol>
@@ -103,15 +103,15 @@ Y^l(m,n) =X^k(m,n)*H^{kl}(m,n) = \sum_{k=0}^{K-1}\sum_{i=0}^{I-1}\sum_{j=0}^{J-1
 <p>  这样全连接层前向计算量提高了$B$倍，CPR相应提高了$B$倍，权重矩阵在多个样本之间实现了共享，可提高计算速度。</p>
 <p>  比较卷积层和全连接层，卷积层在输出特征图维度实现了<strong>权值共享</strong>，这是降低参数量的重要举措，同时，卷积层<strong>局部连接</strong>特性（相比全连接）也大幅减少了参数量。<strong>因此卷积层参数量占比小，但计算量占比大，而全连接层是参数量占比大，计算量占比小。所以在进行计算加速优化时，重点放在卷积层；在进行参数优化、权值剪裁时，重点放在全连接层。</strong></p>
 <h3 id="激活函数"><a href="#激活函数" class="headerlink" title="激活函数"></a>激活函数</h3><p>激活函数是给网络提供非线性的特性，在每个网络层中对输入数据进行非线性变换的作用，这有两个好处。</p>
-<ol>
+<ul>
 <li><strong>对数据实现归一化操作</strong></li>
-</ol>
+</ul>
 <p>激活函数都有各自的取值范围，比如Sigmoid函数取值范围是[0,1]，Tanh函数取值范围是[-1,1]，这种好处对网络的正反向训练都有好处：</p>
 <p>（1）正向计算网络的时候，由于输入数值的大小没有限制，其数值差距会非常大，第一个坏处是大数值会更被重视，而小数值的重要性会被忽视，其次，随着层数加深，这种大数值会不断累积到后面的网络层，最终可能导致数值爆炸溢出的情况；</p>
 <p>（2）反向计算网络的时候，每层数值大小范围不同，有的在[0,1]，有的在[0,10000]，这在模型优化时会对设定反向求导的优化步长增加难度，设置过大会让梯度较大的维度因为过量更新而造成无法预期的结果；设置过小，梯度较小的维度会得不到充分的更新，就无法有所提升。</p>
-<ol>
+<ul>
 <li><strong>打破之前的线性映射关系。</strong></li>
-</ol>
+</ul>
 <p>如果网络只有线性部分，那么叠加多个网络层是没有意义的，因为多层神经网络可以退化为一层神经网络。</p>
 <hr>
 <h3 id="反向传播Backpropagation"><a href="#反向传播Backpropagation" class="headerlink" title="反向传播Backpropagation"></a>反向传播Backpropagation</h3><p>  CNN的整个训练过程如下所示：</p>
