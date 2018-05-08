@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Stay hungry, stay foolish]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://ccc013.github.io/"/>
-  <updated>2018-05-08T05:14:07.150Z</updated>
+  <updated>2018-05-08T05:40:42.214Z</updated>
   <id>http://ccc013.github.io/</id>
   
   <author>
@@ -15,19 +15,20 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[卷积神经网络学习笔记]]></title>
-    <link href="http://ccc013.github.io/2018/05/08/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>http://ccc013.github.io/2018/05/08/卷积神经网络学习笔记/</id>
+    <title><![CDATA[卷积神经网络介绍]]></title>
+    <link href="http://ccc013.github.io/2018/05/08/%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E4%BB%8B%E7%BB%8D/"/>
+    <id>http://ccc013.github.io/2018/05/08/卷积神经网络介绍/</id>
     <published>2018-05-08T03:04:39.000Z</published>
-    <updated>2018-05-08T05:14:07.150Z</updated>
+    <updated>2018-05-08T05:40:42.214Z</updated>
     <content type="html"><![CDATA[<p>记录在学习CNN过程中的一些知识点，包括参考的文章，论文或者博客等。</p>
 <p>参考文章/书籍：</p>
 <ol>
 <li><a href="https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/" target="_blank" rel="external">An Intuitive Explanation of Convolutional Neural Networks</a></li>
 <li><a href="http://blog.csdn.net/jiejinquanil/article/details/50042791" target="_blank" rel="external">对CNN中pooling的理解</a></li>
 <li>《深度学习轻松学：核心算法与视觉实践》</li>
+<li><a href="https://blog.csdn.net/lanran2/article/details/79057994" target="_blank" rel="external">ResNet解析</a></li>
 </ol>
-<p>CNN可以应用在场景分类，图像分类，现在还可以应用到自然语言处理(NLP)方面的很多问题，比如句子分类等。</p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>CNN可以应用在场景分类，图像分类，现在还可以应用到自然语言处理(NLP)方面的很多问题，比如句子分类等。</p>
 <p><strong>LeNet</strong>是最早的CNN结构之一，它是由大神<strong>Yann LeCun</strong>所创造的，主要是用在字符分类问题。</p>
 <p>下面是一个简单的CNN结构，图来自参考文章<a href="https://ujjwalkarn.me/2016/08/11/intuitive-explanation-convnets/" target="_blank" rel="external">1</a>。这个网络结构是用于一个四类分类的问题，分别是狗、猫、船和鸟，图中的输入图片是属于船一类。</p>
 <p><img src="http://7xrluf.com1.z0.glb.clouddn.com/CNN1.png" alt="此处输入图片的描述"></p>
@@ -62,8 +63,8 @@ Y(m,n) & =X(m,n)*H(m,n) \\
 <p>在CNN中的卷积层的计算步骤与上述公式定义的二维卷积有点差异，首先是维度升至三维、四维卷积，跟二维卷积相比多了一个<strong>“通道”(channel)</strong>，每个通道还是按照二维卷积方式计算，而多个通道与多个卷积核分别进行二维卷积，得到多通道输出，需要“合并”为一个通道；<strong>其次是卷积核在卷积计算时没有“翻转”，而是与输入图片做滑动窗口“相关”计算</strong>。用公式重新表达如下：</p>
 <script type="math/tex; mode=display">
 Y^l(m,n) =X^k(m,n)*H^{kl}(m,n) = \sum_{k=0}^{K-1}\sum_{i=0}^{I-1}\sum_{j=0}^{J-1}X^k(m+i,n+j)H^{kl}(i,j)</script><p>这里假定卷积层有$L$个输出通道和$K$个输入通道，于是需要有$KL$个卷积核实现通道数目的转换。其中$X^k$表示第$k$个输入通道的二维特征图，$Y^l$表示第$l$个输出通道的二维特征图，$H^{kl}$表示第$k$行、第$l$列二维卷积核。假定卷积核大小是$I*J$,每个输出通道的特征图大小是$M×N$，则该层每个样本做一次前向传播时卷积层的计算量是$Calculations(MAC)=I×J×M×N×K×L$。</p>
-<p>卷积层的学习参数，也就是<strong>卷积核数目乘以卷积核的尺寸—$Params = I<em>J</em>K*L​$。</strong></p>
-<p>这里定义计算量-参数量之比是<strong>CPR</strong>=$Calculations/Params=M*N$。</p>
+<p>卷积层的学习参数，也就是<strong>卷积核数目乘以卷积核的尺寸—$Params = I×J×K×L$。</strong></p>
+<p>这里定义计算量-参数量之比是<strong>CPR</strong>=$Calculations/Params=M×N$。</p>
 <p>因此可以得出结论：<strong>卷积层的输出特征图尺寸越大，CPR越大，参数重复利用率越高。若输入一批大小为B的样本，则CPR值可提高B倍。</strong></p>
 <h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><p>卷积神经网络通过<strong>『参数减少』与『权值共享』</strong>大大减少了连接的个数，也即需要训练的参数的个数。</p>
 <p>假设我们的图像是<code>1000*1000</code>的，则有10^6个隐层神经元，那么它们全连接的话，也就是每个隐层神经元都连接图像的每个像素点，就有10^12个连接，也即10^12个权值参数需要训练，这显然是不值得的。但是对于一个只识别特定feature的卷积核，需要大到覆盖整个图像的所有像素点吗？通常是不需要的，<strong>一个特定feature，尤其是第一层需要提取的feature，通常都相当基础，只占图像很小的一部分。所以我们设置一个较小的局部感受区域，比如<code>10*10</code>，也即每个神经元只需要和这<code>10*10</code>的局部图像相连接，所以10^6个神经元也就有10^8个连接。这就叫参数减少。</strong></p>
@@ -97,8 +98,8 @@ Y^l(m,n) =X^k(m,n)*H^{kl}(m,n) = \sum_{k=0}^{K-1}\sum_{i=0}^{I-1}\sum_{j=0}^{J-1
 <h3 id="全连接层"><a href="#全连接层" class="headerlink" title="全连接层"></a>全连接层</h3><p>  全连接层就是一个传统的多层感知器，它在输出层使用一个<strong>softmax</strong>激活函数。其主要作用就是将前面卷积层提取到的特征结合在一起然后进行分类。<strong>Softmax</strong>函数可以将输入是一个任意实数分数的向量变成一个值的范围是0~1的向量，但所有值的总和是1。</p>
 <p>  在CNN出现之前，最早的深度学习网络计算类型都是全连接形式的。</p>
 <p>  全连接层的主要计算类型是<strong>矩阵-向量乘（GEMV)。</strong>假设输入节点组成的向量是$x$，维度是$D$,输出节点组成的向量是$y$,维度是$V$,则全连接层计算可以表示为$y=Wx$。</p>
-<p>  其中$W$是$V*D$的权值矩阵。</p>
-<p>  全连接层的参数量为$Params=V<em>D$,其单个样本前向传播的计算量也是$Calculations(MAC)=V</em>D$，也就是$CPR=Calculations/Params=1$。也就是其权值利用率很低。</p>
+<p>  其中$W$是$V×D$的权值矩阵。</p>
+<p>  全连接层的参数量为$Params=V×D$,其单个样本前向传播的计算量也是$Calculations(MAC)=V×D$，也就是$CPR=Calculations/Params=1$。也就是其权值利用率很低。</p>
 <p>  可以将一批大小为$B$的样本$x_i$逐列拼接成矩阵$X$，一次性通过全连接层，得到一批输出向量构成的矩阵$Y$，相应地前面的矩阵-向量乘运算升为<strong>矩阵-矩阵乘计算（GEMM)：$Y=WX$</strong>。</p>
 <p>  这样全连接层前向计算量提高了$B$倍，CPR相应提高了$B$倍，权重矩阵在多个样本之间实现了共享，可提高计算速度。</p>
 <p>  比较卷积层和全连接层，卷积层在输出特征图维度实现了<strong>权值共享</strong>，这是降低参数量的重要举措，同时，卷积层<strong>局部连接</strong>特性（相比全连接）也大幅减少了参数量。<strong>因此卷积层参数量占比小，但计算量占比大，而全连接层是参数量占比大，计算量占比小。所以在进行计算加速优化时，重点放在卷积层；在进行参数优化、权值剪裁时，重点放在全连接层。</strong></p>
@@ -123,42 +124,32 @@ Y^l(m,n) =X^k(m,n)*H^{kl}(m,n) = \sum_{k=0}^{K-1}\sum_{i=0}^{I-1}\sum_{j=0}^{J-1
 <li>重复上述第二到第四步，直到训练次数达到设定好的值。</li>
 </ol>
 <hr>
-<h3 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h3><p>  这里介绍比较有名的网络结构。</p>
-<ol>
-<li><p><strong>LeNet（1990s）</strong>：在开头介绍了，这是最早使用的CNN网络结构之一，主要是用于字符分类；</p>
-<p>特点如下：</p>
+<h3 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h3><p>这里简单介绍比较有名的网络结构。</p>
+<h4 id="1-LeNet（1990s）"><a href="#1-LeNet（1990s）" class="headerlink" title="1.LeNet（1990s）"></a>1.LeNet（1990s）</h4><p>在开头介绍了，这是最早使用的CNN网络结构之一，主要是用于字符分类；</p>
+<p>   特点如下：</p>
 <ul>
 <li>卷积神经网络使用3层架构：卷积、下采样、非线性激活函数</li>
-<li>使用卷积提取图像空间特征</li>
+<li>使用卷积提取图像空间特征<ul>
 <li>下采样使用了图像平均稀疏性</li>
 <li>激活函数采用了tanh或者sigmoid函数</li>
 <li>多层神经网络（MLP）作为最后的分类器</li>
 <li>层之间使用稀疏连接矩阵，以避免大的计算成本</li>
 </ul>
 </li>
-<li><p><strong>AlexNet（2012）</strong>：这是在2012年的ImageNet视觉挑战比赛上获得第一名所使用的网络结构，这也是使得许多视觉问题取得重大突破，让CNN变得非常热门的原因。</p>
-<p>总结下其改进地方：</p>
-</li>
-</ol>
+</ul>
+<h4 id="2-AlexNet（2012）"><a href="#2-AlexNet（2012）" class="headerlink" title="2. AlexNet（2012）"></a>2. AlexNet（2012）</h4><p>这是在2012年的ImageNet视觉挑战比赛上获得第一名所使用的网络结构，这也是使得许多视觉问题取得重大突破，让CNN变得非常热门的原因。总结下其改进地方：</p>
 <ul>
 <li>使用ReLU函数作为激活函数，降低了Sigmoid类函数的计算量</li>
-<li>利用dropout技术在训练期间选择性地剪掉某些神经元，避免模型过度拟合<ul>
+<li>利用dropout技术在训练期间选择性地剪掉某些神经元，避免模型过度拟合</li>
 <li>引入max-pooling技术</li>
 <li>利用双GPU NVIDIA GTX 580显著减少训练时间</li>
 </ul>
-</li>
-</ul>
-<ol>
-<li><p><strong>ZF Net（2013）</strong>：这是2013年ImageNet比赛的胜者，对AlexNet的结构超参数做出了调整。</p>
-</li>
-<li><p><strong>GoogleNet（2014）</strong>:2014年ImageNet比赛的胜者，其主要贡献是使用了一个<strong>Inception Module</strong>，可以大幅度减少网络的参数数量，其参数数量是4M，而AlexNet的则有60M。</p>
-</li>
-<li><p><strong>VGGNet（2014）</strong>：是一个更深的网络，使用了16层的结构。<strong>它是对原始图像进行3×3卷积，然后再进行3×3卷积，连续使用小的卷积核对图像进行多次卷积。</strong>VGG一开始提出的时候刚好与LeNet的设计原则相违背，<strong>因为LeNet相信大的卷积核能够捕获图像当中相似的特征（权值共享）。</strong>AlexNet在浅层网络开始的时候也是使用9×9、11×11卷积核，并且尽量在浅层网络的时候避免使用1×1的卷积核。但是VGG的神奇之处就是在于使用多个3×3卷积核可以模仿较大卷积核那样对图像进行局部感知。后来多个小的卷积核串联这一思想被GoogleNet和ResNet等吸收。</p>
-<p><strong>VGG相信如果使用大的卷积核将会造成很大的时间浪费，减少的卷积核能够减少参数，节省运算开销。虽然训练的时间变长了，但是总体来说预测的时间和参数都是减少的了。</strong>​​</p>
-</li>
-<li><p><strong>ResNets（2015）</strong>：目前CNN中最好性能的结构，使用了152层。</p>
-</li>
-</ol>
+<h4 id="3-ZF-Net（2013）"><a href="#3-ZF-Net（2013）" class="headerlink" title="3. ZF Net（2013）"></a>3. ZF Net（2013）</h4><p>这是2013年ImageNet比赛的胜者，对AlexNet的结构超参数做出了调整。</p>
+<h4 id="4-GoogleNet（2014）"><a href="#4-GoogleNet（2014）" class="headerlink" title="4. GoogleNet（2014）"></a>4. GoogleNet（2014）</h4><p>2014年ImageNet比赛的胜者，其主要贡献是使用了一个<strong>Inception Module</strong>，可以大幅度减少网络的参数数量，其参数数量是4M，而AlexNet的则有60M。</p>
+<h4 id="5-VGGNet（2014）"><a href="#5-VGGNet（2014）" class="headerlink" title="5.VGGNet（2014）"></a>5.VGGNet（2014）</h4><p>这是一个更深的网络，使用了16层的结构。<strong>它是对原始图像进行3×3卷积，然后再进行3×3卷积，连续使用小的卷积核对图像进行多次卷积。</strong>VGG一开始提出的时候刚好与LeNet的设计原则相违背，<strong>因为LeNet相信大的卷积核能够捕获图像当中相似的特征（权值共享）。</strong>AlexNet在浅层网络开始的时候也是使用9×9、11×11卷积核，并且尽量在浅层网络的时候避免使用1×1的卷积核。但是VGG的神奇之处就是在于使用多个3×3卷积核可以模仿较大卷积核那样对图像进行局部感知。后来多个小的卷积核串联这一思想被GoogleNet和ResNet等吸收。</p>
+<p>   <strong>VGG相信如果使用大的卷积核将会造成很大的时间浪费，减少的卷积核能够减少参数，节省运算开销。虽然训练的时间变长了，但是总体来说预测的时间和参数都是减少的了。</strong></p>
+<h4 id="6-ResNets（2015）"><a href="#6-ResNets（2015）" class="headerlink" title="6.ResNets（2015）"></a>6.ResNets（2015）</h4><p>随着网络的加深，出现了<strong>训练集准确率下降</strong>的现象，我们可以确定<strong>这不是由于Overfit过拟合造成的(过拟合的情况训练集应该准确率很高)</strong>；所以作者针对这个问题提出了一种全新的网络，叫深度残差网络，它允许网络尽可能的加深，其中引入了全新的结构如下图；<br><img src="https://img-blog.csdn.net/20180508132926226?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xjMDEz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述"></p>
+<p><strong>残差指的是什么？</strong><br>其中ResNet提出了两种mapping：一种是<strong>identity mapping</strong>，指的就是上图中”弯弯的曲线”，另一种<strong>residual mapping</strong>，指的就是除了”弯弯的曲线“那部分，所以最后的输出是 y=F(x)+x<br>identity mapping顾名思义，就是指本身，也就是公式中的x，而residual mapping指的是“差”，也就是y−x，所以残差指的就是F(x)部分。<br><strong>为什么ResNet可以解决“随着网络加深，准确率不下降”的问题？</strong><br>理论上，对于“随着网络加深，准确率下降”的问题，Resnet提供了两种选择方式，也就是identity mapping和residual mapping，<strong>如果网络已经到达最优，继续加深网络，residual mapping将被push为0，只剩下identity mapping，这样理论上网络一直处于最优状态了，网络的性能也就不会随着深度增加而降低了。</strong></p>
 <p>​    </p>
 ]]></content>
     <summary type="html">
