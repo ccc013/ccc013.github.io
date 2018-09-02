@@ -13,8 +13,8 @@ tags:
    一直都希望能自己搭建个博客出来，所以在考完试后，也是从网上参考了很多用hexo+github pages搭建博客的文章，折腾了一天多，中间也是出现了一些问题，有一些还是暂时没有解决的问题。
 
    在搭建之前要对所用到的工具框架有个了解：
-   * [Git](http://git-scm.com/book/zh/v2)
-   * [Github](https://github.com/)
+* [Git](http://git-scm.com/book/zh/v2)
+* [Github](https://github.com/)
    * [Github Pages](https://pages.github.com/)
    * [Hexo](https://hexo.io/zh-cn/)
    * [Markdown](http://wowubuntu.com/markdown/basic.html)
@@ -28,7 +28,7 @@ tags:
 ## 2.配置Hexo
 
    首先查看Hexo的文档了解了Hexo的基本概念以及如何安装，当然还有使用的方法。
-  
+
    Hexo官方文档（https://hexo.io/zh-cn/docs/index.html）
 
 （所以下面会有一大段是摘自官方文档的，当做笔记记录下）
@@ -160,14 +160,14 @@ themes文件夹就是主题文件，Hexo会根据主题来生成静态页面，�
 ### (4) 博客管理流程
 所以现在对博客的修改就是如同[GitHub-Pages-Hexo搭建博客](http://crazymilk.github.io/2015/12/28/GitHub-Pages-Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/)中说得一样:
 **日常修改**
-1. 在本地修改博客，如添加新的博文，修改样式等；
+1. 在本地修改博客，如添加新的博文`hexo new "filename"`，修改样式等；
 2. 在hexo分支下，依次执行`git add .`,`git commit -m "..."`,`git push origin hexo`,将改动push到GitHub上；
 3. 再执行`hexo deploy -g`,发布网站到master分支上。
 
 **更换电脑或者本地资料丢失**
 1.使用 `git clone git@github.com:ccc013/ccc013.github.io.git` 拷贝仓库；
 2.在本地拷贝下来的ccc013.github.io文件夹中通过Git bash依次执行下列命令：
-    
+​    
     npm install hexo
     npm install
     npm install hexo-deployer-git
@@ -175,7 +175,7 @@ themes文件夹就是主题文件，Hexo会根据主题来生成静态页面，�
 
 ### (5) 使用问题总结
 1. /c/Users/cai/AppData/Roaming/npm/hexo: line 12: node: command not found
-(更新于2016-03-07)
+   (更新于2016-03-07)
 
 在搭建完博客后，有一段时间没有使用后，然后需要更新下博文或者样式时，在Git bash敲下命令`hexo g`，居然出现上述错误信息，然后发现输入任何有关hexo的命令都是同样的错误，我又试着敲了npm这个命令，发现也是出错的，但是在系统命令行中输入`node -v`和`npm -v`,都正常显示了版本信息，于是我想估计是环境变量设置有问题，我在用户的环境变量PATH中添加了两个路径，分别是`C:\Users\cai\node_modules\hexo\bin`和`C:\Program Files\nodejs`，再加上原来就添加的路径`C:\Users\cai\AppData\Roaming\npm`，发现就解决这个问题了，可以正常修改博文，然后发布网站。
 
@@ -212,7 +212,7 @@ themes文件夹就是主题文件，Hexo会根据主题来生成静态页面，�
 **代码和代码区块**
 使用一个反引号``可以得到代码，而代码区块是每行缩进4个空格或者一个制表符，也就是键盘上的Tab键，当然首先跟上一行要隔着一个空行才行。
 
-* * * 
+* * * ​
 
 **分隔线**
 在一行中使用三个以上的星号、减号、底线来建立一个分隔线，行中不能有其他东西。
@@ -240,4 +240,3 @@ themes文件夹就是主题文件，Hexo会根据主题来生成静态页面，�
 从昨天，也就是1月20号弄了一天，但是并没有解决如何在Github上存放原始文章文件，今天下午则是找到解决方法，并且成功解决了，然后写下这篇总结。
 
 目前完成的也只是比较简单的内容，还有很多内容可以增加，此外搭建这个博客的本意是促使自己可以多总结多写博客，最终的目的是要掌握好学到的技术知识，所以现在仅仅是一个准备动作，最多也就是迈出一小步了，还需要自己不断坚持，不断学习，不断努力！
-   
