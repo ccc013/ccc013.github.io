@@ -95,7 +95,9 @@ Github Pages
 Hexo
 Markdown
 
-此外，在搭建过程中参考的文章有:1.hexo你的博客2.GitHub">
+
+
+此外，在搭建过程中参考的文章有:1.hexo你的博客2.GitH">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hexo+github pages 搭建博客总结">
 <meta property="og:url" content="http://ccc013.github.io/2016/01/20/hexo+github 搭建博客总结/index.html">
@@ -109,9 +111,11 @@ Github Pages
 Hexo
 Markdown
 
-此外，在搭建过程中参考的文章有:1.hexo你的博客2.GitHub">
+
+
+此外，在搭建过程中参考的文章有:1.hexo你的博客2.GitH">
 <meta property="og:image" content="http://7xifb5.com1.z0.glb.clouddn.com/wustrive-hexogit%E7%9F%A5%E8%AF%86%E7%BB%93%E6%9E%84.png">
-<meta property="og:updated_time" content="2016-05-18T10:41:25.949Z">
+<meta property="og:updated_time" content="2018-09-02T02:27:47.945Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo+github pages 搭建博客总结">
 <meta name="twitter:description" content="1.前言   一直都希望能自己搭建个博客出来，所以在考完试后，也是从网上参考了很多用hexo+github pages搭建博客的文章，折腾了一天多，中间也是出现了一些问题，有一些还是暂时没有解决的问题。
@@ -123,7 +127,9 @@ Github Pages
 Hexo
 Markdown
 
-此外，在搭建过程中参考的文章有:1.hexo你的博客2.GitHub">
+
+
+此外，在搭建过程中参考的文章有:1.hexo你的博客2.GitH">
 
 
 
@@ -353,10 +359,12 @@ Markdown
 <p>   在搭建之前要对所用到的工具框架有个了解：</p>
 <ul>
 <li><a href="http://git-scm.com/book/zh/v2" target="_blank" rel="external">Git</a></li>
-<li><a href="https://github.com/" target="_blank" rel="external">Github</a></li>
+<li><a href="https://github.com/" target="_blank" rel="external">Github</a><ul>
 <li><a href="https://pages.github.com/" target="_blank" rel="external">Github Pages</a></li>
 <li><a href="https://hexo.io/zh-cn/" target="_blank" rel="external">Hexo</a></li>
 <li><a href="http://wowubuntu.com/markdown/basic.html" target="_blank" rel="external">Markdown</a></li>
+</ul>
+</li>
 </ul>
 <p>此外，在搭建过程中参考的文章有:<br>1.<a href="http://ibruce.info/2013/11/22/hexo-your-blog/" target="_blank" rel="external">hexo你的博客</a><br>2.<a href="http://crazymilk.github.io/2015/12/28/GitHub-Pages-Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" target="_blank" rel="external">GitHub-Pages-Hexo搭建博客</a><br>3.<a href="http://zipperary.com/categories/hexo/" target="_blank" rel="external">Hexo系列教程</a><br>4.<a href="http://wsgzao.github.io/post/hexo-guide/#准备工作" target="_blank" rel="external">使用GitHub和Hexo搭建免费静态Blog</a></p>
 <h2 id="2-配置Hexo"><a href="#2-配置Hexo" class="headerlink" title="2.配置Hexo"></a>2.配置Hexo</h2><p>   首先查看Hexo的文档了解了Hexo的基本概念以及如何安装，当然还有使用的方法。</p>
@@ -426,15 +434,11 @@ $ hexo deploy
 <p>这个过程我初始是按照<a href="http://crazymilk.github.io/2015/12/28/GitHub-Pages-Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" target="_blank" rel="external">GitHub-Pages-Hexo搭建博客</a>中来做的，但是在输入<code>hexo init</code>后，就会发现一开始<code>git clone</code>下来的文件中的.git文件没有了，并且之后也是无法<code>git push</code>到自己的github上，总是显示被拒绝的提示，本来我都是打算再建立一个仓库来存放文章了，但是后来又在上网搜索，看到这篇文章<a href="http://www.xrpmoon.com/blog/archives/jripple1281.html" target="_blank" rel="external">如何使用Hexo在Github上搭建自己的博客</a>中发布到github page的时候，就想自己应该是在本地的时候也是要新建一个同样名为hexo的分支，然后<code>git commit</code>到这个分支，于是就这么做，没想到真的成功了！</p>
 <h3 id="4-博客管理流程"><a href="#4-博客管理流程" class="headerlink" title="(4) 博客管理流程"></a>(4) 博客管理流程</h3><p>所以现在对博客的修改就是如同<a href="http://crazymilk.github.io/2015/12/28/GitHub-Pages-Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" target="_blank" rel="external">GitHub-Pages-Hexo搭建博客</a>中说得一样:<br><strong>日常修改</strong></p>
 <ol>
-<li>在本地修改博客，如添加新的博文，修改样式等；</li>
+<li>在本地修改博客，如添加新的博文<code>hexo new &quot;filename&quot;</code>，修改样式等；</li>
 <li>在hexo分支下，依次执行<code>git add .</code>,<code>git commit -m &quot;...&quot;</code>,<code>git push origin hexo</code>,将改动push到GitHub上；</li>
 <li>再执行<code>hexo deploy -g</code>,发布网站到master分支上。</li>
 </ol>
-<p><strong>更换电脑或者本地资料丢失</strong><br>1.使用 <code>git clone git@github.com:ccc013/ccc013.github.io.git</code> 拷贝仓库；<br>2.在本地拷贝下来的ccc013.github.io文件夹中通过Git bash依次执行下列命令：</p>
-<pre><code>npm install hexo
-npm install
-npm install hexo-deployer-git
-</code></pre><p>这里就不需要<code>hexo init</code>这个命令</p>
+<p><strong>更换电脑或者本地资料丢失</strong><br>1.使用 <code>git clone git@github.com:ccc013/ccc013.github.io.git</code> 拷贝仓库；<br>2.在本地拷贝下来的ccc013.github.io文件夹中通过Git bash依次执行下列命令：<br>​<br>    npm install hexo<br>    npm install<br>    npm install hexo-deployer-git<br>这里就不需要<code>hexo init</code>这个命令</p>
 <h3 id="5-使用问题总结"><a href="#5-使用问题总结" class="headerlink" title="(5) 使用问题总结"></a>(5) 使用问题总结</h3><ol>
 <li>/c/Users/cai/AppData/Roaming/npm/hexo: line 12: node: command not found<br>(更新于2016-03-07)</li>
 </ol>
@@ -450,7 +454,15 @@ npm install hexo-deployer-git
 <p><strong>段落和换行</strong><br>一个 Markdown 段落是由一个或多个连续的文本行组成，它的前后要有一个以上的空行（空行的定义是显示上看起来像是空的，便会被视为空行。比方说，若某一行只包含空格和制表符，则该行也会被视为空行）。普通段落不该用空格或制表符来缩进。</p>
 <p><strong>列表</strong><br>无序列表使用星号、加号或者减号，而有序列表是数字加一个英文句点<code>.</code> </p>
 <p><strong>代码和代码区块</strong><br>使用一个反引号``可以得到代码，而代码区块是每行缩进4个空格或者一个制表符，也就是键盘上的Tab键，当然首先跟上一行要隔着一个空行才行。</p>
-<hr>
+<ul>
+<li><ul>
+<li><ul>
+<li>​</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <p><strong>分隔线</strong><br>在一行中使用三个以上的星号、减号、底线来建立一个分隔线，行中不能有其他东西。</p>
 <p><strong>链接</strong><br>用的比较多的是行内式，也就是一个方括号<code>[]</code>后面加一个括号<code>()</code>,括号中是链接地址，而方括号中可以是网址的标题，或者对你对网址内容的简单总结</p>
 <p><strong>强调</strong><br>一个<code>*</code>或者<code>_</code>包围的文字是斜体的效果，而两个<code>*</code>或者<code>_</code>包围则是强调的效果</p>
@@ -578,7 +590,7 @@ npm install hexo-deployer-git
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">31</span>
+              <span class="site-state-item-count">33</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

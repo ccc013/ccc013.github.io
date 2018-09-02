@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="数据结构,算法," />
+  <meta name="keywords" content="技术,机器学习,算法," />
 
 
 
@@ -86,44 +86,30 @@
 
 
 
-<meta name="description" content="这是《大话数据结构》第七章图的基本知识总结，首先是总结图的基本定义和相关的术语，包括有向图，无向图，连通图等术语的定义。
-
-图(Graph)是由顶点的有穷非空集合和顶点之间的集合组成，通常表示为：G（V, E），其中 G 表示一个图，V 是图 G 中顶点的集合，E 是图 G 中边的集合。
-
-对于上述图的定义，需要注意的是：
-
-线性表中的数据元素被称为元素，树中将数据元素称为结点，而图中数据元素被称">
+<meta name="description" content="这是本系列的第二篇，也是机器学习概览的下半部分，主要内容如下所示：
+[TOC]
+1. 机器学习的主要挑战在介绍基于模型学习算法的流程的时候，对于预测结果不好的问题分析，主要说了是数据问题还是模型问题，这同时也就是机器学习的效果不好的两个主要原因，即错误的数据和错误的算法。
+1.1 训练数据量不足第一个问题就是训练数据的数量问题，这是非常重要的问题。
+因为即使是简单的问题，一般也需要数千的样本，这还">
 <meta property="og:type" content="article">
-<meta property="og:title" content="图的基本定义">
-<meta property="og:url" content="http://ccc013.github.io/2016/11/08/图的基本定义/index.html">
+<meta property="og:title" content="机器学习入门系列(2)--机器学习概览(下)">
+<meta property="og:url" content="http://ccc013.github.io/2018/09/02/机器学习入门系列-2-机器学习概览-下/index.html">
 <meta property="og:site_name" content="Cai's blog">
-<meta property="og:description" content="这是《大话数据结构》第七章图的基本知识总结，首先是总结图的基本定义和相关的术语，包括有向图，无向图，连通图等术语的定义。
-
-图(Graph)是由顶点的有穷非空集合和顶点之间的集合组成，通常表示为：G（V, E），其中 G 表示一个图，V 是图 G 中顶点的集合，E 是图 G 中边的集合。
-
-对于上述图的定义，需要注意的是：
-
-线性表中的数据元素被称为元素，树中将数据元素称为结点，而图中数据元素被称">
-<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE1.png">
-<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE2.png">
-<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE3.png">
-<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE4.png">
-<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE5.png">
-<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE6.png">
-<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE7.png">
-<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE8.png">
-<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE9.png">
-<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE10.png">
-<meta property="og:updated_time" content="2016-11-08T09:21:46.527Z">
+<meta property="og:description" content="这是本系列的第二篇，也是机器学习概览的下半部分，主要内容如下所示：
+[TOC]
+1. 机器学习的主要挑战在介绍基于模型学习算法的流程的时候，对于预测结果不好的问题分析，主要说了是数据问题还是模型问题，这同时也就是机器学习的效果不好的两个主要原因，即错误的数据和错误的算法。
+1.1 训练数据量不足第一个问题就是训练数据的数量问题，这是非常重要的问题。
+因为即使是简单的问题，一般也需要数千的样本，这还">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/%E8%BF%87%E6%8B%9F%E5%90%88%E7%A4%BA%E4%BE%8B.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/qrcode_for_gh_207dddb4bd42_430.jpg">
+<meta property="og:updated_time" content="2018-09-02T03:14:25.639Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="图的基本定义">
-<meta name="twitter:description" content="这是《大话数据结构》第七章图的基本知识总结，首先是总结图的基本定义和相关的术语，包括有向图，无向图，连通图等术语的定义。
-
-图(Graph)是由顶点的有穷非空集合和顶点之间的集合组成，通常表示为：G（V, E），其中 G 表示一个图，V 是图 G 中顶点的集合，E 是图 G 中边的集合。
-
-对于上述图的定义，需要注意的是：
-
-线性表中的数据元素被称为元素，树中将数据元素称为结点，而图中数据元素被称">
+<meta name="twitter:title" content="机器学习入门系列(2)--机器学习概览(下)">
+<meta name="twitter:description" content="这是本系列的第二篇，也是机器学习概览的下半部分，主要内容如下所示：
+[TOC]
+1. 机器学习的主要挑战在介绍基于模型学习算法的流程的时候，对于预测结果不好的问题分析，主要说了是数据问题还是模型问题，这同时也就是机器学习的效果不好的两个主要原因，即错误的数据和错误的算法。
+1.1 训练数据量不足第一个问题就是训练数据的数量问题，这是非常重要的问题。
+因为即使是简单的问题，一般也需要数千的样本，这还">
 
 
 
@@ -141,7 +127,7 @@
   };
 </script>
 
-  <title> 图的基本定义 | Cai's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> 机器学习入门系列(2)--机器学习概览(下) | Cai's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -292,7 +278,7 @@
             
             
               
-                图的基本定义
+                机器学习入门系列(2)--机器学习概览(下)
               
             
           </h1>
@@ -304,8 +290,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-11-08T17:18:08+08:00" content="2016-11-08">
-              2016-11-08
+            <time itemprop="dateCreated" datetime="2018-09-02T11:04:09+08:00" content="2018-09-02">
+              2018-09-02
             </time>
           </span>
 
@@ -315,8 +301,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/11/08/图的基本定义/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/11/08/图的基本定义/" itemprop="commentsCount"></span>
+                <a href="/2018/09/02/机器学习入门系列-2-机器学习概览-下/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/09/02/机器学习入门系列-2-机器学习概览-下/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -326,7 +312,7 @@
 
           
           
-             <span id="/2016/11/08/图的基本定义/" class="leancloud_visitors" data-flag-title="图的基本定义">
+             <span id="/2018/09/02/机器学习入门系列-2-机器学习概览-下/" class="leancloud_visitors" data-flag-title="机器学习入门系列(2)--机器学习概览(下)">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -349,115 +335,77 @@
       
 
       
-        <p>这是《大话数据结构》第七章图的基本知识总结，首先是总结图的基本定义和相关的术语，包括有向图，无向图，连通图等术语的定义。</p>
-<blockquote>
-<p>图(Graph)是由顶点的有穷非空集合和顶点之间的集合组成，通常表示为：<strong>G（V, E）</strong>，其中 G 表示一个图，V 是图 G 中顶点的集合，E 是图 G 中边的集合。</p>
-</blockquote>
-<p>对于上述图的定义，需要注意的是：</p>
+        <p>这是本系列的第二篇，也是机器学习概览的下半部分，主要内容如下所示：</p>
+<p>[TOC]</p>
+<h3 id="1-机器学习的主要挑战"><a href="#1-机器学习的主要挑战" class="headerlink" title="1. 机器学习的主要挑战"></a>1. 机器学习的主要挑战</h3><p>在介绍基于模型学习算法的流程的时候，对于预测结果不好的问题分析，主要说了是数据问题还是模型问题，这同时也就是机器学习的效果不好的两个主要原因，即错误的数据和错误的算法。</p>
+<h4 id="1-1-训练数据量不足"><a href="#1-1-训练数据量不足" class="headerlink" title="1.1 训练数据量不足"></a>1.1 训练数据量不足</h4><p>第一个问题就是训练数据的数量问题，这是非常重要的问题。</p>
+<p>因为即使是简单的问题，一般也需要数千的样本，这还是因为简单的问题一般采用简单的算法就可以解决，对于复杂的图像或语音问题，通常需要数百万的样本，特别是如果采用现在非常热门的深度学习算法，比如卷积神经网络模型，这些复杂的模型如果没有足够的数据量支持，非常容易陷入过拟合的情况。</p>
+<p>实际上更多数量的训练集也是为了获得更有代表性的数据，能够学习到这类数据的所有特征。</p>
+<p>但是，应该注意到，小型和中型的数据集仍然是非常常见的，获得额外的训练数据并不总是轻易和廉价的，所以不要抛弃算法。</p>
+<h4 id="1-2-没有代表性的训练数据"><a href="#1-2-没有代表性的训练数据" class="headerlink" title="1.2 没有代表性的训练数据"></a>1.2 没有代表性的训练数据</h4><p>无论采用基于实例还是基于模型的学习，让训练数据对新数据具有代表性是非常重要的。如果训练集没有代表性，那么训练得到的模型就是不可能得到准确性的模型，比如人脸识别中，模型没有学习到某个人最明显的代表性的特征，比如高鼻梁或者没有眉毛等突出特征，那么模型对这个人的识别率就不会很高。</p>
+<p>使用具有代表性的训练集对于推广到新案例是非常重要的。但是做起来比说起来要难：如果样本太小，就会有样本噪声（即会有一定概率包含没有代表性的数据），但是即使是非常大的样本也可能没有代表性，如果取样方法错误的话。这叫做样本偏差。</p>
+<h4 id="1-3-低质量的数据"><a href="#1-3-低质量的数据" class="headerlink" title="1.3 低质量的数据"></a>1.3 低质量的数据</h4><p>低质量的数据指的是数据有错误、带有过多噪声或者是出现异常值等的数据，这种数据会影响系统整体的性能，因此，数据清洗对于构建一个机器学习系统或者一个机器学习项目来说都是必不可少的步骤。</p>
+<p>对于这些低质量的数据，通常可以按照如下做法处理：</p>
 <ul>
-<li>线性表中的数据元素被称为元素，树中将数据元素称为结点，而图中数据元素被称为<strong>顶点</strong></li>
-<li>线性表可以没有数据元素，称为空表；树也可以没有结点，称为空树。但是图的定义中强调了顶点集合<strong>V</strong>是有穷非空的集合，所以图结构中不能没有顶点。</li>
-<li>线性表中，相邻的数据元素之间具有线性关系；树结构中，相邻两层的结点具有层次关系。而<strong>图中，任意两个顶点之间都可能有关系，顶点之间的逻辑关系用边来表示，边集可以是空的。</strong></li>
+<li>如果一些实例是明显的异常值，最好删掉它们或尝试手工修改错误；</li>
+<li>如果一些实例缺少特征（比如，你的 5% 的顾客没有说明年龄），你必须决定是否忽略这个属性、忽略这些实例、填入缺失值（比如，年龄中位数），或者训练一个含有这个特征的模型和一个不含有这个特征的模型，等等。</li>
 </ul>
-<h5 id="各种图定义"><a href="#各种图定义" class="headerlink" title="各种图定义"></a>各种图定义</h5><p>接下来会介绍各自图的定义，包括无向图与有向图，有向完全图和无向完全图，稀疏与稠密图等。</p>
-<blockquote>
-<p>无向边： 若顶点$v_i$ 到$v_j$之间的边没有方向，则称这条边为<strong>无向边(Edge)</strong>,用无序偶对$(v_i, v_j)$来表示。</p>
-</blockquote>
-<p>如果图中任意两个顶点之间的边都是无向边，则称该图是<strong>无向图</strong>。</p>
-<p>如下图左边的图就是一个无向图$G_1$，$G_1 = （V_1,{E_1}）$，其中顶点集合 $V_1 = {A,B,C,D}$,边集合是$E_1 = {(A, B), (B, C), (C, D), (D, A), (A, C)}$。</p>
-<blockquote>
-<p>有向边： 若顶点$v_i$ 到$v_j$之间的边有方向，则称这条边为<strong>有向边，也称为弧(Arc)</strong>。用有序偶$<v_i, v_j="">$来表示，$v_i$称为弧尾，$v_j$称为弧头。</v_i,></p>
-</blockquote>
-<p>如果图中任意两个顶点之间的边都是有向边，则称该图是<strong>有向图</strong>。</p>
-<p>如下图右边的图就是一个有向图 $G_2$，$G_2 =（V_2, {E_2}） $,其中顶点集合 $V_2 = {A,B,C,D}$,边集合是$E_2 = {<a, d="">, <b, a="">, <c, a="">, <b, c="">}$。</b,></c,></b,></a,></p>
-<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE1.png" alt=""></p>
-<p>这里需要注意有向图中有向边的表示是不能随意乱写的，必须是按照定义中$<v_i, v_j="">$，弧尾在前，弧头在后的写法。</v_i,></p>
-<blockquote>
-<p>图中，若不存在顶点到其自身的边，且同一条边不重复出现，则称这样的图是简单图。</p>
-</blockquote>
-<p>如下图所示都不是简单图，而我们主要讨论的都是简单图。</p>
-<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE2.png" alt=""></p>
-<blockquote>
-<p><strong>无向完全图</strong>是指在无向图中，任意两个顶点之间都存在边。</p>
-</blockquote>
-<p>含有$n$个顶点的无向完全图有$\frac{n\times (n-1)}{2}$条边。</p>
-<blockquote>
-<p><strong>有向完全图</strong>是指在有向图中，任意两个顶点之间都存在方向互为相反的两条弧。</p>
-</blockquote>
-<p>含有$n$个顶点的有向完全图有$n\times (n-1)$条边。</p>
-<p>由此可以得到一个结论：</p>
-<p><strong>对于具有$n$个顶点和$e$条边数的图，无向图有$0 \le e \le \frac{n\times (n-1)}{2}$, 有向图有$0 \le e \le n \times (n-1)$</strong>。</p>
-<blockquote>
-<p>有很少边或弧的图称为稀疏图，反之称为稠密图。</p>
-</blockquote>
-<p>这里的稀疏与稠密都是相对而言的。</p>
-<blockquote>
-<p>与图的边或弧相关的数值称为<strong>权(Weight)</strong>，它可以表示从一个顶点到另一个顶点的距离或耗费。这种带权的图通常称为<strong>网(Network)</strong>。</p>
-</blockquote>
-<p>下图就是一个带权的图的例子。</p>
-<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE3.png" alt=""></p>
-<blockquote>
-<p>假设有两个图 $G = （V，{E}）$，和 $G^\prime = （V^\prime,  {E^\prime}） $,如果$V^\prime \subseteq V$, 且 $E^\prime \subseteq E$,则称$G^\prime$是$G$的子图。</p>
-</blockquote>
-<p>下面展示了无向图和有向图与其子图。</p>
-<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE4.png" alt=""></p>
-<h5 id="图的顶点与边的关系"><a href="#图的顶点与边的关系" class="headerlink" title="图的顶点与边的关系"></a>图的顶点与边的关系</h5><blockquote>
-<p>在无向图 $G=(V,{E})$，如果边 $(v, v^\prime) \in E$,则称顶点$v和v^\prime$互为<strong>邻接点(Adjacent)</strong>,即$v 和 v^\prime$相邻接。边$(v, v^\prime)$依附(incident)于顶点$v 和 v^\prime$，或者说$(v,v^\prime)$与顶点$v 和 v^\prime$相关联。<strong>顶点$v$的度(Degree)是和$v$相关联的边的数目，记为TD($v$)。</strong></p>
-</blockquote>
-<p>例如对于上图中上方的无向图，顶点A与B互为邻接点，边(A, B)依附于顶点A与B上，顶点A的度为3。通过计算，可以知道，<strong>无向图的边数是各顶点度数和的一半，即$e = \frac{1}{2} \sum_{i=1}^n TD(v_i)$。</strong></p>
-<blockquote>
-<p>有向图 $G=(V,{E})$,如果弧$<v,v^\prime> \in E$, 则称顶点$v$邻接到顶点$v^\prime$，顶点$v^\prime$邻接自顶点$v$。弧$<v,v^\prime>$和顶点$v,v^\prime$相关联。<strong>以顶点$v$为头的弧的数目称为$v$的入度(InDegree),记为$ID(v)$；以顶点$v$为尾的弧的数目称为$v$的出度(OutDegree),记为$OD(v)$,因此顶点$v$的度为$TD(v) = ID(v) + OD(v)$。</strong> </v,v^\prime></v,v^\prime></p>
-</blockquote>
-<p>例如对上图中下方的有向图，顶点A的入度是2（从B到A的弧，C到A的弧），出度是1（从A到D的弧），所以顶点A的度是3。同样通过计算，可以得到$e =\sum_{i=1}^n ID(v_i) = \sum_{i=1}^n OD(v_i) $。</p>
-<blockquote>
-<p>在无向图 $G=(V,{E})$中从顶点$v$到$v^\prime$的<strong>路径(Path)</strong>是一个顶点序列$(v=v_{i,0},v_{i,1},\cdots,v_{i,m}=v^\prime),其中(v_{i,j-1},v_{i,j}) \in E, 1 \le j \le m$。</p>
-</blockquote>
-<p>下图就展示了顶点B到顶点D的四种不同路径。</p>
-<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE5.png" alt=""></p>
-<p>如果$G$是有向图，则路径也是有向的，顶点序列应满足$<v_{i,j-1}, v_{i,j}=""> \in E, 1 \le j \le m$。如下图所示，顶点B到D右两种路径，而顶点A到B就不存在路径。</v_{i,j-1},></p>
-<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE6.png" alt=""></p>
-<blockquote>
-<p><strong>路径的长度是路径上的边或弧的数目。</strong></p>
-</blockquote>
-<p>如上图有向图中，左侧的路径长度是2，经过两条弧，而右侧的路径长度是3，经过3条弧。</p>
-<blockquote>
-<p>第一个顶点到最后一个顶点相同的路径称为<strong>回路或环(Cycle)</strong>。序列中顶点不重复出现的路径称为<strong>简单路径</strong>。除了第一个顶点和最后一个顶点之外，其余顶点不重复出现的回路，称为<strong>简单回路或简单环</strong>。</p>
-</blockquote>
-<p>下图中，两个图都是一个环，但左侧的图是一个简单环，而右侧图中顶点C重复出现，因此它不是一个简单环。</p>
-<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE7.png" alt=""></p>
-<h5 id="连通图相关术语"><a href="#连通图相关术语" class="headerlink" title="连通图相关术语"></a>连通图相关术语</h5><p>接下来会介绍有关连通图的定义和相关术语。</p>
-<blockquote>
-<p>无向图$G$中，如果从顶点$v$到$v^\prime$有路径，则称$v$和$v^\prime$是<strong>连通的。</strong>如果对于图中<strong>任意两个顶点$v_i、v_j \in V$，$v_i$和$v_j$都是连通的，则称$G$是连通图。</strong></p>
-</blockquote>
-<p><strong>无向图中的极大连通子图称为连通分量</strong>。这个连通分量的前提条件有：</p>
+<h4 id="1-4-不相关的特征"><a href="#1-4-不相关的特征" class="headerlink" title="1.4 不相关的特征"></a>1.4 不相关的特征</h4><p>不相关的特征对于整个机器学习系统是有着反作用的效果，训练数据必须包含足够多的相关特征、非相关特征不多的情况下，才能训练出一个性能不错的模型。机器学习项目成功的关键之一是用好的特征进行训练。这个过程称作<strong>特征工程</strong>，包括：</p>
 <ul>
-<li>是子图；</li>
-<li>子图是要连通的；</li>
-<li>连通子图要有极大顶点数；</li>
-<li>具有极大顶点数的连通子图包含依附于这些顶点的所有边。</li>
+<li>特征选择：在所有存在的特征中选取最有用的特征进行训练。</li>
+<li>特征提取：组合存在的特征，生成一个更有用的特征（如前面看到的，可以使用降维算法）。</li>
+<li>收集新数据创建新特征。</li>
 </ul>
-<blockquote>
-<p>有向图$G$中，如果对于每一对$v_i,v_j \in V, v_i \neq v_j$,从$v_i$到$v_j$和从$v_j$到$v_i$都存在路径，则称$G$是<strong>强连通图</strong>。有向图中的<strong>极大强连通子图</strong>称做有向图的<strong>强连通分量</strong>。</p>
-</blockquote>
-<p>如下图所示，图1并不是强连通图，因为顶点A到顶点D存在路径，但不存在从顶点D到顶点A的路径。图2就是强连通图，而且显然图2是图1的极大强连通子图，即是它的强连通分量。</p>
-<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE8.png" alt=""></p>
-<p>接下来是连通图的生成树定义：</p>
-<blockquote>
-<p>一个连通图的生成树是一个极小的连通子图，它含有图中全部的n个顶点，但只有足以构成一棵树的 n-1 条边。</p>
-</blockquote>
-<p>如下图所示，图1是一个普通图，但是显然它不是生成树，当去掉两条构成环的边后，如图2或图3，就满足生成树的条件了，即n个顶点和n-1条边且连通的定义，它们都是一棵生成树。由此可以得知，<strong>如果一个图有n个顶点和小于n-1条边，则是非连通图；如果它多于n-1条边，则必定构成一个环。</strong>但有n-1条边也不一定是生成树，如图4。</p>
-<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE9.png" alt=""></p>
-<p>接下来是有向树的定义：</p>
-<blockquote>
-<p>如果一个有向图中<strong>恰有一个顶点的入度为0，其余顶点的入度均为1</strong>，则是一棵有向树。</p>
-</blockquote>
-<p>这里入度为0的顶点就相当于树的根结点，而其余顶点的入度都是1，是因为树的非根结点的双亲只有1个。</p>
-<blockquote>
-<p>一个有向图的生成森林由<strong>若干棵有向树组成，含有图中全部顶点</strong>，但<strong>只有足以构成若干棵不相交的有向树的弧。</strong></p>
-</blockquote>
-<p>如下图所示，图1是一个有向图，再去掉一些弧后，得到图2和图3，也就是分解成两棵有向树，即图2和图3，而这两棵有向树也是图1有向图的生成森林。</p>
-<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%9B%BE10.png" alt=""></p>
-<h5 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h5><p>图的基本定义就简单总结到这里，图的术语还是不比树的少，需要多看几遍，同时多使用，接下来会继续总结图的存储结构、遍历等知识点。</p>
+<h4 id="1-5-过拟合"><a href="#1-5-过拟合" class="headerlink" title="1.5 过拟合"></a>1.5 过拟合</h4><p>上述四种情况都是坏数据的情况，接下来是两种算法问题，也是机器学习最常见的两种算法方面的问题，过拟合和欠拟合。</p>
+<p>过拟合就是指算法模型在训练集上的性能非常好，但是泛化能力很差，即在测试集上的效果却很糟糕的情况。比如下图，采用一个高阶多项式回归模型来预测生活满意度和人均 GDP 的关系，很明显看出来，这个模型过拟合了训练数据，其预测效果并不会达到在训练数据上这么好的效果。</p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E8%BF%87%E6%8B%9F%E5%90%88%E7%A4%BA%E4%BE%8B.png" alt="过拟合示例"></p>
+<p>通常对于比较复杂的模型，比如深度神经网络，它能够检测和识别到数据中比较细微的规律和特征，但是如果训练集包含噪声，或者训练集数量太少（数量太少会引入样本噪声），这种情况下，模型同样会学习这种噪声，从而导致模型的泛化能力的下降。</p>
+<p>一般解决过拟合的方法有：</p>
+<ul>
+<li>简化模型，这包括了采用简单点的模型、减少特征数量以及限制模型，即采用正则化；</li>
+<li>增加训练数据</li>
+<li>减小训练数据的噪声，即数据清洗，比如修正数据错误和去除异常值等</li>
+</ul>
+<p>其中正则化方法是比较常用的方法，它的作用就是限制模型，不让模型过于复杂，从而降低过拟合的风险或者是缓和过拟合的程度。常用的正则化方法是 L2 和 L1 正则化。正则化方法通常会采用一个超参数来控制其限制模型的强度。超参数是一个学习算法的参数（而不是模型的）。这样，它是不会被学习算法本身影响的，它优于训练，在训练中是保持不变的。如何调节超参数也是构建一个机器学习算法模型非常重要的一个步骤，也是让性能能够进一步提升的做法。</p>
+<h4 id="1-6-欠拟合"><a href="#1-6-欠拟合" class="headerlink" title="1.6 欠拟合"></a>1.6 欠拟合</h4><p>欠拟合和过拟合刚好相反，它就是模型的性能非常差，在训练数据和测试数据上的性能都不好。</p>
+<p>通常也是因为模型过于简单，没有能够很好学习到数据的有效的相关的特征，解决方法有：</p>
+<ul>
+<li>选择一个更强大的模型，带有更多参数</li>
+<li>用更好的特征训练学习算法（特征工程）</li>
+<li>减小对模型的限制（比如，减小正则化超参数）</li>
+</ul>
+<h3 id="2-测试和评估"><a href="#2-测试和评估" class="headerlink" title="2. 测试和评估"></a>2. 测试和评估</h3><p>当训练好一个机器学习模型后，接下来就需要对模型进行预测和评估，判断得到的模型是否可用，是否还能进行提升，并进行错误分析等操作。</p>
+<p>一般在训练模型前，我们会将数据集分成两个集合，分别是训练集和测试集，通常 8:2 的比例，也就是 80% 的数据作为训练集，剩余是测试集。然后采用训练集训练模型，在测试集上用按照学习的问题采用对应评估指标评估模型的性能，比如分类问题，一般就是采用分类的准确率或者错误率作为评估的标准。</p>
+<p>但这种划分数据集的方法，存在一个问题，就是如果需要调节超参数，比如对于正则化的超参数、学习率等，继续采用测试集来进行评估不同超参数对模型性能的影响，这会导致最后在测试集上测试得到性能最好的模型，实际上是过拟合了测试集，那么模型的泛化能力也不会太好。</p>
+<p>所以，为了解决这个问题，我们还需要为调节超参数划分一个专门的数据集，测试集应该是用于测试最终得到的模型的性能。因此，我们再划分一个叫做验证集的数据集。</p>
+<p>一种做法是可以将所有数据按照一定比例划分为训练集、验证集和测试集，比如按照 6:2:2 的比例划分；当然更通常的做法是采用交叉验证：训练集分成互补的子集，每个模型用不同的子集训练，再用剩下的子集验证。一旦确定模型类型和超参数，最终的模型使用这些超参数和全部的训练集进行训练，用测试集得到推广误差率。</p>
+<h3 id="3-小结"><a href="#3-小结" class="headerlink" title="3. 小结"></a>3. 小结</h3><p>最后我们总结下：</p>
+<ol>
+<li><p>机器学习的四个主要挑战是</p>
+<ul>
+<li>数据量太少</li>
+<li>数据问题，包括没有代表性数据和质量差</li>
+<li>不相关特征</li>
+<li>模型过拟合或者欠拟合</li>
+</ul>
+</li>
+<li>过拟合的解法方法有：<ul>
+<li>简化模型，包括采用更简单的模型和更少的参数</li>
+<li>正则化方法降低模型的复杂度</li>
+<li>收集或者采用更大的数据集</li>
+<li>数据清洗，去除噪声和异常值等</li>
+</ul>
+</li>
+<li>欠拟合的解决方法：<ul>
+<li>采用更强大的模型，包含更多的参数和学习能力</li>
+<li>降低正则化的强度</li>
+<li>使用更好的特征提取方法，即使用或者改善特征工程的工作</li>
+</ul>
+</li>
+<li>采用交叉验证方法进行超参数条件和模型的选择</li>
+</ol>
+<p>以上就是本文的主要内容和总结，欢迎关注我的微信公众号—一个算法汪的技术成长之路或者扫描下方的二维码，和我分享你的建议和看法，指正文章中可能存在的错误，大家一起好好交流！</p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/qrcode_for_gh_207dddb4bd42_430.jpg" alt=""></p>
 
       
     </div>
@@ -479,7 +427,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/数据结构/" rel="tag">#数据结构</a>
+            <a href="/tags/技术/" rel="tag">#技术</a>
+          
+            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
           
             <a href="/tags/算法/" rel="tag">#算法</a>
           
@@ -490,17 +440,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/28/二叉树2/" rel="next" title="二叉树2">
-                <i class="fa fa-chevron-left"></i> 二叉树2
+              <a href="/2018/09/02/机器学习入门系列-1-机器学习概览-上/" rel="next" title="机器学习入门系列(1)--机器学习概览(上)">
+                <i class="fa fa-chevron-left"></i> 机器学习入门系列(1)--机器学习概览(上)
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/11/20/排序算法总结/" rel="prev" title="排序算法总结">
-                排序算法总结 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -526,8 +472,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/11/08/图的基本定义/"
-           data-title="图的基本定义" data-url="http://ccc013.github.io/2016/11/08/图的基本定义/">
+      <div class="ds-thread" data-thread-key="2018/09/02/机器学习入门系列-2-机器学习概览-下/"
+           data-title="机器学习入门系列(2)--机器学习概览(下)" data-url="http://ccc013.github.io/2018/09/02/机器学习入门系列-2-机器学习概览-下/">
       </div>
     
   </div>
@@ -716,7 +662,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#各种图定义"><span class="nav-number">1.</span> <span class="nav-text">各种图定义</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#图的顶点与边的关系"><span class="nav-number">2.</span> <span class="nav-text">图的顶点与边的关系</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#连通图相关术语"><span class="nav-number">3.</span> <span class="nav-text">连通图相关术语</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#小结"><span class="nav-number">4.</span> <span class="nav-text">小结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-机器学习的主要挑战"><span class="nav-number">1.</span> <span class="nav-text">1. 机器学习的主要挑战</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-训练数据量不足"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 训练数据量不足</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-没有代表性的训练数据"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 没有代表性的训练数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-3-低质量的数据"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 低质量的数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-4-不相关的特征"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 不相关的特征</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-5-过拟合"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 过拟合</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-6-欠拟合"><span class="nav-number">1.6.</span> <span class="nav-text">1.6 欠拟合</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-测试和评估"><span class="nav-number">2.</span> <span class="nav-text">2. 测试和评估</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-小结"><span class="nav-number">3.</span> <span class="nav-text">3. 小结</span></a></li></ol></div>
             
           </div>
         </section>
