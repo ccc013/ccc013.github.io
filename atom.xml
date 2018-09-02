@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Stay hungry, stay foolish]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://ccc013.github.io/"/>
-  <updated>2018-09-02T03:23:18.337Z</updated>
+  <updated>2018-09-02T03:34:01.353Z</updated>
   <id>http://ccc013.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://ccc013.github.io/2018/09/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97-2-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%A6%82%E8%A7%88-%E4%B8%8B/"/>
     <id>http://ccc013.github.io/2018/09/02/机器学习入门系列-2-机器学习概览-下/</id>
     <published>2018-09-02T03:04:09.000Z</published>
-    <updated>2018-09-02T03:23:18.337Z</updated>
+    <updated>2018-09-02T03:34:01.353Z</updated>
     <content type="html"><![CDATA[<p>这是本系列的第二篇，也是机器学习概览的下半部分。</p>
 <h3 id="1-机器学习的主要挑战"><a href="#1-机器学习的主要挑战" class="headerlink" title="1. 机器学习的主要挑战"></a>1. 机器学习的主要挑战</h3><p>在介绍基于模型学习算法的流程的时候，对于预测结果不好的问题分析，主要说了是数据问题还是模型问题，这同时也就是机器学习的效果不好的两个主要原因，即错误的数据和错误的算法。</p>
 <h4 id="1-1-训练数据量不足"><a href="#1-1-训练数据量不足" class="headerlink" title="1.1 训练数据量不足"></a>1.1 训练数据量不足</h4><p>第一个问题就是训练数据的数量问题，这是非常重要的问题。</p>
@@ -88,7 +88,7 @@
 </li>
 <li>采用交叉验证方法进行超参数条件和模型的选择</li>
 </ol>
-<p>以上就是本文的主要内容和总结，欢迎关注我的微信公众号—一个算法汪的技术成长之路或者扫描下方的二维码，和我分享你的建议和看法，指正文章中可能存在的错误，大家一起好好交流！</p>
+<p>以上就是本文的主要内容和总结，欢迎关注我的微信公众号—一个算法汪的技术成长之路或者扫描下方的二维码，和我分享你的建议和看法，指正文章中可能存在的错误，大家一起交流，学习和进步！</p>
 <p><img src="http://7xrluf.com1.z0.glb.clouddn.com/qrcode_for_gh_207dddb4bd42_430.jpg" alt=""></p>
 ]]></content>
     <summary type="html">
@@ -109,7 +109,7 @@
     <link href="http://ccc013.github.io/2018/09/02/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%85%A5%E9%97%A8%E7%B3%BB%E5%88%97-1-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%A6%82%E8%A7%88-%E4%B8%8A/"/>
     <id>http://ccc013.github.io/2018/09/02/机器学习入门系列-1-机器学习概览-上/</id>
     <published>2018-09-02T02:32:41.000Z</published>
-    <updated>2018-09-02T03:22:59.024Z</updated>
+    <updated>2018-09-02T03:33:47.761Z</updated>
     <content type="html"><![CDATA[<p>最近打算系统学习和整理机器学习方面的知识，会将之前看的 Andrew Ng 在 course 课程笔记以及最近看的书籍《hands-on-ml-with-sklearn-and-tf》结合起来，简单总结下机器学习的常用算法，由于数学功底有限，所以可能不会也暂时不能过多深入公式和算法原理，所以就做成一个入门系列吧。</p>
 <p>这是本系列的第一篇，也是机器学习概览的上半部分。</p>
 <h3 id="1-什么是机器学习"><a href="#1-什么是机器学习" class="headerlink" title="1 . 什么是机器学习"></a>1 . 什么是机器学习</h3><p>简单的定义，<strong>机器学习是通过编程让计算机从数据中进行学习的科学（和艺术）</strong>。</p>
@@ -251,7 +251,7 @@
 <li>最常见的监督学习任务是分类和回归；</li>
 <li>常见的非监督学习任务是聚类、降维、异常值检测和关联规则学习；</li>
 </ol>
-<p>以上就是本文的主要内容和总结，欢迎关注我的微信公众号—一个算法汪的技术成长之路或者扫描下方的二维码，和我分享你的建议和看法，指正文章中可能存在的错误，大家一起好好交流！</p>
+<p>以上就是本文的主要内容和总结，欢迎关注我的微信公众号—一个算法汪的技术成长之路或者扫描下方的二维码，和我分享你的建议和看法，指正文章中可能存在的错误，大家一起交流，学习和进步！</p>
 <p><img src="http://7xrluf.com1.z0.glb.clouddn.com/qrcode_for_gh_207dddb4bd42_430.jpg" alt=""></p>
 ]]></content>
     <summary type="html">
