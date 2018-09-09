@@ -1,0 +1,968 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Python,实战,技术," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Cai's blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon/favicon.png?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="本文大约 2000 字，阅读大约需要 6 分钟
+
+我们知道图片除了最普通的彩色图，还有很多类型，比如素描、卡通、黑白等等，今天就介绍如何使用 Python 和 Opencv 来实现图片变素描图。
+主要参考这篇文章来实现—How to create a beautiful pencil sketch effect with OpenCV and Python
+简介如何将图片转换成素描图呢，只需要下面">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[实战]三行代码生成一张素描图片">
+<meta property="og:url" content="http://ccc013.github.io/2018/09/09/实战-三行代码生成一张素描图片/index.html">
+<meta property="og:site_name" content="Cai's blog">
+<meta property="og:description" content="本文大约 2000 字，阅读大约需要 6 分钟
+
+我们知道图片除了最普通的彩色图，还有很多类型，比如素描、卡通、黑白等等，今天就介绍如何使用 Python 和 Opencv 来实现图片变素描图。
+主要参考这篇文章来实现—How to create a beautiful pencil sketch effect with OpenCV and Python
+简介如何将图片转换成素描图呢，只需要下面">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/example.jpg">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/rgb2sketch_example1.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/rgb2sketch_example2.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/rgb2sketch_example3.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/rgb2sketch_example4.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/rgb2sketch_example5.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/rgb2sketch_example6.png">
+<meta property="og:image" content="http://7xrluf.com1.z0.glb.clouddn.com/FqsJIpKGsF3-Qbu7bfQjzG-l0Ro9">
+<meta property="og:updated_time" content="2018-09-09T05:46:54.193Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[实战]三行代码生成一张素描图片">
+<meta name="twitter:description" content="本文大约 2000 字，阅读大约需要 6 分钟
+
+我们知道图片除了最普通的彩色图，还有很多类型，比如素描、卡通、黑白等等，今天就介绍如何使用 Python 和 Opencv 来实现图片变素描图。
+主要参考这篇文章来实现—How to create a beautiful pencil sketch effect with OpenCV and Python
+简介如何将图片转换成素描图呢，只需要下面">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 5881344,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> [实战]三行代码生成一张素描图片 | Cai's blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1257376919&web_id=1257376919" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <!-- add Fork me on Github -->
+    <a href="https://github.com/ccc013"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
+
+    <!--add Fork me on Github  -->
+    
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Cai's blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Stay hungry, stay foolish</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/abou" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                [实战]三行代码生成一张素描图片
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-09-09T13:45:41+08:00" content="2018-09-09">
+              2018-09-09
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2018/09/09/实战-三行代码生成一张素描图片/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/09/09/实战-三行代码生成一张素描图片/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2018/09/09/实战-三行代码生成一张素描图片/" class="leancloud_visitors" data-flag-title="[实战]三行代码生成一张素描图片">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>本文大约 2000 字，阅读大约需要 6 分钟</p>
+</blockquote>
+<p>我们知道图片除了最普通的彩色图，还有很多类型，比如素描、卡通、黑白等等，今天就介绍如何使用 Python 和 Opencv 来实现图片变素描图。</p>
+<p>主要参考这篇文章来实现—<a href="http://www.askaswiss.com/2016/01/how-to-create-pencil-sketch-opencv-python.html" target="_blank" rel="external">How to create a beautiful pencil sketch effect with OpenCV and Python</a></p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>如何将图片转换成素描图呢，只需要下面四个步骤即可：</p>
+<ol>
+<li>首先将彩色图转换成灰度图；</li>
+<li>对灰度图进行求其反色的操作；</li>
+<li>对第2步得到的结果采用一个高斯模糊的操作；</li>
+<li>采用颜色亮化(color dodge)的技术将第一步的灰度图和第三步操作后的图片进行混合。</li>
+</ol>
+<p>事先准备，首先是安装好 opencv，可以直接通过 pip 进行安装：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install opencv-python</span><br></pre></td></tr></table></figure>
+<p>接着准备一张图片，最好是颜色鲜明一点的图片，方便对比转换的效果。</p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/example.jpg" alt="原图"></p>
+<h4 id="第一步：彩色图变灰度图"><a href="#第一步：彩色图变灰度图" class="headerlink" title="第一步：彩色图变灰度图"></a>第一步：彩色图变灰度图</h4><p>第一步变成灰度图，其实非常简单，直接调用 opencv 的函数即可，如下面代码所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"></span><br><span class="line">img_rgb = cv2.imread(<span class="string">'example.jpg'</span>)</span><br><span class="line">img_gray = cv2.cvtColor(img_rgb, cv2.COLOR_BGR2GRAY)</span><br></pre></td></tr></table></figure>
+<p>图片转换效果如下所示：</p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/rgb2sketch_example1.png" alt="图片转灰度图"></p>
+<p>上面的代码是读取图片后，再通过调用<code>cv2.cvtColor</code>函数将图片转换成灰度图，实际上我们可以直接在读取图片时候就直接转换图片，即：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">img_gray = cv2.imread(<span class="string">'example.jpg'</span>, cv2.IMREAD_GRAYSCALE)</span><br></pre></td></tr></table></figure>
+<p>这里调用<code>cv2.imread</code>函数时，设置了<code>cv2.IMREAD_GRAYSCALE</code>的标志，表示加载灰度图。在<code>imread</code>函数中是设置了三种标志，分别是</p>
+<ul>
+<li>cv2.IMREAD_COLOR : 默认使用该种标识。加载一张彩色图片，忽视它的透明度。</li>
+<li>cv2.IMREAD_GRAYSCALE : 加载一张灰度图。</li>
+<li>cv2.IMREAD_UNCHANGED : 加载图像，包括它的Alpha 通道(Alpha 表示图片的透明度)。   </li>
+</ul>
+<p>另外，如果觉得以上标志太长，可以简单使用 1，0，-1 代替，效果是相同的。</p>
+<h4 id="第二步：灰度图进行反色操作"><a href="#第二步：灰度图进行反色操作" class="headerlink" title="第二步：灰度图进行反色操作"></a>第二步：灰度图进行反色操作</h4><p>第二步就是对灰度图进行反色操作，其实就是非常简单的采用灰度图的最大像素值 255 减去当前像素值即可（因为灰度图的范围是[0, 255]），代码如下所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">img_gray_inv = <span class="number">255</span> - img_gray</span><br></pre></td></tr></table></figure>
+<p>结果如下所示：</p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/rgb2sketch_example2.png" alt="灰度图反色"></p>
+<p>其实就是原本比较暗的地方变光亮了，而比较亮的地方变暗了。</p>
+<h4 id="第三步：高斯模糊"><a href="#第三步：高斯模糊" class="headerlink" title="第三步：高斯模糊"></a>第三步：高斯模糊</h4><p>高斯模糊操作是一个有效减少图片噪音以及对图片进行平滑操作的方法，在数学上等价于对图像采用高斯核进行卷积的操作。我们可以直接调用<code>cv2.GaussianBlur</code>来实现高斯模糊操作，这里需要设置参数<code>ksize</code>，表示高斯核的大小，<code>sigmaX</code>和<code>sigmaY</code>分别表示高斯核在 X 和 Y 方向上的标准差。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">img_blur = cv2.GaussianBlur(img_gray_inv, ksize=(<span class="number">21</span>, <span class="number">21</span>),</span><br><span class="line">                            sigmaX=<span class="number">0</span>, sigmaY=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<p>效果如下所示，右边图是进行高斯模糊后的结果，是有了一定的模糊效果。</p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/rgb2sketch_example3.png" alt="高斯模糊"></p>
+<h4 id="第四步：混合操作"><a href="#第四步：混合操作" class="headerlink" title="第四步：混合操作"></a>第四步：混合操作</h4><p>第四步，就是见证奇迹的时刻！这一步骤自然就是需要得到最终的素描图结果了。在传统照相技术中，当需要对图片某个区域变得更亮或者变暗，可以通过控制它的曝光时间，这里就用到亮化(Dodging)和暗化(burning)的技术。</p>
+<p>在现代图像编辑工具，比如 PS 可以实现上述说的两种技术。比如对于颜色亮化技术，给定一张图片 A 和 蒙版 B，那么实现做法如下所示：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(B[idx] == 255)?B[idx]:min(255, ((A[idx] &lt;&lt; 8) / (255-B[idx])))</span><br></pre></td></tr></table></figure>
+<p>通过 python 代码实现上述公式，那么原始代码如下所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dodgeNaive</span><span class="params">(image, mask)</span>:</span></span><br><span class="line">    <span class="comment"># determine the shape of the input image</span></span><br><span class="line">    width, height = image.shape[:<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># prepare output argument with same size as image</span></span><br><span class="line">    blend = np.zeros((width, height), np.uint8)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> col <span class="keyword">in</span> range(width):</span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> range(height):</span><br><span class="line">            <span class="comment"># do for every pixel</span></span><br><span class="line">            <span class="keyword">if</span> mask[col, row] == <span class="number">255</span>:</span><br><span class="line">                <span class="comment"># avoid division by zero</span></span><br><span class="line">                blend[col, row] = <span class="number">255</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="comment"># shift image pixel value by 8 bits</span></span><br><span class="line">                <span class="comment"># divide by the inverse of the mask</span></span><br><span class="line">                tmp = (image[col, row] &lt;&lt; <span class="number">8</span>) / (<span class="number">255</span> - mask)</span><br><span class="line"></span><br><span class="line">                <span class="comment"># make sure resulting value stays within bounds</span></span><br><span class="line">                <span class="keyword">if</span> tmp &gt; <span class="number">255</span>:</span><br><span class="line">                    tmp = <span class="number">255</span></span><br><span class="line">                    blend[col, row] = tmp</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> blend</span><br></pre></td></tr></table></figure>
+<p>上述代码虽然实现了这个功能，但是很明显会非常耗时，中间采用了一个两层循环，计算复杂度是 O(w*h) ，也就是如果图片的宽和高的乘积越大，耗时就越长，所以就有了升级版的代码版本：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dodgeV2</span><span class="params">(image, mask)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> cv2.divide(image, <span class="number">255</span> - mask, scale=<span class="number">256</span>)</span><br></pre></td></tr></table></figure>
+<p>运行上述代码，得到的最终结果如下所示：</p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/rgb2sketch_example4.png" alt="素描图"></p>
+<p>效果看起来还可以，除了右下角部分对于原图中黑色区域处理得不是很好。</p>
+<p>而另一种技术—-暗化操作的代码如下所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">burnV2</span><span class="params">(image, mask)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">255</span> - cv2.divide(<span class="number">255</span> - image, <span class="number">255</span> - mask, scale=<span class="number">256</span>)</span><br></pre></td></tr></table></figure>
+<p>效果如下图所示：</p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/rgb2sketch_example5.png" alt="burning"></p>
+<p>完整版代码如下所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dodgeNaive</span><span class="params">(image, mask)</span>:</span></span><br><span class="line">    <span class="comment"># determine the shape of the input image</span></span><br><span class="line">    width, height = image.shape[:<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># prepare output argument with same size as image</span></span><br><span class="line">    blend = np.zeros((width, height), np.uint8)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> col <span class="keyword">in</span> range(width):</span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> range(height):</span><br><span class="line">            <span class="comment"># do for every pixel</span></span><br><span class="line">            <span class="keyword">if</span> mask[col, row] == <span class="number">255</span>:</span><br><span class="line">                <span class="comment"># avoid division by zero</span></span><br><span class="line">                blend[col, row] = <span class="number">255</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="comment"># shift image pixel value by 8 bits</span></span><br><span class="line">                <span class="comment"># divide by the inverse of the mask</span></span><br><span class="line">                tmp = (image[col, row] &lt;&lt; <span class="number">8</span>) / (<span class="number">255</span> - mask)</span><br><span class="line">                <span class="comment"># print('tmp=&#123;&#125;'.format(tmp.shape))</span></span><br><span class="line">                <span class="comment"># make sure resulting value stays within bounds</span></span><br><span class="line">                <span class="keyword">if</span> tmp.any() &gt; <span class="number">255</span>:</span><br><span class="line">                    tmp = <span class="number">255</span></span><br><span class="line">                    blend[col, row] = tmp</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> blend</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dodgeV2</span><span class="params">(image, mask)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> cv2.divide(image, <span class="number">255</span> - mask, scale=<span class="number">256</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">burnV2</span><span class="params">(image, mask)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">255</span> - cv2.divide(<span class="number">255</span> - image, <span class="number">255</span> - mask, scale=<span class="number">256</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rgb_to_sketch</span><span class="params">(src_image_name, dst_image_name)</span>:</span></span><br><span class="line">    img_rgb = cv2.imread(src_image_name)</span><br><span class="line">    img_gray = cv2.cvtColor(img_rgb, cv2.COLOR_BGR2GRAY)</span><br><span class="line">    <span class="comment"># 读取图片时直接转换操作</span></span><br><span class="line">    <span class="comment"># img_gray = cv2.imread('example.jpg', cv2.IMREAD_GRAYSCALE)</span></span><br><span class="line"></span><br><span class="line">    img_gray_inv = <span class="number">255</span> - img_gray</span><br><span class="line">    img_blur = cv2.GaussianBlur(img_gray_inv, ksize=(<span class="number">21</span>, <span class="number">21</span>),</span><br><span class="line">                                sigmaX=<span class="number">0</span>, sigmaY=<span class="number">0</span>)</span><br><span class="line">    img_blend = dodgeV2(img_gray, img_blur)</span><br><span class="line"></span><br><span class="line">    cv2.imshow(<span class="string">'original'</span>, img_rgb)</span><br><span class="line">    cv2.imshow(<span class="string">'gray'</span>, img_gray)</span><br><span class="line">    cv2.imshow(<span class="string">'gray_inv'</span>, img_gray_inv)</span><br><span class="line">    cv2.imshow(<span class="string">'gray_blur'</span>, img_blur)</span><br><span class="line">    cv2.imshow(<span class="string">"pencil sketch"</span>, img_blend)</span><br><span class="line">    cv2.waitKey(<span class="number">0</span>)</span><br><span class="line">    cv2.destroyAllWindows()</span><br><span class="line">    cv2.imwrite(dst_image_name, img_blend)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    src_image_name = <span class="string">'example.jpg'</span></span><br><span class="line">    dst_image_name = <span class="string">'sketch_example.jpg'</span></span><br><span class="line">    rgb_to_sketch(src_image_name, dst_image_name)</span><br></pre></td></tr></table></figure>
+<p>最后，还有一种更加快速的实现，代码如下所示，仅需四行代码即可实现转换成素描图的效果。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rgb_to_sketch_v2</span><span class="params">(src_image_name)</span>:</span></span><br><span class="line">    img_gray = cv2.imread(src_image_name, <span class="number">0</span>)</span><br><span class="line">    img_blur = cv2.GaussianBlur(img_gray, (<span class="number">21</span>, <span class="number">21</span>), <span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line">    img_blend = cv2.divide(img_gray, img_blur, scale=<span class="number">256</span>)</span><br><span class="line">    img_result = cv2.cvtColor(img_blend, cv2.COLOR_GRAY2BGR)</span><br></pre></td></tr></table></figure>
+<p>最后用本人比较喜欢的一个女演员的照片来看看这个转换的效果：</p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/rgb2sketch_example6.png" alt=""></p>
+<p>效果还是挺不错的！</p>
+<p>以上就是本文的主要内容和总结，欢迎关注我的微信公众号—一个算法汪的技术成长之路或者扫描下方的二维码，和我分享你的建议和看法，指正文章中可能存在的错误，大家一起交流，学习和进步！</p>
+<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/FqsJIpKGsF3-Qbu7bfQjzG-l0Ro9" alt=""></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag">#Python</a>
+          
+            <a href="/tags/实战/" rel="tag">#实战</a>
+          
+            <a href="/tags/技术/" rel="tag">#技术</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/09/02/机器学习入门系列-2-机器学习概览-下/" rel="next" title="机器学习入门系列(2)--机器学习概览(下)">
+                <i class="fa fa-chevron-left"></i> 机器学习入门系列(2)--机器学习概览(下)
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2018/09/09/实战-三行代码生成一张素描图片/"
+           data-title="[实战]三行代码生成一张素描图片" data-url="http://ccc013.github.io/2018/09/09/实战-三行代码生成一张素描图片/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/favicon.png"
+               alt="cai" />
+          <p class="site-author-name" itemprop="name">cai</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">34</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ccc013" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2181051220?is_all=1" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/luo-cai" target="_blank" title="Zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Zhihu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net/lc013?viewmode=contents" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  CSDN
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/lmj623565791" title="张鸿洋的博客" target="_blank">张鸿洋的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/guolin_blog" title="郭霖的博客" target="_blank">郭霖的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/singwhatiwanna/article/category/1405419" title="任玉刚" target="_blank">任玉刚</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/Luoshengyang/" title="罗升阳" target="_blank">罗升阳</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://hukai.me/" title="胡凯" target="_blank">胡凯</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.daimajia.com/" title="代码家" target="_blank">代码家</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://hujiaweibujidao.github.io/" title="HujiaweiBujidao" target="_blank">HujiaweiBujidao</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.liaoxuefeng.com/" title="廖雪峰的博客" target="_blank">廖雪峰的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://drakeet.me/" title="Drakeet的个人博客" target="_blank">Drakeet的个人博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.kymjs.com/" title="张涛-开源实验室" target="_blank">张涛-开源实验室</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://gudong.name/" title="咕咚" target="_blank">咕咚</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一步：彩色图变灰度图"><span class="nav-number">1.1.</span> <span class="nav-text">第一步：彩色图变灰度图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二步：灰度图进行反色操作"><span class="nav-number">1.2.</span> <span class="nav-text">第二步：灰度图进行反色操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第三步：高斯模糊"><span class="nav-number">1.3.</span> <span class="nav-text">第三步：高斯模糊</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第四步：混合操作"><span class="nav-number">1.4.</span> <span class="nav-text">第四步：混合操作</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cai</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  
+</div>
+
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"cai"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+      
+      <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+      <script src="/js/src/hook-duoshuo.js"></script>
+    
+  
+
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("gmEY36PtfOmueA7roORTu2He-gzGzoHsz", "mzEkjGKehJYxfp1PrU0TYsW3");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+</body>
+</html>
