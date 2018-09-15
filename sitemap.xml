@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://ccc013.github.io/2016/01/26/hexo%E5%8D%9A%E5%AE%A2%E7%9A%84%E4%BC%98%E5%8C%96%E4%B8%8E%E9%85%8D%E7%BD%AE/</loc>
+    <lastmod>2018-09-15T12:07:08.735Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://ccc013.github.io/2018/09/09/%E5%AE%9E%E6%88%98-%E5%9B%9B%E8%A1%8C%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90%E4%B8%80%E5%BC%A0%E7%B4%A0%E6%8F%8F%E5%9B%BE%E7%89%87/</loc>
     <lastmod>2018-09-09T06:28:01.748Z</lastmod>
   </url>
@@ -169,11 +174,6 @@
   <url>
     <loc>http://ccc013.github.io/tags/index.html</loc>
     <lastmod>2016-05-17T15:04:38.784Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://ccc013.github.io/2016/01/26/hexo%E5%8D%9A%E5%AE%A2%E7%9A%84%E4%BC%98%E5%8C%96%E4%B8%8E%E9%85%8D%E7%BD%AE/</loc>
-    <lastmod>2016-01-26T09:23:09.580Z</lastmod>
   </url>
   
   <url>

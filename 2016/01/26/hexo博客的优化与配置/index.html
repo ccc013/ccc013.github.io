@@ -120,7 +120,7 @@ CNZZ|站长统计
 360搜索站长平台
 
 感觉站长工具会比较详细点，所以就采用站长工具，用的是cnzz的，参考了hex">
-<meta property="og:updated_time" content="2016-01-26T09:23:09.580Z">
+<meta property="og:updated_time" content="2018-09-15T12:07:08.735Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo博客的优化与配置">
 <meta name="twitter:description" content="添加统计代码上周成功用Hexo+Github Pages搭建好博客，但是还有很多功能等待添加的,今天就继续进行优化，首先是添加统计代码，数据统计方面有以下几个:
@@ -363,7 +363,7 @@ CNZZ|站长统计
       
 
       
-        <h1 id="添加统计代码"><a href="#添加统计代码" class="headerlink" title="添加统计代码"></a>添加统计代码</h1><p>上周成功用Hexo+Github Pages搭建好博客，但是还有很多功能等待添加的,今天就继续进行优化，首先是添加统计代码，数据统计方面有以下几个:</p>
+        <h2 id="添加统计代码"><a href="#添加统计代码" class="headerlink" title="添加统计代码"></a>添加统计代码</h2><p>上周成功用Hexo+Github Pages搭建好博客，但是还有很多功能等待添加的,今天就继续进行优化，首先是添加统计代码，数据统计方面有以下几个:</p>
 <ol>
 <li><a href="http://www.google.com/analytics/web/?hl=zh-CN" target="_blank" rel="external">Google Analytics</a></li>
 <li><a href="http://tongji.baidu.com/web/welcome/login" target="_blank" rel="external">百度统计</a></li>
@@ -393,6 +393,19 @@ cnzz: true
 <p>最后在after_footer.ejs（或者footer，或head，可以自己选择需要出现站长统计的位置）的后面添加一行代码即可:</p>
 <pre><code>&lt;%- partial(&#39;cnzz&#39;) %&gt; 
 </code></pre><p>这样就可以了，然后就执行<code>hexo generate</code>,<code>hexo deploy</code>发布网站即可。</p>
+<h2 id="添加评论功能"><a href="#添加评论功能" class="headerlink" title="添加评论功能"></a>添加评论功能</h2><p>更新于 2018-09-15</p>
+<p>最近因为多说评论关闭了，所以需要选择新的第三方评论系统。主要参考文章有：</p>
+<ol>
+<li><a href="https://blog.smoker.cc/web/add-comments-livere-for-hexo-theme-next.html" target="_blank" rel="external">为 Hexo 博客主题 NexT 添加 LiveRe 评论支持</a></li>
+<li><a href="https://blog.csdn.net/qq_32454537/article/details/79482879" target="_blank" rel="external">Hexo-NexT主题添加评论功能（来必力、Hypercomments、畅言、友言）</a></li>
+<li><a href="https://blog.csdn.net/calvin_zhou/article/details/78820718" target="_blank" rel="external">hexo加入留言功能</a></li>
+</ol>
+<p>最终选择采用<strong>来必力</strong>这个第三方评论系统。因为用的 next 主题是之前下载的，没有更新到最新版可以支持这个评论系统，所以先根据第一篇参考文章配置。</p>
+<h2 id="添加动态背景"><a href="#添加动态背景" class="headerlink" title="添加动态背景"></a>添加动态背景</h2><p>参考文章：</p>
+<ol>
+<li><a href="https://www.jianshu.com/p/b20fc983005f" target="_blank" rel="external">Hexo设置主题以及Next主题个性设置</a></li>
+</ol>
+<p>根据上述文章添加了动态的背景。</p>
 
       
     </div>
@@ -651,7 +664,7 @@ cnzz: true
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#添加统计代码"><span class="nav-number">1.</span> <span class="nav-text">添加统计代码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#添加统计代码"><span class="nav-number">1.</span> <span class="nav-text">添加统计代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加评论功能"><span class="nav-number">2.</span> <span class="nav-text">添加评论功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加动态背景"><span class="nav-number">3.</span> <span class="nav-text">添加动态背景</span></a></li></ol></div>
             
           </div>
         </section>
