@@ -283,7 +283,7 @@ cnzz_siteid: 1257376919
 
 # # Support for LiveRe comments system.
 # # You can get your uid from https://livere.com/insight/myCode (General web site)
-# livere_uid: MTAyMC8zOTcyOC8xNjI1NQ==
+livere_uid: MTAyMC8zOTcyOC8xNjI1NQ==
 
 # Make duoshuo show UA
 # user_id must NOT be null when admin_enable is true!
