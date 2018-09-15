@@ -5,8 +5,8 @@ tags:
 - Hexo
 - 技术
 ---
-添加统计代码
-========
+
+## 添加统计代码
 
 上周成功用Hexo+Github Pages搭建好博客，但是还有很多功能等待添加的,今天就继续进行优化，首先是添加统计代码，数据统计方面有以下几个:
 
@@ -43,5 +43,26 @@ tags:
 最后在after_footer.ejs（或者footer，或head，可以自己选择需要出现站长统计的位置）的后面添加一行代码即可:
 
     <%- partial('cnzz') %> 
-
 这样就可以了，然后就执行`hexo generate`,`hexo deploy`发布网站即可。
+
+## 添加评论功能
+
+更新于 2018-09-15
+
+最近因为多说评论关闭了，所以需要选择新的第三方评论系统。主要参考文章有：
+
+1. [为 Hexo 博客主题 NexT 添加 LiveRe 评论支持](https://blog.smoker.cc/web/add-comments-livere-for-hexo-theme-next.html)
+2. [Hexo-NexT主题添加评论功能（来必力、Hypercomments、畅言、友言）](https://blog.csdn.net/qq_32454537/article/details/79482879)
+3. [hexo加入留言功能](https://blog.csdn.net/calvin_zhou/article/details/78820718)
+
+最终选择采用**来必力**这个第三方评论系统。因为用的 next 主题是之前下载的，没有更新到最新版可以支持这个评论系统，所以先根据第一篇参考文章配置。
+
+
+
+## 添加动态背景
+
+参考文章：
+
+1. [Hexo设置主题以及Next主题个性设置](https://www.jianshu.com/p/b20fc983005f)
+
+根据上述文章添加了动态的背景。
