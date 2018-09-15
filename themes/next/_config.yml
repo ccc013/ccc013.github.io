@@ -3,7 +3,7 @@
 # ---------------------------------------------------------------
 
 # Put your favicon.ico into `hexo-site/source/` directory.
-favicon: images/favicon/favicon.png
+favicon: images/favicon/icon_code.jpg
 
 # Set default keywords (Use a comma to separate)
 keywords: "Hello, world!"
@@ -226,7 +226,7 @@ auto_excerpt:
 
 
 # Wechat Subscriber
-#wechat_subscriber:
+wechat_subscriber:
   enabled: true
   qcode: http://7xrluf.com1.z0.glb.clouddn.com/FqsJIpKGsF3-Qbu7bfQjzG-l0Ro9
   description: 欢迎扫描我的二维码关注我的微信公众号！
@@ -281,6 +281,8 @@ duoshuo_shortname: cai
 # CNZZ count
 cnzz_siteid: 1257376919
 
+# liveRe comment system
+livere_uid: MTAyMC8zOTcyOC8xNjI1NQ==
 
 # Make duoshuo show UA
 # user_id must NOT be null when admin_enable is true!
