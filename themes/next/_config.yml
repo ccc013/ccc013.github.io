@@ -226,10 +226,10 @@ auto_excerpt:
 
 
 # Wechat Subscriber
-wechat_subscriber:
-  enabled: true
-  qcode: http://7xrluf.com1.z0.glb.clouddn.com/FqsJIpKGsF3-Qbu7bfQjzG-l0Ro9
-  description: 欢迎扫描我的二维码关注我的微信公众号！
+# wechat_subscriber:
+#   enabled: true
+#   qcode: http://7xrluf.com1.z0.glb.clouddn.com/FqsJIpKGsF3-Qbu7bfQjzG-l0Ro9
+#   description: 欢迎扫描我的二维码关注我的微信公众号！
 
 
 
@@ -252,7 +252,7 @@ mathjax:
 #baidu_analytics:
 
 # Duoshuo ShortName
-duoshuo_shortname: cai
+# duoshuo_shortname: cai
 
 # Disqus
 #disqus_shortname:
@@ -281,17 +281,18 @@ duoshuo_shortname: cai
 # CNZZ count
 cnzz_siteid: 1257376919
 
-# liveRe comment system
-livere_uid: MTAyMC8zOTcyOC8xNjI1NQ==
+# # Support for LiveRe comments system.
+# # You can get your uid from https://livere.com/insight/myCode (General web site)
+# livere_uid: MTAyMC8zOTcyOC8xNjI1NQ==
 
 # Make duoshuo show UA
 # user_id must NOT be null when admin_enable is true!
 # you can visit http://dev.duoshuo.com get duoshuo user id.
-duoshuo_info:
-  ua_enable: true
-  admin_enable: true
-  user_id: 5881344
-  admin_nickname: 博主
+# duoshuo_info:
+#   ua_enable: true
+#   admin_enable: true
+#   user_id: 5881344
+#   admin_nickname: 博主
 
 
 # Facebook SDK Support.
@@ -398,3 +399,11 @@ images: images
 
 # Theme version
 version: 5.0.1
+
+
+# --------------------------------------------------------------
+# background settings
+# --------------------------------------------------------------
+# add canvas-nest effect
+# see detail from https://github.com/hustcc/canvas-nest.js
+canvas_nest: true

@@ -94,3 +94,7 @@ deploy:
   type: git
   repo: git@github.com:ccc013/ccc013.github.io.git
   branch: master
+
+# Support for LiveRe comments system.
+# You can get your uid from https://livere.com/insight/myCode (General web site)
+livere_uid: MTAyMC8zOTcyOC8xNjI1NQ==
