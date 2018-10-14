@@ -5,7 +5,7 @@
 
 - 我的微信公众号--一个算法汪的技术成长之路，也可以扫描下方的二维码关注：
 
-  ![公众号二维码](http://7xrluf.com1.z0.glb.clouddn.com/qrcode_for_gh_207dddb4bd42_430.jpg)
+  ![公众号二维码](https://github.com/ccc013/Study-Notes/blob/master/Images/qrcode_new.jpg)
 
 - [我的个人博客](http://ccc013.github.io)
 
