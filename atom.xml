@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Stay hungry, stay foolish]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://ccc013.github.io/"/>
-  <updated>2018-10-14T12:45:54.593Z</updated>
+  <updated>2018-10-14T12:49:17.472Z</updated>
   <id>http://ccc013.github.io/</id>
   
   <author>
@@ -19,7 +19,7 @@
     <link href="http://ccc013.github.io/2018/10/14/%E5%AE%9E%E6%88%98-%E5%88%B6%E4%BD%9C%E7%AE%80%E5%8D%95%E7%9A%84%E5%85%AC%E4%BC%97%E5%8F%B7%E4%BA%8C%E7%BB%B4%E7%A0%81%E5%85%B3%E6%B3%A8%E5%9B%BE/"/>
     <id>http://ccc013.github.io/2018/10/14/实战-制作简单的公众号二维码关注图/</id>
     <published>2018-10-14T12:42:49.000Z</published>
-    <updated>2018-10-14T12:45:54.593Z</updated>
+    <updated>2018-10-14T12:49:17.472Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>本文大约 1933 字，阅读大约需要  6 分钟</p>
 </blockquote>
@@ -82,7 +82,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">FONT_DICT = &#123;<span class="string">'宋体'</span>: <span class="string">'songti.ttc'</span>,</span><br><span class="line">             <span class="string">'微软雅黑1'</span>: <span class="string">'msyh.ttc'</span>,</span><br><span class="line">             <span class="string">'微软雅黑2'</span>: <span class="string">'msyhbd.ttc'</span>,</span><br><span class="line">             <span class="string">'微软雅黑3'</span>: <span class="string">'msyhl.ttc'</span>&#125;</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">draw_text</span><span class="params">(self, image, x, y, text, font_size=<span class="number">15</span>, font_style=<span class="string">'normal'</span>,font=None,  text_alignment=<span class="string">'left'</span>,text_color=<span class="string">'Black'</span>, filename=None, is_display=False)</span>:</span></span><br><span class="line">    draw = Drawing()</span><br><span class="line"> 	<span class="keyword">if</span> font <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">        draw.font = font</span><br><span class="line">    draw.fill_color = Color(text_color)</span><br><span class="line">    draw.font_size = font_size</span><br><span class="line">    draw.font_style = font_style</span><br><span class="line">    draw.text_alignment = text_alignment</span><br><span class="line">    draw.text(x, y, text)</span><br><span class="line">    draw(image)</span><br><span class="line">    <span class="keyword">if</span> is_display:</span><br><span class="line">        display(image)</span><br><span class="line">    <span class="keyword">if</span> filename <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">        image.save(filename=filename)</span><br><span class="line">    <span class="keyword">return</span> image</span><br></pre></td></tr></table></figure>
 <p>最终合成的结果如下：</p>
 <p><img src="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/qrcode_new.jpg" alt=""></p>
-<p>完整代码可以到我的Github上查看—<a href="https://github.com/ccc013/CodingPractise/blob/master/Python/Fun_Project/image_composition/image_composition.py" target="_blank" rel="external">https://github.com/ccc013/CodingPractise/blob/master/Python/Fun_Project/image_composition/image_composition.py</a></p>
+<p>完整代码可以到我的Github上查看—<a href="https://github.com/ccc013/CodingPractise/blob/master/Python/Fun_Project/image_composition/image_composition.py" target="_blank" rel="external">image_composition.py</a></p>
 <h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>这次的实战练习其实非常简单，唯一比较有困难的就是解决如何添加中文的文字了，但是还是非常实用的，熟练学会这个<code>Wand</code>后，就可以自己合成各种图片了，并且添加文字或者是其他图形等，具体可以查阅官方文档。</p>
 <p>本文参考文章：</p>
 <blockquote>
