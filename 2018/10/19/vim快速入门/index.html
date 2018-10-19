@@ -1,0 +1,937 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Linux,vim," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="一个算法汪的日常" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon/icon_code.jpg?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="本文大约 5000 字， 阅读大约需要  10 分钟
+
+在 Linux 下最常使用的文本编辑器就是 vi 或者 vim 了，如果能很好掌握这个编辑器，非常有利于我们更好的在 Linux 下面进行编程开发。
+vim 和 viVim是从 vi 发展出来的一个文本编辑器。代码补完、编译及错误跳转等方便编程的功能特别丰富，在程序员中被广泛使用。
+简单的来说， vi 是老式的字处理器，不过功能已经很齐全了，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vim快速入门">
+<meta property="og:url" content="http://ccc013.github.io/2018/10/19/vim快速入门/index.html">
+<meta property="og:site_name" content="一个算法汪的日常">
+<meta property="og:description" content="本文大约 5000 字， 阅读大约需要  10 分钟
+
+在 Linux 下最常使用的文本编辑器就是 vi 或者 vim 了，如果能很好掌握这个编辑器，非常有利于我们更好的在 Linux 下面进行编程开发。
+vim 和 viVim是从 vi 发展出来的一个文本编辑器。代码补完、编译及错误跳转等方便编程的功能特别丰富，在程序员中被广泛使用。
+简单的来说， vi 是老式的字处理器，不过功能已经很齐全了，">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1171928-dccc21832804abca.gif?imageMogr2/auto-orient/strip">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1171928-4a5e2f5c0d5f9ad2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1171928-2d14cd1bed279c98.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1171928-3e4ea8bb56dc11c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1171928-f0b360a2d0f97a00.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1171928-744511feb00c0e7f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1171928-82328fac0d759f04.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1171928-51f7b495edfa7210.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-10-19T13:59:40.606Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vim快速入门">
+<meta name="twitter:description" content="本文大约 5000 字， 阅读大约需要  10 分钟
+
+在 Linux 下最常使用的文本编辑器就是 vi 或者 vim 了，如果能很好掌握这个编辑器，非常有利于我们更好的在 Linux 下面进行编程开发。
+vim 和 viVim是从 vi 发展出来的一个文本编辑器。代码补完、编译及错误跳转等方便编程的功能特别丰富，在程序员中被广泛使用。
+简单的来说， vi 是老式的字处理器，不过功能已经很齐全了，">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> vim快速入门 | 一个算法汪的日常 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1257376919&web_id=1257376919" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <!-- add Fork me on Github -->
+    <a href="https://github.com/ccc013"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
+
+    <!--add Fork me on Github  -->
+    
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">一个算法汪的日常</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Stay hungry, stay foolish</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                vim快速入门
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-10-19T21:53:10+08:00" content="2018-10-19">
+              2018-10-19
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2018/10/19/vim快速入门/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/10/19/vim快速入门/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2018/10/19/vim快速入门/" class="leancloud_visitors" data-flag-title="vim快速入门">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>本文大约 5000 字， 阅读大约需要  10 分钟</p>
+</blockquote>
+<p>在 Linux 下最常使用的文本编辑器就是 vi 或者 vim 了，如果能很好掌握这个编辑器，非常有利于我们更好的在 Linux 下面进行编程开发。</p>
+<h4 id="vim-和-vi"><a href="#vim-和-vi" class="headerlink" title="vim 和 vi"></a>vim 和 vi</h4><p>Vim是从 vi 发展出来的一个文本编辑器。代码补完、编译及错误跳转等方便编程的功能特别丰富，在程序员中被广泛使用。</p>
+<p>简单的来说， vi 是老式的字处理器，不过功能已经很齐全了，但是还是有可以进步的地方。 vim 则可以说是程序开发者的一项很好用的工具。</p>
+<p>下面是 vim 快捷键盘图：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1171928-dccc21832804abca.gif?imageMogr2/auto-orient/strip" alt="vim 快捷键"></p>
+<h4 id="vi-vim-的工作模式"><a href="#vi-vim-的工作模式" class="headerlink" title="vi/vim 的工作模式"></a>vi/vim 的工作模式</h4><p>基本上 vi/vim 共分为三种模式，分别是命令模式（Command mode），输入模式（Insert mode）和底线命令模式（Last line mode）。 这三种模式的作用分别是：</p>
+<h5 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h5><p>当使用 vi/vim 打开一个文件就进入了命令模式（也可称为一般模式），这是默认的模式。在这个模式，你可以采用『上下左右』按键来移动光标，你可以使用『删除字符』或『删除整行』来处理档案内容，也可以使用『复制、贴上』来处理你的文件数据。</p>
+<h5 id="输入模式"><a href="#输入模式" class="headerlink" title="输入模式"></a>输入模式</h5><p>在命令模式并不能编辑文件，需要输入如『i, I, o, O, a, A, r,R』等任何一个字母之后才会进入输入模式（也称为编辑模式）。注意了！通常在 Linux 中，按下这些按键时，在画面的左下方会出现『 INSERT 或 REPLACE 』的字样，此时才可以进行编辑。而如果要回到命令模式时，则必须要按下『Esc』这个按键即可退出编辑模式。</p>
+<h5 id="底线命令模式"><a href="#底线命令模式" class="headerlink" title="底线命令模式"></a>底线命令模式</h5><p>在命令模式下，按下『:,/,?』中任意一个，就可以将光标移动到最底下那一行，进入底线命令模式（也称为指令列命令模式）。在这个模式当中， 可以提供你『搜寻资料』的动作，而读取、存盘、大量取代字符、退出、显示行号等等的动作则是在此模式中达成的！同理，必须按下『Esc』按钮才可以退出该模式，返回命令模式</p>
+<p>三种模式的切换和功能可以用下图来总结：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1171928-4a5e2f5c0d5f9ad2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="vi/vim 工作模式"></p>
+<h4 id="简易示例"><a href="#简易示例" class="headerlink" title="简易示例"></a>简易示例</h4><h6 id="1-使用-vim-打开文件"><a href="#1-使用-vim-打开文件" class="headerlink" title="1. 使用 vim 打开文件"></a>1. 使用 vim 打开文件</h6><p>在命令行中输入如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim test.txt</span><br></pre></td></tr></table></figure>
+<p>采用 <code>vi 文件名</code> 或者 <code>vim 文件名</code> 就可以打开文件并且进入了命令模式。这里文件名是必须添加的，当文件不存在的时候，也能打开，并且进行编辑保存后就是创建一个新的文件。打开后的界面如下图所示：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1171928-2d14cd1bed279c98.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="vim1.png"></p>
+<p>整个界面可以分为两个部分，最底下一行和上面的部分，最底下一行主要是显示当前文件名和文件的行数、列数，上图是一个新的文件，所以最底下显示的是文件名，而且后面括号也说是新文件，而下图是一个已经有内容的文件，那么上面部分就显示文件内容，最底下一行显示了文件名，文件的行数和列数，并且在最右侧部分会显示当前坐标的位置，比如图中是显示 (4,1) 表示当前坐标在第四行第一列的位置。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1171928-3e4ea8bb56dc11c3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="vim2.png"></p>
+<h6 id="2-进入编辑模式"><a href="#2-进入编辑模式" class="headerlink" title="2. 进入编辑模式"></a>2. 进入编辑模式</h6><p>接下来就是开始对文件进行编辑，也就是需要进入编辑模式。只要按下『i, I, o, O, a, A, r,R』等字符就可以进入编辑模式了！在编辑模式当中，你可以发现在左下角状态栏中会出现 –INSERT- 的字样，那就是可以输入任意字符的提示啰！这个时候，键盘上除了 [Esc] 这个按键之外，其他的按键都可以视作为一般的输入按钮了，所以你可以进行任何的编辑！</p>
+<p>如下图所示：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1171928-f0b360a2d0f97a00.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="vim3.png"></p>
+<p>注意：在 vim/vi 中 [Tab] 键是向右移动 8 个空格字符。</p>
+<h6 id="3-按下-ESC-按钮回到命令模式"><a href="#3-按下-ESC-按钮回到命令模式" class="headerlink" title="3. 按下 [ESC] 按钮回到命令模式"></a>3. 按下 [ESC] 按钮回到命令模式</h6><p>如果对文件编辑完毕了，那么应该要如何退出呢？此时只需要按下 [Esc] 这个按钮即可！马上你就会发现画面左下角的 – INSERT – 不见了！并且返回了命令模式了</p>
+<h6 id="4-退出"><a href="#4-退出" class="headerlink" title="4. 退出"></a>4. 退出</h6><p>最后就是存盘并离开，指令很简单，输入『:wq』即可存档离开！ (注意了，按下 : 该光标就会移动到最底下一行去！) ，如下图所示：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1171928-744511feb00c0e7f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="vim4.png"></p>
+<h4 id="更多按键说明"><a href="#更多按键说明" class="headerlink" title="更多按键说明"></a>更多按键说明</h4><p>上述简易示例只是使用了简单的几个按键，但是从 vim 快捷键图可以知道 vim 是有很多快捷键的。</p>
+<p>vim 更多快捷键可以如下思维导图所示：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1171928-82328fac0d759f04.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="vim 快捷键.png"></p>
+<h4 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h4><p>题目是来自<a href="http://cn.linux.vbird.org/linux_basic/0310vi.php" target="_blank" rel="external">vim 程序编辑器</a>的练习，如下所示，使用的操作文件 man_db.conf 可以在 <a href="http://linux.vbird.org/linux_basic/0310vi/man_db.conf" target="_blank" rel="external">http://linux.vbird.org/linux_basic/0310vi/man_db.conf</a><br>处获取。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1. &#35531;&#22312; /tmp &#36889;&#20491;&#30446;&#37636;&#19979;&#24314;&#31435;&#19968;&#20491;&#21517;&#28858; vitest &#30340;&#30446;&#37636;&#65307;&#10;2. &#36914;&#20837; vitest &#36889;&#20491;&#30446;&#37636;&#30070;&#20013;&#65307;&#10;3. &#23559; /etc/man_db.conf &#35079;&#35069;&#21040;&#26412;&#30446;&#37636;&#24213;&#19979;(&#25110;&#30001;&#19978;&#36848;&#30340;&#36899;&#32080;&#19979;&#36617; man_db.conf &#27284;&#26696;)&#65307;&#10;4. &#20351;&#29992; vi &#38283;&#21855;&#26412;&#30446;&#37636;&#19979;&#30340; man_db.conf &#36889;&#20491;&#27284;&#26696;&#65307;&#10;5. &#22312; vi &#20013;&#35373;&#23450;&#19968;&#19979;&#34892;&#34399;&#65307;&#10;6. &#31227;&#21205;&#21040;&#31532; 43 &#21015;&#65292;&#21521;&#21491;&#31227;&#21205; 59 &#20491;&#23383;&#20803;&#65292;&#35531;&#21839;&#20320;&#30475;&#21040;&#30340;&#23567;&#25324;&#34399;&#20839;&#26159;&#21738;&#20491;&#25991;&#23383;&#65311;&#10;7. &#31227;&#21205;&#21040;&#31532;&#19968;&#21015;&#65292;&#20006;&#19988;&#21521;&#19979;&#25628;&#23563;&#19968;&#19979;&#12302; gzip &#12303;&#36889;&#20491;&#23383;&#20018;&#65292;&#35531;&#21839;&#20182;&#22312;&#31532;&#24190;&#21015;&#65311;&#10;8. &#25509;&#33879;&#19979;&#20358;&#65292;&#25105;&#35201;&#23559; 29 &#21040; 41 &#21015;&#20043;&#38291;&#30340;&#12302;&#23567;&#23531; man &#23383;&#20018;&#12303;&#25913;&#28858;&#12302;&#22823;&#23531; MAN &#23383;&#20018;&#12303;&#65292;&#20006;&#19988;&#19968;&#20491;&#19968;&#20491;&#25361;&#36984;&#26159;&#21542;&#38656;&#35201;&#20462;&#25913;&#65292;&#22914;&#20309;&#19979;&#36948;&#25351;&#20196;&#65311;&#22914;&#26524;&#22312;&#25361;&#36984;&#36942;&#31243;&#20013;&#19968;&#30452;&#25353;&#12302;y&#12303;&#65292; &#32080;&#26524;&#26371;&#22312;&#26368;&#24460;&#19968;&#21015;&#20986;&#29694;&#25913;&#35722;&#20102;&#24190;&#20491; man &#21602;&#65311;&#10;9. &#20462;&#25913;&#23436;&#20043;&#24460;&#65292;&#31361;&#28982;&#21453;&#24724;&#20102;&#65292;&#35201;&#20840;&#37096;&#24489;&#21407;&#65292;&#26377;&#21738;&#20123;&#26041;&#27861;&#65311;&#10;10. &#25105;&#35201;&#35079;&#35069; 66 &#21040; 71 &#36889; 6 &#21015;&#30340;&#20839;&#23481;(&#21547;&#26377;MANDB_MAP)&#65292;&#20006;&#19988;&#36028;&#21040;&#26368;&#24460;&#19968;&#21015;&#20043;&#24460;&#65307;&#10;11. 113 &#21040; 128 &#21015;&#20043;&#38291;&#30340;&#38283;&#38957;&#28858; # &#31526;&#34399;&#30340;&#35387;&#35299;&#36039;&#26009;&#25105;&#19981;&#35201;&#20102;&#65292;&#35201;&#22914;&#20309;&#21034;&#38500;&#65311;&#10;12. &#23559;&#36889;&#20491;&#27284;&#26696;&#21478;&#23384;&#25104;&#19968;&#20491; man.test.config &#30340;&#27284;&#21517;&#65307;&#10;13. &#21435;&#21040;&#31532; 25 &#21015;&#65292;&#20006;&#19988;&#21034;&#38500; 15 &#20491;&#23383;&#20803;&#65292;&#32080;&#26524;&#20986;&#29694;&#30340;&#31532;&#19968;&#20491;&#21934;&#23383;&#26159;&#20160;&#40636;&#65311;&#10;14. &#22312;&#31532;&#19968;&#21015;&#26032;&#22686;&#19968;&#21015;&#65292;&#35442;&#21015;&#20839;&#23481;&#36664;&#20837;&#12302;I am a student...&#12303;&#65307;&#10;15. &#20786;&#23384;&#24460;&#38626;&#38283;&#21543;&#65281;</span><br></pre></td></tr></table></figure>
+<p>那么，整体步骤应该如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1. mkdir vitest&#10;2. cd vitest&#10;3. mv /etc/man_db.conf .&#10;4. vi man_db.conf&#10;5. :set nu&#10;6. 43G -&#62; 59l -&#62;&#25324;&#21495;&#20869;&#26159; as &#36825;&#20010;&#21333;&#35789;&#10;7. gg &#25110; 1G -&#62; /gzip -&#62; &#22312;&#31532; 93 &#21015;&#10;8. &#36755;&#20837;&#21629;&#20196; [:29,41s/man/MAN/gc] -&#62; &#28982;&#21518;&#19968;&#30452;&#28857;&#20987; y &#65292;&#24635;&#20849;&#38656;&#35201;&#26367;&#25442; 13 &#20010;&#10;9. &#19968;&#30452;&#25353; u &#38190;&#21363;&#21487;&#22797;&#21407;&#65307;&#26356;&#21152;&#31616;&#21333;&#31895;&#26292;&#30340;&#23601;&#26159;&#24378;&#21046;&#36864;&#20986;&#65292;&#20063;&#23601;&#26159;&#36755;&#20837; :q!&#10;10. 66G &#36339;&#21040; 66 &#34892; -&#62; 6yy &#22797;&#21046; 6 &#34892;&#20869;&#23481;(&#36755;&#20837;&#21518;&#65292;&#23631;&#24149;&#26368;&#21518;&#19968;&#34892;&#20250;&#26174;&#31034; 6 lines yanked) -&#62; G &#36339;&#21040;&#26368;&#21518;&#19968;&#34892;&#65292;&#36755;&#20837; p &#22797;&#21046;&#21040;&#26368;&#21518;&#19968;&#34892;&#30340;&#21518;&#38754;&#10;11. 113G &#36339;&#21040; 113 &#34892; -&#62; &#24635;&#20849;&#38656;&#35201;&#21024;&#38500; 16 &#34892;&#20869;&#23481;&#65292;&#25152;&#20197;&#36755;&#20837; 16dd&#65292;&#21024;&#38500;&#21518;&#20809;&#26631;&#25152;&#22312;&#34892;&#24320;&#22836;&#23601;&#26159; &#8216;#Flags&#8217;&#10;12. &#36755;&#20837; [:w man.test.config] &#23454;&#29616;&#20445;&#23384;&#25805;&#20316;&#65292;&#25509;&#30528;&#21487;&#20197;&#36755;&#20837; [:! ls -l]&#65292;&#21363;&#26174;&#31034;&#26597;&#30475;&#24403;&#21069;&#25991;&#20214;&#22841;&#20869;&#25991;&#20214;&#20869;&#23481;&#30340;&#21629;&#20196; ls -l &#26174;&#31034;&#30340;&#20869;&#23481;&#22312; vim &#20869;&#65292;&#20877;&#27425;&#25353;&#19979;&#22238;&#36710;&#38190;&#21363;&#22238;&#21040; vim &#21629;&#20196;&#27169;&#24335;&#10;13. &#36755;&#20837; 25G &#21040; 25 &#34892; -&#62; 15x &#21024;&#38500; 15 &#20010;&#23383;&#31526;&#65292;&#28982;&#21518;&#26174;&#31034;&#30340;&#26159; tree&#10;14. gg / 1G &#21040; &#31532;&#19968;&#34892; -&#62; O &#22312;&#19978;&#26041;&#26032;&#22686;&#19968;&#34892;&#65292;&#28982;&#21518;&#36755;&#20837; &#12302;I am a student...&#12303;-&#62; Esc &#38190;&#36820;&#22238;&#21629;&#20196;&#27169;&#24335;&#10;15. [:wq] &#25110;&#32773; ZZ &#20445;&#23384;&#31163;&#24320;&#25991;&#20214;</span><br></pre></td></tr></table></figure></p>
+<p>本文参考文章如下：</p>
+<ul>
+<li>vim 程序编辑器(<a href="http://cn.linux.vbird.org/linux_basic/0310vi.php" target="_blank" rel="external">http://cn.linux.vbird.org/linux_basic/0310vi.php</a>)</li>
+<li>Linux vi/vim(<a href="http://www.runoob.com/linux/linux-vim.html" target="_blank" rel="external">http://www.runoob.com/linux/linux-vim.html</a>)</li>
+</ul>
+<hr>
+<p>以上就是本文的主要内容和总结，欢迎关注我的微信公众号—机器学习与计算机视觉或者扫描下方的二维码，和我分享你的建议和看法，指正文章中可能存在的错误，大家一起交流，学习和进步！</p>
+<p>公众号后台回复“vim快捷键”可以获取 vim 思维导图！</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1171928-51f7b495edfa7210.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
+<p><strong>推荐阅读</strong><br>1.<a href="https://mp.weixin.qq.com/s?__biz=MzU5MDY5OTI5MA==&amp;mid=2247483667&amp;idx=1&amp;sn=c6b6feb241897ede16bd745d595cef92&amp;chksm=fe3b0f66c94c86701e9b071e62750d189c254fd3ebe9bb6251505162139efefdf866093b38c3&amp;token=2134085567&amp;lang=zh_CN#rd" target="_blank" rel="external">机器学习入门系列(1)—机器学习概览(上)</a><br>2.<a href="https://mp.weixin.qq.com/s?__biz=MzU5MDY5OTI5MA==&amp;mid=2247483672&amp;idx=1&amp;sn=34b6687030db92fd3e04dcdebd09fffc&amp;chksm=fe3b0f6dc94c867b2a72c427ebb90e2a683e6ad97ea2c5fbdc3a3bb86a8b159b8e5f107d2dcc&amp;token=2134085567&amp;lang=zh_CN#rd" target="_blank" rel="external">机器学习入门系列(2)—机器学习概览(下)</a><br>3.<a href="https://mp.weixin.qq.com/s?__biz=MzU5MDY5OTI5MA==&amp;mid=2247483679&amp;idx=1&amp;sn=229eaae83f0fad327d4ae419dc6bf865&amp;chksm=fe3b0f6ac94c867cf72992dd2ec118d165c3990818ddd45d5a87736bac907b8871e8a006e9ab&amp;token=2134085567&amp;lang=zh_CN#rd" target="_blank" rel="external">[实战] 图片转素描图</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag">#Linux</a>
+          
+            <a href="/tags/vim/" rel="tag">#vim</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/14/实战-制作简单的公众号二维码关注图/" rel="next" title="[实战]制作简单的公众号二维码关注图">
+                <i class="fa fa-chevron-left"></i> [实战]制作简单的公众号二维码关注图
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTcyOC8xNjI1NQ=="></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/favicon.png"
+               alt="cai" />
+          <p class="site-author-name" itemprop="name">cai</p>
+          <p class="site-description motion-element" itemprop="description">从事计算机视觉和机器学习深度学习相关的算法工程师，运用Python编程，分享读书学习笔记和实战练习项目文章。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">36</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ccc013" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2181051220?is_all=1" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/luo-cai" target="_blank" title="Zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Zhihu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net/lc013?viewmode=contents" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  CSDN
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/lmj623565791" title="张鸿洋的博客" target="_blank">张鸿洋的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/guolin_blog" title="郭霖的博客" target="_blank">郭霖的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/singwhatiwanna/article/category/1405419" title="任玉刚" target="_blank">任玉刚</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/Luoshengyang/" title="罗升阳" target="_blank">罗升阳</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://hukai.me/" title="胡凯" target="_blank">胡凯</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.daimajia.com/" title="代码家" target="_blank">代码家</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://hujiaweibujidao.github.io/" title="HujiaweiBujidao" target="_blank">HujiaweiBujidao</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.liaoxuefeng.com/" title="廖雪峰的博客" target="_blank">廖雪峰的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://drakeet.me/" title="Drakeet的个人博客" target="_blank">Drakeet的个人博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.kymjs.com/" title="张涛-开源实验室" target="_blank">张涛-开源实验室</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://gudong.name/" title="咕咚" target="_blank">咕咚</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#vim-和-vi"><span class="nav-number">1.</span> <span class="nav-text">vim 和 vi</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#vi-vim-的工作模式"><span class="nav-number">2.</span> <span class="nav-text">vi/vim 的工作模式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#命令模式"><span class="nav-number">2.1.</span> <span class="nav-text">命令模式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#输入模式"><span class="nav-number">2.2.</span> <span class="nav-text">输入模式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#底线命令模式"><span class="nav-number">2.3.</span> <span class="nav-text">底线命令模式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简易示例"><span class="nav-number">3.</span> <span class="nav-text">简易示例</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-使用-vim-打开文件"><span class="nav-number">3.0.1.</span> <span class="nav-text">1. 使用 vim 打开文件</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-进入编辑模式"><span class="nav-number">3.0.2.</span> <span class="nav-text">2. 进入编辑模式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-按下-ESC-按钮回到命令模式"><span class="nav-number">3.0.3.</span> <span class="nav-text">3. 按下 [ESC] 按钮回到命令模式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-退出"><span class="nav-number">3.0.4.</span> <span class="nav-text">4. 退出</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#更多按键说明"><span class="nav-number">4.</span> <span class="nav-text">更多按键说明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#练习"><span class="nav-number">5.</span> <span class="nav-text">练习</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cai</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  
+</div>
+
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("gmEY36PtfOmueA7roORTu2He-gzGzoHsz", "mzEkjGKehJYxfp1PrU0TYsW3");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+</body>
+
+
+<script type="text/javascript"
+color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
+
+</html>
