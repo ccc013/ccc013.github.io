@@ -7,6 +7,7 @@ tags:
 - GAN
 - 算法 
 - 技术 
+- image inpainting
 ---
 
 在之前的两篇 GAN 系列文章--[[GAN学习系列1]初识GAN](https://mp.weixin.qq.com/s?__biz=MzU5MDY5OTI5MA==&mid=2247483711&idx=1&sn=ead88d5b21e08d9df853b72f31d4b5f4&chksm=fe3b0f4ac94c865cfc243123eb4815539ef2d5babdc8346f79a29b681e55eee5f964bdc61d71&token=1760252914&lang=zh_CN#rd)以及[[GAN学习系列2] GAN的起源](https://mp.weixin.qq.com/s?__biz=MzU5MDY5OTI5MA==&mid=2247483732&idx=1&sn=99cb91edf6fb6da3c7d62132c40b0f62&chksm=fe3b0f21c94c8637a8335998c3fc9d0adf1ac7dea332c2bd45e63707eac6acad8d84c1b3d16d&token=985117826&lang=zh_CN#rd)中简单介绍了 GAN 的基本思想和原理，这次就介绍利用 GAN 来做一个图片修复的应用，主要采用的也是 GAN 在网络结构上的升级版--DCGAN，最初始的 GAN 采用的还是神经网络，即全连接网络，而 DCGAN 则是换成卷积神经网络（CNNs）了，这可以很好利用 CNN 强大的特征提取能力，更好的生成质量更好的图片。
