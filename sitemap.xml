@@ -2,6 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://ccc013.github.io/2018/12/10/GAN%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%973-%E9%87%87%E7%94%A8%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%92%8C-TensorFlow-%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E4%BF%AE%E5%A4%8D-%E4%B8%8A%EF%BC%89/</loc>
+    <lastmod>2018-12-22T10:29:50.630Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://ccc013.github.io/2018/12/22/GAN%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%973-%E9%87%87%E7%94%A8%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%92%8C-TensorFlow-%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E4%BF%AE%E5%A4%8D-%E4%B8%8B%EF%BC%89/</loc>
+    <lastmod>2018-12-22T10:29:43.552Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://ccc013.github.io/2018/12/22/GAN%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%973-%E9%87%87%E7%94%A8%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%92%8C-TensorFlow-%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E4%BF%AE%E5%A4%8D-%E4%B8%AD%EF%BC%89/</loc>
+    <lastmod>2018-12-22T10:26:37.737Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://ccc013.github.io/2018/12/10/GAN%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%972-GAN%E7%9A%84%E8%B5%B7%E6%BA%90/</loc>
     <lastmod>2018-12-10T15:49:32.370Z</lastmod>
   </url>
@@ -9,11 +24,6 @@
   <url>
     <loc>http://ccc013.github.io/2018/12/10/GAN%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%97-%E5%88%9D%E8%AF%86GAN/</loc>
     <lastmod>2018-12-10T15:48:58.584Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://ccc013.github.io/2018/12/10/GAN%E5%AD%A6%E4%B9%A0%E7%B3%BB%E5%88%973-%E9%87%87%E7%94%A8%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%92%8C-TensorFlow-%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E4%BF%AE%E5%A4%8D-%E4%B8%8A%EF%BC%89/</loc>
-    <lastmod>2018-12-10T15:48:49.880Z</lastmod>
   </url>
   
   <url>

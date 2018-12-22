@@ -1,0 +1,1042 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="GAN,image inpainting,技术,机器学习,深度学习,算法," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="一个算法汪的日常" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon/icon_code.jpg?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="上一篇文章—[GAN学习系列3]采用深度学习和 TensorFlow 实现图片修复(上）中，我们先介绍了对于图像修复的背景，需要利用什么信息来对缺失的区域进行修复，以及将图像当做概率分布采样的样本来看待，通过这个思路来开始进行图像的修复。
+这篇文章将继续介绍原文的第二部分，利用对抗生成网络来快速生成假图片。目录如下：
+
+第二步：快速生成假的图片
+从未知的概率分布中学习生成新的样本
+[ML-Heav">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[GAN学习系列3]采用深度学习和 TensorFlow 实现图片修复(中）">
+<meta property="og:url" content="http://ccc013.github.io/2018/12/22/GAN学习系列3-采用深度学习和-TensorFlow-实现图片修复-中）/index.html">
+<meta property="og:site_name" content="一个算法汪的日常">
+<meta property="og:description" content="上一篇文章—[GAN学习系列3]采用深度学习和 TensorFlow 实现图片修复(上）中，我们先介绍了对于图像修复的背景，需要利用什么信息来对缺失的区域进行修复，以及将图像当做概率分布采样的样本来看待，通过这个思路来开始进行图像的修复。
+这篇文章将继续介绍原文的第二部分，利用对抗生成网络来快速生成假图片。目录如下：
+
+第二步：快速生成假的图片
+从未知的概率分布中学习生成新的样本
+[ML-Heav">
+<meta property="og:image" content="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/lecun-quora.png">
+<meta property="og:image" content="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/padding_strides.gif">
+<meta property="og:image" content="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/padding_strides_transposed.gif">
+<meta property="og:image" content="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/gen-architecture.png">
+<meta property="og:image" content="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/generated-bedrooms.png">
+<meta property="og:image" content="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/face-arithmetic.png">
+<meta property="og:image" content="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/discrim-architecture.png">
+<meta property="og:image" content="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/gan_maths.png">
+<meta property="og:image" content="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/gan-training.png">
+<meta property="og:image" content="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/dcgan-results.png">
+<meta property="og:image" content="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/dcgan-tensorboard-results.png">
+<meta property="og:image" content="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/qrcode_new.jpg">
+<meta property="og:updated_time" content="2018-12-22T10:26:37.737Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[GAN学习系列3]采用深度学习和 TensorFlow 实现图片修复(中）">
+<meta name="twitter:description" content="上一篇文章—[GAN学习系列3]采用深度学习和 TensorFlow 实现图片修复(上）中，我们先介绍了对于图像修复的背景，需要利用什么信息来对缺失的区域进行修复，以及将图像当做概率分布采样的样本来看待，通过这个思路来开始进行图像的修复。
+这篇文章将继续介绍原文的第二部分，利用对抗生成网络来快速生成假图片。目录如下：
+
+第二步：快速生成假的图片
+从未知的概率分布中学习生成新的样本
+[ML-Heav">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> [GAN学习系列3]采用深度学习和 TensorFlow 实现图片修复(中） | 一个算法汪的日常 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1257376919&web_id=1257376919" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <!-- add Fork me on Github -->
+    <a href="https://github.com/ccc013"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
+
+    <!--add Fork me on Github  -->
+    
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">一个算法汪的日常</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Stay hungry, stay foolish</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                [GAN学习系列3]采用深度学习和 TensorFlow 实现图片修复(中）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-12-22T18:24:38+08:00" content="2018-12-22">
+              2018-12-22
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2018/12/22/GAN学习系列3-采用深度学习和-TensorFlow-实现图片修复-中）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/12/22/GAN学习系列3-采用深度学习和-TensorFlow-实现图片修复-中）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2018/12/22/GAN学习系列3-采用深度学习和-TensorFlow-实现图片修复-中）/" class="leancloud_visitors" data-flag-title="[GAN学习系列3]采用深度学习和 TensorFlow 实现图片修复(中）">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>上一篇文章—<a href="https://mp.weixin.qq.com/s/S_uiSe74Ti6N_u4Y5Fd6Fw" target="_blank" rel="external">[GAN学习系列3]采用深度学习和 TensorFlow 实现图片修复(上）</a>中，我们先介绍了对于图像修复的背景，需要利用什么信息来对缺失的区域进行修复，以及将图像当做概率分布采样的样本来看待，通过这个思路来开始进行图像的修复。</p>
+<p>这篇文章将继续介绍原文的第二部分，利用对抗生成网络来快速生成假图片。目录如下：</p>
+<ul>
+<li>第二步：快速生成假的图片<ul>
+<li>从未知的概率分布中学习生成新的样本</li>
+<li>[ML-Heavy] 建立 GAN 模型</li>
+<li>采用 G(z) 生成假的图片</li>
+<li>[ML-Heavy] 训练 DCGAN</li>
+<li>目前的 GAN 和 DCGAN 实现</li>
+<li>[ML-Heavy] TensorFlow 实现 DCGAN</li>
+<li>在你的数据集上运行 DCGAN 模型</li>
+</ul>
+</li>
+</ul>
+<p>同样的，标题带有 [ML-Heavy] 的会介绍比较多的细节，可以选择跳过。</p>
+<hr>
+<h3 id="第二步：快速生成假的图片"><a href="#第二步：快速生成假的图片" class="headerlink" title="第二步：快速生成假的图片"></a>第二步：快速生成假的图片</h3><h4 id="从未知的概率分布中学习生成新的样本"><a href="#从未知的概率分布中学习生成新的样本" class="headerlink" title="从未知的概率分布中学习生成新的样本"></a>从未知的概率分布中学习生成新的样本</h4><p>与其考虑如何计算概率密度函数，现在在统计学中更好的方法是采用一个<a href="https://en.wikipedia.org/wiki/Generative_model" target="_blank" rel="external">生成模型</a>来学习如何生成新的、随机的样本。过去生成模型一直是很难训练或者非常难以实现，但最近在这个领域已经有了一些让人惊讶的进展。<a href="http://yann.lecun.com/" target="_blank" rel="external">Yann LeCun</a>在这篇 Quora 上的问题<a href="https://www.quora.com/What-are-some-recent-and-potentially-upcoming-breakthroughs-in-deep-learning/answer/Yann-LeCun?srid=nZuy" target="_blank" rel="external">“最近在深度学习有什么潜在的突破的领域”</a>中给出了一种训练生成模型（对抗训练）方法的介绍，并将其描述为过去十年内机器学习最有趣的想法：</p>
+<p><img src="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/lecun-quora.png" alt=""></p>
+<p>Yann LeCun 在回答中简单介绍了 GAN 的基本原理，也就是两个网络相互博弈的过程。</p>
+<p>实际上，深度学习还有其他方法来训练生成模型，比如 <a href="http://arxiv.org/abs/1312.6114" target="_blank" rel="external">Variational Autoencoders(VAEs)</a>。但在本文，主要介绍对抗生成网络（GANs）</p>
+<h4 id="ML-Heavy-建立-GAN-模型"><a href="#ML-Heavy-建立-GAN-模型" class="headerlink" title="[ML-Heavy] 建立 GAN 模型"></a>[ML-Heavy] 建立 GAN 模型</h4><p>GANs 这个想法是 Ian Goodfellow 在其带有里程碑意义的论文<a href="http://papers.nips.cc/paper/5423-generative-adversarial" target="_blank" rel="external">“Generative Adversarial Nets” (GANs)</a>发表在 2014 年的  <a href="https://nips.cc/" target="_blank" rel="external">Neural Information Processing Systems (NIPS)</a> 会议上后开始火遍整个深度学习领域的。这个想法就是我们首先定义一个简单并众所周知的概率分布，并表示为$p_z$，在本文后面，我们用 $p_z$ 表示在[-1,1)（包含-1，但不包含1）范围的均匀分布。用$z \thicksim p_z$表示从这个分布中采样，如果$p_z$是一个五维的，我们可以利用下面一行的 Python 代码来进行采样得到，这里用到 <a href="http://www.numpy.org/" target="_blank" rel="external">numpy</a>这个库：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">z = np.random.uniform(-1, 1, 5)&#10;array([ 0.77356483,  0.95258473, -0.18345086,  0.69224724, -0.34718733])</span><br></pre></td></tr></table></figure>
+<p>现在我们有一个简单的分布来进行采样，接下来可以定义一个函数<code>G(z)</code>来从原始的概率分布中生成样本，代码例子如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">def G(z):&#10;   ...&#10;   return imageSample&#10;&#10;z = np.random.uniform(-1, 1, 5)&#10;imageSample = G(z)</span><br></pre></td></tr></table></figure>
+<p>那么问题来了，怎么定义这个<code>G(Z)</code>函数，让它实现输入一个向量然后返回一张图片呢？答案就是采用一个深度神经网络。对于深度神经网络基础，网络上有很多的介绍，本文就不再重复介绍了。这里推荐的一些参考有斯坦福大学的 <a href="http://cs231n.github.io/" target="_blank" rel="external">CS231n 课程</a>、Ian Goodfellow 等人编著的<a href="http://www.deeplearningbook.org/" target="_blank" rel="external">《深度学习》书籍</a>、<a href="http://setosa.io/ev/image-kernels/" target="_blank" rel="external">形象解释图像的核心</a>以及论文<a href="https://arxiv.org/abs/1603.07285" target="_blank" rel="external">“A guide to convolution arithmetic for deep learning”</a>。</p>
+<p>通过深度学习可以有多种方法来实现<code>G(z)</code>函数。在原始的 GAN 论文中提出一种训练方法并给出初步的实验结果，这个方法得到了极大的发展和改进。其中一种想法就是在论文<a href="https://arxiv.org/abs/1511.06434" target="_blank" rel="external">“Unsupervised Representation Learning with Deep Convolutional Generative Adversarial Networks”</a>中提出的，这篇论文的作者是 Alec Radford, Luke Metz, and Soumith Chintala，发表在 2016 年的 <a href="http://www.iclr.cc/" target="_blank" rel="external">International Conference on Learning Representations (ICLR)</a>会议上，<strong>这个方法因为提出采用深度卷积神经网络，被称为 DCGANs，它主要采用小步长卷积（ fractionally-strided convolution）方法来上采样图像</strong>。</p>
+<p>那么什么是小步长卷积以及如何实现对图片的上采样呢？ Vincent Dumoulin and Francesco Visin’s 在论文<a href="https://arxiv.org/abs/1603.07285" target="_blank" rel="external">“A guide to convolution arithmetic for deep learning”</a>以及 Github 项目都给出了这种卷积算术的详细介绍，Github 地址如下：</p>
+<p><a href="https://github.com/vdumoulin/conv_arithmetic" target="_blank" rel="external">https://github.com/vdumoulin/conv_arithmetic</a></p>
+<p>上述 Github 项目给出了非常直观的可视化，如下图所示，这让我们可以很直观了解小步长卷积是如何工作的。</p>
+<p>首先，你要知道一个正常的卷积操作是一个卷积核划过输入区域（下图中蓝色区域）后生成一个输出区域（下图的绿色区域）。这里，输出区域的尺寸是小于输入区域的。（当然，如果你还不知道，可以先看下斯坦福大学的<a href="http://cs231n.github.io/" target="_blank" rel="external">CS231n 课程</a>或者论文<a href="https://arxiv.org/abs/1603.07285" target="_blank" rel="external">“A guide to convolution arithmetic for deep learning”</a>。）</p>
+<p><img src="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/padding_strides.gif" alt=""></p>
+<p>接下来，假设输入是 3x3。我们的目标是通过上采样让输出尺寸变大。你可以认为小步长卷积就是在像素之间填充 0 值来拓展输入区域的方法，然后再对输入区域进行卷积操作，正如下图所示，得到一个 5x5 的输出。</p>
+<p><img src="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/padding_strides_transposed.gif" alt=""></p>
+<p>注意，对于作为上采样的卷积层有很多不同的名字，比如<a href="https://people.eecs.berkeley.edu/~jonlong/long_shelhamer_fcn.pdf" target="_blank" rel="external">全卷积(full convolution)</a>, 网络内上采样（in-network upsampling）, 小步长卷积（fractionally-strided convolution）, 反向卷积（backwards convolution）, 反卷积（deconvolution）, 上卷积（upconvolution）, 转置卷积（transposed convolution）。这里并不鼓励使用反卷积（deconvolution）这个词语，因为在<a href="https://en.wikipedia.org/wiki/Deconvolution" target="_blank" rel="external">数学运算</a>或者<a href="http://www.matthewzeiler.com/pubs/iccv2011/iccv2011.pdf" target="_blank" rel="external">计算机视觉的其他应用</a>中，这个词语有着其他完全不同的意思，这是一个非常频繁使用的词语。</p>
+<p>现在利用小步长卷积作为基础，我们可以实现<code>G(z)</code>函数，让它接收一个$z \thicksim p_z$的向量输入，然后输出一张尺寸是 64x64x3 的彩色图片，其网络结构如下图所示：</p>
+<p><img src="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/gen-architecture.png" alt=""></p>
+<p>在 DCGAN 这篇论文中还提出了其他的一些技巧和改进来训练 DCGANs，比如采用批归一化(batch normalization)或者是 leaky ReLUs 激活函数。</p>
+<h4 id="采用-G-z-生成假的图片"><a href="#采用-G-z-生成假的图片" class="headerlink" title="采用 G(z) 生成假的图片"></a>采用 G(z) 生成假的图片</h4><p>现在先让我们暂停并欣赏下这种<code>G(z)</code>网络结构的强大，在 DCGAN 论文中给出了如何采用一个卧室图片数据集训练 一个 DCGAN 模型，然后采用<code>G(z)</code>生成如下的图片，它们都是生成器网络 G 认为的卧室图片，注意，<strong>下面这些图片都是原始训练数据集没有的！</strong></p>
+<p><img src="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/generated-bedrooms.png" alt=""></p>
+<p>此外，你还可以对 <code>z</code> 输入实现一个向量算术操作，下图就是一个例子：</p>
+<p><img src="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/face-arithmetic.png" alt=""></p>
+<h4 id="ML-Heavy-训练-DCGAN"><a href="#ML-Heavy-训练-DCGAN" class="headerlink" title="[ML-Heavy] 训练 DCGAN"></a>[ML-Heavy] 训练 DCGAN</h4><p>现在我们定义好了<code>G(z)</code>，也知道它的能力有多强大，问题来了，怎么训练呢？我们需要确定很多隐变量（或者说参数），这也是采用对抗网络的原因了。</p>
+<p>首先，我们先定义几个符号。$p_data$表示训练数据，但概率分布未知，$p_z$表示从已知的概率分布采样的样本，一般从高斯分布或者均匀分布采样，<code>z</code>也被称为随机噪声，最后一个，$p_g$就是 G 网络生成的数据，也可以说是生成概率分布。</p>
+<p>接着介绍下判别器（discriminator，D）网络，它是输入一批图片<code>x</code>，然后返回该图片来自训练数据$p_{data}$的概率。如果来自训练数据，D 应该返回一个接近 1 的数值，否则应该是一个接近 0 的值来表示图片是假的，来自 G 网络生成的。在 DCGANs 中，D 网络是一个传统的卷积神经网络，如下图所示，一个包含4层卷积层和1层全连接层的卷积神经网络结构。</p>
+<p><img src="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/discrim-architecture.png" alt=""></p>
+<p>因此，训练 D 网络的目标有以下两个：</p>
+<ol>
+<li>如果<code>x</code>来自训练数据集，最大化<code>D(x)</code>；</li>
+<li>如果<code>x</code>是来自 G 生成的数据，最小化<code>D(x)</code>。</li>
+</ol>
+<p>对应的 G 网络的目标就是要欺骗 D 网络，生成以假乱真的图片。它生成的图片也是 D 的输入，<strong>所以 G 的目标就是最大化<code>D(G(z))</code>，也等价于最小化<code>1-D(G(z))</code>，因为 D 其实是一个概率估计，且输出范围是在 0 到 1 之间。</strong></p>
+<p>正如论文提到的，训练对抗网络就如同在实现一个最小化最大化游戏(minimax game)。如下面的公式所示，第一项是对真实数据分布的期望，第二项是对生成数据的期望值。</p>
+<p><img src="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/gan_maths.png" alt=""></p>
+<p>训练的步骤如下图所示，具体可以看下我之前写的文章<a href="https://mp.weixin.qq.com/s?__biz=MzU5MDY5OTI5MA==&amp;mid=2247483732&amp;idx=1&amp;sn=99cb91edf6fb6da3c7d62132c40b0f62&amp;chksm=fe3b0f21c94c8637a8335998c3fc9d0adf1ac7dea332c2bd45e63707eac6acad8d84c1b3d16d&amp;token=985117826&amp;lang=zh_CN#rd" target="_blank" rel="external">[GAN学习系列2] GAN的起源</a>有简单介绍了这个训练过程，或者是看下 GAN 论文[5]的介绍</p>
+<p><img src="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/gan-training.png" alt=""></p>
+<h4 id="目前的-GAN-和-DCGAN-实现"><a href="#目前的-GAN-和-DCGAN-实现" class="headerlink" title="目前的 GAN 和 DCGAN 实现"></a>目前的 GAN 和 DCGAN 实现</h4><p>目前在 Github 上有许多 GAN 和 DCGAN 的实现（原文是写于2016年八月份，现在的话代码就更多了）：</p>
+<ul>
+<li><a href="https://github.com/goodfeli/adversarial" target="_blank" rel="external">https://github.com/goodfeli/adversarial</a></li>
+<li><a href="https://github.com/tqchen/mxnet-gan" target="_blank" rel="external">https://github.com/tqchen/mxnet-gan</a></li>
+<li><a href="https://github.com/Newmu/dcgan_code" target="_blank" rel="external">https://github.com/Newmu/dcgan_code</a></li>
+<li><a href="https://github.com/soumith/dcgan.torch" target="_blank" rel="external">https://github.com/soumith/dcgan.torch</a></li>
+<li><a href="https://github.com/carpedm20/DCGAN-tensorflow" target="_blank" rel="external">https://github.com/carpedm20/DCGAN-tensorflow</a></li>
+<li><a href="https://github.com/openai/improved-gan" target="_blank" rel="external">https://github.com/openai/improved-gan</a></li>
+<li><a href="https://github.com/mattya/chainer-DCGAN" target="_blank" rel="external">https://github.com/mattya/chainer-DCGAN</a></li>
+<li><a href="https://github.com/jacobgil/keras-dcgan" target="_blank" rel="external">https://github.com/jacobgil/keras-dcgan</a></li>
+</ul>
+<p>本文实现的代码是基于 <a href="https://github.com/carpedm20/DCGAN-tensorflow" target="_blank" rel="external">https://github.com/carpedm20/DCGAN-tensorflow</a></p>
+<h4 id="ML-Heavy-TensorFlow-实现-DCGAN"><a href="#ML-Heavy-TensorFlow-实现-DCGAN" class="headerlink" title="[ML-Heavy] TensorFlow 实现 DCGAN"></a>[ML-Heavy] TensorFlow 实现 DCGAN</h4><p>这部分的实现的源代码可以在如下 Github 地址：</p>
+<p><a href="https://github.com/bamos/dcgan-completion.tensorflow" target="_blank" rel="external">https://github.com/bamos/dcgan-completion.tensorflow</a></p>
+<p>当然，主要实现部分代码是来自 <a href="https://github.com/carpedm20/DCGAN-tensorflow" target="_blank" rel="external">https://github.com/carpedm20/DCGAN-tensorflow</a> 。但采用这个项目主要是方便实现下一部分的图像修复工作。</p>
+<p>主要实现代码是在<code>model.py</code>中的类<code>DCGAN</code>。采用类来实现模型是有助于训练后保存中间层的状态以及后续的加载使用。</p>
+<p>首先，我们需要定义生成器和判别器网络结构。在<code>ops.py</code>会定义网络结构用到的函数，如<code>linear</code>,<code>conv2d_transpose</code>, <code>conv2d</code>以及 <code>lrelu</code>。代码如下所示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">def generator(self, z):&#10;    self.z_, self.h0_w, self.h0_b = linear(z, self.gf_dim*8*4*4,&#10;                                           &#39;g_h0_lin&#39;, with_w=True)&#10;&#10;    self.h0 = tf.reshape(self.z_, [-1, 4, 4, self.gf_dim * 8])&#10;    h0 = tf.nn.relu(self.g_bn0(self.h0))&#10;&#10;    self.h1, self.h1_w, self.h1_b = conv2d_transpose(h0,&#10;        [self.batch_size, 8, 8, self.gf_dim*4], name=&#39;g_h1&#39;, with_w=True)&#10;    h1 = tf.nn.relu(self.g_bn1(self.h1))&#10;&#10;    h2, self.h2_w, self.h2_b = conv2d_transpose(h1,&#10;        [self.batch_size, 16, 16, self.gf_dim*2], name=&#39;g_h2&#39;, with_w=True)&#10;    h2 = tf.nn.relu(self.g_bn2(h2))&#10;&#10;    h3, self.h3_w, self.h3_b = conv2d_transpose(h2,&#10;        [self.batch_size, 32, 32, self.gf_dim*1], name=&#39;g_h3&#39;, with_w=True)&#10;    h3 = tf.nn.relu(self.g_bn3(h3))&#10;&#10;    h4, self.h4_w, self.h4_b = conv2d_transpose(h3,&#10;        [self.batch_size, 64, 64, 3], name=&#39;g_h4&#39;, with_w=True)&#10;&#10;    return tf.nn.tanh(h4)&#10;&#10;def discriminator(self, image, reuse=False):&#10;    if reuse:&#10;        tf.get_variable_scope().reuse_variables()&#10;&#10;    h0 = lrelu(conv2d(image, self.df_dim, name=&#39;d_h0_conv&#39;))&#10;    h1 = lrelu(self.d_bn1(conv2d(h0, self.df_dim*2, name=&#39;d_h1_conv&#39;)))&#10;    h2 = lrelu(self.d_bn2(conv2d(h1, self.df_dim*4, name=&#39;d_h2_conv&#39;)))&#10;    h3 = lrelu(self.d_bn3(conv2d(h2, self.df_dim*8, name=&#39;d_h3_conv&#39;)))&#10;    h4 = linear(tf.reshape(h3, [-1, 8192]), 1, &#39;d_h3_lin&#39;)&#10;&#10;    return tf.nn.sigmoid(h4), h4</span><br></pre></td></tr></table></figure>
+<p>当初始化这个类的时候，就相当于用上述函数来构建了这个模型。我们需要创建两个 D 网络来共享参数，一个的输入是真实数据，另一个是来自 G 网络的生成数据。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.G = self.generator(self.z)&#10;self.D, self.D_logits = self.discriminator(self.images)&#10;self.D_, self.D_logits_ = self.discriminator(self.G, reuse=True)</span><br></pre></td></tr></table></figure>
+<p>接下来是定义损失函数。这里采用的是 D 的输出之间的交叉熵函数，并且它的效果也不错。D 是期望对真实数据的预测都是 1，对生成的假数据预测都是 0，相反，生成器 G 希望 D 的预测都是 1。代码的实现如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.d_loss_real = tf.reduce_mean(&#10;    tf.nn.sigmoid_cross_entropy_with_logits(self.D_logits,&#10;                                            tf.ones_like(self.D)))&#10;self.d_loss_fake = tf.reduce_mean(&#10;    tf.nn.sigmoid_cross_entropy_with_logits(self.D_logits_,&#10;                                            tf.zeros_like(self.D_)))&#10;self.d_loss = self.d_loss_real + self.d_loss_fake&#10;&#10;self.g_loss = tf.reduce_mean(&#10;    tf.nn.sigmoid_cross_entropy_with_logits(self.D_logits_,&#10;                                            tf.ones_like(self.D_)))</span><br></pre></td></tr></table></figure>
+<p>接着是分别对 G 和 D 的参数聚集到一起，方便后续的梯度计算：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t_vars = tf.trainable_variables()&#10;&#10;self.d_vars = [var for var in t_vars if &#39;d_&#39; in var.name]&#10;self.g_vars = [var for var in t_vars if &#39;g_&#39; in var.name]</span><br></pre></td></tr></table></figure>
+<p>现在才有 ADAM 作为优化器来计算梯度，ADAM 是一个深度学习中常用的自适应非凸优化方法，它相比于随机梯度下降方法，不需要手动调整学习率、动量（momentum)以及其他的超参数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d_optim = tf.train.AdamOptimizer(config.learning_rate, beta1=config.beta1) \&#10;                    .minimize(self.d_loss, var_list=self.d_vars)&#10;g_optim = tf.train.AdamOptimizer(config.learning_rate, beta1=config.beta1) \&#10;                    .minimize(self.g_loss, var_list=self.g_vars)</span><br></pre></td></tr></table></figure>
+<p>定义好模型和训练策略后，接下来就是开始输入数据进行训练了。在每个 epoch 中，先采样一个 mini-batch 的图片，然后运行优化器来更新网络。有趣的是如果 G 只更新一次，D 的 loss 是不会变为0的。此外，在后面额外调用<code>d_loss_fake</code>和<code>d_loss_real</code>会增加不必要的计算量，并且也是多余的，因为它们的数值在<code>d_optim</code>和<code>g_optim</code>计算的时候已经计算到了。这里你可以尝试优化这部分代码，然后发送一个 PR 到原始的 Github 项目中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for epoch in xrange(config.epoch):&#10;    ...&#10;    for idx in xrange(0, batch_idxs):&#10;        batch_images = ...&#10;        batch_z = np.random.uniform(-1, 1, [config.batch_size, self.z_dim]) \&#10;                    .astype(np.float32)&#10;&#10;        # Update D network&#10;        _, summary_str = self.sess.run([d_optim, self.d_sum],&#10;            feed_dict=&#123; self.images: batch_images, self.z: batch_z &#125;)&#10;&#10;        # Update G network&#10;        _, summary_str = self.sess.run([g_optim, self.g_sum],&#10;            feed_dict=&#123; self.z: batch_z &#125;)&#10;&#10;        # Run g_optim twice to make sure that d_loss does not go to zero&#10;        # (different from paper)&#10;        _, summary_str = self.sess.run([g_optim, self.g_sum],&#10;            feed_dict=&#123; self.z: batch_z &#125;)&#10;&#10;        errD_fake = self.d_loss_fake.eval(&#123;self.z: batch_z&#125;)&#10;        errD_real = self.d_loss_real.eval(&#123;self.images: batch_images&#125;)&#10;        errG = self.g_loss.eval(&#123;self.z: batch_z&#125;)</span><br></pre></td></tr></table></figure>
+<p>完整的代码可以在 <a href="https://github.com/bamos/dcgan-completion.tensorflow/blob/master/model.py" target="_blank" rel="external">https://github.com/bamos/dcgan-completion.tensorflow/blob/master/model.py</a> 中查看</p>
+<h4 id="在你的数据集上运行-DCGAN-模型"><a href="#在你的数据集上运行-DCGAN-模型" class="headerlink" title="在你的数据集上运行 DCGAN 模型"></a>在你的数据集上运行 DCGAN 模型</h4><p>如果你跳过上一小节，但希望运行一些代码：这部分的实现的源代码可以在如下 Github 地址：</p>
+<p><a href="https://github.com/bamos/dcgan-completion.tensorflow" target="_blank" rel="external">https://github.com/bamos/dcgan-completion.tensorflow</a></p>
+<p>当然，主要实现部分代码是来自 <a href="https://github.com/carpedm20/DCGAN-tensorflow" target="_blank" rel="external">https://github.com/carpedm20/DCGAN-tensorflow</a> 。但采用这个项目主要是方便实现下一部分的图像修复工作。但必须注意的是，如果你没有一个可以使用 CUDA 的 GPU 显卡，那么训练网络将会非常慢。</p>
+<p>首先需要克隆两份项目代码，地址分别如下：</p>
+<p><a href="https://github.com/bamos/dcgan-completion.tensorflow" target="_blank" rel="external">https://github.com/bamos/dcgan-completion.tensorflow</a></p>
+<p><a href="http://cmusatyalab.github.io/openface" target="_blank" rel="external">http://cmusatyalab.github.io/openface</a></p>
+<p>第一份就是作者的项目代码，第二份是采用 OpenFace 的预处理图片的 Python 代码，并不需要安装它的 Torch 依赖包。先创建一个新的工作文件夹，然后开始克隆，如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/cmusatyalab/openface.git&#10;git clone https://github.com/bamos/dcgan-completion.tensorflow.git</span><br></pre></td></tr></table></figure>
+<p>接着是安装 Python2 版本的 <a href="http://opencv.org/" target="_blank" rel="external">OpenCV</a>和 <a href="http://dlib.net/" target="_blank" rel="external">dlib</a>（采用 Python2 版本是因为 OpenFace 采用这个版本，当然你也可以尝试修改为适应 Python3 版本）。对于 OpenFace 的 Python 库安装，可以查看其安装指导教程，链接如下：</p>
+<p><a href="http://cmusatyalab.github.io/openface/setup/" target="_blank" rel="external">http://cmusatyalab.github.io/openface/setup/</a></p>
+<p>此外，如果你没有采用一个虚拟环境，那么需要加入<code>sudo</code>命令来运行<code>setup.py</code>实现全局的安装 OpenFace，当然如果安装这部分有问题，也可以采用 OpenFace 的 docker 镜像安装。安装的命令如下所示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd openface&#10;pip2 install -r requirements.txt&#10;python2 setup.py install&#10;models/get-models.sh&#10;cd ..</span><br></pre></td></tr></table></figure>
+<p>接着就是下载一些人脸图片数据集了，这里并不要求它们是否带有标签，因为不需要。目前开源可选的数据集包括 </p>
+<ul>
+<li>MS-Celeb-1M—<a href="https://www.microsoft.com/en-us/research/project/msr-image-recognition-challenge-irc/" target="_blank" rel="external">https://www.microsoft.com/en-us/research/project/msr-image-recognition-challenge-irc/</a></li>
+<li>CelebA—<a href="http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html" target="_blank" rel="external">http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html</a></li>
+<li>CASIA-WebFace—<a href="http://www.cbsr.ia.ac.cn/english/CASIA-WebFace-Database.html" target="_blank" rel="external">http://www.cbsr.ia.ac.cn/english/CASIA-WebFace-Database.html</a></li>
+<li>FaceScrub—<a href="http://vintage.winklerbros.net/facescrub.html" target="_blank" rel="external">http://vintage.winklerbros.net/facescrub.html</a></li>
+<li>LFW—<a href="http://vis-www.cs.umass.edu/lfw/" target="_blank" rel="external">http://vis-www.cs.umass.edu/lfw/</a></li>
+<li>MegaFace—<a href="http://megaface.cs.washington.edu/" target="_blank" rel="external">http://megaface.cs.washington.edu/</a></li>
+</ul>
+<p>然后将数据集放到目录<code>dcgan-completion.tensorflow/data/your-dataset/raw</code>下表示其是原始的图片。</p>
+<p>接着采用 OpenFace 的对齐工具来预处理图片并调整成<code>64x64</code>的尺寸：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./openface/util/align-dlib.py data/dcgan-completion.tensorflow/data/your-dataset/raw align innerEyesAndBottomLip data/dcgan-completion.tensorflow/data/your-dataset/aligned --size 64</span><br></pre></td></tr></table></figure>
+<p>最后是整理下保存对齐图片的目录，保证只包含图片而没有其他的子文件夹：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd dcgan-completion.tensorflow/data/your-dataset/aligned&#10;find . -name &#39;*.png&#39; -exec mv &#123;&#125; . \;&#10;find . -type d -empty -delete&#10;cd ../../..</span><br></pre></td></tr></table></figure>
+<p>然后确保已经安装了 TensorFlow，那么可以开始训练 DCGAN了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./train-dcgan.py --dataset ./data/your-dataset/aligned --epoch 20</span><br></pre></td></tr></table></figure>
+<p>在<code>samples</code>文件夹中可以查看保存的由 G 生成的图片。这里作者是采用手上有的两个数据集 CASIA-WebFace 和 FaceScrub 进行训练，并在训练 14 个 epochs 后，生成的结果如下图所示：</p>
+<p><img src="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/dcgan-results.png" alt=""></p>
+<p>还可以通过 TensorBoard 来查看 loss 的变化：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tensorboard --logdir ./logs</span><br></pre></td></tr></table></figure>
+<p><img src="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/dcgan-tensorboard-results.png" alt=""></p>
+<hr>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>这就是本文的第二部分内容，主要是介绍了 DCGAN 的基本原理以及代码实现，还有就是训练前的准备和开始训练，训练的实验结果。</p>
+<p>在下一篇将介绍最后一步内容，如何利用 DCGAN 来实现图像修复的工作！</p>
+<p>欢迎关注我的微信公众号—机器学习与计算机视觉，或者扫描下方的二维码，在后台留言，和我分享你的建议和看法，指正文章中可能存在的错误，大家一起交流，学习和进步！</p>
+<p><img src="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/qrcode_new.jpg" alt=""></p>
+<hr>
+<p><strong>推荐阅读</strong></p>
+<p>1.<a href="https://mp.weixin.qq.com/s?__biz=MzU5MDY5OTI5MA==&amp;mid=2247483667&amp;idx=1&amp;sn=c6b6feb241897ede16bd745d595cef92&amp;chksm=fe3b0f66c94c86701e9b071e62750d189c254fd3ebe9bb6251505162139efefdf866093b38c3&amp;token=2134085567&amp;lang=zh_CN#rd" target="_blank" rel="external">机器学习入门系列(1)—机器学习概览(上)</a></p>
+<p>2.<a href="https://mp.weixin.qq.com/s?__biz=MzU5MDY5OTI5MA==&amp;mid=2247483672&amp;idx=1&amp;sn=34b6687030db92fd3e04dcdebd09fffc&amp;chksm=fe3b0f6dc94c867b2a72c427ebb90e2a683e6ad97ea2c5fbdc3a3bb86a8b159b8e5f107d2dcc&amp;token=2134085567&amp;lang=zh_CN#rd" target="_blank" rel="external">机器学习入门系列(2)—机器学习概览(下)</a></p>
+<p>3.<a href="https://mp.weixin.qq.com/s?__biz=MzU5MDY5OTI5MA==&amp;mid=2247483711&amp;idx=1&amp;sn=ead88d5b21e08d9df853b72f31d4b5f4&amp;chksm=fe3b0f4ac94c865cfc243123eb4815539ef2d5babdc8346f79a29b681e55eee5f964bdc61d71&amp;token=1493836032&amp;lang=zh_CN#rd" target="_blank" rel="external">[GAN学习系列] 初识GAN</a></p>
+<p>4.<a href="https://mp.weixin.qq.com/s?__biz=MzU5MDY5OTI5MA==&amp;mid=2247483732&amp;idx=1&amp;sn=99cb91edf6fb6da3c7d62132c40b0f62&amp;chksm=fe3b0f21c94c8637a8335998c3fc9d0adf1ac7dea332c2bd45e63707eac6acad8d84c1b3d16d&amp;token=985117826&amp;lang=zh_CN#rd" target="_blank" rel="external">[GAN学习系列2] GAN的起源</a></p>
+<p>5.<a href="https://mp.weixin.qq.com/s/S_uiSe74Ti6N_u4Y5Fd6Fw" target="_blank" rel="external">[GAN学习系列3]采用深度学习和 TensorFlow 实现图片修复(上）</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/GAN/" rel="tag">#GAN</a>
+          
+            <a href="/tags/image-inpainting/" rel="tag">#image inpainting</a>
+          
+            <a href="/tags/技术/" rel="tag">#技术</a>
+          
+            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
+          
+            <a href="/tags/深度学习/" rel="tag">#深度学习</a>
+          
+            <a href="/tags/算法/" rel="tag">#算法</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/10/GAN学习系列3-采用深度学习和-TensorFlow-实现图片修复-上）/" rel="next" title="[GAN学习系列3]采用深度学习和 TensorFlow 实现图片修复(上）">
+                <i class="fa fa-chevron-left"></i> [GAN学习系列3]采用深度学习和 TensorFlow 实现图片修复(上）
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/22/GAN学习系列3-采用深度学习和-TensorFlow-实现图片修复-下）/" rel="prev" title="[GAN学习系列3]采用深度学习和 TensorFlow 实现图片修复(下）">
+                [GAN学习系列3]采用深度学习和 TensorFlow 实现图片修复(下） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTcyOC8xNjI1NQ=="></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/favicon.png"
+               alt="cai" />
+          <p class="site-author-name" itemprop="name">cai</p>
+          <p class="site-description motion-element" itemprop="description">从事计算机视觉和机器学习深度学习相关的算法工程师，运用Python编程，分享读书学习笔记和实战练习项目文章。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">42</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ccc013" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2181051220?is_all=1" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/luo-cai" target="_blank" title="Zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Zhihu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net/lc013?viewmode=contents" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  CSDN
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/lmj623565791" title="张鸿洋的博客" target="_blank">张鸿洋的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/guolin_blog" title="郭霖的博客" target="_blank">郭霖的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/singwhatiwanna/article/category/1405419" title="任玉刚" target="_blank">任玉刚</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/Luoshengyang/" title="罗升阳" target="_blank">罗升阳</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://hukai.me/" title="胡凯" target="_blank">胡凯</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.daimajia.com/" title="代码家" target="_blank">代码家</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://hujiaweibujidao.github.io/" title="HujiaweiBujidao" target="_blank">HujiaweiBujidao</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.liaoxuefeng.com/" title="廖雪峰的博客" target="_blank">廖雪峰的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://drakeet.me/" title="Drakeet的个人博客" target="_blank">Drakeet的个人博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.kymjs.com/" title="张涛-开源实验室" target="_blank">张涛-开源实验室</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://gudong.name/" title="咕咚" target="_blank">咕咚</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#第二步：快速生成假的图片"><span class="nav-number">1.</span> <span class="nav-text">第二步：快速生成假的图片</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#从未知的概率分布中学习生成新的样本"><span class="nav-number">1.1.</span> <span class="nav-text">从未知的概率分布中学习生成新的样本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ML-Heavy-建立-GAN-模型"><span class="nav-number">1.2.</span> <span class="nav-text">[ML-Heavy] 建立 GAN 模型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#采用-G-z-生成假的图片"><span class="nav-number">1.3.</span> <span class="nav-text">采用 G(z) 生成假的图片</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ML-Heavy-训练-DCGAN"><span class="nav-number">1.4.</span> <span class="nav-text">[ML-Heavy] 训练 DCGAN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#目前的-GAN-和-DCGAN-实现"><span class="nav-number">1.5.</span> <span class="nav-text">目前的 GAN 和 DCGAN 实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ML-Heavy-TensorFlow-实现-DCGAN"><span class="nav-number">1.6.</span> <span class="nav-text">[ML-Heavy] TensorFlow 实现 DCGAN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在你的数据集上运行-DCGAN-模型"><span class="nav-number">1.7.</span> <span class="nav-text">在你的数据集上运行 DCGAN 模型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结"><span class="nav-number">2.</span> <span class="nav-text">小结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cai</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  
+</div>
+
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("gmEY36PtfOmueA7roORTu2He-gzGzoHsz", "mzEkjGKehJYxfp1PrU0TYsW3");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+</body>
+
+
+<script type="text/javascript"
+color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
+
+</html>

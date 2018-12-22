@@ -1,0 +1,1005 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="GAN,image inpainting,技术,机器学习,深度学习,算法," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="一个算法汪的日常" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon/icon_code.jpg?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="这是本文的最后一部分内容了，前两部分内容的文章：
+
+[GAN学习系列3]采用深度学习和 TensorFlow 实现图片修复(上）
+[GAN学习系列3]采用深度学习和 TensorFlow 实现图片修复(中）
+
+以及原文的地址：
+http://bamos.github.io/2016/08/09/deep-completion/
+最后一部分的目录如下：
+
+第三步：为图像修复寻找最佳的假图片
+利用 D">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[GAN学习系列3]采用深度学习和 TensorFlow 实现图片修复(下）">
+<meta property="og:url" content="http://ccc013.github.io/2018/12/22/GAN学习系列3-采用深度学习和-TensorFlow-实现图片修复-下）/index.html">
+<meta property="og:site_name" content="一个算法汪的日常">
+<meta property="og:description" content="这是本文的最后一部分内容了，前两部分内容的文章：
+
+[GAN学习系列3]采用深度学习和 TensorFlow 实现图片修复(上）
+[GAN学习系列3]采用深度学习和 TensorFlow 实现图片修复(中）
+
+以及原文的地址：
+http://bamos.github.io/2016/08/09/deep-completion/
+最后一部分的目录如下：
+
+第三步：为图像修复寻找最佳的假图片
+利用 D">
+<meta property="og:image" content="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/inpainting-projection.png">
+<meta property="og:image" content="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/mask-example.png">
+<meta property="og:image" content="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/math_1.png">
+<meta property="og:image" content="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/math_2.png">
+<meta property="og:image" content="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/math_3.png">
+<meta property="og:image" content="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/math_4.png">
+<meta property="og:image" content="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/completion.png">
+<meta property="og:image" content="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/missing_faces.png">
+<meta property="og:image" content="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/qrcode_new.jpg">
+<meta property="og:updated_time" content="2018-12-22T10:29:43.552Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="[GAN学习系列3]采用深度学习和 TensorFlow 实现图片修复(下）">
+<meta name="twitter:description" content="这是本文的最后一部分内容了，前两部分内容的文章：
+
+[GAN学习系列3]采用深度学习和 TensorFlow 实现图片修复(上）
+[GAN学习系列3]采用深度学习和 TensorFlow 实现图片修复(中）
+
+以及原文的地址：
+http://bamos.github.io/2016/08/09/deep-completion/
+最后一部分的目录如下：
+
+第三步：为图像修复寻找最佳的假图片
+利用 D">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: undefined,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> [GAN学习系列3]采用深度学习和 TensorFlow 实现图片修复(下） | 一个算法汪的日常 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1257376919&web_id=1257376919" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <!-- add Fork me on Github -->
+    <a href="https://github.com/ccc013"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
+
+    <!--add Fork me on Github  -->
+    
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">一个算法汪的日常</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Stay hungry, stay foolish</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                [GAN学习系列3]采用深度学习和 TensorFlow 实现图片修复(下）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-12-22T18:24:58+08:00" content="2018-12-22">
+              2018-12-22
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2018/12/22/GAN学习系列3-采用深度学习和-TensorFlow-实现图片修复-下）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/12/22/GAN学习系列3-采用深度学习和-TensorFlow-实现图片修复-下）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2018/12/22/GAN学习系列3-采用深度学习和-TensorFlow-实现图片修复-下）/" class="leancloud_visitors" data-flag-title="[GAN学习系列3]采用深度学习和 TensorFlow 实现图片修复(下）">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>这是本文的最后一部分内容了，前两部分内容的文章：</p>
+<ol>
+<li><a href="https://mp.weixin.qq.com/s/S_uiSe74Ti6N_u4Y5Fd6Fw" target="_blank" rel="external">[GAN学习系列3]采用深度学习和 TensorFlow 实现图片修复(上）</a></li>
+<li><a href="https://mp.weixin.qq.com/s/nYDZA75JcfsADYyNdXjmJQ" target="_blank" rel="external">[GAN学习系列3]采用深度学习和 TensorFlow 实现图片修复(中）</a></li>
+</ol>
+<p>以及原文的地址：</p>
+<p><a href="http://bamos.github.io/2016/08/09/deep-completion/" target="_blank" rel="external">http://bamos.github.io/2016/08/09/deep-completion/</a></p>
+<p>最后一部分的目录如下：</p>
+<ul>
+<li>第三步：为图像修复寻找最佳的假图片<ul>
+<li>利用 DCGANs 实现图像修复</li>
+<li>[ML-Heavy] 损失函数</li>
+<li>[ML-Heavy] TensorFlow 实现 DCGANs 模型来实现图像修复</li>
+<li>修复你的图片</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="第三步：为图像修复寻找最佳的假图片"><a href="#第三步：为图像修复寻找最佳的假图片" class="headerlink" title="第三步：为图像修复寻找最佳的假图片"></a>第三步：为图像修复寻找最佳的假图片</h3><h4 id="利用-DCGANs-实现图像修复"><a href="#利用-DCGANs-实现图像修复" class="headerlink" title="利用 DCGANs 实现图像修复"></a>利用 DCGANs 实现图像修复</h4><p>在第二步中，我们定义并训练了判别器<code>D(x)</code>和生成器<code>G(z)</code>，那接下来就是如何利用<code>DCGAN</code>网络模型来完成图片的修复工作了。</p>
+<p>在这部分，作者会参考论文<a href="https://arxiv.org/abs/1607.07539" target="_blank" rel="external">“Semantic Image Inpainting with Perceptual and Contextual Losses”</a> 提出的方法。</p>
+<p>对于部分图片<code>y</code>，对于缺失的像素部分采用最大化<code>D(y)</code>这种看起来合理的做法并不成功，它会导致生成一些既不属于真实数据分布，也属于生成数据分布的像素值。如下图所示，我们需要一种合理的将<code>y</code>映射到生成数据分布上。</p>
+<p><img src="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/inpainting-projection.png" alt=""></p>
+<h4 id="ML-Heavy-损失函数"><a href="#ML-Heavy-损失函数" class="headerlink" title="[ML-Heavy] 损失函数"></a>[ML-Heavy] 损失函数</h4><p>首先我们先定义几个符号来用于图像修复。用<code>M</code>表示一个二值的掩码(Mask)，即只有 0 或者是 1 的数值。其中 1 数值表示图片中要保留的部分，而 0 表示图片中需要修复的区域。定义好这个 Mask 后，接下来就是定义如何通过给定一个 Mask 来修复一张图片<code>y</code>，具体的方法就是让<code>y</code>和<code>M</code>的像素对应相乘，这种两个矩阵对应像素的方法叫做<a href="https://en.wikipedia.org/wiki/Hadamard_product_(matrices" target="_blank" rel="external"><strong>哈大马乘积</strong></a>)，并且表示为 <code>M ⊙ y</code> ，它们的乘积结果会得到图片中原始部分，如下图所示：</p>
+<p><img src="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/mask-example.png" alt=""></p>
+<p>接下来，假设我们从生成器<code>G</code>的生成结果找到一张图片，如下图公式所示，第二项表示的是<code>DCGAN</code>生成的修复部分：</p>
+<p><img src="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/math_1.png" alt=""></p>
+<p>根据上述公式，我们知道最重要的就是第二项生成部分，也就是需要实现很好修复图片缺失区域的做法。为了实现这个目的，这就需要回顾在第一步提出的两个重要的信息，上下文和感知信息。而这两个信息的获取主要是通过损失函数来实现。损失函数越小，表示生成的<code>G(z)</code>越适合待修复的区域。</p>
+<h5 id="Contextual-Loss"><a href="#Contextual-Loss" class="headerlink" title="Contextual Loss"></a>Contextual Loss</h5><p>为了保证输入图片相同的上下文信息，需要让输入图片<code>y</code>（可以理解为标签）中已知的像素和对应在<code>G(z)</code>中的像素尽可能相似，因此需要对产生不相似像素的<code>G(z)</code>做出惩罚。该损失函数如下所示，采用的是 L1 正则化方法：</p>
+<p><img src="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/math_2.png" alt=""></p>
+<p>这里还可以选择采用 L2 正则化方法，但论文中通过实验证明了 L1 正则化的效果更好。</p>
+<p>理想的情况是<code>y</code>和<code>G(z)</code>的所有像素值都是相同的，也就是说它们是完全相同的图片，这也就让上述损失函数值为0</p>
+<h5 id="Perceptual-Loss"><a href="#Perceptual-Loss" class="headerlink" title="Perceptual Loss"></a>Perceptual Loss</h5><p>为了让修复后的图片看起来非常逼真，我们需要让判别器<code>D</code>具备正确分辨出真实图片的能力。对应的损失函数如下所示：</p>
+<p><img src="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/math_3.png" alt=""></p>
+<p>因此，最终的损失函数如下所示：</p>
+<p><img src="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/math_4.png" alt=""></p>
+<p>这里 λ 是一个超参数，用于控制两个函数的各自重要性。</p>
+<p>另外，论文还采用<a href="http://dl.acm.org/citation.cfm?id=882269" target="_blank" rel="external">泊松混合(poisson blending)</a> 方法来平滑重构后的图片。</p>
+<h4 id="ML-Heavy-TensorFlow-实现-DCGANs-模型来实现图像修复"><a href="#ML-Heavy-TensorFlow-实现-DCGANs-模型来实现图像修复" class="headerlink" title="[ML-Heavy] TensorFlow 实现 DCGANs 模型来实现图像修复"></a>[ML-Heavy] TensorFlow 实现 DCGANs 模型来实现图像修复</h4><p>代码实现的项目地址如下：</p>
+<p><a href="https://github.com/bamos/dcgan-completion.tensorflow" target="_blank" rel="external">https://github.com/bamos/dcgan-completion.tensorflow</a></p>
+<p>首先需要新添加的变量是表示用于修复的 mask，如下所示，其大小和输入图片一样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.mask = tf.placeholder(tf.float32, [None] + self.image_shape, name=&#39;mask&#39;)</span><br></pre></td></tr></table></figure>
+<p>对于最小化损失函数的方法是采用常用的梯度下降方法，而在 TensorFlow 中已经实现了<a href="https://en.wikipedia.org/wiki/Automatic_differentiation" target="_blank" rel="external">自动微分</a>的方法，因此只需要添加待实现的损失函数代码即可。添加的代码如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">self.contextual_loss = tf.reduce_sum(&#10;    tf.contrib.layers.flatten(&#10;        tf.abs(tf.mul(self.mask, self.G) - tf.mul(self.mask, self.images))), 1)&#10;self.perceptual_loss = self.g_loss&#10;self.complete_loss = self.contextual_loss + self.lam*self.perceptual_loss&#10;self.grad_complete_loss = tf.gradients(self.complete_loss, self.z)</span><br></pre></td></tr></table></figure>
+<p>接着，就是定义一个 mask。这里作者实现的是位置在图片中心部分的 mask，可以根据需求来添加需要的任意随机位置的 mask，实际上代码中实现了多种 mask</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">if config.maskType == &#39;center&#39;:&#10;    scale = 0.25&#10;    assert(scale &#60;= 0.5)&#10;    mask = np.ones(self.image_shape)&#10;    l = int(self.image_size*scale)&#10;    u = int(self.image_size*(1.0-scale))&#10;    mask[l:u, l:u, :] = 0.0</span><br></pre></td></tr></table></figure>
+<p>因为采用梯度下降，所以采用一个 mini-batch 的带有动量的映射梯度下降方法，将<code>z</code>映射到<code>[-1,1]</code>的范围。代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for idx in xrange(0, batch_idxs):&#10;    batch_images = ...&#10;    batch_mask = np.resize(mask, [self.batch_size] + self.image_shape)&#10;    zhats = np.random.uniform(-1, 1, size=(self.batch_size, self.z_dim))&#10;&#10;    v = 0&#10;    for i in xrange(config.nIter):&#10;        fd = &#123;&#10;            self.z: zhats,&#10;            self.mask: batch_mask,&#10;            self.images: batch_images,&#10;        &#125;&#10;        run = [self.complete_loss, self.grad_complete_loss, self.G]&#10;        loss, g, G_imgs = self.sess.run(run, feed_dict=fd)&#10;        # &#26144;&#23556;&#26799;&#24230;&#19979;&#38477;&#26041;&#27861;&#10;        v_prev = np.copy(v)&#10;        v = config.momentum*v - config.lr*g[0]&#10;        zhats += -config.momentum * v_prev + (1+config.momentum)*v&#10;        zhats = np.clip(zhats, -1, 1)</span><br></pre></td></tr></table></figure>
+<h4 id="修复你的图片"><a href="#修复你的图片" class="headerlink" title="修复你的图片"></a>修复你的图片</h4><p>选择需要进行修复的图片，并放在文件夹<code>dcgan-completion.tensorflow/your-test-data/raw</code>下面，然后根据之前第二步的做法来对人脸图片进行对齐操作，然后将操作后的图片放到文件夹<code>dcgan-completion.tensorflow/your-test-data/aligned</code>。作者随机从数据集<code>LFW</code>中挑选图片进行测试，并且保证其<code>DCGAN</code>模型的训练集没有包含<code>LFW</code>中的人脸图片。</p>
+<p>接着可以运行下列命令来进行修复工作了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./complete.py ./data/your-test-data/aligned/* --outDir outputImages</span><br></pre></td></tr></table></figure>
+<p>上面的代码会将修复图片结果保存在<code>--outDir</code>参数设置的输出文件夹下，接着可以采用<code>ImageMagick</code>工具来生成动图。这里因为动图太大，就只展示修复后的结果图片：</p>
+<p><img src="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/completion.png" alt=""></p>
+<p>而原始的输入待修复图片如下：</p>
+<p><img src="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/missing_faces.png" alt=""></p>
+<hr>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>最后，再给出前两步的文章链接：</p>
+<ol>
+<li><a href="https://mp.weixin.qq.com/s/S_uiSe74Ti6N_u4Y5Fd6Fw" target="_blank" rel="external">[GAN学习系列3]采用深度学习和 TensorFlow 实现图片修复(上）</a></li>
+<li><a href="https://mp.weixin.qq.com/s/nYDZA75JcfsADYyNdXjmJQ" target="_blank" rel="external">[GAN学习系列3]采用深度学习和 TensorFlow 实现图片修复(中）</a></li>
+</ol>
+<p>当然这个图片修复方法由于也是2016年提出的方法了，所以效果不算特别好，这两年其实已经新出了好多篇新的图片修复方法的论文，比如：</p>
+<ol>
+<li><p>2016CVPR <a href="https://arxiv.org/abs/1604.07379" target="_blank" rel="external">Context encoders: Feature learning by inpainting</a></p>
+</li>
+<li><p>Deepfill 2018—<a href="https://arxiv.org/abs/1801.07892" target="_blank" rel="external">Generative Image Inpainting with Contextual Attention</a></p>
+</li>
+<li><p>Deepfillv2—<a href="https://arxiv.org/abs/1806.03589" target="_blank" rel="external">Free-Form Image Inpainting with Gated Convolution</a></p>
+</li>
+<li><p>2017CVPR—<a href="https://arxiv.org/abs/1611.09969" target="_blank" rel="external">High-resolution image inpainting using multi-scale neural patch synthesis</a></p>
+</li>
+<li><p>2018年的 NIPrus收录论文—<a href="https://arxiv.org/abs/1810.08771" target="_blank" rel="external">Image Inpainting via Generative Multi-column Convolutional Neural Networks</a></p>
+</li>
+</ol>
+<hr>
+<p>欢迎关注我的微信公众号—机器学习与计算机视觉，或者扫描下方的二维码，在后台留言，和我分享你的建议和看法，指正文章中可能存在的错误，大家一起交流，学习和进步！</p>
+<p><img src="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/qrcode_new.jpg" alt=""></p>
+<hr>
+<p><strong>往期精彩推荐</strong></p>
+<p>1.<a href="https://mp.weixin.qq.com/s?__biz=MzU5MDY5OTI5MA==&amp;mid=2247483667&amp;idx=1&amp;sn=c6b6feb241897ede16bd745d595cef92&amp;chksm=fe3b0f66c94c86701e9b071e62750d189c254fd3ebe9bb6251505162139efefdf866093b38c3&amp;token=2134085567&amp;lang=zh_CN#rd" target="_blank" rel="external">机器学习入门系列(1)—机器学习概览(上)</a></p>
+<p>2.<a href="https://mp.weixin.qq.com/s?__biz=MzU5MDY5OTI5MA==&amp;mid=2247483672&amp;idx=1&amp;sn=34b6687030db92fd3e04dcdebd09fffc&amp;chksm=fe3b0f6dc94c867b2a72c427ebb90e2a683e6ad97ea2c5fbdc3a3bb86a8b159b8e5f107d2dcc&amp;token=2134085567&amp;lang=zh_CN#rd" target="_blank" rel="external">机器学习入门系列(2)—机器学习概览(下)</a></p>
+<p>3.<a href="https://mp.weixin.qq.com/s?__biz=MzU5MDY5OTI5MA==&amp;mid=2247483711&amp;idx=1&amp;sn=ead88d5b21e08d9df853b72f31d4b5f4&amp;chksm=fe3b0f4ac94c865cfc243123eb4815539ef2d5babdc8346f79a29b681e55eee5f964bdc61d71&amp;token=1493836032&amp;lang=zh_CN#rd" target="_blank" rel="external">[GAN学习系列] 初识GAN</a></p>
+<p>4.<a href="https://mp.weixin.qq.com/s?__biz=MzU5MDY5OTI5MA==&amp;mid=2247483732&amp;idx=1&amp;sn=99cb91edf6fb6da3c7d62132c40b0f62&amp;chksm=fe3b0f21c94c8637a8335998c3fc9d0adf1ac7dea332c2bd45e63707eac6acad8d84c1b3d16d&amp;token=985117826&amp;lang=zh_CN#rd" target="_blank" rel="external">[GAN学习系列2] GAN的起源</a></p>
+<p>5.<a href="https://mp.weixin.qq.com/s/S_uiSe74Ti6N_u4Y5Fd6Fw" target="_blank" rel="external">[GAN学习系列3]采用深度学习和 TensorFlow 实现图片修复(上）</a></p>
+<p>6.<a href="https://mp.weixin.qq.com/s/nYDZA75JcfsADYyNdXjmJQ" target="_blank" rel="external">[GAN学习系列3]采用深度学习和 TensorFlow 实现图片修复(中）</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/GAN/" rel="tag">#GAN</a>
+          
+            <a href="/tags/image-inpainting/" rel="tag">#image inpainting</a>
+          
+            <a href="/tags/技术/" rel="tag">#技术</a>
+          
+            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
+          
+            <a href="/tags/深度学习/" rel="tag">#深度学习</a>
+          
+            <a href="/tags/算法/" rel="tag">#算法</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/22/GAN学习系列3-采用深度学习和-TensorFlow-实现图片修复-中）/" rel="next" title="[GAN学习系列3]采用深度学习和 TensorFlow 实现图片修复(中）">
+                <i class="fa fa-chevron-left"></i> [GAN学习系列3]采用深度学习和 TensorFlow 实现图片修复(中）
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zOTcyOC8xNjI1NQ=="></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/favicon.png"
+               alt="cai" />
+          <p class="site-author-name" itemprop="name">cai</p>
+          <p class="site-description motion-element" itemprop="description">从事计算机视觉和机器学习深度学习相关的算法工程师，运用Python编程，分享读书学习笔记和实战练习项目文章。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">42</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/ccc013" target="_blank" title="Github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/2181051220?is_all=1" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/luo-cai" target="_blank" title="Zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Zhihu
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://blog.csdn.net/lc013?viewmode=contents" target="_blank" title="CSDN">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  CSDN
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="http://creativecommons.org/licenses/by-nc-sa/4.0" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/lmj623565791" title="张鸿洋的博客" target="_blank">张鸿洋的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/guolin_blog" title="郭霖的博客" target="_blank">郭霖的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/singwhatiwanna/article/category/1405419" title="任玉刚" target="_blank">任玉刚</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.csdn.net/Luoshengyang/" title="罗升阳" target="_blank">罗升阳</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://hukai.me/" title="胡凯" target="_blank">胡凯</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.daimajia.com/" title="代码家" target="_blank">代码家</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://hujiaweibujidao.github.io/" title="HujiaweiBujidao" target="_blank">HujiaweiBujidao</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.liaoxuefeng.com/" title="廖雪峰的博客" target="_blank">廖雪峰的博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://drakeet.me/" title="Drakeet的个人博客" target="_blank">Drakeet的个人博客</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.kymjs.com/" title="张涛-开源实验室" target="_blank">张涛-开源实验室</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://gudong.name/" title="咕咚" target="_blank">咕咚</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#第三步：为图像修复寻找最佳的假图片"><span class="nav-number">1.</span> <span class="nav-text">第三步：为图像修复寻找最佳的假图片</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#利用-DCGANs-实现图像修复"><span class="nav-number">1.1.</span> <span class="nav-text">利用 DCGANs 实现图像修复</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ML-Heavy-损失函数"><span class="nav-number">1.2.</span> <span class="nav-text">[ML-Heavy] 损失函数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Contextual-Loss"><span class="nav-number">1.2.1.</span> <span class="nav-text">Contextual Loss</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Perceptual-Loss"><span class="nav-number">1.2.2.</span> <span class="nav-text">Perceptual Loss</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ML-Heavy-TensorFlow-实现-DCGANs-模型来实现图像修复"><span class="nav-number">1.3.</span> <span class="nav-text">[ML-Heavy] TensorFlow 实现 DCGANs 模型来实现图像修复</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修复你的图片"><span class="nav-number">1.4.</span> <span class="nav-text">修复你的图片</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结"><span class="nav-number">2.</span> <span class="nav-text">小结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cai</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+  
+</div>
+
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript">
+    (function(d, s) {
+      var j, e = d.getElementsByTagName(s)[0];
+      if (typeof LivereTower === 'function') { return; }
+      j = d.createElement(s);
+      j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+      j.async = true;
+      e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+  </script>
+
+
+
+
+  
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("gmEY36PtfOmueA7roORTu2He-gzGzoHsz", "mzEkjGKehJYxfp1PrU0TYsW3");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+
+
+  
+
+</body>
+
+
+<script type="text/javascript"
+color="0,0,255" opacity='0.7' zIndex="-2" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
+
+</html>
