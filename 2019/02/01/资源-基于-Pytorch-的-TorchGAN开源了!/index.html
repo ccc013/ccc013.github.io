@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="机器学习,资源教程," />
+  <meta name="keywords" content="Pytorch,工具框架,深度学习," />
 
 
 
@@ -86,40 +86,36 @@
 
 
 
-<meta name="description" content="本文大约 600 字， 阅读大约需要 2 分钟
+<meta name="description" content="之前推荐过一个基于 TensorFlow 的 GAN 框架—谷歌开源的 GAN 库—TFGAN。
+而最近也有一个新的 GAN 框架工具，并且是基于 Pytorch 实现的，项目地址如下：
+https://github.com/torchgan/torchgan
+对于习惯使用 Pytorch 框架的同学，现在可以采用这个开源项目快速搭建一个 GAN 网络模型了！
 
-吴恩达老师在上个月底宣布终于完成了他最新的书籍《Machine Learning Yearning》的最后几个章节：
-
-而最近这本书也有了免费的完整中文版下载了，中文版的名称是《机器学习训练秘籍》，封面如下：
-
-正如书名所言，这本书主要介绍的就是机器学习训练中的一些技巧和注意事项，包括如何设置训练集和测试集、处理偏差和方差问题等。目录如下所示：">
+目前该开源项目有 400+ 星，它">
 <meta property="og:type" content="article">
-<meta property="og:title" content="[资源分享] 吴恩达最新《机器学习训练秘籍》中文版可以免费下载了">
-<meta property="og:url" content="http://ccc013.github.io/2018/10/27/资源分享-吴恩达最新《机器学习训练秘籍》中文版可以免费下载了/index.html">
+<meta property="og:title" content="[资源]基于 Pytorch 的 TorchGAN开源了!">
+<meta property="og:url" content="http://ccc013.github.io/2019/02/01/资源-基于-Pytorch-的-TorchGAN开源了!/index.html">
 <meta property="og:site_name" content="一个算法汪的日常">
-<meta property="og:description" content="本文大约 600 字， 阅读大约需要 2 分钟
+<meta property="og:description" content="之前推荐过一个基于 TensorFlow 的 GAN 框架—谷歌开源的 GAN 库—TFGAN。
+而最近也有一个新的 GAN 框架工具，并且是基于 Pytorch 实现的，项目地址如下：
+https://github.com/torchgan/torchgan
+对于习惯使用 Pytorch 框架的同学，现在可以采用这个开源项目快速搭建一个 GAN 网络模型了！
 
-吴恩达老师在上个月底宣布终于完成了他最新的书籍《Machine Learning Yearning》的最后几个章节：
-
-而最近这本书也有了免费的完整中文版下载了，中文版的名称是《机器学习训练秘籍》，封面如下：
-
-正如书名所言，这本书主要介绍的就是机器学习训练中的一些技巧和注意事项，包括如何设置训练集和测试集、处理偏差和方差问题等。目录如下所示：">
-<meta property="og:image" content="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/Ng_twitter1.png">
-<meta property="og:image" content="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/Ng_book1.png">
-<meta property="og:image" content="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/Ng_book3.png">
-<meta property="og:image" content="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/Ng_book4.png">
-<meta property="og:image" content="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/Ng_book8.png">
+目前该开源项目有 400+ 星，它">
+<meta property="og:image" content="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/torchgan.png">
+<meta property="og:image" content="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/torchgan_install.png">
+<meta property="og:image" content="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/torchgan_api.png">
+<meta property="og:image" content="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/torchgan_tutorials.png">
 <meta property="og:image" content="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/qrcode_new.jpg">
-<meta property="og:updated_time" content="2018-10-27T10:00:11.692Z">
+<meta property="og:updated_time" content="2019-02-01T03:35:34.418Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="[资源分享] 吴恩达最新《机器学习训练秘籍》中文版可以免费下载了">
-<meta name="twitter:description" content="本文大约 600 字， 阅读大约需要 2 分钟
+<meta name="twitter:title" content="[资源]基于 Pytorch 的 TorchGAN开源了!">
+<meta name="twitter:description" content="之前推荐过一个基于 TensorFlow 的 GAN 框架—谷歌开源的 GAN 库—TFGAN。
+而最近也有一个新的 GAN 框架工具，并且是基于 Pytorch 实现的，项目地址如下：
+https://github.com/torchgan/torchgan
+对于习惯使用 Pytorch 框架的同学，现在可以采用这个开源项目快速搭建一个 GAN 网络模型了！
 
-吴恩达老师在上个月底宣布终于完成了他最新的书籍《Machine Learning Yearning》的最后几个章节：
-
-而最近这本书也有了免费的完整中文版下载了，中文版的名称是《机器学习训练秘籍》，封面如下：
-
-正如书名所言，这本书主要介绍的就是机器学习训练中的一些技巧和注意事项，包括如何设置训练集和测试集、处理偏差和方差问题等。目录如下所示：">
+目前该开源项目有 400+ 星，它">
 
 
 
@@ -137,7 +133,7 @@
   };
 </script>
 
-  <title> [资源分享] 吴恩达最新《机器学习训练秘籍》中文版可以免费下载了 | 一个算法汪的日常 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> [资源]基于 Pytorch 的 TorchGAN开源了! | 一个算法汪的日常 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -288,7 +284,7 @@
             
             
               
-                [资源分享] 吴恩达最新《机器学习训练秘籍》中文版可以免费下载了
+                [资源]基于 Pytorch 的 TorchGAN开源了!
               
             
           </h1>
@@ -300,8 +296,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2018-10-27T17:50:11+08:00" content="2018-10-27">
-              2018-10-27
+            <time itemprop="dateCreated" datetime="2019-02-01T11:30:58+08:00" content="2019-02-01">
+              2019-02-01
             </time>
           </span>
 
@@ -311,8 +307,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2018/10/27/资源分享-吴恩达最新《机器学习训练秘籍》中文版可以免费下载了/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/10/27/资源分享-吴恩达最新《机器学习训练秘籍》中文版可以免费下载了/" itemprop="commentsCount"></span>
+                <a href="/2019/02/01/资源-基于-Pytorch-的-TorchGAN开源了!/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2019/02/01/资源-基于-Pytorch-的-TorchGAN开源了!/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -322,7 +318,7 @@
 
           
           
-             <span id="/2018/10/27/资源分享-吴恩达最新《机器学习训练秘籍》中文版可以免费下载了/" class="leancloud_visitors" data-flag-title="[资源分享] 吴恩达最新《机器学习训练秘籍》中文版可以免费下载了">
+             <span id="/2019/02/01/资源-基于-Pytorch-的-TorchGAN开源了!/" class="leancloud_visitors" data-flag-title="[资源]基于 Pytorch 的 TorchGAN开源了!">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -345,35 +341,65 @@
       
 
       
-        <blockquote>
-<p>本文大约 600 字， 阅读大约需要 2 分钟</p>
-</blockquote>
-<p>吴恩达老师在上个月底宣布终于完成了他最新的书籍《Machine Learning Yearning》的最后几个章节：</p>
-<p><img src="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/Ng_twitter1.png" alt=""></p>
-<p>而最近这本书也有了免费的完整中文版下载了，中文版的名称是《机器学习训练秘籍》，封面如下：</p>
-<p><img src="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/Ng_book1.png" alt=""></p>
-<p>正如书名所言，这本书主要介绍的就是机器学习训练中的一些技巧和注意事项，包括如何设置训练集和测试集、处理偏差和方差问题等。目录如下所示：</p>
-<p><img src="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/Ng_book3.png" alt=""></p>
-<p><img src="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/Ng_book4.png" alt=""></p>
-<p><img src="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/Ng_book8.png" alt=""></p>
-<p>英文版的官方下载地址是：</p>
-<p><a href="https://www.deeplearning.ai/machine-learning-yearning/" target="_blank" rel="external">https://www.deeplearning.ai/machine-learning-yearning/</a></p>
-<p>其官网是：</p>
-<p><a href="https://www.deeplearning.ai/" target="_blank" rel="external">https://www.deeplearning.ai/</a></p>
-<p><strong>中文版的Github地址为</strong></p>
-<p><a href="https://github.com/AcceptedDoge/machine-learning-yearning-cn" target="_blank" rel="external">https://github.com/AcceptedDoge/machine-learning-yearning-cn</a></p>
-<p>不过目前的中文版的翻译还并非最终版本，如果发现了问题，可以去 Github 上提出，帮助修改。</p>
-<p>这里我已经分别下载好中英文两个版本的 pdf，并且简单做好目录标签，下载链接是：</p>
-<p><a href="https://pan.baidu.com/s/1D5y0-44pFh4KSMiviSNGRw" target="_blank" rel="external">https://pan.baidu.com/s/1D5y0-44pFh4KSMiviSNGRw</a></p>
-<p>也可以在『公众号后台回复 <strong>“MLY” 或者 “机器学习训练秘籍”</strong>』获取下载链接和上述官网、中文版 Github 地址。</p>
-<p>这里也非常感谢翻译并且免费分享中文版在 Github 上的几位大佬，也祝各位无论是刚入门还是在进阶机器学习方面知识和技能，都能从这本书中收获匪浅！最后如果你觉得这次分享的资源不错，可以点个赞或者分享出去，谢谢！</p>
+        <p>之前推荐过一个基于 TensorFlow 的 GAN 框架—<a href="https://mp.weixin.qq.com/s/Kd_nsit-JMaEjT5o8rEkKQ" target="_blank" rel="external">谷歌开源的 GAN 库—TFGAN</a>。</p>
+<p>而最近也有一个新的 GAN 框架工具，并且是基于 Pytorch 实现的，项目地址如下：</p>
+<p><a href="https://github.com/torchgan/torchgan" target="_blank" rel="external">https://github.com/torchgan/torchgan</a></p>
+<p>对于习惯使用 Pytorch 框架的同学，现在可以采用这个开源项目快速搭建一个 GAN 网络模型了！</p>
+<p><img src="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/torchgan.png" alt=""></p>
+<p>目前该开源项目有 400+ 星，它给出了安装的教程、API 文档以及使用教程，文档的地址如下：</p>
+<p><a href="https://torchgan.readthedocs.io/en/latest/" target="_blank" rel="external">https://torchgan.readthedocs.io/en/latest/</a></p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>对于 TorchGAN 的安装，官网给出 3 种方法，但实际上目前仅支持两种安装方式，分别是<code>pip</code>方式安装以及源码安装，采用<code>conda</code>安装的方法目前还不支持。</p>
+<p><img src="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/torchgan_install.png" alt=""></p>
+<h5 id="Pip-安装方法"><a href="#Pip-安装方法" class="headerlink" title="Pip 安装方法"></a>Pip 安装方法</h5><p>安装最新的发布版本的命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip3 install torchgan</span><br></pre></td></tr></table></figure>
+<p>而如果是最新版本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip3 install git+https://github.com/torchgan/torchgan.git</span><br></pre></td></tr></table></figure>
+<h5 id="Conda-安装"><a href="#Conda-安装" class="headerlink" title="Conda 安装"></a>Conda 安装</h5><p>这是目前版本还不支持的安装方式，将会在<code>v0.1</code>版本实现这种安装方法。</p>
+<h5 id="源码方式安装"><a href="#源码方式安装" class="headerlink" title="源码方式安装"></a>源码方式安装</h5><p>按照下列命令的顺序执行来进行从源码安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone https://github.com/torchgan/torchgan&#10;$ cd torchgan&#10;$ python setup.py install</span><br></pre></td></tr></table></figure>
+<h5 id="依赖库"><a href="#依赖库" class="headerlink" title="依赖库"></a>依赖库</h5><p><strong>必须按照的依赖库</strong>：</p>
+<ul>
+<li>Numpy</li>
+<li>Pytorch 0.4.1</li>
+<li>Torchvision</li>
+</ul>
+<p><strong>可选</strong></p>
+<ul>
+<li>TensorboardX：主要是为了采用<code>Tensorboard</code>来观察和记录实验结果。安装通过命令<code>pip install tensorboardX</code></li>
+<li>Visdom：为了采用<code>Xisdom</code>进行记录。安装通过命令<code>pip install visdom</code></li>
+</ul>
+<h4 id="API-文档"><a href="#API-文档" class="headerlink" title="API 文档"></a>API 文档</h4><p>API 的文档目录如下：</p>
+<p><img src="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/torchgan_api.png" alt=""></p>
+<p>从目录主要分为以下几个大类：</p>
+<ul>
+<li>torchgan.layers：包含当前常用的用于构建 GAN 结构的一些网络层，包括残差块，Self-Attention，谱归一化(Spectral Normalization)等等</li>
+<li>torchgan.logging：提供了很强的可视化工具接口，包括对损失函数、梯度、测量标准以及生成图片的可视化等</li>
+<li>torchgan.losses：常见的训练 GANs 模型的损失函数，包括原始的对抗损失、最小二乘损失、WGAN的损失函数等；</li>
+<li>torchgan.metrics：主要是提供了不同的评判测量标准</li>
+<li>torchgan.models：包含常见的 GAN 网络结构，可以直接使用并且也可以进行拓展，包括 DCGAN、cGAN等</li>
+<li>torchgan.trainer：主要是提供训练模型的函数接口</li>
+</ul>
+<h4 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h4><p>教程部分如下所示：</p>
+<p><img src="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/torchgan_tutorials.png" alt=""></p>
+<p>教程给出了几个例子，包括 DCGAN、Self-Attention GAN、CycleGAN 例子，以及如何自定义损伤的方法。</p>
+<p>对于 Self-Attention GAN，还提供了一个在谷歌的 Colab 运行的例子，查看链接：</p>
+<p><a href="https://torchgan.readthedocs.io/en/latest/tutorials/sagan.html" target="_blank" rel="external">https://torchgan.readthedocs.io/en/latest/tutorials/sagan.html</a></p>
 <hr>
-<p>欢迎关注我的微信公众号—机器学习与计算机视觉或者扫描下方的二维码，和我分享你的建议和看法，指正文章中可能存在的错误，大家一起交流，学习和进步！</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>最后，再给出 Github 项目的链接和文档的对应链接地址：</p>
+<p><a href="https://github.com/torchgan/torchgan" target="_blank" rel="external">https://github.com/torchgan/torchgan</a></p>
+<p><a href="https://torchgan.readthedocs.io/en/latest/index.html" target="_blank" rel="external">https://torchgan.readthedocs.io/en/latest/index.html</a></p>
+<p>欢迎关注我的微信公众号—机器学习与计算机视觉，或者扫描下方的二维码，大家一起交流，学习和进步！</p>
 <p><img src="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/qrcode_new.jpg" alt=""></p>
-<p><strong>推荐阅读</strong><br>1.<a href="https://mp.weixin.qq.com/s?__biz=MzU5MDY5OTI5MA==&amp;mid=2247483667&amp;idx=1&amp;sn=c6b6feb241897ede16bd745d595cef92&amp;chksm=fe3b0f66c94c86701e9b071e62750d189c254fd3ebe9bb6251505162139efefdf866093b38c3&amp;token=2134085567&amp;lang=zh_CN#rd" target="_blank" rel="external">机器学习入门系列(1)—机器学习概览(上)</a></p>
-<p>2.<a href="https://mp.weixin.qq.com/s?__biz=MzU5MDY5OTI5MA==&amp;mid=2247483672&amp;idx=1&amp;sn=34b6687030db92fd3e04dcdebd09fffc&amp;chksm=fe3b0f6dc94c867b2a72c427ebb90e2a683e6ad97ea2c5fbdc3a3bb86a8b159b8e5f107d2dcc&amp;token=2134085567&amp;lang=zh_CN#rd" target="_blank" rel="external">机器学习入门系列(2)—机器学习概览(下)</a></p>
-<p>3.<a href="https://mp.weixin.qq.com/s?__biz=MzU5MDY5OTI5MA==&amp;mid=2247483679&amp;idx=1&amp;sn=229eaae83f0fad327d4ae419dc6bf865&amp;chksm=fe3b0f6ac94c867cf72992dd2ec118d165c3990818ddd45d5a87736bac907b8871e8a006e9ab&amp;token=2134085567&amp;lang=zh_CN#rd" target="_blank" rel="external">[实战] 图片转素描图</a></p>
-<p>4.<a href="https://mp.weixin.qq.com/s?__biz=MzU5MDY5OTI5MA==&amp;mid=2247483711&amp;idx=1&amp;sn=ead88d5b21e08d9df853b72f31d4b5f4&amp;chksm=fe3b0f4ac94c865cfc243123eb4815539ef2d5babdc8346f79a29b681e55eee5f964bdc61d71&amp;token=1493836032&amp;lang=zh_CN#rd" target="_blank" rel="external">[GAN学习系列] 初识GAN</a></p>
+<p>之前分享的资源和教程文章有：</p>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU5MDY5OTI5MA==&amp;mid=2247483683&amp;idx=1&amp;sn=3a75e0eb3f2c897bf14777a311017c9a&amp;chksm=fe3b0f56c94c8640f7bf90f0cbdbf5ebab838c6a90b24d43984b8fbdb94405552fada4946fc4&amp;token=985117826&amp;lang=zh_CN#rd" target="_blank" rel="external">推荐几本数据结构算法书籍和课程</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU5MDY5OTI5MA==&amp;mid=2247483737&amp;idx=1&amp;sn=5e9a27bd2b88a608a49685213cc0d481&amp;chksm=fe3b0f2cc94c863a0f86a062d4bab98d333332be4b546101fd15f0dd5269f2407ca5f3618e2d&amp;token=985117826&amp;lang=zh_CN#rd" target="_blank" rel="external">[资源分享] Github上八千Star的深度学习500问教程</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU5MDY5OTI5MA==&amp;mid=2247483716&amp;idx=1&amp;sn=0dc336f5ef002dd0dd703908288cf6aa&amp;chksm=fe3b0f31c94c8627ad8329cb4688fe08118d79cceb3c27f96a48543253978688d1786cb7a79e&amp;token=985117826&amp;lang=zh_CN#rd" target="_blank" rel="external">[资源分享] 吴恩达最新《机器学习训练秘籍》中文版可以免费下载了！</a></li>
+<li><a href="https://mp.weixin.qq.com/s/Si1YaYLfhL1upbjQkvireQ" target="_blank" rel="external">[资源分享] TensorFlow 官方中文版教程来了</a></li>
+<li><a href="https://mp.weixin.qq.com/s/0J2raJqiYsYPqwAV1MALaw" target="_blank" rel="external">必读的AI和深度学习博客</a></li>
+<li><a href="https://mp.weixin.qq.com/s/vXIM6Ttw37yzhVB_CvXmCA" target="_blank" rel="external">[教程]一份简单易懂的 TensorFlow 教程</a></li>
+<li><a href="https://mp.weixin.qq.com/s/Kd_nsit-JMaEjT5o8rEkKQ" target="_blank" rel="external">谷歌开源的 GAN 库—TFGAN</a></li>
+</ul>
 
       
     </div>
@@ -395,9 +421,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/机器学习/" rel="tag">#机器学习</a>
+            <a href="/tags/Pytorch/" rel="tag">#Pytorch</a>
           
-            <a href="/tags/资源教程/" rel="tag">#资源教程</a>
+            <a href="/tags/工具框架/" rel="tag">#工具框架</a>
+          
+            <a href="/tags/深度学习/" rel="tag">#深度学习</a>
           
         </div>
       
@@ -406,17 +434,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/19/vim快速入门/" rel="next" title="vim快速入门">
-                <i class="fa fa-chevron-left"></i> vim快速入门
+              <a href="/2019/02/01/资源-181个Python开源项目分享/" rel="next" title="[资源]181个Python开源项目分享!">
+                <i class="fa fa-chevron-left"></i> [资源]181个Python开源项目分享!
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/10/GAN学习系列-初识GAN/" rel="prev" title="[GAN学习系列] 初识GAN">
-                [GAN学习系列] 初识GAN <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -1614,7 +1638,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Pip-安装方法"><span class="nav-number">1.1.</span> <span class="nav-text">Pip 安装方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Conda-安装"><span class="nav-number">1.2.</span> <span class="nav-text">Conda 安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#源码方式安装"><span class="nav-number">1.3.</span> <span class="nav-text">源码方式安装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#依赖库"><span class="nav-number">1.4.</span> <span class="nav-text">依赖库</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#API-文档"><span class="nav-number">2.</span> <span class="nav-text">API 文档</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#教程"><span class="nav-number">3.</span> <span class="nav-text">教程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结"><span class="nav-number"></span> <span class="nav-text">小结</span></a></div>
             
           </div>
         </section>

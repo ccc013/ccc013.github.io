@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Stay hungry, stay foolish]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://ccc013.github.io/"/>
-  <updated>2019-02-01T03:06:10.463Z</updated>
+  <updated>2019-02-01T03:35:34.418Z</updated>
   <id>http://ccc013.github.io/</id>
   
   <author>
@@ -13,6 +13,84 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[[资源]基于 Pytorch 的 TorchGAN开源了!]]></title>
+    <link href="http://ccc013.github.io/2019/02/01/%E8%B5%84%E6%BA%90-%E5%9F%BA%E4%BA%8E-Pytorch-%E7%9A%84-TorchGAN%E5%BC%80%E6%BA%90%E4%BA%86!/"/>
+    <id>http://ccc013.github.io/2019/02/01/资源-基于-Pytorch-的-TorchGAN开源了!/</id>
+    <published>2019-02-01T03:30:58.000Z</published>
+    <updated>2019-02-01T03:35:34.418Z</updated>
+    <content type="html"><![CDATA[<p>之前推荐过一个基于 TensorFlow 的 GAN 框架—<a href="https://mp.weixin.qq.com/s/Kd_nsit-JMaEjT5o8rEkKQ" target="_blank" rel="external">谷歌开源的 GAN 库—TFGAN</a>。</p>
+<p>而最近也有一个新的 GAN 框架工具，并且是基于 Pytorch 实现的，项目地址如下：</p>
+<p><a href="https://github.com/torchgan/torchgan" target="_blank" rel="external">https://github.com/torchgan/torchgan</a></p>
+<p>对于习惯使用 Pytorch 框架的同学，现在可以采用这个开源项目快速搭建一个 GAN 网络模型了！</p>
+<p><img src="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/torchgan.png" alt=""></p>
+<p>目前该开源项目有 400+ 星，它给出了安装的教程、API 文档以及使用教程，文档的地址如下：</p>
+<p><a href="https://torchgan.readthedocs.io/en/latest/" target="_blank" rel="external">https://torchgan.readthedocs.io/en/latest/</a></p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>对于 TorchGAN 的安装，官网给出 3 种方法，但实际上目前仅支持两种安装方式，分别是<code>pip</code>方式安装以及源码安装，采用<code>conda</code>安装的方法目前还不支持。</p>
+<p><img src="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/torchgan_install.png" alt=""></p>
+<h5 id="Pip-安装方法"><a href="#Pip-安装方法" class="headerlink" title="Pip 安装方法"></a>Pip 安装方法</h5><p>安装最新的发布版本的命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip3 install torchgan</span><br></pre></td></tr></table></figure>
+<p>而如果是最新版本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip3 install git+https://github.com/torchgan/torchgan.git</span><br></pre></td></tr></table></figure>
+<h5 id="Conda-安装"><a href="#Conda-安装" class="headerlink" title="Conda 安装"></a>Conda 安装</h5><p>这是目前版本还不支持的安装方式，将会在<code>v0.1</code>版本实现这种安装方法。</p>
+<h5 id="源码方式安装"><a href="#源码方式安装" class="headerlink" title="源码方式安装"></a>源码方式安装</h5><p>按照下列命令的顺序执行来进行从源码安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git clone https://github.com/torchgan/torchgan&#10;$ cd torchgan&#10;$ python setup.py install</span><br></pre></td></tr></table></figure>
+<h5 id="依赖库"><a href="#依赖库" class="headerlink" title="依赖库"></a>依赖库</h5><p><strong>必须按照的依赖库</strong>：</p>
+<ul>
+<li>Numpy</li>
+<li>Pytorch 0.4.1</li>
+<li>Torchvision</li>
+</ul>
+<p><strong>可选</strong></p>
+<ul>
+<li>TensorboardX：主要是为了采用<code>Tensorboard</code>来观察和记录实验结果。安装通过命令<code>pip install tensorboardX</code></li>
+<li>Visdom：为了采用<code>Xisdom</code>进行记录。安装通过命令<code>pip install visdom</code></li>
+</ul>
+<h4 id="API-文档"><a href="#API-文档" class="headerlink" title="API 文档"></a>API 文档</h4><p>API 的文档目录如下：</p>
+<p><img src="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/torchgan_api.png" alt=""></p>
+<p>从目录主要分为以下几个大类：</p>
+<ul>
+<li>torchgan.layers：包含当前常用的用于构建 GAN 结构的一些网络层，包括残差块，Self-Attention，谱归一化(Spectral Normalization)等等</li>
+<li>torchgan.logging：提供了很强的可视化工具接口，包括对损失函数、梯度、测量标准以及生成图片的可视化等</li>
+<li>torchgan.losses：常见的训练 GANs 模型的损失函数，包括原始的对抗损失、最小二乘损失、WGAN的损失函数等；</li>
+<li>torchgan.metrics：主要是提供了不同的评判测量标准</li>
+<li>torchgan.models：包含常见的 GAN 网络结构，可以直接使用并且也可以进行拓展，包括 DCGAN、cGAN等</li>
+<li>torchgan.trainer：主要是提供训练模型的函数接口</li>
+</ul>
+<h4 id="教程"><a href="#教程" class="headerlink" title="教程"></a>教程</h4><p>教程部分如下所示：</p>
+<p><img src="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/torchgan_tutorials.png" alt=""></p>
+<p>教程给出了几个例子，包括 DCGAN、Self-Attention GAN、CycleGAN 例子，以及如何自定义损伤的方法。</p>
+<p>对于 Self-Attention GAN，还提供了一个在谷歌的 Colab 运行的例子，查看链接：</p>
+<p><a href="https://torchgan.readthedocs.io/en/latest/tutorials/sagan.html" target="_blank" rel="external">https://torchgan.readthedocs.io/en/latest/tutorials/sagan.html</a></p>
+<hr>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p>最后，再给出 Github 项目的链接和文档的对应链接地址：</p>
+<p><a href="https://github.com/torchgan/torchgan" target="_blank" rel="external">https://github.com/torchgan/torchgan</a></p>
+<p><a href="https://torchgan.readthedocs.io/en/latest/index.html" target="_blank" rel="external">https://torchgan.readthedocs.io/en/latest/index.html</a></p>
+<p>欢迎关注我的微信公众号—机器学习与计算机视觉，或者扫描下方的二维码，大家一起交流，学习和进步！</p>
+<p><img src="https://cai-images-1257823952.cos.ap-beijing.myqcloud.com/qrcode_new.jpg" alt=""></p>
+<p>之前分享的资源和教程文章有：</p>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU5MDY5OTI5MA==&amp;mid=2247483683&amp;idx=1&amp;sn=3a75e0eb3f2c897bf14777a311017c9a&amp;chksm=fe3b0f56c94c8640f7bf90f0cbdbf5ebab838c6a90b24d43984b8fbdb94405552fada4946fc4&amp;token=985117826&amp;lang=zh_CN#rd" target="_blank" rel="external">推荐几本数据结构算法书籍和课程</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU5MDY5OTI5MA==&amp;mid=2247483737&amp;idx=1&amp;sn=5e9a27bd2b88a608a49685213cc0d481&amp;chksm=fe3b0f2cc94c863a0f86a062d4bab98d333332be4b546101fd15f0dd5269f2407ca5f3618e2d&amp;token=985117826&amp;lang=zh_CN#rd" target="_blank" rel="external">[资源分享] Github上八千Star的深度学习500问教程</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzU5MDY5OTI5MA==&amp;mid=2247483716&amp;idx=1&amp;sn=0dc336f5ef002dd0dd703908288cf6aa&amp;chksm=fe3b0f31c94c8627ad8329cb4688fe08118d79cceb3c27f96a48543253978688d1786cb7a79e&amp;token=985117826&amp;lang=zh_CN#rd" target="_blank" rel="external">[资源分享] 吴恩达最新《机器学习训练秘籍》中文版可以免费下载了！</a></li>
+<li><a href="https://mp.weixin.qq.com/s/Si1YaYLfhL1upbjQkvireQ" target="_blank" rel="external">[资源分享] TensorFlow 官方中文版教程来了</a></li>
+<li><a href="https://mp.weixin.qq.com/s/0J2raJqiYsYPqwAV1MALaw" target="_blank" rel="external">必读的AI和深度学习博客</a></li>
+<li><a href="https://mp.weixin.qq.com/s/vXIM6Ttw37yzhVB_CvXmCA" target="_blank" rel="external">[教程]一份简单易懂的 TensorFlow 教程</a></li>
+<li><a href="https://mp.weixin.qq.com/s/Kd_nsit-JMaEjT5o8rEkKQ" target="_blank" rel="external">谷歌开源的 GAN 库—TFGAN</a></li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>之前推荐过一个基于 TensorFlow 的 GAN 框架—<a href="https://mp.weixin.qq.com/s/Kd_nsit-JMaEjT5o8rEkKQ" target="_blank" rel="external">谷歌开源的 GAN 库—TFGA]]>
+    </summary>
+    
+      <category term="Pytorch" scheme="http://ccc013.github.io/tags/Pytorch/"/>
+    
+      <category term="工具框架" scheme="http://ccc013.github.io/tags/%E5%B7%A5%E5%85%B7%E6%A1%86%E6%9E%B6/"/>
+    
+      <category term="深度学习" scheme="http://ccc013.github.io/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[[资源]181个Python开源项目分享!]]></title>
@@ -1914,63 +1992,6 @@ k_i \le k_{2i+1}
     <summary type="html">
     <![CDATA[<p>继续是《数据结构算法与应用：C++语言描述》的笔记，这是第九章优先队列的内容。本节将介绍另一种实现优先队列的数据结构—左高树</p>
 <h3 id="高度与宽度优先的最大及最小左高树"><a href="#高度与宽度优先的最大及最小左高树" class="headerlin]]>
-    </summary>
-    
-      <category term="数据结构" scheme="http://ccc013.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
-    
-      <category term="算法" scheme="http://ccc013.github.io/tags/%E7%AE%97%E6%B3%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[优先队列1--堆]]></title>
-    <link href="http://ccc013.github.io/2016/08/23/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%971-%E5%A0%86/"/>
-    <id>http://ccc013.github.io/2016/08/23/优先队列1-堆/</id>
-    <published>2016-08-23T12:27:57.000Z</published>
-    <updated>2016-10-23T07:19:13.371Z</updated>
-    <content type="html"><![CDATA[<p>继续是《数据结构算法与应用：C++语言描述》的笔记，这是第九章优先队列的内容。本小节主要介绍的是优先队列的定义以及其中一种实现方法—最大堆的实现，最后是堆的一个应用—堆排序。</p>
-<p>优先队列删除元素时根据优先权高或低的次序，而不是元素进行队列的次序，这与之前第六章介绍的FIFO结构的队列不同。</p>
-<p><strong>可以利用堆数据结构来高效地实现优先队列，堆是一棵完全二叉树</strong>。</p>
-<h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><blockquote>
-<p>优先队列（priority queue)是0个或多个元素的集合，每个元素都有一个优先权或值，对优先队列执行的操作有1）查找；2）插入一个新元素；3）删除。</p>
-</blockquote>
-<p>优先队列可以按搜索的是优先权大或小的元素分为最大优先队列或者最小优先队列，而删除操作则是用来删除对应查找的元素。另外，优先队列中的元素可以有相同的优先权，查找和删除操作可根据任意优先权进行。</p>
-<p>下面给出最大优先队列的抽象数据类型，最小优先队列的抽象数据类型与之相似，只需要将最大改为最小。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">抽象数据类型MaxPriorityQueue&#123;</span><br><span class="line">实例</span><br><span class="line">    有限的元素集合，每个元素都有一个优先权</span><br><span class="line">操作</span><br><span class="line">    Create(): 创建一个空的优先队列</span><br><span class="line">    Size(): 返回队列中的元素数目</span><br><span class="line">    Max(): 返回具有最大优先权的元素</span><br><span class="line">    Insert(x): 将x插入队列</span><br><span class="line">    DeleteMax(x): 从队列中删除具有最大优先权的元素，并将该元素返回至x</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><blockquote>
-<p>[最大树（最小树）] 每个节点的值都大于（小于）或等于其子节点（如果有的话）值的树。</p>
-</blockquote>
-<p>最大树与最小树的例子分别如下图9-1,9-2所示。虽然这些树都是二叉树，但最大树不必是二叉树，最大树或最小树节点的子节点个数可以大于2。</p>
-<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%A0%861.png" alt="此处输入图片的描述"></p>
-<blockquote>
-<p>[最大堆(最小堆)] 最大（最小）的完全二叉树。</p>
-</blockquote>
-<p>上图9-1b并所示的最大树并不是最大堆，因为它不是完全二叉树，而其他两个最大树是最大堆。同样，图9-2b也不是完全二叉树，所以也不是最小堆，其他两个最小树则是最小堆。</p>
-<p>堆是完成二叉树，可以利用<a href="http://ccc013.github.io/2016/08/18/%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5%E5%92%8C%E5%AE%9E%E7%8E%B0/">二叉树的基本概念和实现</a>中介绍的公式化描述方案，可用一维数组有效地描述堆，利用二叉树的特性4可将堆中的节点移动到其父节点或子节点处。<strong>另外，堆是完全二叉树，拥有n个元素的堆高度是$\left\lceil  log_2(n+1) \right\rceil$,因此，如果可在$O(height)$时间内完成插入和删除操作，其复杂性是$O(log_2n)$。</strong></p>
-<h4 id="最大堆的插入"><a href="#最大堆的插入" class="headerlink" title="最大堆的插入"></a>最大堆的插入</h4><p>  如下图9-3a是一个具有5个元素的最大堆，当要加入一个元素的时候，因为堆是完全二叉树，得到的新树结构必然如9-3b所示，这个时候如果新元素的值是5，它比2要大，此时需要将2下移变成左孩子，如图9-3c所示，此外还要与根节点进行比较，这里如果新插入的元素值是21，就大于根节点的20了，此时还需要将20下移到原来2的位置，变成如图9-3d所示。</p>
-<p>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%A0%862.png" alt="此处输入图片的描述"></p>
-<p>  插入策略从叶到根只有单一路径，每层工作需耗时$\theta(1)$,因此实现此策略的时间复杂性是$O(height)=O(log_2n)$。</p>
-<h4 id="最大堆的删除"><a href="#最大堆的删除" class="headerlink" title="最大堆的删除"></a>最大堆的删除</h4><p>  假设对图9-3d的最大堆进行删除，需要删除的是元素21，这个时候只剩下5个元素，需要重新构建最大堆的结构，那么最终应该得到如图9-3a的最大堆形式。然后接下来要删除的是元素20，并得到如图9-4b所示的结构，则首先10从位置5移出，但将其放在根节点的位置得到的不是最大堆，则把根节点的两个孩子15和2中较大的一个放到根节点，然后假设将10插入位置2，但是还不是最大堆，因此将14上移到位置2,10放到位置4，得到如图9-4c所示。</p>
-<p>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%A0%863.png" alt="此处输入图片的描述"></p>
-<p>  删除策略如插入策略一样，从堆的根节点到叶节点只有单一路径，每层工作需耗时$\theta(1)$,因此实现此策略的时间复杂性是$O(height)=O(log_2n)$。</p>
-<h4 id="最大堆的初始化"><a href="#最大堆的初始化" class="headerlink" title="最大堆的初始化"></a>最大堆的初始化</h4><p>  现在假设开始有数组a，它有n个元素，n=10，它可以用如图9-5a所示的完全二叉树表示，但它不是最大堆。为了将其转化为最大堆，从第一个具有孩子的节点开始（即节点10），<strong>这个元素在数组中的位置是$i=[n/2]$，如果以这个元素为根的子树已经是最大堆，则不需要调整，否则必须调整子树成为最大堆，然后继续检查$i-1,i-2,\ldots$等节点为根的子树，直到检查到根节点为止。</strong></p>
-<p>  对图9-5a所示的完全二叉树，首先i=5，因为$10&gt;1$,所以以位置i为根的子树已经是最大堆，接下来检查位置4的子树，$15&lt;17$,它不是最大堆，将其变为最大堆，可得到如图9-5b所示，然后依次检查位置3，位置2以及根节点，分别得到如图9-5c，d所示的最大堆。</p>
-<p>  <img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%A0%864.png" alt="此处输入图片的描述"></p>
-<h4 id="类MaxHeap"><a href="#类MaxHeap" class="headerlink" title="类MaxHeap"></a>类MaxHeap</h4><p>  下面程序给出最大堆的类定义。n是私有成员，代表目前堆中的元素的个数；MaxSize是堆的最大容量；heap是存储堆元素的数组，默认大小是10。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span><br><span class="line"><span class="keyword">class</span> MaxHeap&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> CurrentSize, MaxSize;</span><br><span class="line">    T* heap;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    MaxHeap(<span class="keyword">int</span> MaxHeapSize = <span class="number">10</span>);</span><br><span class="line">    ~MaxHeap()&#123; <span class="keyword">delete</span>[] heap; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">Size</span><span class="params">()</span> <span class="keyword">const</span></span>&#123; <span class="keyword">return</span> CurrentSize; &#125;</span><br><span class="line">    <span class="function">T <span class="title">Max</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (CurrentSize == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">throw</span> OutOfBounds();</span><br><span class="line">        <span class="keyword">return</span> heap[<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    MaxHeap&lt;T&gt;&amp; Insert(<span class="keyword">const</span> T&amp; x);</span><br><span class="line">    MaxHeap&lt;T&gt;&amp; DeleteMax(T&amp; x);</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Initialize</span><span class="params">(T a[], <span class="keyword">int</span> size, <span class="keyword">int</span> ArraySize)</span></span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>下面给出最大堆的插入、删除和初始化代码实现：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span><br><span class="line">MaxHeap&lt;T&gt;&amp; MaxHeap&lt;T&gt;::Insert(<span class="keyword">const</span> T&amp; x)&#123;</span><br><span class="line">    <span class="comment">// 将x插入到最大堆中</span></span><br><span class="line">    <span class="keyword">if</span> (CurrentSize == MaxSize)</span><br><span class="line">        <span class="keyword">throw</span> NoMem();</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 为x寻找插入位置</span></span><br><span class="line">    <span class="keyword">int</span> i = ++CurrentSize;</span><br><span class="line">    <span class="keyword">while</span> (i != <span class="number">1</span> &amp;&amp; x &gt; heap[i / <span class="number">2</span>])&#123;</span><br><span class="line">        <span class="comment">// 不能够将x放入heap[i]</span></span><br><span class="line">        heap[i] = heap[i / <span class="number">2</span>];  <span class="comment">// 将元素下移</span></span><br><span class="line">        i /= <span class="number">2</span>; <span class="comment">// 移向父节点</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    heap[i] = x;</span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span><br><span class="line">MaxHeap&lt;T&gt;&amp; MaxHeap&lt;T&gt;::DeleteMax(T&amp; x)&#123;</span><br><span class="line">    <span class="comment">// 将最大元素放入x，并从堆中删除最大元素</span></span><br><span class="line">    <span class="keyword">if</span> (CurrentSize == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">throw</span> OutOfBounds();</span><br><span class="line"></span><br><span class="line">    x = heap[<span class="number">1</span>];    <span class="comment">// 最大元素</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 重构堆</span></span><br><span class="line">    T y = heap[CurrentSize--];  <span class="comment">// 最后一个元素</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 从根开始，为y寻找合适的位置</span></span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">1</span>, ci = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">while</span> (ci &lt;= CurrentSize)&#123;</span><br><span class="line">        <span class="comment">// heap[ci]应是i较大的孩子</span></span><br><span class="line">        <span class="keyword">if</span> (ci &lt; CurrentSize &amp;&amp; heap[ci] &lt; heap[ci + <span class="number">1</span>])</span><br><span class="line">            ci++;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 判断是否能将y放入heap[i]</span></span><br><span class="line">        <span class="keyword">if</span> (y &gt;= heap[ci])</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 不能</span></span><br><span class="line">        heap[i] = heap[ci];</span><br><span class="line">        <span class="comment">// 下移一层</span></span><br><span class="line">        i = ci;</span><br><span class="line">        ci *= <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    heap[i] = y;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span><br><span class="line"><span class="keyword">void</span> MaxHeap&lt;T&gt;::Initialize(T a[], <span class="keyword">int</span> size, <span class="keyword">int</span> ArraySize)&#123;</span><br><span class="line">    <span class="comment">// 把最大堆初始化为a</span></span><br><span class="line">    <span class="keyword">delete</span>[] heap;</span><br><span class="line">    heap = <span class="keyword">new</span> T[size + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> s = <span class="number">1</span>; s &lt;= size; s++)&#123;</span><br><span class="line">        heap[s] = a[s - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    CurrentSize = size;</span><br><span class="line">    MaxSize = ArraySize;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//产生一个最大堆</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = CurrentSize / <span class="number">2</span>; i &gt;= <span class="number">1</span>; i--)&#123;</span><br><span class="line">        T y = heap[i];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 寻找放置y的位置</span></span><br><span class="line">        <span class="keyword">int</span> c = <span class="number">2</span> * i;</span><br><span class="line">        <span class="keyword">while</span> (c &lt;= CurrentSize)&#123;</span><br><span class="line">            <span class="keyword">if</span> (c &lt; CurrentSize&amp;&amp;heap[c] &lt; heap[c + <span class="number">1</span>])</span><br><span class="line">                c++;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (y &gt;= heap[c])</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">            heap[c / <span class="number">2</span>] = heap[c];</span><br><span class="line">            c *= <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        heap[c / <span class="number">2</span>] = y;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>插入代码中，i从新创建的叶节点位置CurrentSize开始，对从该位置到根的路径进行遍历，对每个位置，都检查是否到达跟(i=1)或在i处插入新元素不会改变最大树的性质—$x \le heap[i/2]$，只要满足其中一个条件，就可以在i处插入x，否则会执行循环体中的代码。插入操作的时间复杂性是$O(logn)$。</p>
-<p>删除操作的时间复杂性也是$O(logn)$。</p>
-<p>初始化函数<strong>Initialize</strong>中for循环每次所花时间是$O(logn)$,循环次数是n/2，总的复杂性是$O(nlogn)$。实际应用中，初始化操作的复杂性是$\theta(n)$。</p>
-<p>更完整的代码例子可以查看<a href="https://github.com/ccc013/DataStructe-Algorithms_Study/blob/master/PriorityQueue/MaxHeap.h" target="_blank" rel="external">最大堆的实现</a>。</p>
-<h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><p>  利用堆来实现n个元素的排序，所需时间是$O(nlogn)$,可以将先要排序的n个元素初始化为一个最大堆，然后每次从堆中提取（即删除）元素，各元素将按递减次序排列。初始化所需要的时间是$\theta(n)$,每次删除所需要的时间是$O(logn)$,因此总时间是$O(nlogn)$。</p>
-<p>实现代码如下所示：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">HeapSort</span><span class="params">(T a[], <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="comment">// 利用堆排序算法对a[1:n]进行排序</span></span><br><span class="line">    MaxHeap&lt;T&gt; H(<span class="number">1</span>);</span><br><span class="line">    H.Initialize(a, n, n);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 从最大堆中逐个抽取元素</span></span><br><span class="line">    T x;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">        H.DeleteMax(x);</span><br><span class="line">        a[i] = x;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 在堆的析构函数中保存数组a</span></span><br><span class="line">    H.Deactivate();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>测试例子如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a[] = &#123; <span class="number">20</span>, <span class="number">12</span>, <span class="number">35</span>, <span class="number">15</span>, <span class="number">10</span>, <span class="number">80</span>, <span class="number">30</span>, <span class="number">17</span>, <span class="number">2</span>, <span class="number">1</span> &#125;;</span><br><span class="line">    HeapSort(a, <span class="number">10</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; a[i] &lt;&lt; <span class="string">", "</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"\n"</span>;</span><br><span class="line"></span><br><span class="line">    system(<span class="string">"pause"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>输出如下图所示：</p>
-<p><img src="http://7xrluf.com1.z0.glb.clouddn.com/%E5%A0%865.png" alt="此处输入图片的描述"></p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<p>继续是《数据结构算法与应用：C++语言描述》的笔记，这是第九章优先队列的内容。本小节主要介绍的是优先队列的定义以及其中一种实现方法—最大堆的实现，最后是堆的一个应用—堆排序。</p>
-<p>优先队列删除元素时根据优先权高或低的次序，而不是元素进行队列的次序，这与之前第六章介]]>
     </summary>
     
       <category term="数据结构" scheme="http://ccc013.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
