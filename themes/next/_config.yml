@@ -178,17 +178,13 @@ links_title: Links
 #links_layout: inline
 links:
   #Title: http://example.com/
-  张鸿洋的博客: http://blog.csdn.net/lmj623565791
-  郭霖的博客: http://blog.csdn.net/guolin_blog
-  任玉刚: http://blog.csdn.net/singwhatiwanna/article/category/1405419
-  罗升阳: http://blog.csdn.net/Luoshengyang/
-  胡凯: http://hukai.me/
-  代码家: http://blog.daimajia.com/
-  HujiaweiBujidao: http://hujiaweibujidao.github.io/
+  机器之心：https://www.jiqizhixin.com/
+  PaperWeekly：https://www.paperweekly.site/tags/176/papers
+  Google AI Blog：https://ai.googleblog.com/
+  DeepMind：https://deepmind.com/blog/?category=research
+  OpenAI：https://blog.openai.com/
   廖雪峰的博客: http://www.liaoxuefeng.com/
-  Drakeet的个人博客: https://drakeet.me/
-  张涛-开源实验室: http://www.kymjs.com/
-  咕咚: http://gudong.name/
+  zouxy09的专栏：http://blog.csdn.net/zouxy09
 
 
 # ---------------------------------------------------------------
